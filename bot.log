@@ -1,0 +1,1014 @@
+2025-11-20 19:48:05,083 [INFO] === BOT MULTI-TF - ARRANQUE ===
+2025-11-20 19:50:47,927 [ERROR] \u274c Error fatal: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2025-11-20 19:50:50,305 [INFO] === BOT MULTI-TF - ARRANQUE ===
+2025-11-20 19:51:15,307 [INFO] \u2705 Cuenta: DEMO - Balance: -1.0
+2025-11-20 19:51:16,193 [INFO] 
+=== CICLO #1 - 2025-11-20 22:51:16 UTC ===
+2025-11-20 19:51:36,201 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 300s
+2025-11-20 19:51:36,204 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 900s
+2025-11-20 19:51:36,205 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 900s
+2025-11-20 19:51:36,205 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 900s
+2025-11-20 19:51:36,206 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 900s
+2025-11-20 19:51:36,206 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 1800s
+2025-11-20 19:51:36,207 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 900s
+2025-11-20 19:51:36,207 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 600s
+2025-11-20 19:51:36,207 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 300s
+2025-11-20 19:51:36,207 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 600s
+2025-11-20 19:51:36,208 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 1800s
+2025-11-20 19:51:36,208 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 300s
+2025-11-20 19:51:36,208 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 1800s
+2025-11-20 19:51:36,208 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 900s
+2025-11-20 19:51:36,209 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 600s
+2025-11-20 19:51:36,209 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 300s
+2025-11-20 19:51:36,209 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 1800s
+2025-11-20 19:51:36,209 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 900s
+2025-11-20 19:51:36,210 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 600s
+2025-11-20 19:51:36,210 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 300s
+2025-11-20 19:51:36,210 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 1800s
+2025-11-20 19:51:36,210 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 900s
+2025-11-20 19:51:36,211 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 600s
+2025-11-20 19:51:36,211 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 300s
+2025-11-20 19:51:36,211 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 600s
+2025-11-20 19:51:36,211 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 1800s
+2025-11-20 19:51:36,212 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 300s
+2025-11-20 19:51:36,212 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 1800s
+2025-11-20 19:51:36,212 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 900s
+2025-11-20 19:51:36,212 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 600s
+2025-11-20 19:51:36,213 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 300s
+2025-11-20 19:51:36,213 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 600s
+2025-11-20 19:51:36,213 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 1800s
+2025-11-20 19:51:36,213 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 300s
+2025-11-20 19:51:36,214 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 600s
+2025-11-20 19:51:36,214 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 1800s
+2025-11-20 19:51:36,214 [INFO] Sin señales válidas en este ciclo.
+2025-11-20 19:52:06,225 [INFO] 
+=== CICLO #2 - 2025-11-20 22:52:06 UTC ===
+2025-11-20 19:52:26,230 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 300s
+2025-11-20 19:52:26,231 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 900s
+2025-11-20 19:52:26,232 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 900s
+2025-11-20 19:52:26,232 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 900s
+2025-11-20 19:52:26,233 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 900s
+2025-11-20 19:52:26,233 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 1800s
+2025-11-20 19:52:26,234 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 900s
+2025-11-20 19:52:26,234 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 600s
+2025-11-20 19:52:26,235 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 300s
+2025-11-20 19:52:26,235 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 600s
+2025-11-20 19:52:26,235 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 1800s
+2025-11-20 19:52:26,235 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 300s
+2025-11-20 19:52:26,236 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 1800s
+2025-11-20 19:52:26,236 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 900s
+2025-11-20 19:52:26,236 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 600s
+2025-11-20 19:52:26,236 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 300s
+2025-11-20 19:52:26,237 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 1800s
+2025-11-20 19:52:26,237 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 900s
+2025-11-20 19:52:26,237 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 600s
+2025-11-20 19:52:26,237 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 300s
+2025-11-20 19:52:26,238 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 1800s
+2025-11-20 19:52:26,238 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 900s
+2025-11-20 19:52:26,238 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 600s
+2025-11-20 19:52:26,238 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 300s
+2025-11-20 19:52:26,239 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 600s
+2025-11-20 19:52:26,239 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 1800s
+2025-11-20 19:52:26,239 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 300s
+2025-11-20 19:52:26,239 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 1800s
+2025-11-20 19:52:26,240 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 900s
+2025-11-20 19:52:26,240 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 600s
+2025-11-20 19:52:26,240 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 300s
+2025-11-20 19:52:26,240 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 600s
+2025-11-20 19:52:26,240 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 1800s
+2025-11-20 19:52:26,241 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 300s
+2025-11-20 19:52:26,241 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 600s
+2025-11-20 19:52:26,241 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 1800s
+2025-11-20 19:52:26,241 [INFO] Sin señales válidas en este ciclo.
+2025-11-20 19:52:56,248 [INFO] 
+=== CICLO #3 - 2025-11-20 22:52:56 UTC ===
+2025-11-20 19:53:05,496 [INFO] Usuario detuvo el bot
+2025-11-20 19:53:07,991 [INFO] === BOT MULTI-TF - ARRANQUE ===
+2025-11-20 19:53:26,782 [INFO] \u2705 Cuenta: DEMO - Balance: -1.0
+2025-11-20 19:53:27,697 [INFO] 
+=== CICLO #1 - 2025-11-20 22:53:27 UTC ===
+2025-11-20 19:54:07,717 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 300s
+2025-11-20 19:54:07,720 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 900s
+2025-11-20 19:54:07,720 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 900s
+2025-11-20 19:54:07,721 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 900s
+2025-11-20 19:54:07,721 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 900s
+2025-11-20 19:54:07,722 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 1800s
+2025-11-20 19:54:07,722 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 900s
+2025-11-20 19:54:07,722 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 600s
+2025-11-20 19:54:07,723 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 300s
+2025-11-20 19:54:07,723 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 600s
+2025-11-20 19:54:07,723 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 1800s
+2025-11-20 19:54:07,723 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 300s
+2025-11-20 19:54:07,724 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 1800s
+2025-11-20 19:54:07,724 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 900s
+2025-11-20 19:54:07,724 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 600s
+2025-11-20 19:54:07,724 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 300s
+2025-11-20 19:54:07,725 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 1800s
+2025-11-20 19:54:07,725 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 900s
+2025-11-20 19:54:07,725 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 600s
+2025-11-20 19:54:07,725 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 300s
+2025-11-20 19:54:07,726 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 1800s
+2025-11-20 19:54:07,726 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 900s
+2025-11-20 19:54:07,726 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 600s
+2025-11-20 19:54:07,726 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 300s
+2025-11-20 19:54:07,727 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 600s
+2025-11-20 19:54:07,727 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 1800s
+2025-11-20 19:54:07,727 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 300s
+2025-11-20 19:54:07,727 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 1800s
+2025-11-20 19:54:07,728 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 900s
+2025-11-20 19:54:07,728 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 600s
+2025-11-20 19:54:07,728 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 300s
+2025-11-20 19:54:07,729 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 600s
+2025-11-20 19:54:07,729 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 1800s
+2025-11-20 19:54:07,729 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 300s
+2025-11-20 19:54:07,729 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 600s
+2025-11-20 19:54:07,729 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 1800s
+2025-11-20 19:54:07,730 [INFO] Sin señales válidas en este ciclo.
+2025-11-20 19:54:37,730 [INFO] 
+=== CICLO #2 - 2025-11-20 22:54:37 UTC ===
+2025-11-20 19:55:17,741 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 300s
+2025-11-20 19:55:17,742 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 900s
+2025-11-20 19:55:17,743 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 900s
+2025-11-20 19:55:17,744 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 900s
+2025-11-20 19:55:17,745 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 900s
+2025-11-20 19:55:17,745 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 1800s
+2025-11-20 19:55:17,745 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 900s
+2025-11-20 19:55:17,746 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 600s
+2025-11-20 19:55:17,746 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 300s
+2025-11-20 19:55:17,746 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 600s
+2025-11-20 19:55:17,747 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 1800s
+2025-11-20 19:55:17,747 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 300s
+2025-11-20 19:55:17,747 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 1800s
+2025-11-20 19:55:17,748 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 900s
+2025-11-20 19:55:17,748 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 600s
+2025-11-20 19:55:17,748 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 300s
+2025-11-20 19:55:17,748 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 1800s
+2025-11-20 19:55:17,749 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 900s
+2025-11-20 19:55:17,749 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 600s
+2025-11-20 19:55:17,749 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 300s
+2025-11-20 19:55:17,749 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 1800s
+2025-11-20 19:55:17,750 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 900s
+2025-11-20 19:55:17,750 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 600s
+2025-11-20 19:55:17,750 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 300s
+2025-11-20 19:55:17,750 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 600s
+2025-11-20 19:55:17,751 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 1800s
+2025-11-20 19:55:17,751 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 300s
+2025-11-20 19:55:17,751 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 1800s
+2025-11-20 19:55:17,752 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 900s
+2025-11-20 19:55:17,752 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 600s
+2025-11-20 19:55:17,752 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 300s
+2025-11-20 19:55:17,752 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 600s
+2025-11-20 19:55:17,752 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 1800s
+2025-11-20 19:55:17,753 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 300s
+2025-11-20 19:55:17,753 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 600s
+2025-11-20 19:55:17,753 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 1800s
+2025-11-20 19:55:17,753 [INFO] Sin señales válidas en este ciclo.
+2025-11-20 19:55:47,766 [INFO] 
+=== CICLO #3 - 2025-11-20 22:55:47 UTC ===
+2025-11-20 19:56:27,761 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 300s
+2025-11-20 19:56:27,763 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 900s
+2025-11-20 19:56:27,764 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 900s
+2025-11-20 19:56:27,765 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 900s
+2025-11-20 19:56:27,766 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 900s
+2025-11-20 19:56:27,766 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 1800s
+2025-11-20 19:56:27,767 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 900s
+2025-11-20 19:56:27,767 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 600s
+2025-11-20 19:56:27,768 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 300s
+2025-11-20 19:56:27,769 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 600s
+2025-11-20 19:56:27,769 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 1800s
+2025-11-20 19:56:27,770 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 300s
+2025-11-20 19:56:27,770 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 1800s
+2025-11-20 19:56:27,771 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 900s
+2025-11-20 19:56:27,771 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 600s
+2025-11-20 19:56:27,772 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 300s
+2025-11-20 19:56:27,772 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 1800s
+2025-11-20 19:56:27,773 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 900s
+2025-11-20 19:56:27,773 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 600s
+2025-11-20 19:56:27,774 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 300s
+2025-11-20 19:56:27,774 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 1800s
+2025-11-20 19:56:27,774 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 900s
+2025-11-20 19:56:27,775 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 600s
+2025-11-20 19:56:27,775 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 300s
+2025-11-20 19:56:27,776 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 600s
+2025-11-20 19:56:27,776 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 1800s
+2025-11-20 19:56:27,777 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 300s
+2025-11-20 19:56:27,777 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 1800s
+2025-11-20 19:56:27,777 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 900s
+2025-11-20 19:56:27,778 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 600s
+2025-11-20 19:56:27,778 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 300s
+2025-11-20 19:56:27,779 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 600s
+2025-11-20 19:56:27,779 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 1800s
+2025-11-20 19:56:27,780 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 300s
+2025-11-20 19:56:27,780 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 600s
+2025-11-20 19:56:27,780 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 1800s
+2025-11-20 19:56:27,781 [INFO] Sin señales válidas en este ciclo.
+2025-11-20 19:56:57,781 [INFO] 
+=== CICLO #4 - 2025-11-20 22:56:57 UTC ===
+2025-11-20 19:57:37,781 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 300s
+2025-11-20 19:57:37,783 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 900s
+2025-11-20 19:57:37,784 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 900s
+2025-11-20 19:57:37,785 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 900s
+2025-11-20 19:57:37,785 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 900s
+2025-11-20 19:57:37,786 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 1800s
+2025-11-20 19:57:37,786 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 900s
+2025-11-20 19:57:37,786 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 600s
+2025-11-20 19:57:37,786 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 300s
+2025-11-20 19:57:37,787 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 600s
+2025-11-20 19:57:37,787 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 1800s
+2025-11-20 19:57:37,787 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 300s
+2025-11-20 19:57:37,787 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 1800s
+2025-11-20 19:57:37,788 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 900s
+2025-11-20 19:57:37,788 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 600s
+2025-11-20 19:57:37,788 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 300s
+2025-11-20 19:57:37,789 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 1800s
+2025-11-20 19:57:37,789 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 900s
+2025-11-20 19:57:37,789 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 600s
+2025-11-20 19:57:37,789 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 300s
+2025-11-20 19:57:37,790 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 1800s
+2025-11-20 19:57:37,790 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 900s
+2025-11-20 19:57:37,790 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 600s
+2025-11-20 19:57:37,790 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 300s
+2025-11-20 19:57:37,791 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 600s
+2025-11-20 19:57:37,791 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 1800s
+2025-11-20 19:57:37,791 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 300s
+2025-11-20 19:57:37,792 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 1800s
+2025-11-20 19:57:37,792 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 900s
+2025-11-20 19:57:37,792 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 600s
+2025-11-20 19:57:37,792 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 300s
+2025-11-20 19:57:37,793 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 600s
+2025-11-20 19:57:37,793 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 1800s
+2025-11-20 19:57:37,793 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 300s
+2025-11-20 19:57:37,793 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 600s
+2025-11-20 19:57:37,793 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 1800s
+2025-11-20 19:57:37,794 [INFO] Sin señales válidas en este ciclo.
+2025-11-20 19:58:07,799 [INFO] 
+=== CICLO #5 - 2025-11-20 22:58:07 UTC ===
+2025-11-20 19:58:47,807 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 300s
+2025-11-20 19:58:47,808 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 900s
+2025-11-20 19:58:47,809 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 900s
+2025-11-20 19:58:47,810 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 900s
+2025-11-20 19:58:47,811 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 900s
+2025-11-20 19:58:47,811 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 1800s
+2025-11-20 19:58:47,811 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 900s
+2025-11-20 19:58:47,812 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 600s
+2025-11-20 19:58:47,812 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 300s
+2025-11-20 19:58:47,812 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 600s
+2025-11-20 19:58:47,813 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 1800s
+2025-11-20 19:58:47,813 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 300s
+2025-11-20 19:58:47,813 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 1800s
+2025-11-20 19:58:47,814 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 900s
+2025-11-20 19:58:47,814 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 600s
+2025-11-20 19:58:47,814 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 300s
+2025-11-20 19:58:47,814 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 1800s
+2025-11-20 19:58:47,815 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 900s
+2025-11-20 19:58:47,815 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 600s
+2025-11-20 19:58:47,815 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 300s
+2025-11-20 19:58:47,815 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 1800s
+2025-11-20 19:58:47,816 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 900s
+2025-11-20 19:58:47,816 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 600s
+2025-11-20 19:58:47,816 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 300s
+2025-11-20 19:58:47,816 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 600s
+2025-11-20 19:58:47,817 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 1800s
+2025-11-20 19:58:47,817 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 300s
+2025-11-20 19:58:47,817 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 1800s
+2025-11-20 19:58:47,817 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 900s
+2025-11-20 19:58:47,817 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 600s
+2025-11-20 19:58:47,818 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 300s
+2025-11-20 19:58:47,818 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 600s
+2025-11-20 19:58:47,818 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 1800s
+2025-11-20 19:58:47,818 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 300s
+2025-11-20 19:58:47,819 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 600s
+2025-11-20 19:58:47,819 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 1800s
+2025-11-20 19:58:47,819 [INFO] Sin señales válidas en este ciclo.
+2025-11-20 19:59:17,822 [INFO] 
+=== CICLO #6 - 2025-11-20 22:59:17 UTC ===
+2025-11-20 19:59:57,826 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 300s
+2025-11-20 19:59:57,827 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 900s
+2025-11-20 19:59:57,828 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 900s
+2025-11-20 19:59:57,829 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 900s
+2025-11-20 19:59:57,830 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 900s
+2025-11-20 19:59:57,830 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 1800s
+2025-11-20 19:59:57,830 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 900s
+2025-11-20 19:59:57,831 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 600s
+2025-11-20 19:59:57,831 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 300s
+2025-11-20 19:59:57,831 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 600s
+2025-11-20 19:59:57,832 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 1800s
+2025-11-20 19:59:57,832 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 300s
+2025-11-20 19:59:57,832 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 1800s
+2025-11-20 19:59:57,833 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 900s
+2025-11-20 19:59:57,833 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 600s
+2025-11-20 19:59:57,834 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 300s
+2025-11-20 19:59:57,834 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 1800s
+2025-11-20 19:59:57,834 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 900s
+2025-11-20 19:59:57,835 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 600s
+2025-11-20 19:59:57,835 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 300s
+2025-11-20 19:59:57,835 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 1800s
+2025-11-20 19:59:57,836 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 900s
+2025-11-20 19:59:57,836 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 600s
+2025-11-20 19:59:57,837 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 300s
+2025-11-20 19:59:57,838 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 600s
+2025-11-20 19:59:57,838 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 1800s
+2025-11-20 19:59:57,838 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 300s
+2025-11-20 19:59:57,839 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 1800s
+2025-11-20 19:59:57,839 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 900s
+2025-11-20 19:59:57,839 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 600s
+2025-11-20 19:59:57,840 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 300s
+2025-11-20 19:59:57,840 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 600s
+2025-11-20 19:59:57,841 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 1800s
+2025-11-20 19:59:57,841 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 300s
+2025-11-20 19:59:57,841 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 600s
+2025-11-20 19:59:57,842 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 1800s
+2025-11-20 19:59:57,842 [INFO] Sin señales válidas en este ciclo.
+2025-11-20 20:00:27,849 [INFO] 
+=== CICLO #7 - 2025-11-20 23:00:27 UTC ===
+2025-11-20 20:01:07,866 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 300s
+2025-11-20 20:01:07,867 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 900s
+2025-11-20 20:01:07,868 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 900s
+2025-11-20 20:01:07,869 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 900s
+2025-11-20 20:01:07,870 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 900s
+2025-11-20 20:01:07,870 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 1800s
+2025-11-20 20:01:07,870 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 900s
+2025-11-20 20:01:07,871 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 600s
+2025-11-20 20:01:07,871 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 300s
+2025-11-20 20:01:07,871 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 600s
+2025-11-20 20:01:07,872 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 1800s
+2025-11-20 20:01:07,872 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 300s
+2025-11-20 20:01:07,872 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 1800s
+2025-11-20 20:01:07,872 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 900s
+2025-11-20 20:01:07,873 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 600s
+2025-11-20 20:01:07,873 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 300s
+2025-11-20 20:01:07,873 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 1800s
+2025-11-20 20:01:07,873 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 900s
+2025-11-20 20:01:07,874 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 600s
+2025-11-20 20:01:07,874 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 300s
+2025-11-20 20:01:07,874 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 1800s
+2025-11-20 20:01:07,874 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 900s
+2025-11-20 20:01:07,875 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 600s
+2025-11-20 20:01:07,875 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 300s
+2025-11-20 20:01:07,875 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 600s
+2025-11-20 20:01:07,875 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 1800s
+2025-11-20 20:01:07,876 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 300s
+2025-11-20 20:01:07,876 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 1800s
+2025-11-20 20:01:07,876 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 900s
+2025-11-20 20:01:07,876 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 600s
+2025-11-20 20:01:07,876 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 300s
+2025-11-20 20:01:07,877 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 600s
+2025-11-20 20:01:07,877 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 1800s
+2025-11-20 20:01:07,877 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 300s
+2025-11-20 20:01:07,877 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 600s
+2025-11-20 20:01:07,878 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 1800s
+2025-11-20 20:01:07,878 [INFO] Sin señales válidas en este ciclo.
+2025-11-20 20:01:37,884 [INFO] 
+=== CICLO #8 - 2025-11-20 23:01:37 UTC ===
+2025-11-20 20:02:17,896 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 300s
+2025-11-20 20:02:17,897 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 900s
+2025-11-20 20:02:17,898 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 900s
+2025-11-20 20:02:17,899 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 900s
+2025-11-20 20:02:17,900 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 900s
+2025-11-20 20:02:17,900 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 1800s
+2025-11-20 20:02:17,900 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 900s
+2025-11-20 20:02:17,901 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 600s
+2025-11-20 20:02:17,901 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 300s
+2025-11-20 20:02:17,901 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 600s
+2025-11-20 20:02:17,901 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 1800s
+2025-11-20 20:02:17,902 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 300s
+2025-11-20 20:02:17,902 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 1800s
+2025-11-20 20:02:17,902 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 900s
+2025-11-20 20:02:17,903 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 600s
+2025-11-20 20:02:17,903 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 300s
+2025-11-20 20:02:17,903 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 1800s
+2025-11-20 20:02:17,903 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 900s
+2025-11-20 20:02:17,904 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 600s
+2025-11-20 20:02:17,904 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 300s
+2025-11-20 20:02:17,904 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 1800s
+2025-11-20 20:02:17,904 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 900s
+2025-11-20 20:02:17,905 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 600s
+2025-11-20 20:02:17,905 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 300s
+2025-11-20 20:02:17,905 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 600s
+2025-11-20 20:02:17,905 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 1800s
+2025-11-20 20:02:17,906 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 300s
+2025-11-20 20:02:17,906 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 1800s
+2025-11-20 20:02:17,906 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 900s
+2025-11-20 20:02:17,906 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 600s
+2025-11-20 20:02:17,907 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 300s
+2025-11-20 20:02:17,907 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 600s
+2025-11-20 20:02:17,907 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 1800s
+2025-11-20 20:02:17,907 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 300s
+2025-11-20 20:02:17,908 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 600s
+2025-11-20 20:02:17,908 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 1800s
+2025-11-20 20:02:17,908 [INFO] Sin señales válidas en este ciclo.
+2025-11-20 20:02:47,923 [INFO] 
+=== CICLO #9 - 2025-11-20 23:02:47 UTC ===
+2025-11-20 20:03:27,934 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 300s
+2025-11-20 20:03:27,935 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 900s
+2025-11-20 20:03:27,936 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 900s
+2025-11-20 20:03:27,937 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 900s
+2025-11-20 20:03:27,937 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 900s
+2025-11-20 20:03:27,938 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 1800s
+2025-11-20 20:03:27,938 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 900s
+2025-11-20 20:03:27,938 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 600s
+2025-11-20 20:03:27,939 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 300s
+2025-11-20 20:03:27,939 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 600s
+2025-11-20 20:03:27,939 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 1800s
+2025-11-20 20:03:27,940 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 300s
+2025-11-20 20:03:27,940 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 1800s
+2025-11-20 20:03:27,940 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 900s
+2025-11-20 20:03:27,941 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 600s
+2025-11-20 20:03:27,941 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 300s
+2025-11-20 20:03:27,941 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 1800s
+2025-11-20 20:03:27,942 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 900s
+2025-11-20 20:03:27,942 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 600s
+2025-11-20 20:03:27,942 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 300s
+2025-11-20 20:03:27,943 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 1800s
+2025-11-20 20:03:27,943 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 900s
+2025-11-20 20:03:27,943 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 600s
+2025-11-20 20:03:27,944 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 300s
+2025-11-20 20:03:27,944 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 600s
+2025-11-20 20:03:27,944 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 1800s
+2025-11-20 20:03:27,944 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 300s
+2025-11-20 20:03:27,945 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 1800s
+2025-11-20 20:03:27,945 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 900s
+2025-11-20 20:03:27,945 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 600s
+2025-11-20 20:03:27,946 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 300s
+2025-11-20 20:03:27,946 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 600s
+2025-11-20 20:03:27,946 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 1800s
+2025-11-20 20:03:27,947 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 300s
+2025-11-20 20:03:27,947 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 600s
+2025-11-20 20:03:27,947 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 1800s
+2025-11-20 20:03:27,948 [INFO] Sin señales válidas en este ciclo.
+2025-11-20 20:03:57,951 [INFO] 
+=== CICLO #10 - 2025-11-20 23:03:57 UTC ===
+2025-11-20 20:04:37,965 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 300s
+2025-11-20 20:04:37,967 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 900s
+2025-11-20 20:04:37,968 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 900s
+2025-11-20 20:04:37,968 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 900s
+2025-11-20 20:04:37,969 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 900s
+2025-11-20 20:04:37,969 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 1800s
+2025-11-20 20:04:37,970 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 900s
+2025-11-20 20:04:37,970 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 600s
+2025-11-20 20:04:37,971 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 300s
+2025-11-20 20:04:37,971 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 600s
+2025-11-20 20:04:37,971 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 1800s
+2025-11-20 20:04:37,972 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 300s
+2025-11-20 20:04:37,972 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 1800s
+2025-11-20 20:04:37,972 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 900s
+2025-11-20 20:04:37,973 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 600s
+2025-11-20 20:04:37,973 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 300s
+2025-11-20 20:04:37,973 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 1800s
+2025-11-20 20:04:37,974 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 900s
+2025-11-20 20:04:37,974 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 600s
+2025-11-20 20:04:37,975 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 300s
+2025-11-20 20:04:37,975 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 1800s
+2025-11-20 20:04:37,975 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 900s
+2025-11-20 20:04:37,976 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 600s
+2025-11-20 20:04:37,976 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 300s
+2025-11-20 20:04:37,976 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 600s
+2025-11-20 20:04:37,977 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 1800s
+2025-11-20 20:04:37,977 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 300s
+2025-11-20 20:04:37,977 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 1800s
+2025-11-20 20:04:37,978 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 900s
+2025-11-20 20:04:37,978 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 600s
+2025-11-20 20:04:37,979 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 300s
+2025-11-20 20:04:37,979 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 600s
+2025-11-20 20:04:37,980 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 1800s
+2025-11-20 20:04:37,980 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 300s
+2025-11-20 20:04:37,980 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 600s
+2025-11-20 20:04:37,981 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 1800s
+2025-11-20 20:04:37,981 [INFO] Sin señales válidas en este ciclo.
+2025-11-20 20:05:07,994 [INFO] 
+=== CICLO #11 - 2025-11-20 23:05:07 UTC ===
+2025-11-20 20:05:47,991 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 300s
+2025-11-20 20:05:47,993 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 900s
+2025-11-20 20:05:47,994 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 900s
+2025-11-20 20:05:47,994 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 900s
+2025-11-20 20:05:47,995 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 900s
+2025-11-20 20:05:47,995 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 1800s
+2025-11-20 20:05:47,996 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 900s
+2025-11-20 20:05:47,996 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 600s
+2025-11-20 20:05:47,996 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 300s
+2025-11-20 20:05:47,997 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 600s
+2025-11-20 20:05:47,997 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 1800s
+2025-11-20 20:05:47,997 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 300s
+2025-11-20 20:05:47,997 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 1800s
+2025-11-20 20:05:47,998 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 900s
+2025-11-20 20:05:47,998 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 600s
+2025-11-20 20:05:47,998 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 300s
+2025-11-20 20:05:47,999 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 1800s
+2025-11-20 20:05:47,999 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 900s
+2025-11-20 20:05:47,999 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 600s
+2025-11-20 20:05:48,000 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 300s
+2025-11-20 20:05:48,000 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 1800s
+2025-11-20 20:05:48,000 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 900s
+2025-11-20 20:05:48,000 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 600s
+2025-11-20 20:05:48,001 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 300s
+2025-11-20 20:05:48,001 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 600s
+2025-11-20 20:05:48,001 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 1800s
+2025-11-20 20:05:48,002 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 300s
+2025-11-20 20:05:48,002 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 1800s
+2025-11-20 20:05:48,002 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 900s
+2025-11-20 20:05:48,003 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 600s
+2025-11-20 20:05:48,003 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 300s
+2025-11-20 20:05:48,003 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 600s
+2025-11-20 20:05:48,004 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 1800s
+2025-11-20 20:05:48,004 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 300s
+2025-11-20 20:05:48,004 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 600s
+2025-11-20 20:05:48,005 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 1800s
+2025-11-20 20:05:48,005 [INFO] Sin señales válidas en este ciclo.
+2025-11-20 20:06:18,011 [INFO] 
+=== CICLO #12 - 2025-11-20 23:06:18 UTC ===
+2025-11-20 20:06:58,004 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 300s
+2025-11-20 20:06:58,005 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 900s
+2025-11-20 20:06:58,006 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 900s
+2025-11-20 20:06:58,007 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 900s
+2025-11-20 20:06:58,008 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 900s
+2025-11-20 20:06:58,008 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 1800s
+2025-11-20 20:06:58,008 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 900s
+2025-11-20 20:06:58,008 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 600s
+2025-11-20 20:06:58,009 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 300s
+2025-11-20 20:06:58,009 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 600s
+2025-11-20 20:06:58,009 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 1800s
+2025-11-20 20:06:58,010 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 300s
+2025-11-20 20:06:58,010 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 1800s
+2025-11-20 20:06:58,010 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 900s
+2025-11-20 20:06:58,011 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 600s
+2025-11-20 20:06:58,011 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 300s
+2025-11-20 20:06:58,011 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 1800s
+2025-11-20 20:06:58,012 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 900s
+2025-11-20 20:06:58,012 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 600s
+2025-11-20 20:06:58,012 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 300s
+2025-11-20 20:06:58,013 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 1800s
+2025-11-20 20:06:58,013 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 900s
+2025-11-20 20:06:58,013 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 600s
+2025-11-20 20:06:58,013 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 300s
+2025-11-20 20:06:58,014 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 600s
+2025-11-20 20:06:58,014 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 1800s
+2025-11-20 20:06:58,014 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 300s
+2025-11-20 20:06:58,015 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 1800s
+2025-11-20 20:06:58,015 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 900s
+2025-11-20 20:06:58,015 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 600s
+2025-11-20 20:06:58,015 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 300s
+2025-11-20 20:06:58,015 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 600s
+2025-11-20 20:06:58,016 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 1800s
+2025-11-20 20:06:58,016 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 300s
+2025-11-20 20:06:58,017 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 600s
+2025-11-20 20:06:58,017 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 1800s
+2025-11-20 20:06:58,017 [INFO] Sin señales válidas en este ciclo.
+2025-11-20 20:07:28,032 [INFO] 
+=== CICLO #13 - 2025-11-20 23:07:28 UTC ===
+2025-11-20 20:08:08,050 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 300s
+2025-11-20 20:08:08,051 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 900s
+2025-11-20 20:08:08,052 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 900s
+2025-11-20 20:08:08,053 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 900s
+2025-11-20 20:08:08,053 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 900s
+2025-11-20 20:08:08,054 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 1800s
+2025-11-20 20:08:08,054 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 900s
+2025-11-20 20:08:08,055 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 600s
+2025-11-20 20:08:08,055 [WARNING] \u23f1\ufe0f Timeout al obtener USDARS_otc 300s
+2025-11-20 20:08:08,055 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 600s
+2025-11-20 20:08:08,056 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 1800s
+2025-11-20 20:08:08,056 [WARNING] \u23f1\ufe0f Timeout al obtener USDCOP_otc 300s
+2025-11-20 20:08:08,056 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 1800s
+2025-11-20 20:08:08,056 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 900s
+2025-11-20 20:08:08,057 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 600s
+2025-11-20 20:08:08,057 [WARNING] \u23f1\ufe0f Timeout al obtener USDMXN_otc 300s
+2025-11-20 20:08:08,057 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 1800s
+2025-11-20 20:08:08,058 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 900s
+2025-11-20 20:08:08,058 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 600s
+2025-11-20 20:08:08,058 [WARNING] \u23f1\ufe0f Timeout al obtener AUDCAD_otc 300s
+2025-11-20 20:08:08,058 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 1800s
+2025-11-20 20:08:08,059 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 900s
+2025-11-20 20:08:08,059 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 600s
+2025-11-20 20:08:08,059 [WARNING] \u23f1\ufe0f Timeout al obtener USDCAD_otc 300s
+2025-11-20 20:08:08,060 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 600s
+2025-11-20 20:08:08,060 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 1800s
+2025-11-20 20:08:08,060 [WARNING] \u23f1\ufe0f Timeout al obtener AUDUSD_otc 300s
+2025-11-20 20:08:08,061 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 1800s
+2025-11-20 20:08:08,061 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 900s
+2025-11-20 20:08:08,061 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 600s
+2025-11-20 20:08:08,061 [WARNING] \u23f1\ufe0f Timeout al obtener USDJPY_otc 300s
+2025-11-20 20:08:08,062 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 600s
+2025-11-20 20:08:08,062 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 1800s
+2025-11-20 20:08:08,062 [WARNING] \u23f1\ufe0f Timeout al obtener GBPUSD_otc 300s
+2025-11-20 20:08:08,063 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 600s
+2025-11-20 20:08:08,063 [WARNING] \u23f1\ufe0f Timeout al obtener EURUSD_otc 1800s
+2025-11-20 20:08:08,063 [INFO] Sin señales válidas en este ciclo.
+2025-11-20 20:08:38,070 [INFO] 
+=== CICLO #14 - 2025-11-20 23:08:38 UTC ===
+2025-11-20 20:08:38,917 [INFO] Usuario detuvo el bot
+2025-11-20 20:08:41,805 [INFO] ======================================================================
+2025-11-20 20:08:41,805 [INFO] \U0001f916 BOT MULTI-TF OPTIMIZADO - ARRANQUE
+2025-11-20 20:08:41,805 [INFO] ======================================================================
+2025-11-20 20:09:03,036 [INFO] \u2705 Cuenta: DEMO - Balance: $-1.00
+2025-11-20 20:09:03,931 [INFO] 
+\U0001f4ca Pares: 9 | Timeframes: M5, M10, M15, M30
+2025-11-20 20:09:03,931 [INFO] \U0001f4b0 Risk por operación: 2.0%
+2025-11-20 20:09:03,931 [INFO] \U0001f6e1\ufe0f Max pérdidas diarias: 3
+2025-11-20 20:09:03,931 [INFO] \U0001f6a6 Max requests simultáneos: 5
+2025-11-20 20:09:03,932 [INFO] ======================================================================
+
+2025-11-20 20:09:03,932 [INFO] 
+======================================================================
+2025-11-20 20:09:03,932 [INFO] CICLO #1 - 2025-11-20 23:09:03 UTC
+2025-11-20 20:09:03,932 [INFO] \U0001f4b0 Balance actual: $43.31
+2025-11-20 20:09:03,932 [INFO] \U0001f50d Analizando 36 combinaciones (max 5 simultáneas)...
+2025-11-20 20:09:23,924 [WARNING] \u23f1\ufe0f Timeout 1/3 para EURUSD_otc 300s, reintentando...
+2025-11-20 20:09:23,924 [WARNING] \u23f1\ufe0f Timeout 1/3 para EURUSD_otc 900s, reintentando...
+2025-11-20 20:09:23,925 [WARNING] \u23f1\ufe0f Timeout 1/3 para GBPUSD_otc 300s, reintentando...
+2025-11-20 20:09:23,925 [WARNING] \u23f1\ufe0f Timeout 1/3 para EURUSD_otc 600s, reintentando...
+2025-11-20 20:09:23,926 [WARNING] \u23f1\ufe0f Timeout 1/3 para EURUSD_otc 1800s, reintentando...
+2025-11-20 20:09:45,343 [WARNING] \u23f1\ufe0f Timeout 1/3 para GBPUSD_otc 600s, reintentando...
+2025-11-20 20:09:54,941 [WARNING] \u23f1\ufe0f Timeout 2/3 para EURUSD_otc 300s, reintentando...
+2025-11-20 20:09:54,941 [WARNING] \u23f1\ufe0f Timeout 2/3 para EURUSD_otc 1800s, reintentando...
+2025-11-20 20:09:54,941 [WARNING] \u23f1\ufe0f Timeout 2/3 para EURUSD_otc 900s, reintentando...
+2025-11-20 20:09:54,941 [WARNING] \u23f1\ufe0f Timeout 2/3 para EURUSD_otc 600s, reintentando...
+2025-11-20 20:10:16,365 [WARNING] \u23f1\ufe0f Timeout 2/3 para GBPUSD_otc 600s, reintentando...
+2025-11-20 20:10:36,973 [ERROR] \u274c Timeout definitivo para EURUSD_otc 900s
+2025-11-20 20:10:36,974 [ERROR] \u274c Timeout definitivo para EURUSD_otc 300s
+2025-11-20 20:10:36,974 [ERROR] \u274c Timeout definitivo para EURUSD_otc 1800s
+2025-11-20 20:10:36,975 [ERROR] \u274c Timeout definitivo para EURUSD_otc 600s
+2025-11-20 20:10:56,985 [WARNING] \u23f1\ufe0f Timeout 1/3 para GBPUSD_otc 900s, reintentando...
+2025-11-20 20:10:56,985 [WARNING] \u23f1\ufe0f Timeout 1/3 para GBPUSD_otc 1800s, reintentando...
+2025-11-20 20:10:56,985 [WARNING] \u23f1\ufe0f Timeout 1/3 para USDJPY_otc 600s, reintentando...
+2025-11-20 20:10:56,986 [WARNING] \u23f1\ufe0f Timeout 1/3 para USDJPY_otc 300s, reintentando...
+2025-11-20 20:10:58,379 [ERROR] \u274c Timeout definitivo para GBPUSD_otc 600s
+2025-11-20 20:11:18,388 [WARNING] \u23f1\ufe0f Timeout 1/3 para USDJPY_otc 900s, reintentando...
+2025-11-20 20:11:27,077 [INFO] 
+
+\U0001f44b Bot detenido por el usuario
+2025-11-20 20:11:27,976 [INFO] \U0001f4ca Estadísticas finales: Cache: 0.0% hit rate (0/11 requests)
+2025-11-20 20:11:29,512 [INFO] ======================================================================
+2025-11-20 20:11:29,513 [INFO] \U0001f916 BOT MULTI-TF OPTIMIZADO - ARRANQUE
+2025-11-20 20:11:29,513 [INFO] ======================================================================
+2025-11-20 20:11:49,770 [INFO] \u2705 Cuenta: DEMO - Balance: $-1.00
+2025-11-20 20:11:50,693 [INFO] 
+\U0001f4ca Pares: 9 | Timeframes: M5, M10, M15, M30
+2025-11-20 20:11:50,693 [INFO] \U0001f4b0 Risk por operación: 2.0%
+2025-11-20 20:11:50,693 [INFO] \U0001f6e1\ufe0f Max pérdidas diarias: 3
+2025-11-20 20:11:50,693 [INFO] \U0001f6a6 Max requests simultáneos: 2
+2025-11-20 20:11:50,693 [INFO] ======================================================================
+
+2025-11-20 20:11:50,693 [INFO] 
+======================================================================
+2025-11-20 20:11:50,693 [INFO] CICLO #1 - 2025-11-20 23:11:50 UTC
+2025-11-20 20:11:50,694 [INFO] \U0001f4b0 Balance actual: $-1.00
+2025-11-20 20:11:50,694 [INFO] \U0001f50d Analizando 9 pares en TF M5 (max 2 simultáneos)...
+2025-11-20 20:11:55,847 [INFO] \U0001f50d Analizando 9 pares en TF M10 (max 2 simultáneos)...
+2025-11-20 20:12:01,005 [INFO] \U0001f50d Analizando 9 pares en TF M15 (max 2 simultáneos)...
+2025-11-20 20:12:06,179 [INFO] \U0001f50d Analizando 9 pares en TF M30 (max 2 simultáneos)...
+2025-11-20 20:12:11,352 [INFO] \u23f1\ufe0f Análisis completado en 0.0s
+2025-11-20 20:12:11,352 [INFO] \u2705 Señales válidas encontradas: 10/36
+2025-11-20 20:12:11,352 [INFO] \U0001f4cc SEÑAL DETECTADA
+==============================
+Par: GBPUSD_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón: None
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+\U0001f4b0 Precio: 1.26779
+\U0001f4ca EMA: 1.27404
+\u23f1\ufe0f Duración: 5min
+\U0001f4b5 Monto: $0.01
+2025-11-20 20:12:12,251 [ERROR] \u274c Error ejecutando operación: PocketOptionError, General error: Amount must be at least 1
+2025-11-20 20:12:18,129 [INFO] 
+======================================================================
+2025-11-20 20:12:18,129 [INFO] CICLO #2 - 2025-11-20 23:12:18 UTC
+2025-11-20 20:12:18,129 [INFO] \U0001f4b0 Balance actual: $43.31
+2025-11-20 20:12:18,129 [INFO] \U0001f50d Analizando 9 pares en TF M5 (max 2 simultáneos)...
+2025-11-20 20:12:19,253 [INFO] \U0001f50d Analizando 9 pares en TF M10 (max 2 simultáneos)...
+2025-11-20 20:12:20,374 [INFO] \U0001f50d Analizando 9 pares en TF M15 (max 2 simultáneos)...
+2025-11-20 20:12:21,506 [INFO] \U0001f50d Analizando 9 pares en TF M30 (max 2 simultáneos)...
+2025-11-20 20:12:22,664 [INFO] \u23f1\ufe0f Análisis completado en 0.0s
+2025-11-20 20:12:22,664 [INFO] \u2705 Señales válidas encontradas: 10/36
+2025-11-20 20:12:22,664 [INFO] \U0001f4cc SEÑAL DETECTADA
+==============================
+Par: GBPUSD_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón: None
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+\U0001f4b0 Precio: 1.26779
+\U0001f4ca EMA: 1.27404
+\u23f1\ufe0f Duración: 5min
+\U0001f4b5 Monto: $0.87
+2025-11-20 20:12:23,553 [ERROR] \u274c Error ejecutando operación: PocketOptionError, General error: Amount must be at least 1
+2025-11-20 20:12:26,572 [INFO] 
+
+\U0001f44b Bot detenido por el usuario
+2025-11-20 20:12:27,465 [INFO] \U0001f4ca Estadísticas finales: Cache: 50.0% hit rate (36/72 requests)
+2025-11-20 20:13:47,588 [INFO] ======================================================================
+2025-11-20 20:13:47,589 [INFO] \U0001f916 BOT MULTI-TF OPTIMIZADO - ARRANQUE
+2025-11-20 20:13:47,589 [INFO] ======================================================================
+2025-11-20 20:14:12,175 [INFO] \u2705 Modo cuenta: DEMO
+2025-11-20 20:14:12,176 [INFO] \U0001f4b0 Balance (método 1): $-1.0
+2025-11-20 20:14:12,176 [INFO] \u26a0\ufe0f Balance no disponible o inválido: -1.0
+2025-11-20 20:14:13,292 [INFO] 
+\U0001f4ca Pares: 9 | Timeframes: M5, M10, M15, M30
+2025-11-20 20:14:13,292 [INFO] \U0001f4b0 Risk por operación: 2.0%
+2025-11-20 20:14:13,292 [INFO] \U0001f6e1\ufe0f Max pérdidas diarias: 3
+2025-11-20 20:14:13,292 [INFO] \U0001f6a6 Max requests simultáneos: 2
+2025-11-20 20:14:13,292 [INFO] ======================================================================
+
+2025-11-20 20:14:13,292 [INFO] 
+======================================================================
+2025-11-20 20:14:13,292 [INFO] CICLO #1 - 2025-11-20 23:14:13 UTC
+2025-11-20 20:14:13,293 [INFO] \U0001f4b0 Balance actual: $43.31
+2025-11-20 20:14:13,293 [INFO] \U0001f50d Analizando 9 pares en TF M5 (max 2 simultáneos)...
+2025-11-20 20:14:18,502 [INFO] \U0001f50d Analizando 9 pares en TF M10 (max 2 simultáneos)...
+2025-11-20 20:14:23,708 [INFO] \U0001f50d Analizando 9 pares en TF M15 (max 2 simultáneos)...
+2025-11-20 20:14:29,103 [INFO] \U0001f50d Analizando 9 pares en TF M30 (max 2 simultáneos)...
+2025-11-20 20:14:29,636 [INFO] 
+
+\U0001f44b Bot detenido por el usuario
+2025-11-20 20:14:30,551 [INFO] \U0001f4ca Estadísticas finales: Cache: 0.0% hit rate (0/29 requests)
+2025-11-20 20:14:31,834 [INFO] ======================================================================
+2025-11-20 20:14:31,834 [INFO] \U0001f916 BOT MULTI-TF OPTIMIZADO - ARRANQUE
+2025-11-20 20:14:31,834 [INFO] ======================================================================
+2025-11-20 20:15:06,917 [INFO] \u2705 Cuenta: DEMO - Balance: $-1.00
+2025-11-20 20:15:07,857 [INFO] 
+\U0001f4ca Pares: 9 | Timeframes: M5, M10, M15, M30
+2025-11-20 20:15:07,857 [INFO] \U0001f4b0 Risk por operación: 2.0%
+2025-11-20 20:15:07,857 [INFO] \U0001f6e1\ufe0f Max pérdidas diarias: 3
+2025-11-20 20:15:07,857 [INFO] \U0001f6a6 Max requests simultáneos: 2
+2025-11-20 20:15:07,857 [INFO] ======================================================================
+
+2025-11-20 20:15:07,857 [INFO] 
+======================================================================
+2025-11-20 20:15:07,857 [INFO] CICLO #1 - 2025-11-20 23:15:07 UTC
+2025-11-20 20:15:07,858 [INFO] \U0001f4b0 Balance actual: $43.31
+2025-11-20 20:15:07,858 [INFO] \U0001f50d Analizando 9 pares en TF M5 (max 2 simultáneos)...
+2025-11-20 20:15:10,657 [INFO] 
+
+\U0001f44b Bot detenido por el usuario
+2025-11-20 20:15:11,543 [INFO] \U0001f4ca Estadísticas finales: Cache: 0.0% hit rate (0/8 requests)
+2025-11-20 20:15:46,742 [INFO] ======================================================================
+2025-11-20 20:15:46,742 [INFO] \U0001f916 BOT MULTI-TF OPTIMIZADO - ARRANQUE
+2025-11-20 20:15:46,742 [INFO] ======================================================================
+2025-11-20 20:16:09,711 [INFO] \u2705 Cuenta: DEMO - Balance: $-1.00
+2025-11-20 20:16:10,585 [INFO] 
+\U0001f4ca Pares: 9 | Timeframes: M5, M10, M15, M30
+2025-11-20 20:16:10,585 [INFO] \U0001f4b0 Risk por operación: 2.0%
+2025-11-20 20:16:10,585 [INFO] \U0001f6e1\ufe0f Max pérdidas diarias: 3
+2025-11-20 20:16:10,586 [INFO] \U0001f6a6 Max requests simultáneos: 2
+2025-11-20 20:16:10,586 [INFO] ======================================================================
+
+2025-11-20 20:16:10,586 [INFO] 
+======================================================================
+2025-11-20 20:16:10,586 [INFO] CICLO #1 - 2025-11-20 23:16:10 UTC
+2025-11-20 20:16:10,586 [INFO] \U0001f4b0 Balance actual: $-1.00
+2025-11-20 20:16:10,586 [INFO] \U0001f50d Analizando 9 pares en TF M5 (max 2 simultáneos)...
+2025-11-20 20:16:12,971 [INFO] 
+
+\U0001f44b Bot detenido por el usuario
+2025-11-20 20:16:13,884 [INFO] \U0001f4ca Estadísticas finales: Cache: 0.0% hit rate (0/6 requests)
+2025-11-20 20:18:37,942 [INFO] ======================================================================
+2025-11-20 20:18:37,943 [INFO] \U0001f916 BOT MULTI-TF OPTIMIZADO - ARRANQUE
+2025-11-20 20:18:37,943 [INFO] ======================================================================
+2025-11-20 20:19:08,895 [INFO] \u2705 Modo cuenta: DEMO
+2025-11-20 20:19:08,895 [WARNING] \u26a0\ufe0f Balance inválido: -1.0
+2025-11-20 20:19:08,895 [INFO] \u26a0\ufe0f No se pudo obtener balance válido
+2025-11-20 20:19:09,808 [INFO] 
+\U0001f4ca Pares: 9 | Timeframes: M5, M10, M15, M30
+2025-11-20 20:19:09,808 [INFO] \U0001f4b0 Risk por operación: 2.0%
+2025-11-20 20:19:09,808 [INFO] \U0001f6e1\ufe0f Max pérdidas diarias: 3
+2025-11-20 20:19:09,808 [INFO] \U0001f6a6 Max requests simultáneos: 2
+2025-11-20 20:19:09,809 [INFO] ======================================================================
+
+2025-11-20 20:19:09,809 [INFO] 
+======================================================================
+2025-11-20 20:19:09,809 [INFO] CICLO #1 - 2025-11-20 23:19:09 UTC
+2025-11-20 20:19:09,809 [INFO] \U0001f4b0 Balance actual: $43.31
+2025-11-20 20:19:09,809 [INFO] \U0001f50d Analizando 9 pares en TF M5 (max 2 simultáneos)...
+2025-11-20 20:19:13,305 [INFO] 
+
+\U0001f44b Bot detenido por el usuario
+2025-11-20 20:19:14,511 [INFO] \U0001f4ca Estadísticas finales: Cache: 0.0% hit rate (0/9 requests)
+2025-11-20 20:19:30,196 [INFO] ======================================================================
+2025-11-20 20:19:30,196 [INFO] \U0001f916 BOT MULTI-TF OPTIMIZADO - ARRANQUE
+2025-11-20 20:19:30,197 [INFO] ======================================================================
+2025-11-20 20:19:50,067 [INFO] \u2705 Cuenta: DEMO - Balance: $-1.00
+2025-11-20 20:19:50,957 [INFO] 
+\U0001f4ca Pares: 9 | Timeframes: M5, M10, M15, M30
+2025-11-20 20:19:50,957 [INFO] \U0001f4b0 Risk por operación: 2.0%
+2025-11-20 20:19:50,957 [INFO] \U0001f6e1\ufe0f Max pérdidas diarias: 3
+2025-11-20 20:19:50,957 [INFO] \U0001f6a6 Max requests simultáneos: 2
+2025-11-20 20:19:50,957 [INFO] ======================================================================
+
+2025-11-20 20:19:50,958 [INFO] 
+======================================================================
+2025-11-20 20:19:50,958 [INFO] CICLO #1 - 2025-11-20 23:19:50 UTC
+2025-11-20 20:19:50,958 [INFO] \U0001f4b0 Balance actual: $43.31
+2025-11-20 20:19:50,958 [INFO] \U0001f50d Analizando 9 pares en TF M5 (max 2 simultáneos)...
+2025-11-20 20:19:56,153 [INFO] \U0001f50d Analizando 9 pares en TF M10 (max 2 simultáneos)...
+2025-11-20 20:20:01,332 [INFO] \U0001f50d Analizando 9 pares en TF M15 (max 2 simultáneos)...
+2025-11-20 20:20:06,529 [INFO] \U0001f50d Analizando 9 pares en TF M30 (max 2 simultáneos)...
+2025-11-20 20:20:10,400 [INFO] 
+
+\U0001f44b Bot detenido por el usuario
+2025-11-20 20:20:11,308 [INFO] \U0001f4ca Estadísticas finales: Cache: 0.0% hit rate (0/36 requests)
+2025-11-20 20:20:12,673 [INFO] ======================================================================
+2025-11-20 20:20:12,673 [INFO] \U0001f916 BOT MULTI-TF OPTIMIZADO - ARRANQUE
+2025-11-20 20:20:12,673 [INFO] ======================================================================
+2025-11-20 20:20:32,788 [INFO] \u2705 Modo cuenta: DEMO
+2025-11-20 20:20:32,788 [WARNING] \u26a0\ufe0f Balance inválido: -1.0
+2025-11-20 20:20:32,788 [INFO] \u26a0\ufe0f No se pudo obtener balance válido
+2025-11-20 20:20:33,715 [INFO] 
+\U0001f4ca Pares: 9 | Timeframes: M5, M10, M15, M30
+2025-11-20 20:20:33,715 [INFO] \U0001f4b0 Risk por operación: 2.0%
+2025-11-20 20:20:33,716 [INFO] \U0001f6e1\ufe0f Max pérdidas diarias: 3
+2025-11-20 20:20:33,716 [INFO] \U0001f6a6 Max requests simultáneos: 2
+2025-11-20 20:20:33,716 [INFO] ======================================================================
+
+2025-11-20 20:20:33,716 [INFO] 
+======================================================================
+2025-11-20 20:20:33,716 [INFO] CICLO #1 - 2025-11-20 23:20:33 UTC
+2025-11-20 20:20:33,716 [INFO] \U0001f4b0 Balance actual: $43.31
+2025-11-20 20:20:33,716 [INFO] \U0001f50d Analizando 9 pares en TF M5 (max 2 simultáneos)...
+2025-11-20 20:20:36,470 [INFO] 
+
+\U0001f44b Bot detenido por el usuario
+2025-11-20 20:20:37,343 [INFO] \U0001f4ca Estadísticas finales: Cache: 0.0% hit rate (0/8 requests)
+2025-11-20 20:20:39,404 [INFO] ======================================================================
+2025-11-20 20:20:39,404 [INFO] \U0001f916 BOT MULTI-TF OPTIMIZADO - ARRANQUE
+2025-11-20 20:20:39,404 [INFO] ======================================================================
+2025-11-20 20:20:56,972 [INFO] \u2705 Modo cuenta: DEMO
+2025-11-20 20:20:56,972 [WARNING] \u26a0\ufe0f Balance inválido: -1.0
+2025-11-20 20:20:56,973 [INFO] \u26a0\ufe0f No se pudo obtener balance válido
+2025-11-20 20:20:57,911 [INFO] 
+\U0001f4ca Pares: 9 | Timeframes: M5, M10, M15, M30
+2025-11-20 20:20:57,911 [INFO] \U0001f4b0 Risk por operación: 2.0%
+2025-11-20 20:20:57,912 [INFO] \U0001f6e1\ufe0f Max pérdidas diarias: 3
+2025-11-20 20:20:57,912 [INFO] \U0001f6a6 Max requests simultáneos: 2
+2025-11-20 20:20:57,912 [INFO] ======================================================================
+
+2025-11-20 20:20:57,912 [INFO] 
+======================================================================
+2025-11-20 20:20:57,912 [INFO] CICLO #1 - 2025-11-20 23:20:57 UTC
+2025-11-20 20:20:57,912 [INFO] \U0001f4b0 Balance actual: $43.31
+2025-11-20 20:20:57,912 [INFO] \U0001f50d Analizando 9 pares en TF M5 (max 2 simultáneos)...
+2025-11-20 20:21:03,146 [INFO] \U0001f50d Analizando 9 pares en TF M10 (max 2 simultáneos)...
+2025-11-20 20:21:08,350 [INFO] \U0001f50d Analizando 9 pares en TF M15 (max 2 simultáneos)...
+2025-11-20 20:21:13,619 [INFO] \U0001f50d Analizando 9 pares en TF M30 (max 2 simultáneos)...
+2025-11-20 20:21:18,787 [INFO] \u23f1\ufe0f Análisis completado en 0.0s
+2025-11-20 20:21:18,787 [INFO] \u2705 Señales válidas encontradas: 17/36
+2025-11-20 20:21:18,787 [INFO] \U0001f4cc SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón: None
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+\U0001f4b0 Precio: 0.66869
+\U0001f4ca EMA: 0.67106
+\u23f1\ufe0f Duración: 5min
+\U0001f4b5 Monto: $0.87
+2025-11-20 20:21:19,691 [ERROR] \u274c Error ejecutando operación: PocketOptionError, General error: Amount must be at least 1
+2025-11-20 20:21:25,604 [INFO] 
+======================================================================
+2025-11-20 20:21:25,604 [INFO] CICLO #2 - 2025-11-20 23:21:25 UTC
+2025-11-20 20:21:25,604 [INFO] \U0001f4b0 Balance actual: $43.31
+2025-11-20 20:21:25,604 [INFO] \U0001f50d Analizando 9 pares en TF M5 (max 2 simultáneos)...
+2025-11-20 20:21:26,764 [INFO] \U0001f50d Analizando 9 pares en TF M10 (max 2 simultáneos)...
+2025-11-20 20:21:27,929 [INFO] \U0001f50d Analizando 9 pares en TF M15 (max 2 simultáneos)...
+2025-11-20 20:21:29,045 [INFO] \U0001f50d Analizando 9 pares en TF M30 (max 2 simultáneos)...
+2025-11-20 20:21:30,173 [INFO] \u23f1\ufe0f Análisis completado en 0.0s
+2025-11-20 20:21:30,173 [INFO] \u2705 Señales válidas encontradas: 17/36
+2025-11-20 20:21:30,173 [INFO] \U0001f4cc SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón: None
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+\U0001f4b0 Precio: 0.66869
+\U0001f4ca EMA: 0.67106
+\u23f1\ufe0f Duración: 5min
+\U0001f4b5 Monto: $0.87
+2025-11-20 20:21:31,079 [ERROR] \u274c Error ejecutando operación: PocketOptionError, General error: Amount must be at least 1
+2025-11-20 20:21:36,981 [INFO] 
+======================================================================
+2025-11-20 20:21:36,981 [INFO] CICLO #3 - 2025-11-20 23:21:36 UTC
+2025-11-20 20:21:36,981 [INFO] \U0001f4b0 Balance actual: $43.31
+2025-11-20 20:21:36,981 [INFO] \U0001f50d Analizando 9 pares en TF M5 (max 2 simultáneos)...
+2025-11-20 20:21:38,140 [INFO] \U0001f50d Analizando 9 pares en TF M10 (max 2 simultáneos)...
+2025-11-20 20:21:39,352 [INFO] \U0001f50d Analizando 9 pares en TF M15 (max 2 simultáneos)...
+2025-11-20 20:21:40,465 [INFO] \U0001f50d Analizando 9 pares en TF M30 (max 2 simultáneos)...
+2025-11-20 20:21:41,591 [INFO] \u23f1\ufe0f Análisis completado en 0.0s
+2025-11-20 20:21:41,591 [INFO] \u2705 Señales válidas encontradas: 17/36
+2025-11-20 20:21:41,591 [INFO] \U0001f4cc SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón: None
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+\U0001f4b0 Precio: 0.66869
+\U0001f4ca EMA: 0.67106
+\u23f1\ufe0f Duración: 5min
+\U0001f4b5 Monto: $0.87
+2025-11-20 20:21:42,479 [ERROR] \u274c Error ejecutando operación: PocketOptionError, General error: Amount must be at least 1
+2025-11-20 20:21:48,374 [INFO] 
+======================================================================
+2025-11-20 20:21:48,374 [INFO] CICLO #4 - 2025-11-20 23:21:48 UTC
+2025-11-20 20:21:48,374 [INFO] \U0001f4b0 Balance actual: $43.31
+2025-11-20 20:21:48,374 [INFO] \U0001f50d Analizando 9 pares en TF M5 (max 2 simultáneos)...
+2025-11-20 20:21:49,524 [INFO] \U0001f50d Analizando 9 pares en TF M10 (max 2 simultáneos)...
+2025-11-20 20:21:50,651 [INFO] \U0001f50d Analizando 9 pares en TF M15 (max 2 simultáneos)...
+2025-11-20 20:21:51,779 [INFO] \U0001f50d Analizando 9 pares en TF M30 (max 2 simultáneos)...
+2025-11-20 20:21:52,919 [INFO] \u23f1\ufe0f Análisis completado en 0.0s
+2025-11-20 20:21:52,919 [INFO] \u2705 Señales válidas encontradas: 17/36
+2025-11-20 20:21:52,919 [INFO] \U0001f4cc SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón: None
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+\U0001f4b0 Precio: 0.66869
+\U0001f4ca EMA: 0.67106
+\u23f1\ufe0f Duración: 5min
+\U0001f4b5 Monto: $0.87
+2025-11-20 20:21:53,805 [ERROR] \u274c Error ejecutando operación: PocketOptionError, General error: Amount must be at least 1
+2025-11-20 20:21:59,284 [INFO] 
+
+\U0001f44b Bot detenido por el usuario
+2025-11-20 20:22:00,196 [INFO] \U0001f4ca Estadísticas finales: Cache: 75.0% hit rate (108/144 requests)
+2025-11-20 20:22:32,453 [INFO] ======================================================================
+2025-11-20 20:22:32,454 [INFO] \U0001f916 BOT MULTI-TF OPTIMIZADO - ARRANQUE
+2025-11-20 20:22:32,454 [INFO] ======================================================================
+2025-11-20 20:22:53,866 [INFO] \u2705 Modo cuenta: DEMO
+2025-11-20 20:22:53,866 [WARNING] \u26a0\ufe0f Balance inválido: -1.0
+2025-11-20 20:22:53,867 [INFO] \u26a0\ufe0f No se pudo obtener balance válido
+2025-11-20 20:22:54,796 [INFO] 
+\U0001f4ca Pares: 9 | Timeframes: M5, M10, M15, M30
+2025-11-20 20:22:54,796 [INFO] \U0001f4b0 Risk por operación: 2.0%
+2025-11-20 20:22:54,796 [INFO] \U0001f6e1\ufe0f Max pérdidas diarias: 3
+2025-11-20 20:22:54,796 [INFO] \U0001f6a6 Max requests simultáneos: 2
+2025-11-20 20:22:54,796 [INFO] ======================================================================
+
+2025-11-20 20:22:54,796 [INFO] 
+======================================================================
+2025-11-20 20:22:54,796 [INFO] CICLO #1 - 2025-11-20 23:22:54 UTC
+2025-11-20 20:22:54,796 [INFO] \U0001f4b0 Balance actual: $43.31
+2025-11-20 20:22:54,796 [INFO] \U0001f50d Analizando 9 pares en TF M5 (max 2 simultáneos)...
+2025-11-20 20:23:25,632 [WARNING] \u23f1\ufe0f Timeout 1/3 para USDJPY_otc 300s, esperando 3s...
+2025-11-20 20:23:25,709 [WARNING] \u23f1\ufe0f Timeout 1/3 para AUDUSD_otc 300s, esperando 3s...
+2025-11-20 20:23:32,977 [INFO] \U0001f50d Analizando 9 pares en TF M10 (max 2 simultáneos)...
+2025-11-20 20:23:38,143 [INFO] \U0001f50d Analizando 9 pares en TF M15 (max 2 simultáneos)...
+2025-11-20 20:23:43,340 [INFO] \U0001f50d Analizando 9 pares en TF M30 (max 2 simultáneos)...
+2025-11-20 20:23:48,527 [INFO] \u23f1\ufe0f Análisis completado en 0.0s
+2025-11-20 20:23:48,527 [INFO] \u2705 Señales válidas encontradas: 17/36
+2025-11-20 20:23:48,527 [INFO] \U0001f4cc SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón: None
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+\U0001f4b0 Precio: 0.66869
+\U0001f4ca EMA: 0.67106
+\u23f1\ufe0f Duración: 5min
+\U0001f4b5 Monto: $1.00
+2025-11-20 20:23:49,748 [INFO] \u2705 Operación ejecutada ID: 0b880aab-8006-46bb-af0b-13653a3f5eb9
+2025-11-20 20:23:50,661 [INFO] \u23f3 Esperando resultado (5min)...
+2025-11-20 20:29:00,662 [INFO] \u274c PERDIDA
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+\U0001f4ca Stats Totales:
+   0W / 1L (0.0%)
+\U0001f4c5 Stats Hoy:
+   1 operaciones
+   1 pérdidas
+2025-11-20 20:29:06,872 [INFO] 
+======================================================================
+2025-11-20 20:29:06,872 [INFO] CICLO #2 - 2025-11-20 23:29:06 UTC
+2025-11-20 20:29:06,872 [INFO] \U0001f4b0 Balance actual: $44.22
+2025-11-20 20:29:06,872 [INFO] \U0001f50d Analizando 9 pares en TF M5 (max 2 simultáneos)...
+2025-11-20 20:29:12,008 [INFO] \U0001f50d Analizando 9 pares en TF M10 (max 2 simultáneos)...
+2025-11-20 20:29:13,156 [INFO] \U0001f50d Analizando 9 pares en TF M15 (max 2 simultáneos)...
+2025-11-20 20:29:14,303 [INFO] \U0001f50d Analizando 9 pares en TF M30 (max 2 simultáneos)...
+2025-11-20 20:29:15,445 [INFO] \u23f1\ufe0f Análisis completado en 0.0s
+2025-11-20 20:29:15,445 [INFO] \u2705 Señales válidas encontradas: 15/36
+2025-11-20 20:29:15,445 [INFO] \U0001f4cc SEÑAL DETECTADA
+==============================
+Par: GBPUSD_otc
+TF: M10
+Dirección: SELL
+Score: 5
+Patrón: None
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+\U0001f4b0 Precio: 1.26599
+\U0001f4ca EMA: 1.27786
+\u23f1\ufe0f Duración: 10min
+\U0001f4b5 Monto: $1.00
+2025-11-20 20:29:16,661 [INFO] \u2705 Operación ejecutada ID: 688aa17f-54b5-45a0-967a-d2e1cd2211db
+2025-11-20 20:29:17,653 [INFO] \u23f3 Esperando resultado (10min)...
+2025-11-20 20:32:24,921 [INFO] 
+
+\U0001f44b Bot detenido por el usuario
+2025-11-20 20:32:25,799 [INFO] \U0001f4ca Estadísticas finales: Cache: 37.5% hit rate (27/72 requests)
