@@ -717,7 +717,9 @@ async def main():
                 try:
                     win_result = await asyncio.wait_for(api.check_win(trade_id), timeout=20)
                     stats['total'] += 1
-
+                    
+                    log(f"[DEBUG] Resultado crudo de la API: {win_result}")
+                    
                     if isinstance(win_result, dict):
                         raw = win_result.get('win', -1)
                     elif isinstance(win_result, (int, float)):
