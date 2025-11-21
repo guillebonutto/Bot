@@ -517,7 +517,15 @@ async def generate_signal(api, pair, tf):
         'score': int(indicator_score),
         'pattern': None,
         'price': float(last['Close']),
-        'ema': float(last.get('MA_long', np.nan))
+        'ema': float(last.get('MA_long', np.nan)),
+        'breakdown': {
+            'EMA_conf': int(last.get('EMA_conf', 0)),
+            'TF': int(last.get('TF', 0)),
+            'RSI': float(last.get('RSI', 0)) if not pd.isna(last.get('RSI', np.nan)) else None,
+            'triangle': int(last.get('triangle', 0)),
+            'reversal': int(last.get('Reversal', 0)),
+            'near_resistance': bool(last.get('NearResistance', False))
+        }
     }
 
 
@@ -557,31 +565,31 @@ async def main():
     ssid = input("Introduce tu SSID de PocketOption: ").strip()
     api = PocketOptionAsync(ssid=ssid)
 
-    # intentar obtener balance / cuenta con múltiples métodos
-    try:
-        is_demo = api.is_demo()
-        log(f"✅ Modo cuenta: {'DEMO' if is_demo else 'REAL'}")
-
-        balance = None
+    # intentar obtener balance / cuenta con retry
+    balance = None
+    for attempt in range(3):
         try:
+            is_demo = api.is_demo()
             balance = await api.balance()
-            if balance and balance > 0:
-                log(f"💰 Balance obtenido: ${balance:.2f}")
-            else:
-                log(f"⚠️ Balance inválido: {balance}", "warning")
-                balance = None
-        except Exception as e:
-            log(f"⚠️ Error con balance(): {e}", "warning")
 
-        if balance and balance > 0:
-            log(f"✅ Cuenta: {'DEMO' if is_demo else 'REAL'} - Balance: ${balance:.2f}")
-            tg_send(f"🤖 Bot iniciado\n{'DEMO' if is_demo else 'REAL'}\n💰 Balance: ${balance:.2f}")
-        else:
-            log(f"⚠️ No se pudo obtener balance válido")
-            tg_send(f"🤖 Bot iniciado - Cuenta {'DEMO' if is_demo else 'REAL'}\n⚠️ Balance no disponible")
-    except Exception as e:
-        log(f"⚠️ Error verificando cuenta: {e}", "error")
-        tg_send("🤖 Bot iniciado (error obteniendo datos de cuenta)")
+            if balance and balance > 0:
+                log(f"✅ Cuenta: {'DEMO' if is_demo else 'REAL'} - Balance: ${balance:.2f}")
+                tg_send(f"🤖 Bot iniciado\n{'DEMO' if is_demo else 'REAL'}\n💰 Balance: ${balance:.2f}")
+                break
+            else:
+                if attempt < 2:
+                    log(f"⚠️ Balance inválido ({balance}), reintentando... ({attempt + 1}/3)", "warning")
+                    await asyncio.sleep(2)
+                else:
+                    log(f"⚠️ No se pudo obtener balance válido tras 3 intentos", "warning")
+                    tg_send(f"🤖 Bot iniciado - Cuenta {'DEMO' if is_demo else 'REAL'}\n⚠️ Balance no disponible")
+        except Exception as e:
+            if attempt < 2:
+                log(f"⚠️ Error obteniendo balance ({attempt + 1}/3): {e}", "warning")
+                await asyncio.sleep(2)
+            else:
+                log(f"❌ Error verificando cuenta tras 3 intentos: {e}", "error")
+                tg_send("🤖 Bot iniciado (error obteniendo datos de cuenta)")
 
     log(f"\n📊 Pares: {len(PAIRS)} | Timeframes: {', '.join(SELECTED_TFS)}")
     log(f"💰 Risk por operación: {RISK_PER_TRADE * 100}%")
@@ -717,32 +725,46 @@ async def main():
                 try:
                     win_result = await asyncio.wait_for(api.check_win(trade_id), timeout=20)
                     stats['total'] += 1
-                    
-                    log(f"[DEBUG] Resultado crudo de la API: {win_result}")
-                    
-                    if isinstance(win_result, dict):
-                        raw = win_result.get('win', -1)
-                    elif isinstance(win_result, (int, float)):
-                        raw = win_result
-                    elif isinstance(win_result, bool):
-                        raw = 1 if win_result else 0
-                    else:
-                        raw = -1
 
-                    win = (raw > 0)
+                    log(f"[DEBUG] Resultado crudo: {win_result}")
+
+                    # Detectar si ganó basándose en diferentes formatos de respuesta
+                    win = False
+
+                    if isinstance(win_result, dict):
+                        # Formato 1: {'result': 'win'} o {'result': 'loss'}
+                        if 'result' in win_result:
+                            win = (win_result['result'] == 'win')
+                        # Formato 2: {'win': 1.85} (profit) o {'win': 0}
+                        elif 'win' in win_result:
+                            win = (win_result['win'] > 0)
+                        # Formato 3: {'profit': 0.92} o {'profit': 0}
+                        elif 'profit' in win_result:
+                            win = (win_result['profit'] > 0)
+                    elif isinstance(win_result, (int, float)):
+                        win = (win_result > 0)
+                    elif isinstance(win_result, bool):
+                        win = win_result
+
+                    log(f"[DEBUG] Interpretado como: {'GANADA' if win else 'PERDIDA'}")
 
                     if win:
                         stats['wins'] += 1
                         icon, text = "✅", "GANADA"
+                        profit = 0
+                        if isinstance(win_result, dict):
+                            profit = win_result.get('profit', win_result.get('win', 0))
+                        profit_msg = f" (+${profit:.2f})" if profit > 0 else ""
                     else:
                         stats['losses'] += 1
                         icon, text = "❌", "PERDIDA"
                         daily_stats['losses'] += 1
+                        profit_msg = f" (-${amount:.2f})"
 
                     daily_stats['trades'] += 1
                     wr = stats['wins'] / stats['total'] * 100 if stats['total'] > 0 else 0.0
                     result_msg = (
-                        f"{icon} {text}\n"
+                        f"{icon} {text}{profit_msg}\n"
                         f"━━━━━━━━━━━━━━━━\n"
                         f"📊 Stats Totales:\n"
                         f"   {stats['wins']}W / {stats['losses']}L ({wr:.1f}%)\n"
