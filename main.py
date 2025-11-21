@@ -608,6 +608,14 @@ async def main():
                 await asyncio.sleep(COOLDOWN_SECONDS)
                 continue
 
+            # verificar si podemos tradear
+            can, amount = can_trade(current_balance or 0)
+            if not can:
+                log(f"🚫 No puedo tradear: {amount}")
+                tg_send(f"{amount} — pausa hasta nuevo día")
+                await asyncio.sleep(COOLDOWN_SECONDS)
+                continue
+
             cycle += 1
             log(f"\n{'=' * 70}")
             log(f"CICLO #{cycle} - {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')}")
@@ -674,14 +682,6 @@ async def main():
             if not best_signal:
                 log("⏸️ Sin señales válidas en este ciclo. Esperando 30s...")
                 await asyncio.sleep(30)
-                continue
-
-            # verificar si podemos tradear
-            can, amount = can_trade(current_balance or 0)
-            if not can:
-                log(f"🚫 No puedo tradear: {amount}")
-                tg_send(f"{amount} — pausa hasta nuevo día")
-                await asyncio.sleep(COOLDOWN_SECONDS)
                 continue
 
             sig = best_signal
