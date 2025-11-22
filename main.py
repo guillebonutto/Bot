@@ -22,8 +22,8 @@ PAIRS = [
 ]
 
 TIMEFRAMES = {"M5": 300, "M10": 600, "M15": 900, "M30": 1800}
-SELECTED_TFS = list(TIMEFRAMES.keys())
 
+SELECTED_TFS = list(TIMEFRAMES.keys())
 LOOKBACK = 50
 MA_SHORT = 20
 MA_LONG = 50
@@ -181,14 +181,11 @@ def update_streak(win: bool):
     return streak_losses
 
 
-def rolling_winrate(n=ROLLING_WINDOW_TRADES):
-    if not trade_history:
+def rolling_winrate(n=None):
+    if daily_stats['trades'] == 0:
         return None
-    recent = trade_history[-n:]
-    if not recent:
-        return None
-    wins = sum(1 for t in recent if t['win'])
-    return wins / len(recent)
+    wins = daily_stats['trades'] - daily_stats['losses']
+    return wins / daily_stats['trades']
 
 
 # ---------------------------

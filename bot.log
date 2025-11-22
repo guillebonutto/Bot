@@ -5148,3 +5148,768 @@ Patrón: None
 2025-11-22 01:50:42,423 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
 2025-11-22 01:50:43,301 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 329
 2025-11-22 01:50:43,302 [INFO] \U0001f4ca Estadísticas finales: Cache: 0.0% hit rate (0/20 requests)
+2025-11-22 01:50:45,053 [DEBUG] Using proactor: IocpProactor
+2025-11-22 01:50:45,054 [INFO] ======================================================================
+2025-11-22 01:50:45,054 [INFO] \U0001f916 BOT MULTI-TF MODO PRO - ARRANQUE
+2025-11-22 01:50:45,055 [INFO] ======================================================================
+2025-11-22 01:51:21,379 [WARNING] \u26a0\ufe0f Balance inválido (-1.0), reintentando... (1/3)
+2025-11-22 01:51:23,392 [INFO] \u2705 Cuenta: DEMO - Balance: $38.02
+2025-11-22 01:51:23,399 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 01:51:24,756 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 353
+2025-11-22 01:51:24,757 [INFO] 
+\U0001f4ca Pares: 9 | Timeframes: M5, M10, M15, M30
+2025-11-22 01:51:24,757 [INFO] \U0001f4b0 Risk por operación: 2.0%
+2025-11-22 01:51:24,757 [INFO] \U0001f6e1\ufe0f Max pérdidas diarias: 3
+2025-11-22 01:51:24,757 [INFO] \U0001f6a6 Max requests simultáneos: 2
+2025-11-22 01:51:24,757 [INFO] ======================================================================
+
+2025-11-22 01:51:24,757 [INFO] 
+======================================================================
+2025-11-22 01:51:24,758 [INFO] CICLO #1 - 2025-11-22 04:51:24 UTC
+2025-11-22 01:51:24,758 [INFO] \U0001f4b0 Balance actual: $38.02
+2025-11-22 01:51:24,758 [INFO] \U0001f50d Analizando 9 pares en TF M5 (max 2 simultáneos)...
+2025-11-22 01:51:25,069 [DEBUG] \u2705 Descargado EURUSD_otc 300s (50 velas)
+2025-11-22 01:51:25,118 [DEBUG] \u2705 Descargado GBPUSD_otc 300s (50 velas)
+2025-11-22 01:51:25,584 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: EURUSD_otc M5
+2025-11-22 01:51:25,892 [DEBUG] \u2705 Descargado USDJPY_otc 300s (50 velas)
+2025-11-22 01:51:25,965 [DEBUG] \u2705 Descargado AUDUSD_otc 300s (50 velas)
+2025-11-22 01:51:26,414 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDJPY_otc M5
+2025-11-22 01:51:26,737 [DEBUG] \u2705 Descargado USDCAD_otc 300s (50 velas)
+2025-11-22 01:51:26,803 [DEBUG] \u2705 Descargado AUDCAD_otc 300s (50 velas)
+2025-11-22 01:51:27,267 [DEBUG] \u23f8\ufe0f Patrón BUY rechazado por RSI conflictivo: USDCAD_otc M5
+2025-11-22 01:51:27,571 [DEBUG] \u2705 Descargado USDMXN_otc 300s (50 velas)
+2025-11-22 01:51:27,635 [DEBUG] \u2705 Descargado USDCOP_otc 300s (50 velas)
+2025-11-22 01:51:28,092 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDMXN_otc M5
+2025-11-22 01:51:28,405 [DEBUG] \u2705 Descargado USDARS_otc 300s (50 velas)
+2025-11-22 01:51:29,933 [INFO] \U0001f50d Analizando 9 pares en TF M10 (max 2 simultáneos)...
+2025-11-22 01:51:30,275 [DEBUG] \u2705 Descargado GBPUSD_otc 600s (50 velas)
+2025-11-22 01:51:30,441 [DEBUG] \u2705 Descargado EURUSD_otc 600s (50 velas)
+2025-11-22 01:51:31,120 [DEBUG] \u2705 Descargado USDJPY_otc 600s (50 velas)
+2025-11-22 01:51:31,274 [DEBUG] \u2705 Descargado AUDUSD_otc 600s (50 velas)
+2025-11-22 01:51:31,651 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDJPY_otc M10
+2025-11-22 01:51:31,955 [DEBUG] \u2705 Descargado USDCAD_otc 600s (50 velas)
+2025-11-22 01:51:32,107 [DEBUG] \u2705 Descargado AUDCAD_otc 600s (50 velas)
+2025-11-22 01:51:32,782 [DEBUG] \u2705 Descargado USDMXN_otc 600s (50 velas)
+2025-11-22 01:51:32,945 [DEBUG] \u2705 Descargado USDCOP_otc 600s (50 velas)
+2025-11-22 01:51:33,292 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDMXN_otc M10
+2025-11-22 01:51:33,469 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDCOP_otc M10
+2025-11-22 01:51:33,610 [DEBUG] \u2705 Descargado USDARS_otc 600s (50 velas)
+2025-11-22 01:51:35,156 [INFO] \U0001f50d Analizando 9 pares en TF M15 (max 2 simultáneos)...
+2025-11-22 01:51:35,467 [DEBUG] \u2705 Descargado EURUSD_otc 900s (50 velas)
+2025-11-22 01:51:35,700 [DEBUG] \u2705 Descargado GBPUSD_otc 900s (50 velas)
+2025-11-22 01:51:35,999 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: EURUSD_otc M15
+2025-11-22 01:51:36,234 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: GBPUSD_otc M15
+2025-11-22 01:51:36,305 [DEBUG] \u2705 Descargado USDJPY_otc 900s (50 velas)
+2025-11-22 01:51:36,538 [DEBUG] \u2705 Descargado AUDUSD_otc 900s (50 velas)
+2025-11-22 01:51:36,829 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDJPY_otc M15
+2025-11-22 01:51:37,136 [DEBUG] \u2705 Descargado USDCAD_otc 900s (50 velas)
+2025-11-22 01:51:37,358 [DEBUG] \u2705 Descargado AUDCAD_otc 900s (50 velas)
+2025-11-22 01:51:37,989 [DEBUG] \u2705 Descargado USDMXN_otc 900s (50 velas)
+2025-11-22 01:51:38,197 [DEBUG] \u2705 Descargado USDCOP_otc 900s (50 velas)
+2025-11-22 01:51:38,820 [DEBUG] \u2705 Descargado USDARS_otc 900s (50 velas)
+2025-11-22 01:51:40,353 [INFO] \U0001f50d Analizando 9 pares en TF M30 (max 2 simultáneos)...
+2025-11-22 01:51:40,657 [DEBUG] \u2705 Descargado GBPUSD_otc 1800s (50 velas)
+2025-11-22 01:51:40,890 [DEBUG] \u2705 Descargado EURUSD_otc 1800s (50 velas)
+2025-11-22 01:51:41,486 [DEBUG] \u2705 Descargado USDJPY_otc 1800s (50 velas)
+2025-11-22 01:51:41,719 [DEBUG] \u2705 Descargado AUDUSD_otc 1800s (50 velas)
+2025-11-22 01:51:42,320 [DEBUG] \u2705 Descargado USDCAD_otc 1800s (50 velas)
+2025-11-22 01:51:42,559 [DEBUG] \u2705 Descargado AUDCAD_otc 1800s (50 velas)
+2025-11-22 01:51:43,153 [DEBUG] \u2705 Descargado USDMXN_otc 1800s (50 velas)
+2025-11-22 01:51:43,385 [DEBUG] \u2705 Descargado USDCOP_otc 1800s (50 velas)
+2025-11-22 01:51:43,911 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDCOP_otc M30
+2025-11-22 01:51:43,982 [DEBUG] \u2705 Descargado USDARS_otc 1800s (50 velas)
+2025-11-22 01:51:45,510 [INFO] \u23f1\ufe0f Análisis completado en 0.0s
+2025-11-22 01:51:45,510 [INFO] \u2705 Señales válidas encontradas: 5/36
+2025-11-22 01:51:45,510 [INFO] \U0001f4cc SEÑAL DETECTADA
+==============================
+Par: USDARS_otc
+TF: M10
+Dirección: BUY
+Score: 5
+Patrón: None
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+\U0001f4b0 Precio: 1183.85000
+\U0001f4ca EMA: 1179.26325
+\u23f1\ufe0f Duración: 10min
+\U0001f4b5 Monto: $1.00
+2025-11-22 01:51:45,513 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 01:51:46,423 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 656
+2025-11-22 01:51:46,793 [INFO] \u2705 Operación ejecutada ID: 010ec5eb-7ac4-4585-865c-6a89a1e78fe6
+2025-11-22 01:51:46,795 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 01:51:47,698 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 365
+2025-11-22 01:51:47,698 [INFO] \u23f3 Esperando resultado (10min)...
+2025-11-22 02:01:57,708 [INFO] [DEBUG] Resultado crudo: {'id': '010ec5eb-7ac4-4585-865c-6a89a1e78fe6', 'openTime': '2025-11-22 06:51:46', 'closeTime': '2025-11-22 07:01:46', 'openTimestamp': 1763794306.0, 'closeTimestamp': 1763794906.0, 'refundTime': None, 'refundTimestamp': None, 'uid': 72378748, 'requestId': None, 'amount': 1.0, 'profit': 0.92, 'percentProfit': 92, 'percentLoss': 100, 'openPrice': 1184.46, 'closePrice': 1185.75, 'command': 0, 'asset': 'USDARS_otc', 'isDemo': 1, 'copyTicket': '', 'openMs': 469, 'closeMs': 291, 'optionType': 100, 'isRollover': None, 'isCopySignal': False, 'isAI': None, 'currency': 'USD', 'amountUsd': None, 'amountUSD': 1.0, 'result': 'win'}
+2025-11-22 02:01:57,708 [INFO] [DEBUG] Interpretado como: GANADA
+2025-11-22 02:01:57,708 [INFO] \u2705 GANADA (+$0.92)
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+\U0001f4ca Stats Totales:
+   1W / 0L (100.0%)
+\U0001f4c5 Stats Hoy:
+   1 operaciones
+   0 pérdidas
+2025-11-22 02:01:57,709 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 02:01:58,927 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 525
+2025-11-22 02:02:03,936 [INFO] 
+======================================================================
+2025-11-22 02:02:03,936 [INFO] CICLO #2 - 2025-11-22 05:02:03 UTC
+2025-11-22 02:02:03,936 [INFO] \U0001f4b0 Balance actual: $38.94
+2025-11-22 02:02:03,936 [INFO] \U0001f50d Analizando 9 pares en TF M5 (max 2 simultáneos)...
+2025-11-22 02:02:04,240 [DEBUG] \u2705 Descargado EURUSD_otc 300s (50 velas)
+2025-11-22 02:02:04,360 [DEBUG] \u2705 Descargado GBPUSD_otc 300s (50 velas)
+2025-11-22 02:02:04,784 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: EURUSD_otc M5
+2025-11-22 02:02:05,112 [DEBUG] \u2705 Descargado USDJPY_otc 300s (50 velas)
+2025-11-22 02:02:05,191 [DEBUG] \u2705 Descargado AUDUSD_otc 300s (50 velas)
+2025-11-22 02:02:05,734 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: AUDUSD_otc M5
+2025-11-22 02:02:05,946 [DEBUG] \u2705 Descargado USDCAD_otc 300s (50 velas)
+2025-11-22 02:02:06,041 [DEBUG] \u2705 Descargado AUDCAD_otc 300s (50 velas)
+2025-11-22 02:02:06,787 [DEBUG] \u2705 Descargado USDMXN_otc 300s (50 velas)
+2025-11-22 02:02:06,878 [DEBUG] \u2705 Descargado USDCOP_otc 300s (50 velas)
+2025-11-22 02:02:07,664 [DEBUG] \u2705 Descargado USDARS_otc 300s (50 velas)
+2025-11-22 02:02:09,215 [INFO] \U0001f50d Analizando 9 pares en TF M10 (max 2 simultáneos)...
+2025-11-22 02:02:09,520 [DEBUG] \u2705 Descargado EURUSD_otc 600s (50 velas)
+2025-11-22 02:02:09,612 [DEBUG] \u2705 Descargado GBPUSD_otc 600s (50 velas)
+2025-11-22 02:02:10,043 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: EURUSD_otc M10
+2025-11-22 02:02:10,349 [DEBUG] \u2705 Descargado USDJPY_otc 600s (50 velas)
+2025-11-22 02:02:10,456 [DEBUG] \u2705 Descargado AUDUSD_otc 600s (50 velas)
+2025-11-22 02:02:10,898 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDJPY_otc M10
+2025-11-22 02:02:11,207 [DEBUG] \u2705 Descargado USDCAD_otc 600s (50 velas)
+2025-11-22 02:02:11,292 [DEBUG] \u2705 Descargado AUDCAD_otc 600s (50 velas)
+2025-11-22 02:02:12,057 [DEBUG] \u2705 Descargado USDMXN_otc 600s (50 velas)
+2025-11-22 02:02:12,207 [DEBUG] \u2705 Descargado USDCOP_otc 600s (50 velas)
+2025-11-22 02:02:12,886 [DEBUG] \u2705 Descargado USDARS_otc 600s (50 velas)
+2025-11-22 02:02:14,416 [INFO] \U0001f50d Analizando 9 pares en TF M15 (max 2 simultáneos)...
+2025-11-22 02:02:14,436 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: EURUSD_otc M15
+2025-11-22 02:02:14,455 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: GBPUSD_otc M15
+2025-11-22 02:02:14,473 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDJPY_otc M15
+2025-11-22 02:02:15,603 [INFO] \U0001f50d Analizando 9 pares en TF M30 (max 2 simultáneos)...
+2025-11-22 02:02:15,755 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDCOP_otc M30
+2025-11-22 02:02:16,781 [INFO] \u23f1\ufe0f Análisis completado en 0.0s
+2025-11-22 02:02:16,781 [INFO] \u2705 Señales válidas encontradas: 6/36
+2025-11-22 02:02:16,781 [INFO] \U0001f4cc SEÑAL DETECTADA
+==============================
+Par: USDCAD_otc
+TF: M5
+Dirección: BUY
+Score: 4
+Patrón: None
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+\U0001f4b0 Precio: 1.42331
+\U0001f4ca EMA: 1.41920
+\u23f1\ufe0f Duración: 5min
+\U0001f4b5 Monto: $1.00
+2025-11-22 02:02:16,783 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 02:02:17,681 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 648
+2025-11-22 02:02:17,994 [INFO] \u2705 Operación ejecutada ID: 335cd3b5-086e-40ae-a429-95037ada66f6
+2025-11-22 02:02:17,996 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 02:02:18,869 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 365
+2025-11-22 02:02:18,870 [INFO] \u23f3 Esperando resultado (5min)...
+2025-11-22 02:07:28,873 [INFO] [DEBUG] Resultado crudo: {'id': '335cd3b5-086e-40ae-a429-95037ada66f6', 'openTime': '2025-11-22 07:02:17', 'closeTime': '2025-11-22 07:07:17', 'openTimestamp': 1763794937.0, 'closeTimestamp': 1763795237.0, 'refundTime': None, 'refundTimestamp': None, 'uid': 72378748, 'requestId': None, 'amount': 1.0, 'profit': 0.84, 'percentProfit': 84, 'percentLoss': 100, 'openPrice': 1.42141, 'closePrice': 1.42168, 'command': 0, 'asset': 'USDCAD_otc', 'isDemo': 1, 'copyTicket': '', 'openMs': 404, 'closeMs': 0, 'optionType': 100, 'isRollover': None, 'isCopySignal': False, 'isAI': None, 'currency': 'USD', 'amountUsd': None, 'amountUSD': 1.0, 'result': 'win'}
+2025-11-22 02:07:28,874 [INFO] [DEBUG] Interpretado como: GANADA
+2025-11-22 02:07:28,874 [INFO] \u2705 GANADA (+$0.84)
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+\U0001f4ca Stats Totales:
+   2W / 0L (100.0%)
+\U0001f4c5 Stats Hoy:
+   2 operaciones
+   0 pérdidas
+2025-11-22 02:07:28,875 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 02:07:29,968 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 525
+2025-11-22 02:07:34,973 [INFO] 
+======================================================================
+2025-11-22 02:07:34,973 [INFO] CICLO #3 - 2025-11-22 05:07:34 UTC
+2025-11-22 02:07:34,973 [INFO] \U0001f4b0 Balance actual: $39.78
+2025-11-22 02:07:34,973 [INFO] \U0001f50d Analizando 9 pares en TF M5 (max 2 simultáneos)...
+2025-11-22 02:07:35,293 [DEBUG] \u2705 Descargado EURUSD_otc 300s (50 velas)
+2025-11-22 02:07:35,440 [DEBUG] \u2705 Descargado GBPUSD_otc 300s (50 velas)
+2025-11-22 02:07:35,806 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado por RSI conflictivo: EURUSD_otc M5
+2025-11-22 02:07:35,807 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado por RSI conflictivo: EURUSD_otc M5
+2025-11-22 02:07:35,977 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: GBPUSD_otc M5
+2025-11-22 02:07:36,111 [DEBUG] \u2705 Descargado USDJPY_otc 300s (50 velas)
+2025-11-22 02:07:36,289 [DEBUG] \u2705 Descargado AUDUSD_otc 300s (50 velas)
+2025-11-22 02:07:36,827 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: AUDUSD_otc M5
+2025-11-22 02:07:36,941 [DEBUG] \u2705 Descargado USDCAD_otc 300s (50 velas)
+2025-11-22 02:07:37,130 [DEBUG] \u2705 Descargado AUDCAD_otc 300s (50 velas)
+2025-11-22 02:07:37,806 [DEBUG] \u2705 Descargado USDMXN_otc 300s (50 velas)
+2025-11-22 02:07:37,963 [DEBUG] \u2705 Descargado USDCOP_otc 300s (50 velas)
+2025-11-22 02:07:38,492 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDCOP_otc M5
+2025-11-22 02:07:38,640 [DEBUG] \u2705 Descargado USDARS_otc 300s (50 velas)
+2025-11-22 02:07:40,167 [INFO] \U0001f50d Analizando 9 pares en TF M10 (max 2 simultáneos)...
+2025-11-22 02:07:40,182 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: EURUSD_otc M10
+2025-11-22 02:07:40,213 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDJPY_otc M10
+2025-11-22 02:07:41,310 [INFO] \U0001f50d Analizando 9 pares en TF M15 (max 2 simultáneos)...
+2025-11-22 02:07:41,622 [DEBUG] \u2705 Descargado GBPUSD_otc 900s (50 velas)
+2025-11-22 02:07:41,681 [DEBUG] \u2705 Descargado EURUSD_otc 900s (50 velas)
+2025-11-22 02:07:42,442 [DEBUG] \u2705 Descargado USDJPY_otc 900s (50 velas)
+2025-11-22 02:07:42,521 [DEBUG] \u2705 Descargado AUDUSD_otc 900s (50 velas)
+2025-11-22 02:07:42,964 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDJPY_otc M15
+2025-11-22 02:07:43,337 [DEBUG] \u2705 Descargado USDCAD_otc 900s (50 velas)
+2025-11-22 02:07:43,362 [DEBUG] \u2705 Descargado AUDCAD_otc 900s (50 velas)
+2025-11-22 02:07:44,159 [DEBUG] \u2705 Descargado USDMXN_otc 900s (50 velas)
+2025-11-22 02:07:44,214 [DEBUG] \u2705 Descargado USDCOP_otc 900s (50 velas)
+2025-11-22 02:07:45,004 [DEBUG] \u2705 Descargado USDARS_otc 900s (50 velas)
+2025-11-22 02:07:46,538 [INFO] \U0001f50d Analizando 9 pares en TF M30 (max 2 simultáneos)...
+2025-11-22 02:07:46,652 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDCOP_otc M30
+2025-11-22 02:07:47,668 [INFO] \u23f1\ufe0f Análisis completado en 0.0s
+2025-11-22 02:07:47,668 [INFO] \u2705 Señales válidas encontradas: 7/36
+2025-11-22 02:07:47,668 [INFO] \U0001f4cc SEÑAL DETECTADA
+==============================
+Par: USDCAD_otc
+TF: M5
+Dirección: BUY
+Score: 5
+Patrón: None
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+\U0001f4b0 Precio: 1.42350
+\U0001f4ca EMA: 1.41922
+\u23f1\ufe0f Duración: 5min
+\U0001f4b5 Monto: $1.00
+2025-11-22 02:07:47,671 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 02:07:48,592 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 648
+2025-11-22 02:07:48,892 [INFO] \u2705 Operación ejecutada ID: ad7a40ef-ef55-4f39-9642-ad4a16b2bad2
+2025-11-22 02:07:48,894 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 02:07:49,786 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 365
+2025-11-22 02:07:49,787 [INFO] \u23f3 Esperando resultado (5min)...
+2025-11-22 02:12:59,787 [INFO] [DEBUG] Resultado crudo: {'id': 'ad7a40ef-ef55-4f39-9642-ad4a16b2bad2', 'openTime': '2025-11-22 07:07:48', 'closeTime': '2025-11-22 07:12:48', 'openTimestamp': 1763795268.0, 'closeTimestamp': 1763795568.0, 'refundTime': None, 'refundTimestamp': None, 'uid': 72378748, 'requestId': None, 'amount': 1.0, 'profit': -1.0, 'percentProfit': 74, 'percentLoss': 100, 'openPrice': 1.42165, 'closePrice': 1.42103, 'command': 0, 'asset': 'USDCAD_otc', 'isDemo': 1, 'copyTicket': '', 'openMs': 514, 'closeMs': 27, 'optionType': 100, 'isRollover': None, 'isCopySignal': False, 'isAI': None, 'currency': 'USD', 'amountUsd': None, 'amountUSD': 1.0, 'result': 'loss'}
+2025-11-22 02:12:59,787 [INFO] [DEBUG] Interpretado como: PERDIDA
+2025-11-22 02:12:59,787 [INFO] \u274c PERDIDA (-$1.00)
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+\U0001f4ca Stats Totales:
+   2W / 1L (66.7%)
+\U0001f4c5 Stats Hoy:
+   3 operaciones
+   1 pérdidas
+2025-11-22 02:12:59,789 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 02:13:00,971 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 525
+2025-11-22 02:13:05,972 [INFO] 
+======================================================================
+2025-11-22 02:13:05,972 [INFO] CICLO #4 - 2025-11-22 05:13:05 UTC
+2025-11-22 02:13:05,972 [INFO] \U0001f4b0 Balance actual: $38.78
+2025-11-22 02:13:05,972 [INFO] \U0001f50d Analizando 9 pares en TF M5 (max 2 simultáneos)...
+2025-11-22 02:13:06,275 [DEBUG] \u2705 Descargado GBPUSD_otc 300s (50 velas)
+2025-11-22 02:13:06,509 [DEBUG] \u2705 Descargado EURUSD_otc 300s (50 velas)
+2025-11-22 02:13:06,799 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: GBPUSD_otc M5
+2025-11-22 02:13:07,025 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: EURUSD_otc M5
+2025-11-22 02:13:07,106 [DEBUG] \u2705 Descargado USDJPY_otc 300s (50 velas)
+2025-11-22 02:13:07,349 [DEBUG] \u2705 Descargado AUDUSD_otc 300s (50 velas)
+2025-11-22 02:13:07,920 [DEBUG] \u2705 Descargado USDCAD_otc 300s (50 velas)
+2025-11-22 02:13:08,173 [DEBUG] \u2705 Descargado AUDCAD_otc 300s (50 velas)
+2025-11-22 02:13:08,752 [DEBUG] \u2705 Descargado USDMXN_otc 300s (50 velas)
+2025-11-22 02:13:09,005 [DEBUG] \u2705 Descargado USDCOP_otc 300s (50 velas)
+2025-11-22 02:13:09,580 [DEBUG] \u2705 Descargado USDARS_otc 300s (50 velas)
+2025-11-22 02:13:11,108 [INFO] \U0001f50d Analizando 9 pares en TF M10 (max 2 simultáneos)...
+2025-11-22 02:13:11,411 [DEBUG] \u2705 Descargado GBPUSD_otc 600s (50 velas)
+2025-11-22 02:13:11,571 [DEBUG] \u2705 Descargado EURUSD_otc 600s (50 velas)
+2025-11-22 02:13:12,249 [DEBUG] \u2705 Descargado USDJPY_otc 600s (50 velas)
+2025-11-22 02:13:12,420 [DEBUG] \u2705 Descargado AUDUSD_otc 600s (50 velas)
+2025-11-22 02:13:13,081 [DEBUG] \u2705 Descargado USDCAD_otc 600s (50 velas)
+2025-11-22 02:13:13,344 [DEBUG] \u2705 Descargado AUDCAD_otc 600s (50 velas)
+2025-11-22 02:13:13,901 [DEBUG] \u2705 Descargado USDMXN_otc 600s (50 velas)
+2025-11-22 02:13:14,169 [DEBUG] \u2705 Descargado USDCOP_otc 600s (50 velas)
+2025-11-22 02:13:14,719 [DEBUG] \u2705 Descargado USDARS_otc 600s (50 velas)
+2025-11-22 02:13:16,256 [INFO] \U0001f50d Analizando 9 pares en TF M15 (max 2 simultáneos)...
+2025-11-22 02:13:16,316 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDJPY_otc M15
+2025-11-22 02:13:17,432 [INFO] \U0001f50d Analizando 9 pares en TF M30 (max 2 simultáneos)...
+2025-11-22 02:13:17,635 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDCOP_otc M30
+2025-11-22 02:13:18,679 [INFO] \u23f1\ufe0f Análisis completado en 0.0s
+2025-11-22 02:13:18,679 [INFO] \u2705 Señales válidas encontradas: 5/36
+2025-11-22 02:13:18,679 [INFO] \U0001f4cc SEÑAL DETECTADA
+==============================
+Par: USDCAD_otc
+TF: M5
+Dirección: BUY
+Score: 5
+Patrón: None
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+\U0001f4b0 Precio: 1.42358
+\U0001f4ca EMA: 1.41931
+\u23f1\ufe0f Duración: 5min
+\U0001f4b5 Monto: $1.00
+2025-11-22 02:13:18,680 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 02:13:19,576 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 648
+2025-11-22 02:13:19,942 [INFO] \u2705 Operación ejecutada ID: ab1cf7f1-a553-4e05-80d7-e465f8692ed4
+2025-11-22 02:13:19,944 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 02:13:20,835 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 365
+2025-11-22 02:13:20,837 [INFO] \u23f3 Esperando resultado (5min)...
+2025-11-22 02:18:30,844 [INFO] [DEBUG] Resultado crudo: {'id': 'ab1cf7f1-a553-4e05-80d7-e465f8692ed4', 'openTime': '2025-11-22 07:13:19', 'closeTime': '2025-11-22 07:18:19', 'openTimestamp': 1763795599.0, 'closeTimestamp': 1763795899.0, 'refundTime': None, 'refundTimestamp': None, 'uid': 72378748, 'requestId': None, 'amount': 1.0, 'profit': -1.0, 'percentProfit': 76, 'percentLoss': 100, 'openPrice': 1.4208, 'closePrice': 1.41975, 'command': 0, 'asset': 'USDCAD_otc', 'isDemo': 1, 'copyTicket': '', 'openMs': 584, 'closeMs': 0, 'optionType': 100, 'isRollover': None, 'isCopySignal': False, 'isAI': None, 'currency': 'USD', 'amountUsd': None, 'amountUSD': 1.0, 'result': 'loss'}
+2025-11-22 02:18:30,844 [INFO] [DEBUG] Interpretado como: PERDIDA
+2025-11-22 02:18:30,844 [INFO] \u274c PERDIDA (-$1.00)
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+\U0001f4ca Stats Totales:
+   2W / 2L (50.0%)
+\U0001f4c5 Stats Hoy:
+   4 operaciones
+   2 pérdidas
+2025-11-22 02:18:30,846 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 02:18:32,056 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 525
+2025-11-22 02:18:32,057 [INFO] \u26a0\ufe0f Racha de 2 pérdidas. Cooling-off 15min.
+2025-11-22 02:18:32,058 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 02:18:32,977 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 349
+2025-11-22 02:33:37,984 [INFO] 
+======================================================================
+2025-11-22 02:33:37,984 [INFO] CICLO #5 - 2025-11-22 05:33:37 UTC
+2025-11-22 02:33:37,984 [INFO] \U0001f4b0 Balance actual: $37.78
+2025-11-22 02:33:37,984 [INFO] \U0001f50d Analizando 9 pares en TF M5 (max 2 simultáneos)...
+2025-11-22 02:33:38,291 [DEBUG] \u2705 Descargado EURUSD_otc 300s (50 velas)
+2025-11-22 02:33:38,331 [DEBUG] \u2705 Descargado GBPUSD_otc 300s (50 velas)
+2025-11-22 02:33:39,131 [DEBUG] \u2705 Descargado USDJPY_otc 300s (50 velas)
+2025-11-22 02:33:39,214 [DEBUG] \u2705 Descargado AUDUSD_otc 300s (50 velas)
+2025-11-22 02:33:39,657 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado por RSI conflictivo: USDJPY_otc M5
+2025-11-22 02:33:39,962 [DEBUG] \u2705 Descargado USDCAD_otc 300s (50 velas)
+2025-11-22 02:33:40,062 [DEBUG] \u2705 Descargado AUDCAD_otc 300s (50 velas)
+2025-11-22 02:33:40,585 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: AUDCAD_otc M5
+2025-11-22 02:33:40,835 [DEBUG] \u2705 Descargado USDMXN_otc 300s (50 velas)
+2025-11-22 02:33:40,889 [DEBUG] \u2705 Descargado USDCOP_otc 300s (50 velas)
+2025-11-22 02:33:41,677 [DEBUG] \u2705 Descargado USDARS_otc 300s (50 velas)
+2025-11-22 02:33:43,201 [INFO] \U0001f50d Analizando 9 pares en TF M10 (max 2 simultáneos)...
+2025-11-22 02:33:43,556 [DEBUG] \u2705 Descargado GBPUSD_otc 600s (50 velas)
+2025-11-22 02:33:43,717 [DEBUG] \u2705 Descargado EURUSD_otc 600s (50 velas)
+2025-11-22 02:33:44,078 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: GBPUSD_otc M10
+2025-11-22 02:33:44,435 [DEBUG] \u2705 Descargado USDJPY_otc 600s (50 velas)
+2025-11-22 02:33:44,568 [DEBUG] \u2705 Descargado AUDUSD_otc 600s (50 velas)
+2025-11-22 02:33:44,957 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDJPY_otc M10
+2025-11-22 02:33:45,266 [DEBUG] \u2705 Descargado USDCAD_otc 600s (50 velas)
+2025-11-22 02:33:45,402 [DEBUG] \u2705 Descargado AUDCAD_otc 600s (50 velas)
+2025-11-22 02:33:46,094 [DEBUG] \u2705 Descargado USDMXN_otc 600s (50 velas)
+2025-11-22 02:33:46,219 [DEBUG] \u2705 Descargado USDCOP_otc 600s (50 velas)
+2025-11-22 02:33:46,726 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado por RSI conflictivo: USDCOP_otc M10
+2025-11-22 02:33:46,729 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado por RSI conflictivo: USDCOP_otc M10
+2025-11-22 02:33:46,924 [DEBUG] \u2705 Descargado USDARS_otc 600s (50 velas)
+2025-11-22 02:33:48,465 [INFO] \U0001f50d Analizando 9 pares en TF M15 (max 2 simultáneos)...
+2025-11-22 02:33:48,771 [DEBUG] \u2705 Descargado GBPUSD_otc 900s (50 velas)
+2025-11-22 02:33:48,808 [DEBUG] \u2705 Descargado EURUSD_otc 900s (50 velas)
+2025-11-22 02:33:49,631 [DEBUG] \u2705 Descargado AUDUSD_otc 900s (50 velas)
+2025-11-22 02:33:49,717 [DEBUG] \u2705 Descargado USDJPY_otc 900s (50 velas)
+2025-11-22 02:33:50,172 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: AUDUSD_otc M15
+2025-11-22 02:33:50,248 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDJPY_otc M15
+2025-11-22 02:33:50,501 [DEBUG] \u2705 Descargado USDCAD_otc 900s (50 velas)
+2025-11-22 02:33:50,555 [DEBUG] \u2705 Descargado AUDCAD_otc 900s (50 velas)
+2025-11-22 02:33:51,076 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: AUDCAD_otc M15
+2025-11-22 02:33:51,333 [DEBUG] \u2705 Descargado USDMXN_otc 900s (50 velas)
+2025-11-22 02:33:51,385 [DEBUG] \u2705 Descargado USDCOP_otc 900s (50 velas)
+2025-11-22 02:33:52,165 [DEBUG] \u2705 Descargado USDARS_otc 900s (50 velas)
+2025-11-22 02:33:53,699 [INFO] \U0001f50d Analizando 9 pares en TF M30 (max 2 simultáneos)...
+2025-11-22 02:34:23,711 [WARNING] \u23f1\ufe0f Timeout 1/3 para EURUSD_otc 1800s, esperando 3s...
+2025-11-22 02:34:23,711 [WARNING] \u23f1\ufe0f Timeout 1/3 para GBPUSD_otc 1800s, esperando 3s...
+2025-11-22 02:34:27,019 [DEBUG] \u2705 Descargado GBPUSD_otc 1800s (50 velas)
+2025-11-22 02:34:27,251 [DEBUG] \u2705 Descargado EURUSD_otc 1800s (50 velas)
+2025-11-22 02:34:27,868 [DEBUG] \u2705 Descargado USDJPY_otc 1800s (50 velas)
+2025-11-22 02:34:28,148 [DEBUG] \u2705 Descargado AUDUSD_otc 1800s (50 velas)
+2025-11-22 02:34:28,392 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDJPY_otc M30
+2025-11-22 02:34:28,700 [DEBUG] \u2705 Descargado USDCAD_otc 1800s (50 velas)
+2025-11-22 02:34:28,991 [DEBUG] \u2705 Descargado AUDCAD_otc 1800s (50 velas)
+2025-11-22 02:34:29,528 [DEBUG] \u2705 Descargado USDMXN_otc 1800s (50 velas)
+2025-11-22 02:34:29,811 [DEBUG] \u2705 Descargado USDCOP_otc 1800s (50 velas)
+2025-11-22 02:34:30,361 [DEBUG] \u2705 Descargado USDARS_otc 1800s (50 velas)
+2025-11-22 02:34:30,888 [DEBUG] \u23f8\ufe0f Patrón BUY rechazado por RSI conflictivo: USDARS_otc M30
+2025-11-22 02:34:31,900 [INFO] \u23f1\ufe0f Análisis completado en 0.0s
+2025-11-22 02:34:31,900 [INFO] \u2705 Señales válidas encontradas: 8/36
+2025-11-22 02:34:31,900 [INFO] \U0001f4cc SEÑAL DETECTADA
+==============================
+Par: USDCAD_otc
+TF: M5
+Dirección: BUY
+Score: 5
+Patrón: None
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+\U0001f4b0 Precio: 1.42396
+\U0001f4ca EMA: 1.42029
+\u23f1\ufe0f Duración: 5min
+\U0001f4b5 Monto: $1.00
+2025-11-22 02:34:31,901 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 02:34:32,960 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 648
+2025-11-22 02:34:33,264 [INFO] \u2705 Operación ejecutada ID: afe3df32-2919-4422-a26b-a1d93e0240fb
+2025-11-22 02:34:33,266 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 02:34:34,128 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 365
+2025-11-22 02:34:34,129 [INFO] \u23f3 Esperando resultado (5min)...
+2025-11-22 02:39:44,135 [INFO] [DEBUG] Resultado crudo: {'id': 'afe3df32-2919-4422-a26b-a1d93e0240fb', 'openTime': '2025-11-22 07:34:32', 'closeTime': '2025-11-22 07:39:32', 'openTimestamp': 1763796872.0, 'closeTimestamp': 1763797172.0, 'refundTime': None, 'refundTimestamp': None, 'uid': 72378748, 'requestId': None, 'amount': 1.0, 'profit': 0.75, 'percentProfit': 75, 'percentLoss': 100, 'openPrice': 1.41945, 'closePrice': 1.42048, 'command': 0, 'asset': 'USDCAD_otc', 'isDemo': 1, 'copyTicket': '', 'openMs': 794, 'closeMs': 0, 'optionType': 100, 'isRollover': None, 'isCopySignal': False, 'isAI': None, 'currency': 'USD', 'amountUsd': None, 'amountUSD': 1.0, 'result': 'win'}
+2025-11-22 02:39:44,135 [INFO] [DEBUG] Interpretado como: GANADA
+2025-11-22 02:39:44,135 [INFO] \u2705 GANADA (+$0.75)
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+\U0001f4ca Stats Totales:
+   3W / 2L (60.0%)
+\U0001f4c5 Stats Hoy:
+   5 operaciones
+   2 pérdidas
+2025-11-22 02:39:44,137 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 02:39:45,375 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 524
+2025-11-22 02:39:50,389 [INFO] 
+======================================================================
+2025-11-22 02:39:50,389 [INFO] CICLO #6 - 2025-11-22 05:39:50 UTC
+2025-11-22 02:39:50,389 [INFO] \U0001f4b0 Balance actual: $38.53
+2025-11-22 02:39:50,389 [INFO] \U0001f50d Analizando 9 pares en TF M5 (max 2 simultáneos)...
+2025-11-22 02:39:50,693 [DEBUG] \u2705 Descargado EURUSD_otc 300s (50 velas)
+2025-11-22 02:39:50,802 [DEBUG] \u2705 Descargado GBPUSD_otc 300s (50 velas)
+2025-11-22 02:39:51,324 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: GBPUSD_otc M5
+2025-11-22 02:39:51,588 [DEBUG] \u2705 Descargado USDJPY_otc 300s (50 velas)
+2025-11-22 02:39:51,628 [DEBUG] \u2705 Descargado AUDUSD_otc 300s (50 velas)
+2025-11-22 02:39:52,143 [DEBUG] \u23f8\ufe0f Patrón BUY rechazado - breakout no confirmado: AUDUSD_otc M5
+2025-11-22 02:39:52,401 [DEBUG] \u2705 Descargado USDCAD_otc 300s (50 velas)
+2025-11-22 02:39:52,454 [DEBUG] \u2705 Descargado AUDCAD_otc 300s (50 velas)
+2025-11-22 02:39:52,921 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDCAD_otc M5
+2025-11-22 02:39:53,226 [DEBUG] \u2705 Descargado USDMXN_otc 300s (50 velas)
+2025-11-22 02:39:53,282 [DEBUG] \u2705 Descargado USDCOP_otc 300s (50 velas)
+2025-11-22 02:39:53,822 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDCOP_otc M5
+2025-11-22 02:39:54,049 [DEBUG] \u2705 Descargado USDARS_otc 300s (50 velas)
+2025-11-22 02:39:55,564 [INFO] \U0001f50d Analizando 9 pares en TF M10 (max 2 simultáneos)...
+2025-11-22 02:39:55,620 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: GBPUSD_otc M10
+2025-11-22 02:39:55,651 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDJPY_otc M10
+2025-11-22 02:39:55,783 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado por RSI conflictivo: USDCOP_otc M10
+2025-11-22 02:39:55,786 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado por RSI conflictivo: USDCOP_otc M10
+2025-11-22 02:39:56,827 [INFO] \U0001f50d Analizando 9 pares en TF M15 (max 2 simultáneos)...
+2025-11-22 02:39:56,916 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDJPY_otc M15
+2025-11-22 02:39:56,941 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: AUDUSD_otc M15
+2025-11-22 02:39:57,010 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: AUDCAD_otc M15
+2025-11-22 02:39:58,295 [INFO] \U0001f50d Analizando 9 pares en TF M30 (max 2 simultáneos)...
+2025-11-22 02:39:58,396 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDJPY_otc M30
+2025-11-22 02:39:58,585 [DEBUG] \u23f8\ufe0f Patrón BUY rechazado por RSI conflictivo: USDARS_otc M30
+2025-11-22 02:39:59,599 [INFO] \u23f1\ufe0f Análisis completado en 0.0s
+2025-11-22 02:39:59,599 [INFO] \u2705 Señales válidas encontradas: 8/36
+2025-11-22 02:39:59,599 [INFO] \U0001f4cc SEÑAL DETECTADA
+==============================
+Par: USDJPY_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón: None
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+\U0001f4b0 Precio: 156.20300
+\U0001f4ca EMA: 156.38810
+\u23f1\ufe0f Duración: 5min
+\U0001f4b5 Monto: $1.00
+2025-11-22 02:39:59,602 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 02:40:00,464 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 653
+2025-11-22 02:40:00,827 [INFO] \u2705 Operación ejecutada ID: d6d11bc9-9b45-4033-91f4-5d0571cbdf13
+2025-11-22 02:40:00,830 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 02:40:01,702 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 365
+2025-11-22 02:40:01,703 [INFO] \u23f3 Esperando resultado (5min)...
+2025-11-22 02:45:11,706 [INFO] [DEBUG] Resultado crudo: {'id': 'd6d11bc9-9b45-4033-91f4-5d0571cbdf13', 'openTime': '2025-11-22 07:40:00', 'closeTime': '2025-11-22 07:45:00', 'openTimestamp': 1763797200.0, 'closeTimestamp': 1763797500.0, 'refundTime': None, 'refundTimestamp': None, 'uid': 72378748, 'requestId': None, 'amount': 1.0, 'profit': 0.55, 'percentProfit': 55, 'percentLoss': 100, 'openPrice': 156.262, 'closePrice': 156.235, 'command': 1, 'asset': 'USDJPY_otc', 'isDemo': 1, 'copyTicket': '', 'openMs': 374, 'closeMs': 327, 'optionType': 100, 'isRollover': None, 'isCopySignal': False, 'isAI': None, 'currency': 'USD', 'amountUsd': None, 'amountUSD': 1.0, 'result': 'win'}
+2025-11-22 02:45:11,707 [INFO] [DEBUG] Interpretado como: GANADA
+2025-11-22 02:45:11,707 [INFO] \u2705 GANADA (+$0.55)
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+\U0001f4ca Stats Totales:
+   4W / 2L (66.7%)
+\U0001f4c5 Stats Hoy:
+   6 operaciones
+   2 pérdidas
+2025-11-22 02:45:11,708 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 02:45:12,793 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 524
+2025-11-22 02:45:17,798 [INFO] 
+======================================================================
+2025-11-22 02:45:17,798 [INFO] CICLO #7 - 2025-11-22 05:45:17 UTC
+2025-11-22 02:45:17,798 [INFO] \U0001f4b0 Balance actual: $39.08
+2025-11-22 02:45:17,798 [INFO] \U0001f50d Analizando 9 pares en TF M5 (max 2 simultáneos)...
+2025-11-22 02:45:18,105 [DEBUG] \u2705 Descargado EURUSD_otc 300s (50 velas)
+2025-11-22 02:45:18,338 [DEBUG] \u2705 Descargado GBPUSD_otc 300s (50 velas)
+2025-11-22 02:45:18,865 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: GBPUSD_otc M5
+2025-11-22 02:45:18,868 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: GBPUSD_otc M5
+2025-11-22 02:45:18,930 [DEBUG] \u2705 Descargado USDJPY_otc 300s (50 velas)
+2025-11-22 02:45:19,206 [DEBUG] \u2705 Descargado AUDUSD_otc 300s (50 velas)
+2025-11-22 02:45:19,750 [DEBUG] \u2705 Descargado USDCAD_otc 300s (50 velas)
+2025-11-22 02:45:20,040 [DEBUG] \u2705 Descargado AUDCAD_otc 300s (50 velas)
+2025-11-22 02:45:20,597 [DEBUG] \u2705 Descargado USDMXN_otc 300s (50 velas)
+2025-11-22 02:45:20,867 [DEBUG] \u2705 Descargado USDCOP_otc 300s (50 velas)
+2025-11-22 02:45:21,393 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDCOP_otc M5
+2025-11-22 02:45:21,436 [DEBUG] \u2705 Descargado USDARS_otc 300s (50 velas)
+2025-11-22 02:45:21,964 [DEBUG] \u23f8\ufe0f Patrón BUY rechazado - breakout no confirmado: USDARS_otc M5
+2025-11-22 02:45:22,975 [INFO] \U0001f50d Analizando 9 pares en TF M10 (max 2 simultáneos)...
+2025-11-22 02:45:23,286 [DEBUG] \u2705 Descargado GBPUSD_otc 600s (50 velas)
+2025-11-22 02:45:23,374 [DEBUG] \u2705 Descargado EURUSD_otc 600s (50 velas)
+2025-11-22 02:45:24,123 [DEBUG] \u2705 Descargado USDJPY_otc 600s (50 velas)
+2025-11-22 02:45:24,235 [DEBUG] \u2705 Descargado AUDUSD_otc 600s (50 velas)
+2025-11-22 02:45:24,752 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: AUDUSD_otc M10
+2025-11-22 02:45:24,958 [DEBUG] \u2705 Descargado USDCAD_otc 600s (50 velas)
+2025-11-22 02:45:25,058 [DEBUG] \u2705 Descargado AUDCAD_otc 600s (50 velas)
+2025-11-22 02:45:25,795 [DEBUG] \u2705 Descargado USDMXN_otc 600s (50 velas)
+2025-11-22 02:45:25,890 [DEBUG] \u2705 Descargado USDCOP_otc 600s (50 velas)
+2025-11-22 02:45:26,426 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado por RSI conflictivo: USDCOP_otc M10
+2025-11-22 02:45:26,647 [DEBUG] \u2705 Descargado USDARS_otc 600s (50 velas)
+2025-11-22 02:45:28,184 [INFO] \U0001f50d Analizando 9 pares en TF M15 (max 2 simultáneos)...
+2025-11-22 02:45:28,226 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDJPY_otc M15
+2025-11-22 02:45:28,243 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: AUDUSD_otc M15
+2025-11-22 02:45:28,276 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: AUDCAD_otc M15
+2025-11-22 02:45:29,338 [INFO] \U0001f50d Analizando 9 pares en TF M30 (max 2 simultáneos)...
+2025-11-22 02:45:29,382 [DEBUG] \u23f8\ufe0f Patrón SELL rechazado - breakout no confirmado: USDJPY_otc M30
+2025-11-22 02:45:29,479 [DEBUG] \u23f8\ufe0f Patrón BUY rechazado por RSI conflictivo: USDARS_otc M30
+2025-11-22 02:45:30,481 [INFO] \u23f1\ufe0f Análisis completado en 0.0s
+2025-11-22 02:45:30,481 [INFO] \u2705 Señales válidas encontradas: 5/36
+2025-11-22 02:45:30,481 [INFO] \U0001f4cc SEÑAL DETECTADA
+==============================
+Par: USDCAD_otc
+TF: M10
+Dirección: BUY
+Score: 5
+Patrón: None
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+\U0001f4b0 Precio: 1.42410
+\U0001f4ca EMA: 1.41811
+\u23f1\ufe0f Duración: 10min
+\U0001f4b5 Monto: $1.00
+2025-11-22 02:45:30,483 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 02:45:31,371 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 650
+2025-11-22 02:45:31,674 [INFO] \u2705 Operación ejecutada ID: a486d5c5-376d-47ad-afc2-79f067e65a9e
+2025-11-22 02:45:31,676 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 02:45:32,545 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 365
+2025-11-22 02:45:32,545 [INFO] \u23f3 Esperando resultado (10min)...
+2025-11-22 02:55:42,548 [INFO] [DEBUG] Resultado crudo: {'id': 'a486d5c5-376d-47ad-afc2-79f067e65a9e', 'openTime': '2025-11-22 07:45:31', 'closeTime': '2025-11-22 07:55:31', 'openTimestamp': 1763797531.0, 'closeTimestamp': 1763798131.0, 'refundTime': None, 'refundTimestamp': None, 'uid': 72378748, 'requestId': None, 'amount': 1.0, 'profit': -1.0, 'percentProfit': 74, 'percentLoss': 100, 'openPrice': 1.42151, 'closePrice': 1.42149, 'command': 0, 'asset': 'USDCAD_otc', 'isDemo': 1, 'copyTicket': '', 'openMs': 214, 'closeMs': 0, 'optionType': 100, 'isRollover': None, 'isCopySignal': False, 'isAI': None, 'currency': 'USD', 'amountUsd': None, 'amountUSD': 1.0, 'result': 'loss'}
+2025-11-22 02:55:42,549 [INFO] [DEBUG] Interpretado como: PERDIDA
+2025-11-22 02:55:42,549 [INFO] \u274c PERDIDA (-$1.00)
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+\U0001f4ca Stats Totales:
+   4W / 3L (57.1%)
+\U0001f4c5 Stats Hoy:
+   7 operaciones
+   3 pérdidas
+2025-11-22 02:55:42,550 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 02:55:43,641 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 525
+2025-11-22 02:55:48,646 [INFO] 
+======================================================================
+2025-11-22 02:55:48,646 [INFO] CICLO #8 - 2025-11-22 05:55:48 UTC
+2025-11-22 02:55:48,646 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 02:55:48,646 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 02:55:48,647 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 02:55:49,556 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 03:10:49,553 [INFO] 
+======================================================================
+2025-11-22 03:10:49,553 [INFO] CICLO #9 - 2025-11-22 06:10:49 UTC
+2025-11-22 03:10:49,553 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 03:10:49,553 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 03:10:49,555 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 03:10:50,597 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 03:25:50,591 [INFO] 
+======================================================================
+2025-11-22 03:25:50,591 [INFO] CICLO #10 - 2025-11-22 06:25:50 UTC
+2025-11-22 03:25:50,591 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 03:25:50,592 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 03:25:50,593 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 03:25:51,799 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 03:40:51,796 [INFO] 
+======================================================================
+2025-11-22 03:40:51,796 [INFO] CICLO #11 - 2025-11-22 06:40:51 UTC
+2025-11-22 03:40:51,796 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 03:40:51,796 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 03:40:51,798 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 03:40:52,883 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 03:55:52,890 [INFO] 
+======================================================================
+2025-11-22 03:55:52,890 [INFO] CICLO #12 - 2025-11-22 06:55:52 UTC
+2025-11-22 03:55:52,890 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 03:55:52,890 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 03:55:52,892 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 03:55:53,997 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 04:10:53,993 [INFO] 
+======================================================================
+2025-11-22 04:10:53,993 [INFO] CICLO #13 - 2025-11-22 07:10:53 UTC
+2025-11-22 04:10:53,993 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 04:10:53,993 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 04:10:53,995 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 04:10:55,173 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 04:25:55,176 [INFO] 
+======================================================================
+2025-11-22 04:25:55,176 [INFO] CICLO #14 - 2025-11-22 07:25:55 UTC
+2025-11-22 04:25:55,176 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 04:25:55,176 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 04:25:55,178 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 04:25:56,423 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 04:40:56,417 [INFO] 
+======================================================================
+2025-11-22 04:40:56,417 [INFO] CICLO #15 - 2025-11-22 07:40:56 UTC
+2025-11-22 04:40:56,417 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 04:40:56,417 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 04:40:56,419 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 04:40:57,597 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 04:55:57,592 [INFO] 
+======================================================================
+2025-11-22 04:55:57,592 [INFO] CICLO #16 - 2025-11-22 07:55:57 UTC
+2025-11-22 04:55:57,592 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 04:55:57,592 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 04:55:57,594 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 04:55:58,635 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 05:10:58,639 [INFO] 
+======================================================================
+2025-11-22 05:10:58,639 [INFO] CICLO #17 - 2025-11-22 08:10:58 UTC
+2025-11-22 05:10:58,639 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 05:10:58,639 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 05:10:58,641 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 05:10:59,623 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 05:25:59,623 [INFO] 
+======================================================================
+2025-11-22 05:25:59,623 [INFO] CICLO #18 - 2025-11-22 08:25:59 UTC
+2025-11-22 05:25:59,623 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 05:25:59,623 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 05:25:59,625 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 05:26:00,731 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 05:41:00,728 [INFO] 
+======================================================================
+2025-11-22 05:41:00,728 [INFO] CICLO #19 - 2025-11-22 08:41:00 UTC
+2025-11-22 05:41:00,728 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 05:41:00,728 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 05:41:00,730 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 05:41:01,845 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 05:56:01,825 [INFO] 
+======================================================================
+2025-11-22 05:56:01,825 [INFO] CICLO #20 - 2025-11-22 08:56:01 UTC
+2025-11-22 05:56:01,825 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 05:56:01,825 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 05:56:01,826 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 05:56:02,811 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 06:11:02,785 [INFO] 
+======================================================================
+2025-11-22 06:11:02,785 [INFO] CICLO #21 - 2025-11-22 09:11:02 UTC
+2025-11-22 06:11:02,785 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 06:11:02,785 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 06:11:02,787 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 06:11:03,738 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 06:26:03,707 [INFO] 
+======================================================================
+2025-11-22 06:26:03,707 [INFO] CICLO #22 - 2025-11-22 09:26:03 UTC
+2025-11-22 06:26:03,707 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 06:26:03,708 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 06:26:03,709 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 06:26:04,922 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 06:41:04,881 [INFO] 
+======================================================================
+2025-11-22 06:41:04,881 [INFO] CICLO #23 - 2025-11-22 09:41:04 UTC
+2025-11-22 06:41:04,881 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 06:41:04,881 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 06:41:04,882 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 06:41:06,002 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 06:56:06,001 [INFO] 
+======================================================================
+2025-11-22 06:56:06,001 [INFO] CICLO #24 - 2025-11-22 09:56:06 UTC
+2025-11-22 06:56:06,002 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 06:56:06,002 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 06:56:06,003 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 06:56:06,985 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 07:11:06,981 [INFO] 
+======================================================================
+2025-11-22 07:11:06,981 [INFO] CICLO #25 - 2025-11-22 10:11:06 UTC
+2025-11-22 07:11:06,981 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 07:11:06,981 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 07:11:06,983 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 07:11:08,068 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 07:26:08,077 [INFO] 
+======================================================================
+2025-11-22 07:26:08,077 [INFO] CICLO #26 - 2025-11-22 10:26:08 UTC
+2025-11-22 07:26:08,077 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 07:26:08,077 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 07:26:08,079 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 07:26:09,367 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 07:41:09,363 [INFO] 
+======================================================================
+2025-11-22 07:41:09,363 [INFO] CICLO #27 - 2025-11-22 10:41:09 UTC
+2025-11-22 07:41:09,363 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 07:41:09,363 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 07:41:09,365 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 07:41:10,371 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 07:56:10,370 [INFO] 
+======================================================================
+2025-11-22 07:56:10,370 [INFO] CICLO #28 - 2025-11-22 10:56:10 UTC
+2025-11-22 07:56:10,371 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 07:56:10,371 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 07:56:10,372 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 07:56:11,546 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 08:11:11,547 [INFO] 
+======================================================================
+2025-11-22 08:11:11,547 [INFO] CICLO #29 - 2025-11-22 11:11:11 UTC
+2025-11-22 08:11:11,547 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 08:11:11,548 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 08:11:11,549 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 08:11:12,696 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 08:26:12,702 [INFO] 
+======================================================================
+2025-11-22 08:26:12,702 [INFO] CICLO #30 - 2025-11-22 11:26:12 UTC
+2025-11-22 08:26:12,703 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 08:26:12,703 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 08:26:12,704 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 08:26:13,958 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 08:41:13,962 [INFO] 
+======================================================================
+2025-11-22 08:41:13,962 [INFO] CICLO #31 - 2025-11-22 11:41:13 UTC
+2025-11-22 08:41:13,962 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 08:41:13,962 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 08:41:13,964 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 08:41:15,048 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 08:56:15,055 [INFO] 
+======================================================================
+2025-11-22 08:56:15,055 [INFO] CICLO #32 - 2025-11-22 11:56:15 UTC
+2025-11-22 08:56:15,055 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 08:56:15,055 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 08:56:15,057 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 08:56:16,137 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 09:11:16,145 [INFO] 
+======================================================================
+2025-11-22 09:11:16,145 [INFO] CICLO #33 - 2025-11-22 12:11:16 UTC
+2025-11-22 09:11:16,145 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 09:11:16,145 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 09:11:16,147 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 09:11:17,373 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 09:26:17,374 [INFO] 
+======================================================================
+2025-11-22 09:26:17,374 [INFO] CICLO #34 - 2025-11-22 12:26:17 UTC
+2025-11-22 09:26:17,374 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 09:26:17,374 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 09:26:17,376 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 09:26:18,710 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 09:41:18,712 [INFO] 
+======================================================================
+2025-11-22 09:41:18,712 [INFO] CICLO #35 - 2025-11-22 12:41:18 UTC
+2025-11-22 09:41:18,712 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 09:41:18,712 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 09:41:18,714 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 09:41:19,975 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 09:56:19,984 [INFO] 
+======================================================================
+2025-11-22 09:56:19,984 [INFO] CICLO #36 - 2025-11-22 12:56:19 UTC
+2025-11-22 09:56:19,984 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 09:56:19,984 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 09:56:19,986 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 09:56:20,938 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 10:11:20,939 [INFO] 
+======================================================================
+2025-11-22 10:11:20,939 [INFO] CICLO #37 - 2025-11-22 13:11:20 UTC
+2025-11-22 10:11:20,939 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 10:11:20,939 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 10:11:20,941 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 10:11:22,165 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 10:26:22,169 [INFO] 
+======================================================================
+2025-11-22 10:26:22,169 [INFO] CICLO #38 - 2025-11-22 13:26:22 UTC
+2025-11-22 10:26:22,169 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 10:26:22,169 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 10:26:22,170 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 10:26:23,099 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 10:41:23,099 [INFO] 
+======================================================================
+2025-11-22 10:41:23,099 [INFO] CICLO #39 - 2025-11-22 13:41:23 UTC
+2025-11-22 10:41:23,099 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 10:41:23,100 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 10:41:23,101 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 10:41:24,304 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 10:56:24,306 [INFO] 
+======================================================================
+2025-11-22 10:56:24,306 [INFO] CICLO #40 - 2025-11-22 13:56:24 UTC
+2025-11-22 10:56:24,306 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 10:56:24,306 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 10:56:24,308 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 10:56:25,393 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 11:11:25,397 [INFO] 
+======================================================================
+2025-11-22 11:11:25,397 [INFO] CICLO #41 - 2025-11-22 14:11:25 UTC
+2025-11-22 11:11:25,397 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 11:11:25,397 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 11:11:25,398 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 11:11:26,653 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 11:26:26,661 [INFO] 
+======================================================================
+2025-11-22 11:26:26,661 [INFO] CICLO #42 - 2025-11-22 14:26:26 UTC
+2025-11-22 11:26:26,661 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 11:26:26,661 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 11:26:26,663 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 11:26:27,687 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 11:41:27,682 [INFO] 
+======================================================================
+2025-11-22 11:41:27,682 [INFO] CICLO #43 - 2025-11-22 14:41:27 UTC
+2025-11-22 11:41:27,682 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 11:41:27,682 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 11:41:27,684 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 11:41:28,883 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
