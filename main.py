@@ -578,11 +578,24 @@ async def generate_signal(api, pair, tf):
     # adaptar el mínimo de score según winrate reciente (control adaptativo)
     current_wr = rolling_winrate()
     min_score = MIN_SCORE_BASE
-    if current_wr is not None and current_wr < TARGET_WINRATE:
-        deficit = TARGET_WINRATE - current_wr
-        inc = int(np.ceil(deficit * 10)) * ADAPTIVE_SCORE_INCREMENT
-        min_score = min(MIN_SCORE_MAX, MIN_SCORE_BASE + inc)
-        log(f"🔧 Winrate reciente {current_wr:.2f} -> ajustando min_score a {min_score}", "debug")
+    # ================================
+    # WINRATE ADAPTATIVO (corregido)
+    # ================================
+
+    current_wr = rolling_winrate()
+    min_score = MIN_SCORE_BASE
+
+    # → NUEVA CONDICIÓN: solo aplicar score adaptativo si hay 10 operaciones mínimas
+    if current_wr is not None and len(trade_history) >= 10:
+        if current_wr < TARGET_WINRATE:
+            deficit = TARGET_WINRATE - current_wr
+            inc = int(np.ceil(deficit * 10)) * ADAPTIVE_SCORE_INCREMENT
+            min_score = min(MIN_SCORE_MAX, MIN_SCORE_BASE + inc)
+        else:
+            # → NO aplicamos adaptativo si no hay historial suficiente
+            min_score = MIN_SCORE_BASE
+
+        print(f"🔧 Winrate reciente: {current_wr} (trades: {len(trade_history)}) → min_score = {min_score}")
 
     if indicator_score < min_score:
         log(f"⏸️ Señal descartada por score insuficiente ({indicator_score} < {min_score}): {pair} {tf}", "debug")
@@ -781,13 +794,37 @@ async def main():
             sig = best_signal
 
             # Antes de ejecutar, verificar winrate reciente para no operar en mala racha grave
+            # =====================================================
+            # 🅱️ MODO MODERADO
+            # - Si WinRate es malo → NO bloquear completamente
+            # - Permitir operar si:
+            #     ✔ Score ≥ 5
+            #     ✔ Y existe un patrón chartista
+            # =====================================================
+
             current_wr = rolling_winrate()
+
             if current_wr is not None and current_wr < (TARGET_WINRATE - 0.1):
-                warn_msg = f"⚠️ Winrate reciente {current_wr:.2f} por debajo del umbral crítico; saltando operación."
-                log(warn_msg, "warning")
-                tg_send(warn_msg)
-                await asyncio.sleep(30)
-                continue
+
+                # Obtener score y patrón de la mejor señal detectada
+                sc = best_signal.get("score", 0)
+                pattern = best_signal.get("pattern", None)
+
+                # Condición para permitir operar aun con WR malo
+                if sc >= 5 and pattern not in (None, "None"):
+                    log(
+                        f"⚠️ Winrate bajo ({current_wr:.2f}) PERO señal fuerte "
+                        f"(score {sc}) + patrón '{pattern}' → operación PERMITIDA (Modo Moderado)"
+                    )
+                else:
+                    warn_msg = (
+                        f"⚠️ Winrate reciente {current_wr:.2f} por debajo del umbral crítico "
+                        f"y señal débil (score {sc}, patrón {pattern}) → operación BLOQUEADA."
+                    )
+                    log(warn_msg, "warning")
+                    tg_send(warn_msg)
+                    await asyncio.sleep(30)
+                    continue
 
             can, amount = can_trade(current_balance or 0)
             if not can:
