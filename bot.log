@@ -5913,3 +5913,10 @@ Patrón: None
 2025-11-22 11:41:27,682 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
 2025-11-22 11:41:27,684 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
 2025-11-22 11:41:28,883 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381
+2025-11-22 11:56:28,881 [INFO] 
+======================================================================
+2025-11-22 11:56:28,881 [INFO] CICLO #44 - 2025-11-22 14:56:28 UTC
+2025-11-22 11:56:28,881 [INFO] \U0001f4b0 Balance actual: $38.08
+2025-11-22 11:56:28,881 [INFO] \U0001f6ab No puedo tradear: \U0001f6ab Límite de pérdidas alcanzado (3)
+2025-11-22 11:56:28,883 [DEBUG] Starting new HTTPS connection (1): api.telegram.org:443
+2025-11-22 11:56:29,993 [DEBUG] https://api.telegram.org:443 "POST /bot8058227630:AAHoHAKPAPGo93XXL5UmRuDhL2pXNw4S5Uo/sendMessage HTTP/1.1" 200 381

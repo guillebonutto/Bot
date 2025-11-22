@@ -31,7 +31,8 @@ HTF_MULT = 2
 
 USE_RSI = True
 USE_REVERSAL_CANDLES = True
-USE_SUPPORT_RESISTANCE = True
+USE_RESISTANCE = True
+USE_SUPPORT = True
 RSI_PERIOD = 14
 RSI_OVERSOLD = 30
 RSI_OVERBOUGHT = 70
@@ -211,6 +212,11 @@ def detect_reversal_candle(r):
 def detect_resistance(df):
     return df['High'].rolling(10, min_periods=1).max().iloc[-1]
 
+def detect_support(df):
+    return df['Low'].rolling(10, min_periods=1).min()
+
+def near_support(c, s, tol=0.0010):
+    return abs(c - s) <= tol
 
 def near_resistance(c, r, tol=0.0010):
     return abs(c - r) <= tol
@@ -442,7 +448,10 @@ def compute_indicators(df, interval):
         df['RSI'] = compute_rsi(df)
     if USE_REVERSAL_CANDLES:
         df['Reversal'] = df.apply(detect_reversal_candle, axis=1)
-    if USE_SUPPORT_RESISTANCE:
+    if USE_SUPPORT:
+        s = detect_support(df)
+        df['NearSupport'] = df['Close'].apply(lambda c: near_support(c, s))
+    if USE_RESISTANCE:
         r = detect_resistance(df)
         df['NearResistance'] = df['Close'].apply(lambda c: near_resistance(c, r))
 
@@ -469,9 +478,11 @@ def score_signal(row):
     if USE_REVERSAL_CANDLES:
         if row.get('Reversal', 0) == 1:
             score += 1
-    if USE_SUPPORT_RESISTANCE:
-        if not row.get('NearResistance', False):
-            score += 1
+    if USE_SUPPORT:
+        score += 1 if row.get('signl_dir') == "BUY" else 0
+
+    if USE_RESISTANCE and row.get('NearResistance', False):
+        score += 1 if row.get('signl_dir') == "SELL" else 0
     return int(score)
 
 
@@ -507,6 +518,7 @@ def htf_confirms(df, direction):
 # Generar señal (core) con Semaphore
 # ---------------------------
 async def generate_signal(api, pair, tf):
+    global p
     interval = TIMEFRAMES[tf]
     df = await fetch_data_optimized(api, pair, interval)
 
@@ -521,6 +533,8 @@ async def generate_signal(api, pair, tf):
     # prioridad 1: señal por indicadores (sin exigir HTF)
     indicator_signal = None
     indicator_score = 0
+    detected_pattern = None
+    detectors = [detectar_doble_techo, detectar_compresion, detectar_flag, detectar_triangulo, detectar_ruptura_canal]
     if last.get('EMA_conf', 0) == 0 or last.get('TF', 0) == 0 or is_sideways(df):
         indicator_signal = None
     else:
@@ -534,8 +548,6 @@ async def generate_signal(api, pair, tf):
 
     # si no señal por indicadores -> buscar patrones
     if not indicator_signal:
-        detectors = [detectar_doble_techo, detectar_compresion, detectar_flag, detectar_triangulo,
-                     detectar_ruptura_canal]
         for det in detectors:
             p, pscore = det(df)
             if p:
@@ -571,6 +583,12 @@ async def generate_signal(api, pair, tf):
                 }
         return None
 
+    for det in detectors:
+        p, _ = det(df)
+        if p:
+            detected_pattern = p
+            break
+
     # si hay señal por indicadores -> validar si es débil y aplicar reglas adaptativas
     # adaptar el mínimo de score según winrate reciente (control adaptativo)
     current_wr = rolling_winrate()
@@ -578,9 +596,6 @@ async def generate_signal(api, pair, tf):
     # ================================
     # WINRATE ADAPTATIVO (corregido)
     # ================================
-
-    current_wr = rolling_winrate()
-    min_score = MIN_SCORE_BASE
 
     # → NUEVA CONDICIÓN: solo aplicar score adaptativo si hay 10 operaciones mínimas
     if current_wr is not None and len(trade_history) >= 10:
@@ -615,7 +630,7 @@ async def generate_signal(api, pair, tf):
         'timestamp': last.name,
         'duration': TIMEFRAMES[tf],
         'score': int(indicator_score),
-        'pattern': None,
+        'pattern': p,
         'price': float(last['Close']),
         'ema': float(last.get('MA_long', np.nan)),
         'breakdown': {
