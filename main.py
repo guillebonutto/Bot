@@ -213,7 +213,7 @@ def detect_resistance(df):
     return df['High'].rolling(10, min_periods=1).max().iloc[-1]
 
 def detect_support(df):
-    return df['Low'].rolling(10, min_periods=1).min()
+    return df['Low'].rolling(10, min_periods=1).min().iloc[-1]
 
 def near_support(c, s, tol=0.0010):
     return abs(c - s) <= tol
@@ -226,48 +226,48 @@ def near_resistance(c, r, tol=0.0010):
 def detectar_doble_techo(df):
     closes = df["Close"]
     if len(closes) < 10:
-        return None, 0
+        return None, None, 0
     window = closes[-10:]
     high1 = window.iloc[0]
     high2 = window.iloc[-3]
     if abs(high1 - high2) <= high1 * 0.001:  # 0.1% parecido
         # criterio de ruptura: cierre bajo media ventana
         if window.iloc[-1] < window.mean():
-            return "SELL", 3
-    return None, 0
+            return "doble_techo" ,"SELL", 3
+    return None, None, 0
 
 
 def detectar_compresion(df):
     highs = df['High'][-10:]
     lows = df['Low'][-10:]
     if len(highs) < 10:
-        return None, 0
+        return None, None, 0
     if highs.iloc[-1] < highs.iloc[0] and lows.iloc[-1] > lows.iloc[0]:
         if df['Close'].iloc[-1] > highs.mean():
-            return "BUY", 3
+            return "compresion", "BUY", 3
         if df['Close'].iloc[-1] < lows.mean():
-            return "SELL", 3
-    return None, 0
+            return "compresion", "SELL", 3
+    return None, None, 0
 
 
 def detectar_flag(df):
     if len(df) < 12:
-        return None, 0
+        return None, None, 0
     impuls = abs(df["Close"].iloc[-10] - df["Close"].iloc[-5]) > 3 * df["Close"].diff().abs().mean()
     if not impuls:
-        return None, 0
+        return None, None, 0
     cond_retroceso = df['High'][-5:].max() - df['High'].iloc[-10] < df['High'].diff().abs().mean() * 2
     if cond_retroceso:
         if df['Close'].iloc[-1] > df['High'][-5:].max():
-            return "BUY", 3
+            return "flag", "BUY", 3
         if df['Close'].iloc[-1] < df['Low'][-5:].min():
-            return "SELL", 3
-    return None, 0
+            return "flag", "SELL", 3
+    return None, None, 0
 
 
 def detectar_triangulo(df, window=20):
     if len(df) < window:
-        return None, 0
+        return None, None, 0
     highs = df['High'][-window:]
     lows = df['Low'][-window:]
     max_high = highs.max()
@@ -276,28 +276,28 @@ def detectar_triangulo(df, window=20):
     low_slope = (lows.iloc[-1] - lows.iloc[0]) / window
     if abs(high_slope) < 1e-12 and low_slope > 0:
         if df['Close'].iloc[-1] > max_high:
-            return "BUY", 3
+            return "triangulo", "BUY", 3
     if abs(low_slope) < 1e-12 and high_slope < 0:
         if df['Close'].iloc[-1] < min_low:
-            return "SELL", 3
+            return "triangulo", "SELL", 3
     if high_slope < 0 and low_slope > 0:
         # posible breakout si está muy cerca de la resistencia
         if abs(df['Close'].iloc[-1] - max_high) < (max_high - min_low) * 0.1:
-            return "BREAKOUT", 2
-    return None, 0
+            return "triangulo", "BREAKOUT", 2
+    return None, None, 0
 
 
 def detectar_ruptura_canal(df, window=20, tol=0.0003):
     if len(df) < window:
-        return None, 0
+        return None, None, 0
     canal_alto = df['High'][-window:].max()
     canal_bajo = df['Low'][-window:].min()
     c = df['Close'].iloc[-1]
     if abs(c - canal_alto) < (canal_alto * tol):
-        return "BUY", 2
+        return "ruptura_canal", "BUY", 2
     if abs(c - canal_bajo) < (canal_bajo * tol):
-        return "SELL", 2
-    return None, 0
+        return "ruptura_canal", "SELL", 2
+    return None, None, 0
 
 
 def validar_rsi(df, th_low=RSI_OVERSOLD, th_high=RSI_OVERBOUGHT):
@@ -315,15 +315,18 @@ def validacion_senal_debil(signal_dir, df, score, min_score=4):
     # Si el score está en el umbral, pedir confirmación por patrón y rsi
     if score >= min_score:
         return True
-    # pedir patrón + rsi
-    patron, pscore = detectar_flag(df)
-    if not patron:
-        patron, pscore = detectar_triangulo(df)
-    if not patron:
-        patron, pscore = detectar_doble_techo(df)
-    rsi_val = validar_rsi(df)
-    if patron and rsi_val == signal_dir:
-        return True
+
+    detectors = [detectar_doble_techo, detectar_compresion, detectar_flag,
+                detectar_triangulo, detectar_ruptura_canal]
+
+        # Buscar un patrón que coincida en dirección
+    for det in detectors:
+        pname, pdir, pscore = det(df)
+        if pdir == signal_dir:
+            # Validar RSI coincidente
+            rsi_val = validar_rsi(df)
+            if rsi_val == signal_dir:
+                return True
     return False
 
 
@@ -478,11 +481,11 @@ def score_signal(row):
     if USE_REVERSAL_CANDLES:
         if row.get('Reversal', 0) == 1:
             score += 1
-    if USE_SUPPORT:
-        score += 1 if row.get('signl_dir') == "BUY" else 0
+    if USE_SUPPORT and row.get('NearSupport', False):
+        score += 1
 
     if USE_RESISTANCE and row.get('NearResistance', False):
-        score += 1 if row.get('signl_dir') == "SELL" else 0
+        score += 1
     return int(score)
 
 
@@ -501,10 +504,14 @@ def confirm_breakout(df, direction, lookback=BREAKOUT_LOOKBACK, breakout_tol=BRE
     high = window['High'].max()
     low = window['Low'].min()
     last_close = df['Close'].iloc[-1]
+
     if direction == "BUY":
         return last_close > high * (1 + breakout_tol)
-    else:
+
+    if direction == "SELL":
         return last_close < low * (1 - breakout_tol)
+
+    return False
 
 
 def htf_confirms(df, direction):
@@ -549,44 +556,42 @@ async def generate_signal(api, pair, tf):
     # si no señal por indicadores -> buscar patrones
     if not indicator_signal:
         for det in detectors:
-            p, pscore = det(df)
-            if p:
-                # validación extra con RSI si existe
-                rsi_ok = True
-                if USE_RSI and 'RSI' in df.columns:
-                    rsi_val = validar_rsi(df)
-                    if rsi_val and rsi_val != p:
-                        rsi_ok = False
-                if not rsi_ok:
-                    log(f"⏸️ Patrón {p} rechazado por RSI conflictivo: {pair} {tf}", "debug")
+            pattern_name, direction, pscore = det(df)
+
+            if direction is None:
+                continue
+
+            # Validación RSI
+            if USE_RSI:
+                rsi_val = validar_rsi(df)
+                if rsi_val and rsi_val != direction:
+                    log(f"⏸️ Patrón {pattern_name} rechazado por RSI conflictivo: {pair} {tf}", "debug")
                     continue
 
-                # Confirmar breakout y HTF en MODO PRO
-                if not confirm_breakout(df, p):
-                    log(f"⏸️ Patrón {p} rechazado - breakout no confirmado: {pair} {tf}", "debug")
-                    continue
-                # if not htf_confirms(df, p):
-                    # log(f"⏸️ Patrón {p} rechazado - HTF no confirma: {pair} {tf}", "debug")
-                    # continue
+            # confirmación de breakout (usa dirección, no pattern_name)
+            if not confirm_breakout(df, direction=direction):
+                log(f"⏸️ Patrón {pattern_name} rechazado - breakout no confirmado: {pair} {tf}", "debug")
+                continue
 
+                # ✔ señal válida por patrón
                 # si todo ok retornar señal de patrón
-                return {
-                    'pair': pair,
-                    'tf': tf,
-                    'signal': p,
-                    'timestamp': last.name,
-                    'duration': TIMEFRAMES[tf],
-                    'score': int(pscore),
-                    'pattern': p,
-                    'price': float(last['Close']),
-                    'ema': float(last.get('MA_long', np.nan))
-                }
+            return {
+                'pair': pair,
+                'tf': tf,
+                'signal': direction,
+                'timestamp': last.name,
+                'duration': TIMEFRAMES[tf],
+                'score': int(pscore),
+                'pattern': pattern_name,
+                'price': float(last['Close']),
+                'ema': float(last.get('MA_long', np.nan))
+            }
         return None
 
     for det in detectors:
-        p, _ = det(df)
-        if p:
-            detected_pattern = p
+        pname, direction, _ = det(df)
+        if direction is not None and direction == indicator_signal:
+            detected_pattern = pname
             break
 
     # si hay señal por indicadores -> validar si es débil y aplicar reglas adaptativas
@@ -630,7 +635,7 @@ async def generate_signal(api, pair, tf):
         'timestamp': last.name,
         'duration': TIMEFRAMES[tf],
         'score': int(indicator_score),
-        'pattern': p,
+        'pattern': detected_pattern,
         'price': float(last['Close']),
         'ema': float(last.get('MA_long', np.nan)),
         'breakdown': {
