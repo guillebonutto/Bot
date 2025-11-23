@@ -598,6 +598,23 @@ async def generate_signal(api, pair, tf):
         log(f"⏸️ Señal descartada por validación débil: {pair} {tf}", "debug")
         return None
 
+    # Construir descripción detallada de indicadores
+    indicators_used = []
+    if last.get('EMA_conf', 0) != 0:
+        indicators_used.append(f"EMA_conf={last['EMA_conf']}")
+    if last.get('TF', 0) != 0:
+        indicators_used.append(f"TF={last['TF']}")
+    if USE_RSI and 'RSI' in df.columns and not pd.isna(last.get('RSI', np.nan)):
+        indicators_used.append(f"RSI={last['RSI']:.1f}")
+    if last.get('triangle', 0) == 1:
+        indicators_used.append("Triangle=Active")
+    if last.get('Reversal', 0) == 1:
+        indicators_used.append("Reversal=Detected")
+    if last.get('NearResistance', False):
+        indicators_used.append("NearResistance=Yes")
+    
+    indicators_str = " | ".join(indicators_used) if indicators_used else "Base Indicators"
+    
     return {
         'pair': pair,
         'tf': tf,
@@ -606,6 +623,7 @@ async def generate_signal(api, pair, tf):
         'duration': TIMEFRAMES[tf],
         'score': int(indicator_score),
         'pattern': None,
+        'pattern_detailed': indicators_str,
         'price': float(last['Close']),
         'ema': float(last.get('MA_long', np.nan)),
         'breakdown': {
@@ -779,6 +797,16 @@ async def main():
                 continue
 
             sig = best_signal
+            
+            # Enriquecer info de breakdown si existe
+            if 'breakdown' in sig and sig['breakdown']:
+                breakdown_str = (
+                    f"\n  └─ EMA_conf: {sig['breakdown'].get('EMA_conf', 0)} | "
+                    f"TF: {sig['breakdown'].get('TF', 0)} | "
+                    f"RSI: {sig['breakdown'].get('RSI', 'N/A')} | "
+                    f"Triangle: {sig['breakdown'].get('triangle', 0)}"
+                )
+                log(f"   Desglose: {breakdown_str}", "debug")
 
             # Antes de ejecutar, verificar winrate reciente para no operar en mala racha grave
             current_wr = rolling_winrate()
@@ -796,6 +824,11 @@ async def main():
                 await asyncio.sleep(COOLDOWN_SECONDS)
                 continue
 
+            pattern_info = sig.get('pattern', None)
+            if not pattern_info:
+                # Usar la descripción detallada si existe
+                pattern_info = sig.get('pattern_detailed', "Indicadores (EMA+TF+Confirmación)")
+            
             msg = (
                 f"📌 SEÑAL DETECTADA\n"
                 f"{'=' * 30}\n"
@@ -803,7 +836,7 @@ async def main():
                 f"TF: {sig['tf']}\n"
                 f"Dirección: {sig['signal']}\n"
                 f"Score: {sig['score']}\n"
-                f"Patrón: {sig.get('pattern', 'Indicadores')}\n"
+                f"Patrón/Indicadores: {pattern_info}\n"
                 f"━━━━━━━━━━━━━━━━\n"
                 f"💰 Precio: {sig['price']:.5f}\n"
                 f"📊 EMA: {sig['ema']:.5f}\n"
