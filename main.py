@@ -18,7 +18,7 @@ from BinaryOptionsToolsV2.pocketoption import PocketOptionAsync
 # ---------------------------
 PAIRS = [
     'EURUSD_otc', 'GBPUSD_otc', 'USDJPY_otc', 'AUDUSD_otc', 'USDCAD_otc',
-    'AUDCAD_otc', 'USDMXN_otc', 'USDCOP_otc', 'USDARS_otc'
+    'AUDCAD_otc', 'USDMXN_otc', 'USDCOP_otc', 'USDARS_otc', "#INTC_otc"
 ]
 
 TIMEFRAMES = {"M5": 300, "M10": 600, "M15": 900, "M30": 1800}
@@ -157,10 +157,11 @@ def reset_daily_stats():
 
 def can_trade(current_balance):
     reset_daily_stats()
-    if daily_stats['losses'] >= MAX_DAILY_LOSSES:
-        return False, f'🚫 Límite de pérdidas alcanzado ({MAX_DAILY_LOSSES})'
-    if daily_stats['trades'] >= MAX_DAILY_TRADES:
-        return False, f'🚫 Límite de operaciones diarias alcanzado ({MAX_DAILY_TRADES})'
+    # COMENTADO TEMPORALMENTE PARA RECOPILAR DATOS
+    # if daily_stats['losses'] >= MAX_DAILY_LOSSES:
+    #     return False, f'🚫 Límite de pérdidas alcanzado ({MAX_DAILY_LOSSES})'
+    # if daily_stats['trades'] >= MAX_DAILY_TRADES:
+    #     return False, f'🚫 Límite de operaciones diarias alcanzado ({MAX_DAILY_TRADES})'
 
     # Calcular monto con mínimo de $1
     max_amount = current_balance * RISK_PER_TRADE
@@ -535,7 +536,7 @@ async def generate_signal(api, pair, tf):
     compute_indicators(df, interval)
     last = df.iloc[-1]
 
-    
+
 
     # prioridad 1: señal por indicadores (sin exigir HTF)
     indicator_signal = None
@@ -642,9 +643,9 @@ async def generate_signal(api, pair, tf):
         indicators_used.append("Reversal=Detected")
     if last.get('NearResistance', False):
         indicators_used.append("NearResistance=Yes")
-    
+
     indicators_str = " | ".join(indicators_used) if indicators_used else "Base Indicators"
-    
+
     return {
         'pair': pair,
         'tf': tf,
@@ -827,7 +828,7 @@ async def main():
                 continue
 
             sig = best_signal
-            
+
             # Enriquecer info de breakdown si existe
             if 'breakdown' in sig and sig['breakdown']:
                 breakdown_str = (
@@ -847,42 +848,42 @@ async def main():
             #     ✔ Y existe un patrón chartista
             # =====================================================
 
-            current_wr = rolling_winrate()
-
-            if current_wr is not None and current_wr < (TARGET_WINRATE - 0.1):
+            # COMENTADO TEMPORALMENTE PARA RECOPILAR DATOS
+            # current_wr = rolling_winrate()
+            # if current_wr is not None and current_wr < (TARGET_WINRATE - 0.1):
 
                 # Obtener score y patrón de la mejor señal detectada
-                sc = best_signal.get("score", 0)
-                pattern = best_signal.get("pattern", None)
+                # sc = best_signal.get("score", 0)
+                # pattern = best_signal.get("pattern", None)
 
                 # Condición para permitir operar aun con WR malo
-                if sc >= 5 and pattern not in (None, "None"):
-                    log(
-                        f"⚠️ Winrate bajo ({current_wr:.2f}) PERO señal fuerte "
-                        f"(score {sc}) + patrón '{pattern}' → operación PERMITIDA (Modo Moderado)"
-                    )
-                else:
-                    warn_msg = (
-                        f"⚠️ Winrate reciente {current_wr:.2f} por debajo del umbral crítico "
-                        f"y señal débil (score {sc}, patrón {pattern}) → operación BLOQUEADA."
-                    )
-                    log(warn_msg, "warning")
-                    tg_send(warn_msg)
-                    await asyncio.sleep(30)
-                    continue
+                # if sc >= 5 and pattern not in (None, "None"):
+                #    log(
+                #        f"⚠️ Winrate bajo ({current_wr:.2f}) PERO señal fuerte "
+                #        f"(score {sc}) + patrón '{pattern}' → operación PERMITIDA (Modo Moderado)"
+                #    )
+                # else:
+                #    warn_msg = (
+                #        f"⚠️ Winrate reciente {current_wr:.2f} por debajo del umbral crítico "
+                #        f"y señal débil (score {sc}, patrón {pattern}) → operación BLOQUEADA."
+                #    )
+                #    log(warn_msg, "warning")
+                #    tg_send(warn_msg)
+                #    await asyncio.sleep(30)
+                #    continue
 
-            can, amount = can_trade(current_balance or 0)
-            if not can:
-                log(f"🚫 No puedo tradear justo antes de ejecutar: {amount}")
-                tg_send(f"{amount} — pausa hasta nuevo día")
-                await asyncio.sleep(COOLDOWN_SECONDS)
-                continue
+            # can, amount = can_trade(current_balance or 0)
+            # if not can:
+            #    log(f"🚫 No puedo tradear justo antes de ejecutar: {amount}")
+            #    tg_send(f"{amount} — pausa hasta nuevo día")
+            #    await asyncio.sleep(COOLDOWN_SECONDS)
+            #    continue
 
             pattern_info = sig.get('pattern', None)
             if not pattern_info:
                 # Usar la descripción detallada si existe
                 pattern_info = sig.get('pattern_detailed', "Indicadores (EMA+TF+Confirmación)")
-            
+
             msg = (
                 f"📌 SEÑAL DETECTADA\n"
                 f"{'=' * 30}\n"
@@ -978,13 +979,14 @@ async def main():
                     log(result_msg)
                     tg_send(result_msg)
 
+                    # COMENTADO TEMPORALMENTE PARA RECOPILAR DATOS
                     # actualizar racha y aplicar cooling-off si hace falta
-                    streak = update_streak(win)
-                    if streak >= STREAK_LIMIT:
-                        cool_msg = f"⚠️ Racha de {streak} pérdidas. Cooling-off {COOLDOWN_SECONDS // 60}min."
-                        log(cool_msg)
-                        tg_send(cool_msg)
-                        await asyncio.sleep(COOLDOWN_SECONDS)
+                    # streak = update_streak(win)
+                    # if streak >= STREAK_LIMIT:
+                    #     cool_msg = f"⚠️ Racha de {streak} pérdidas. Cooling-off {COOLDOWN_SECONDS // 60}min."
+                    #     log(cool_msg)
+                    #     tg_send(cool_msg)
+                    #     await asyncio.sleep(COOLDOWN_SECONDS)
 
                 except Exception as e:
                     log(f"⚠️ Error verificando resultado: {e}", "warning")
