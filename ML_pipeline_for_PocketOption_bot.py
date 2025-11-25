@@ -78,19 +78,42 @@ class FeatureLogger:
     """
     def __init__(self, csv_path=FEATURES_CSV):
         self.csv_path = csv_path
-        # if not exists -> create with header when first write
-        if not os.path.exists(self.csv_path):
-            pd.DataFrame().to_csv(self.csv_path, index=False)
+        self.csv_dir = os.path.dirname(csv_path)
+        if self.csv_dir:
+            os.makedirs(self.csv_dir, exist_ok=True)
 
     def append(self, row: Dict[str, Any]):
         df = pd.DataFrame([row])
-        # Append without header
-        df.to_csv(self.csv_path, mode='a', header=not os.path.getsize(self.csv_path), index=False)
+        # Si archivo no existe, escribir con header
+        # Si existe, escribir sin header (append)
+        if not os.path.exists(self.csv_path):
+            df.to_csv(self.csv_path, index=False)
+        else:
+            df.to_csv(self.csv_path, mode='a', header=False, index=False)
 
     def read(self) -> pd.DataFrame:
-        if not os.path.exists(self.csv_path) or os.path.getsize(self.csv_path) == 0:
+        if not os.path.exists(self.csv_path):
             return pd.DataFrame()
-        return pd.read_csv(self.csv_path)
+        
+        file_size = os.path.getsize(self.csv_path)
+        if file_size == 0:
+            return pd.DataFrame()
+        
+        try:
+            df = pd.read_csv(self.csv_path)
+            # Si está completamente vacío (solo headers), devolver DataFrame vacío
+            if df.empty:
+                return pd.DataFrame()
+            return df
+        except pd.errors.EmptyDataError:
+            # Archivo con solo saltos de línea o vacío
+            return pd.DataFrame()
+        except pd.errors.ParserError:
+            # Error de parseo
+            return pd.DataFrame()
+        except Exception as e:
+            print(f"⚠️ Error leyendo {self.csv_path}: {e}")
+            return pd.DataFrame()
 
 
 feature_logger = FeatureLogger()
