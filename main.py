@@ -24,6 +24,27 @@ except ImportError:
     ML_AVAILABLE = False
     print("⚠️ ml_trades_integration no disponible (opcional)")
 
+# Import Strategy Logic
+from strategy import (
+    compute_indicators,
+    detectar_doble_techo,
+    detectar_compresion,
+    detectar_flag,
+    detectar_triangulo,
+    detectar_ruptura_canal,
+    detectar_divergencia_macd,
+    validar_rsi,
+    validacion_senal_debil,
+    score_signal,
+    confirm_breakout,
+    htf_confirms,
+    is_sideways,
+    detect_support,
+    detect_resistance,
+    get_signal_indicators
+)
+from shadow_trader import ShadowTrader
+
 # ---------------------------
 # CONFIG (ajustalo a tu gusto)
 # ---------------------------
@@ -39,6 +60,12 @@ LOOKBACK = 50
 MA_SHORT = 20
 MA_LONG = 50
 HTF_MULT = 2
+
+RSI_PERIOD = 7  # rápido y estable
+
+MACD_FAST = 8
+MACD_SLOW = 21
+MACD_SIGNAL = 5
 
 USE_RSI = True
 USE_REVERSAL_CANDLES = True
@@ -66,8 +93,11 @@ ROLLING_WINDOW_TRADES = 20         # para calcular winrate reciente
 MIN_SCORE_BASE = 4                 # score mínimo base para operar
 ADAPTIVE_SCORE_INCREMENT = 1       # cuánto subir el score mínimo si winrate cae
 MIN_SCORE_MAX = 7                  # tope al que puede subir el min score
-BREAKOUT_TOL = 0.0005              # tolerancia para confirmar breakout (ajustable)
+BREAKOUT_TOL = 0.0015              # tolerancia para confirmar breakout (ajustable)
 BREAKOUT_LOOKBACK = 20             # lookback para definir niveles de resistencia/soporte
+BREAKOUT_STRICT = False      # si True exige la condición estricta; False usa criterio más flexible
+BREAKOUT_USE_ATR = True      # si True permite confirmar breakout usando ATR
+DEBUG_BREAKOUT = True        # imprime info cuando un breakout se rechaza (ponelo False en prod)
 
 # Logging
 logging.basicConfig(
@@ -204,142 +234,8 @@ def rolling_winrate(n=None):
 # ---------------------------
 # Indicadores y patrones
 # ---------------------------
-def compute_rsi(df, period=RSI_PERIOD):
-    delta = df['Close'].diff()
-    gain = delta.where(delta > 0, 0).rolling(period).mean()
-    loss = (-delta.where(delta < 0, 0)).rolling(period).mean()
-    rs = gain / loss.replace(0, np.nan)
-    return 100 - (100 / (1 + rs))
 
 
-def detect_reversal_candle(r):
-    body = abs(r['Close'] - r['Open'])
-    if body == 0:
-        return 0
-    upper = r['High'] - max(r['Close'], r['Open'])
-    lower = min(r['Close'], r['Open']) - r['Low']
-    return int(upper > body * 1.5 or lower > body * 1.5)
-
-
-def detect_resistance(df):
-    return df['High'].rolling(10, min_periods=1).max().iloc[-1]
-
-def detect_support(df):
-    return df['Low'].rolling(10, min_periods=1).min().iloc[-1]
-
-def near_support(c, s, tol=0.0010):
-    return abs(c - s) <= tol
-
-def near_resistance(c, r, tol=0.0010):
-    return abs(c - r) <= tol
-
-
-# Detección de patrones simplificados — devuelven (signal, score)
-def detectar_doble_techo(df):
-    closes = df["Close"]
-    if len(closes) < 10:
-        return None, None, 0
-    window = closes[-10:]
-    high1 = window.iloc[0]
-    high2 = window.iloc[-3]
-    if abs(high1 - high2) <= high1 * 0.001:  # 0.1% parecido
-        # criterio de ruptura: cierre bajo media ventana
-        if window.iloc[-1] < window.mean():
-            return "doble_techo" ,"SELL", 3
-    return None, None, 0
-
-
-def detectar_compresion(df):
-    highs = df['High'][-10:]
-    lows = df['Low'][-10:]
-    if len(highs) < 10:
-        return None, None, 0
-    if highs.iloc[-1] < highs.iloc[0] and lows.iloc[-1] > lows.iloc[0]:
-        if df['Close'].iloc[-1] > highs.mean():
-            return "compresion", "BUY", 3
-        if df['Close'].iloc[-1] < lows.mean():
-            return "compresion", "SELL", 3
-    return None, None, 0
-
-
-def detectar_flag(df):
-    if len(df) < 12:
-        return None, None, 0
-    impuls = abs(df["Close"].iloc[-10] - df["Close"].iloc[-5]) > 3 * df["Close"].diff().abs().mean()
-    if not impuls:
-        return None, None, 0
-    cond_retroceso = df['High'][-5:].max() - df['High'].iloc[-10] < df['High'].diff().abs().mean() * 2
-    if cond_retroceso:
-        if df['Close'].iloc[-1] > df['High'][-5:].max():
-            return "flag", "BUY", 3
-        if df['Close'].iloc[-1] < df['Low'][-5:].min():
-            return "flag", "SELL", 3
-    return None, None, 0
-
-
-def detectar_triangulo(df, window=20):
-    if len(df) < window:
-        return None, None, 0
-    highs = df['High'][-window:]
-    lows = df['Low'][-window:]
-    max_high = highs.max()
-    min_low = lows.min()
-    high_slope = (highs.iloc[-1] - highs.iloc[0]) / window
-    low_slope = (lows.iloc[-1] - lows.iloc[0]) / window
-    if abs(high_slope) < 1e-12 and low_slope > 0:
-        if df['Close'].iloc[-1] > max_high:
-            return "triangulo", "BUY", 3
-    if abs(low_slope) < 1e-12 and high_slope < 0:
-        if df['Close'].iloc[-1] < min_low:
-            return "triangulo", "SELL", 3
-    if high_slope < 0 and low_slope > 0:
-        # posible breakout si está muy cerca de la resistencia
-        if abs(df['Close'].iloc[-1] - max_high) < (max_high - min_low) * 0.1:
-            return "triangulo", "BREAKOUT", 2
-    return None, None, 0
-
-
-def detectar_ruptura_canal(df, window=20, tol=0.0003):
-    if len(df) < window:
-        return None, None, 0
-    canal_alto = df['High'][-window:].max()
-    canal_bajo = df['Low'][-window:].min()
-    c = df['Close'].iloc[-1]
-    if abs(c - canal_alto) < (canal_alto * tol):
-        return "ruptura_canal", "BUY", 2
-    if abs(c - canal_bajo) < (canal_bajo * tol):
-        return "ruptura_canal", "SELL", 2
-    return None, None, 0
-
-
-def validar_rsi(df, th_low=RSI_OVERSOLD, th_high=RSI_OVERBOUGHT):
-    if 'RSI' not in df.columns or df['RSI'].isna().all():
-        return None
-    last_rsi = df['RSI'].iloc[-1]
-    if last_rsi < th_low:
-        return "BUY"
-    if last_rsi > th_high:
-        return "SELL"
-    return None
-
-
-def validacion_senal_debil(signal_dir, df, score, min_score=4):
-    # Si el score está en el umbral, pedir confirmación por patrón y rsi
-    if score >= min_score:
-        return True
-
-    detectors = [detectar_doble_techo, detectar_compresion, detectar_flag,
-                detectar_triangulo, detectar_ruptura_canal]
-
-        # Buscar un patrón que coincida en dirección
-    for det in detectors:
-        pname, pdir, pscore = det(df)
-        if pdir == signal_dir:
-            # Validar RSI coincidente
-            rsi_val = validar_rsi(df)
-            if rsi_val == signal_dir:
-                return True
-    return False
 
 
 # ---------------------------
@@ -428,153 +324,25 @@ async def fetch_data_optimized(api, pair, interval, lookback=LOOKBACK):
 
 
 # ---------------------------
-# Calculo de indicadores
-# ---------------------------
-def compute_indicators(df, interval):
-    # Nota: df debe tener len >= MA_LONG
-    df['MA_long'] = df['Close'].ewm(span=MA_LONG, adjust=False).mean()
-    df['above'] = df['Close'] > df['MA_long']
-    df['below'] = df['Close'] < df['MA_long']
-    df['no_touch_above'] = df['above'].rolling(10, min_periods=10).sum() == 10
-    df['no_touch_below'] = df['below'].rolling(10, min_periods=10).sum() == 10
-    df['EMA_conf'] = np.where(df['no_touch_above'], 1, np.where(df['no_touch_below'], -1, 0))
-
-    tr1 = df['High'] - df['Low']
-    tr2 = (df['High'] - df['Close'].shift()).abs()
-    tr3 = (df['Low'] - df['Close'].shift()).abs()
-    df['ATR'] = pd.concat([tr1, tr2, tr3], axis=1).max(axis=1).rolling(14, min_periods=14).mean()
-
-    df['trend'] = (df['Close'] - df['Close'].shift(14)) / df['ATR'].replace(0, np.nan)
-    df['TF'] = np.where(df['trend'] > 1, 1, np.where(df['trend'] < -1, -1, 0))
-
-    rng = df['High'].rolling(10, min_periods=10).max() - df['Low'].rolling(10, min_periods=10).min()
-    df['triangle'] = (rng < df['ATR'] * 0.5).astype(int)
-
-    try:
-        df_htf = df['Close'].resample(f"{interval * HTF_MULT}s").last().ffill()
-        ema_fast = df_htf.rolling(MA_SHORT * HTF_MULT, min_periods=MA_SHORT * HTF_MULT).mean()
-        ema_slow = df_htf.ewm(span=MA_LONG * HTF_MULT, adjust=False).mean()
-        htf_sig = np.where(ema_fast > ema_slow, 1, np.where(ema_fast < ema_slow, -1, 0))
-        df['HTF'] = pd.Series(htf_sig, index=df_htf.index).reindex(df.index, method='ffill').fillna(0).astype(int)
-    except Exception:
-        df['HTF'] = 0
-
-    if USE_RSI:
-        df['RSI'] = compute_rsi(df)
-    if USE_REVERSAL_CANDLES:
-        df['Reversal'] = df.apply(detect_reversal_candle, axis=1)
-    if USE_SUPPORT:
-        s = detect_support(df)
-        df['NearSupport'] = df['Close'].apply(lambda c: near_support(c, s))
-    if USE_RESISTANCE:
-        r = detect_resistance(df)
-        df['NearResistance'] = df['Close'].apply(lambda c: near_resistance(c, r))
-
-
-def is_sideways(df, window=20, atr_mult=1.0):
-    if len(df) < window:
-        return False
-    recent = df.iloc[-window:]
-    pr = recent['High'].max() - recent['Low'].min()
-    atr_avg = recent['ATR'].mean()
-    if pd.isna(atr_avg) or atr_avg == 0:
-        return True
-    return pr < (atr_avg * atr_mult)
-
-
-def score_signal(row):
-    score = 0
-    score += int(row.get('EMA_conf', 0) != 0)
-    score += int(row.get('TF', 0) == row.get('EMA_conf', 0))
-    score += int(row.get('triangle', 0) == 1)
-    if USE_RSI and not pd.isna(row.get('RSI', np.nan)):
-        if row['RSI'] < RSI_OVERSOLD or row['RSI'] > RSI_OVERBOUGHT:
-            score += 1
-    if USE_REVERSAL_CANDLES:
-        if row.get('Reversal', 0) == 1:
-            score += 1
-    if USE_SUPPORT and row.get('NearSupport', False):
-        score += 1
-
-    if USE_RESISTANCE and row.get('NearResistance', False):
-        score += 1
-    return int(score)
-
-
-def get_signal_indicators(df, last_row):
-    """Extraer todos los indicadores de una vela para logging."""
-    indicators = {
-        'price': float(last_row['Close']) if not pd.isna(last_row.get('Close')) else 0,
-        'ema': float(last_row.get('MA_long', 0)) if not pd.isna(last_row.get('MA_long')) else 0,
-        'rsi': float(last_row.get('RSI', 0)) if not pd.isna(last_row.get('RSI')) else None,
-        'ema_conf': int(last_row.get('EMA_conf', 0)),
-        'tf_signal': int(last_row.get('TF', 0)),
-        'atr': float(last_row.get('ATR', 0)) if not pd.isna(last_row.get('ATR')) else 0,
-        'triangle_active': int(last_row.get('triangle', 0)),
-        'reversal_candle': int(last_row.get('Reversal', 0)),
-        'near_support': bool(last_row.get('NearSupport', False)),
-        'near_resistance': bool(last_row.get('NearResistance', False)),
-        'htf_signal': int(last_row.get('HTF', 0)) if 'HTF' in last_row.index else 0,
-    }
-    
-    # Obtener niveles de soporte/resistencia si existen
-    if 'NearSupport' in df.columns:
-        support = detect_support(df)
-        resistance = detect_resistance(df)
-        indicators['support_level'] = float(support) if not pd.isna(support) else None
-        indicators['resistance_level'] = float(resistance) if not pd.isna(resistance) else None
-    else:
-        indicators['support_level'] = None
-        indicators['resistance_level'] = None
-    
-    return indicators
-
-
-
-# ---------------------------
-# Confirmaciones específicas MODO PRO
-# ---------------------------
-
-def confirm_breakout(df, direction, lookback=BREAKOUT_LOOKBACK, breakout_tol=BREAKOUT_TOL):
-    """
-    Confirma que el precio cerró fuera de la resistencia/soporte de lookback y
-    que lo hizo con margen breakout_tol (ej: 0.0005).
-    """
-    if len(df) < lookback + 1:
-        return False
-    window = df[-lookback:]
-    high = window['High'].max()
-    low = window['Low'].min()
-    last_close = df['Close'].iloc[-1]
-
-    if direction == "BUY":
-        return last_close > high * (1 + breakout_tol)
-
-    if direction == "SELL":
-        return last_close < low * (1 - breakout_tol)
-
-    return False
-
-
-def htf_confirms(df, direction):
-    if 'HTF' not in df.columns:
-        return False
-    last_htf = df['HTF'].iloc[-1]
-    return (direction == "BUY" and last_htf == 1) or (direction == "SELL" and last_htf == -1)
-
-
-# ---------------------------
 # Generar señal (core) con Semaphore
 # ---------------------------
-async def generate_signal(api, pair, tf):
-    global p
+async def generate_signal(api, pair, tf, shadow_trader=None):
     interval = TIMEFRAMES[tf]
     df = await fetch_data_optimized(api, pair, interval)
 
     if df.empty or len(df) < MA_LONG:
         return None
 
-    compute_indicators(df, interval)
+    # -----------------------------------------------------------
+    # 👻 SHADOW TRADING (Forward Testing)
+    # -----------------------------------------------------------
+    if shadow_trader:
+        try:
+            shadow_trader.process_candle(df, pair, tf)
+        except Exception as e:
+            log(f"Error en Shadow Trader: {e}", "error")
+
+    df = compute_indicators(df, interval)
     last = df.iloc[-1]
 
 
@@ -587,13 +355,19 @@ async def generate_signal(api, pair, tf):
     if last.get('EMA_conf', 0) == 0 or last.get('TF', 0) == 0 or is_sideways(df):
         indicator_signal = None
     else:
-        indicator_score = score_signal(last)
-        if last['EMA_conf'] > 0 and indicator_score >= MIN_SCORE_BASE:
+        if last['EMA_conf'] > 0:
             indicator_signal = 'BUY'
-        elif last['EMA_conf'] < 0 and indicator_score >= MIN_SCORE_BASE:
+        elif last['EMA_conf'] < 0:
             indicator_signal = 'SELL'
         else:
             indicator_signal = None
+
+        if indicator_signal:
+            indicator_score = score_signal(last, signal_direction=indicator_signal)
+            if indicator_score < MIN_SCORE_BASE:
+                indicator_signal = None
+        else:
+            indicator_score = 0
 
     # si no señal por indicadores -> buscar patrones
     if not indicator_signal:
@@ -603,15 +377,18 @@ async def generate_signal(api, pair, tf):
             if direction is None:
                 continue
 
-            # Validación RSI
-            if USE_RSI:
+            # Validación RSI (Skip para ruptura_canal que suele darse en extremos)
+            if USE_RSI and pattern_name != "ruptura_canal":
                 rsi_val = validar_rsi(df)
                 if rsi_val and rsi_val != direction:
                     log(f"⏸️ Patrón {pattern_name} rechazado por RSI conflictivo: {pair} {tf}", "debug")
                     continue
 
-            # confirmación de breakout (usa dirección, no pattern_name)
-            if not confirm_breakout(df, direction=direction):
+
+
+                # confirmación de breakout (usa dirección, no pattern_name)
+            ok, reason = confirm_breakout(df, direction=direction)
+            if not ok:
                 log(f"⏸️ Patrón {pattern_name} rechazado - breakout no confirmado: {pair} {tf}", "debug")
                 continue
 
@@ -626,7 +403,7 @@ async def generate_signal(api, pair, tf):
                 'score': int(pscore),
                 'pattern': pattern_name,
                 'price': float(last['Close']),
-                'ema': float(last.get('MA_long', np.nan))
+                'ema': float(last.get('EMA_long', np.nan))
             }
         return None
 
@@ -697,7 +474,7 @@ async def generate_signal(api, pair, tf):
         'pattern': None,
         'pattern_detailed': indicators_str,
         'price': float(last['Close']),
-        'ema': float(last.get('MA_long', np.nan)),
+        'ema': float(last.get('EMA_long', np.nan)),
         'breakdown': {
             'EMA_conf': int(last.get('EMA_conf', 0)),
             'TF': int(last.get('TF', 0)),
@@ -707,20 +484,17 @@ async def generate_signal(api, pair, tf):
             'near_resistance': bool(last.get('NearResistance', False))
         }
     }
-
+    
 
 # Wrapper con semaphore para limitar concurrencia
-async def generate_signal_with_semaphore(semaphore, api, pair, tf):
+async def generate_signal_with_semaphore(semaphore, api, pair, tf, shadow_trader=None):
     async with semaphore:
         try:
-            return await generate_signal(api, pair, tf)
+            return await generate_signal(api, pair, tf, shadow_trader)
         except Exception as e:
             log(f"⚠️ Exception en generate_signal_with_semaphore {pair} {tf}: {e}", "warning")
             return None
 
-
-# ---------------------------
-# Noticias (dummy) / TODO: integrar API real
 # ---------------------------
 def is_news_event():
     # TODO: reemplazar por API de calendario económico (econ-calendar) o newsapi
@@ -784,6 +558,10 @@ async def main():
     cycle = 0
     stats = {'wins': 0, 'losses': 0, 'total': 0}
 
+    # Inicializar Shadow Trader (Forward Testing)
+    shadow_trader = ShadowTrader()
+    print("👻 Shadow Trader activado: Probando estrategias en paralelo...")
+
     while True:
         try:
             if is_news_event():
@@ -829,7 +607,7 @@ async def main():
             all_signals = []
             for tf in SELECTED_TFS:
                 tasks = [
-                    generate_signal_with_semaphore(semaphore, api, pair, tf)
+                    generate_signal_with_semaphore(semaphore, api, pair, tf, shadow_trader)
                     for pair in PAIRS
                 ]
                 log(f"🔍 Analizando {len(PAIRS)} pares en TF {tf} (max {MAX_CONCURRENT_REQUESTS} simultáneos)...")

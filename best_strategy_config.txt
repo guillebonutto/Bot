@@ -1,0 +1,1 @@
+{'rsi_period': 14, 'ma_long': 50, 'breakout_tol': 0.0015}

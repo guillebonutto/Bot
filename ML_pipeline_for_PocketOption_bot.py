@@ -139,8 +139,12 @@ class ModelWrapper:
                         self.meta = json.load(f)
                 print(f"[ML] Modelo cargado: {self.model_path}")
             except Exception as e:
-                print(f"[ML] Error cargando modelo: {e}")
+                print(f"[ML] Error cargando modelo: {e}. Eliminando archivo corrupto para reiniciar.")
                 self.model = None
+                try:
+                    os.remove(self.model_path)
+                except OSError:
+                    pass
         else:
             print("[ML] No hay modelo entrenado todavía.")
 
