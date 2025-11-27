@@ -5,8 +5,8 @@ FROM python:3.11 as builder
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
 
-# Install maturin
-RUN pip install maturin
+# Install maturin and patchelf (required for linux builds)
+RUN pip install maturin patchelf
 
 # Copy library source
 COPY BinaryOptionsTools-v2 /app/BinaryOptionsTools-v2
