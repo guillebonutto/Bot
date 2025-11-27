@@ -535,29 +535,43 @@ def is_news_event():
 # ---------------------------
 # MAIN
 # ---------------------------
-async def main():
+async def run_bot(ssid, telegram_token, telegram_chat_id, logger_callback=None, stop_event=None):
+    """
+    Función principal para ejecutar el bot desde la GUI o consola.
+    """
+    global TELEGRAM_TOKEN, TELEGRAM_CHAT_ID
+    
+    # Redirigir logs si hay callback
+    def log_gui(msg, level="info"):
+        getattr(logging, level)(msg)
+        print(msg)
+        if logger_callback:
+            logger_callback(f"[{level.upper()}] {msg}")
+
+    # Sobreescribir función log global temporalmente
+    global log
+    original_log = log
+    log = log_gui
+
     log("=" * 70)
     log("🤖 BOT MULTI-TF MODO PRO - ARRANQUE")
     log("=" * 70)
 
-    # pedir tokens si no están seteados
-    global TELEGRAM_TOKEN, TELEGRAM_CHAT_ID
-    if not TELEGRAM_TOKEN:
-        TELEGRAM_TOKEN = input("Introduce TELEGRAM_TOKEN (o deja vacío): ").strip() or None
-    if TELEGRAM_TOKEN and not TELEGRAM_CHAT_ID:
-        TELEGRAM_CHAT_ID = input("Introduce TELEGRAM_CHAT_ID (numérico): ").strip() or None
+    TELEGRAM_TOKEN = telegram_token
+    TELEGRAM_CHAT_ID = telegram_chat_id
 
-    ssid = input("Introduce tu SSID de PocketOption: ").strip()
     api = PocketOptionAsync(ssid=ssid)
 
     # intentar obtener balance / cuenta con retry
     balance = None
     for attempt in range(3):
+        if stop_event and stop_event.is_set(): return
+
         try:
             is_demo = api.is_demo()
             balance = await api.balance()
 
-            if balance and balance > 0:
+            if balance is not None: # Puede ser 0.0
                 log(f"✅ Cuenta: {'DEMO' if is_demo else 'REAL'} - Balance: ${balance:.2f}")
                 tg_send(f"🤖 Bot iniciado\n{'DEMO' if is_demo else 'REAL'}\n💰 Balance: ${balance:.2f}")
                 break
@@ -590,6 +604,10 @@ async def main():
     print("👻 Shadow Trader activado: Probando estrategias en paralelo...")
 
     while True:
+        if stop_event and stop_event.is_set():
+            log("🛑 Deteniendo bot por solicitud del usuario...")
+            break
+
         try:
             if is_news_event():
                 log("⚠️ Evento de noticias activo — pausa 15 min")
@@ -604,7 +622,7 @@ async def main():
             current_balance = None
             try:
                 current_balance = await api.balance()
-                if current_balance and current_balance > 0:
+                if current_balance is not None:
                     log(f"💰 Balance actual: ${current_balance:.2f}")
                 else:
                     log(f"⚠️ Balance inválido: {current_balance}", "warning")
@@ -633,6 +651,8 @@ async def main():
             # Agrupar por timeframe para mejor caché
             all_signals = []
             for tf in SELECTED_TFS:
+                if stop_event and stop_event.is_set(): break
+                
                 tasks = [
                     generate_signal_with_semaphore(semaphore, api, pair, tf, shadow_trader)
                     for pair in PAIRS
@@ -643,6 +663,8 @@ async def main():
 
                 # Pequeño delay entre timeframes para no saturar
                 await asyncio.sleep(1)
+            
+            if stop_event and stop_event.is_set(): break
 
             start_time = time.time()
             elapsed = time.time() - start_time
@@ -670,7 +692,9 @@ async def main():
 
             if not best_signal:
                 log("⏸️ Sin señales válidas en este ciclo. Esperando 30s...")
-                await asyncio.sleep(30)
+                for _ in range(30): # Wait in chunks to allow stop
+                    if stop_event and stop_event.is_set(): break
+                    await asyncio.sleep(1)
                 continue
 
             sig = best_signal
@@ -684,46 +708,6 @@ async def main():
                     f"Triangle: {sig['breakdown'].get('triangle', 0)}"
                 )
                 log(f"   Desglose: {breakdown_str}", "debug")
-
-            # Antes de ejecutar, verificar winrate reciente para no operar en mala racha grave
-            # =====================================================
-            # 🅱️ MODO MODERADO
-            # - Si WinRate es malo → NO bloquear completamente
-            # - Permitir operar si:
-            #     ✔ Score ≥ 5
-            #     ✔ Y existe un patrón chartista
-            # =====================================================
-
-            # COMENTADO TEMPORALMENTE PARA RECOPILAR DATOS
-            # current_wr = rolling_winrate()
-            # if current_wr is not None and current_wr < (TARGET_WINRATE - 0.1):
-
-                # Obtener score y patrón de la mejor señal detectada
-                # sc = best_signal.get("score", 0)
-                # pattern = best_signal.get("pattern", None)
-
-                # Condición para permitir operar aun con WR malo
-                # if sc >= 5 and pattern not in (None, "None"):
-                #    log(
-                #        f"⚠️ Winrate bajo ({current_wr:.2f}) PERO señal fuerte "
-                #        f"(score {sc}) + patrón '{pattern}' → operación PERMITIDA (Modo Moderado)"
-                #    )
-                # else:
-                #    warn_msg = (
-                #        f"⚠️ Winrate reciente {current_wr:.2f} por debajo del umbral crítico "
-                #        f"y señal débil (score {sc}, patrón {pattern}) → operación BLOQUEADA."
-                #    )
-                #    log(warn_msg, "warning")
-                #    tg_send(warn_msg)
-                #    await asyncio.sleep(30)
-                #    continue
-
-            # can, amount = can_trade(current_balance or 0)
-            # if not can:
-            #    log(f"🚫 No puedo tradear justo antes de ejecutar: {amount}")
-            #    tg_send(f"{amount} — pausa hasta nuevo día")
-            #    await asyncio.sleep(COOLDOWN_SECONDS)
-            #    continue
 
             pattern_info = sig.get('pattern', None)
             if not pattern_info:
@@ -835,7 +819,11 @@ async def main():
 
                 # esperar expiración + margen
                 log(f"⏳ Esperando resultado ({sig['duration'] // 60}min)...")
-                await asyncio.sleep(sig['duration'] + 10)
+                for _ in range(sig['duration'] + 10):
+                    if stop_event and stop_event.is_set(): break
+                    await asyncio.sleep(1)
+                
+                if stop_event and stop_event.is_set(): break
 
                 # verificar resultado
                 try:
@@ -907,15 +895,6 @@ async def main():
                     log(result_msg)
                     tg_send(result_msg)
 
-                    # COMENTADO TEMPORALMENTE PARA RECOPILAR DATOS
-                    # actualizar racha y aplicar cooling-off si hace falta
-                    # streak = update_streak(win)
-                    # if streak >= STREAK_LIMIT:
-                    #     cool_msg = f"⚠️ Racha de {streak} pérdidas. Cooling-off {COOLDOWN_SECONDS // 60}min."
-                    #     log(cool_msg)
-                    #     tg_send(cool_msg)
-                    #     await asyncio.sleep(COOLDOWN_SECONDS)
-
                 except Exception as e:
                     log(f"⚠️ Error verificando resultado: {e}", "warning")
                     tg_send(f"⚠️ No se pudo verificar resultado de {trade_id}")
@@ -940,6 +919,9 @@ async def main():
             log(f"⚠️ Error en loop principal: {e}", "error")
             tg_send(f"⚠️ Error en loop: {str(e)[:120]}")
             await asyncio.sleep(30)
+    
+    # Restaurar log original
+    log = original_log
 
 
 if __name__ == "__main__":
