@@ -31,3 +31,4 @@ timestamp,trade_id,pair,timeframe,decision,signal_score,pattern_detected,price,e
 2025-11-27 04:15:54,d32f7fc7-0c41-461e-a972-5a711a0260f9,USDJPY_otc,M30,SELL,5,doble_techo,155.114,156.35043652645217,,0,0,0,0,0,False,False,,,0,LOSS,,1800,
 2025-11-27 04:47:25,07b5da12-1a43-4de5-a966-ebd23ce33f97,USDCAD_otc,M15,SELL,5,doble_techo,1.43308,1.4369744778217208,,0,0,0,0,0,False,False,,,0,WIN,0.0,900,
 2025-11-27 05:03:09,29a9cd1d-99ef-443b-aea9-e7d2eaa0ee9f,USDCAD_otc,M30,SELL,5,doble_techo,1.43308,1.436551981497293,,0,0,0,0,0,False,False,,,0,WIN,0.0,1800,
+2025-11-27 07:20:51,7916fc10-98db-444c-a3bd-f58146f88e66,USDARS_otc,M15,SELL,5,doble_techo,1413.53,1416.5078977762748,,0,0,0,0,0,False,False,,,0,PENDING,,900,

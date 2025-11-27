@@ -71,14 +71,14 @@ from shadow_trader import ShadowTrader
 # ---------------------------
 # CONFIG (ajustalo a tu gusto)
 # ---------------------------
+# Reducido para cloud deployment (evitar timeouts)
 PAIRS = [
-    'EURUSD_otc', 'GBPUSD_otc', 'USDJPY_otc', 'AUDUSD_otc', 'USDCAD_otc',
-    'AUDCAD_otc', 'USDMXN_otc', 'USDCOP_otc', 'USDARS_otc', "#INTC_otc"
+    'EURUSD_otc', 'GBPUSD_otc'
 ]
 
 TIMEFRAMES = {"M5": 300, "M10": 600, "M15": 900, "M30": 1800}
 
-SELECTED_TFS = list(TIMEFRAMES.keys())
+SELECTED_TFS = ["M15"]  # Solo 1 timeframe para cloud
 LOOKBACK = 50
 MA_SHORT = 20
 MA_LONG = 50
@@ -104,7 +104,7 @@ MAX_DAILY_TRADES = 10
 RISK_PER_TRADE = 0.02  # 2% del balance
 STREAK_LIMIT = 2  # cooling-off tras N pérdidas seguidas
 COOLDOWN_SECONDS = 900  # 15 minutos
-MAX_CONCURRENT_REQUESTS = 2  # Límite de requests simultáneos (reducido para evitar timeouts)
+MAX_CONCURRENT_REQUESTS = 1  # Sin paralelismo para cloud (evitar timeouts)
 
 # TELEGRAM (mejor setear como variables de entorno)
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
