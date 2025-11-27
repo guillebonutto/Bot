@@ -10,6 +10,10 @@ from collections import defaultdict
 import pandas as pd
 import numpy as np
 
+# Load environment variables from .env file
+from dotenv import load_dotenv
+load_dotenv()  # This loads .env automatically
+
 # Import async wrapper de la librería que usás
 import sys
 try:
@@ -67,18 +71,21 @@ from strategy import (
     get_signal_indicators
 )
 from shadow_trader import ShadowTrader
+from bot_state import BotState
+from risk_manager import RiskManager
+from signal_types import Direction, SignalSource, PatternType
 
 # ---------------------------
 # CONFIG (ajustalo a tu gusto)
 # ---------------------------
-# Reducido para cloud deployment (evitar timeouts)
 PAIRS = [
-    'EURUSD_otc', 'GBPUSD_otc'
+    'EURUSD_otc', 'GBPUSD_otc', 'USDJPY_otc', 'AUDUSD_otc', 'USDCAD_otc',
+    'AUDCAD_otc', 'USDMXN_otc', 'USDCOP_otc', 'USDARS_otc', "#INTC_otc"
 ]
 
 TIMEFRAMES = {"M5": 300, "M10": 600, "M15": 900, "M30": 1800}
 
-SELECTED_TFS = ["M15"]  # Solo 1 timeframe para cloud
+SELECTED_TFS = list(TIMEFRAMES.keys())
 LOOKBACK = 50
 MA_SHORT = 20
 MA_LONG = 50
@@ -104,7 +111,7 @@ MAX_DAILY_TRADES = 10
 RISK_PER_TRADE = 0.02  # 2% del balance
 STREAK_LIMIT = 2  # cooling-off tras N pérdidas seguidas
 COOLDOWN_SECONDS = 900  # 15 minutos
-MAX_CONCURRENT_REQUESTS = 1  # Sin paralelismo para cloud (evitar timeouts)
+MAX_CONCURRENT_REQUESTS = 2  # Límite de requests simultáneos (reducido para evitar timeouts)
 
 # TELEGRAM (mejor setear como variables de entorno)
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
@@ -219,23 +226,7 @@ def reset_daily_stats():
         log("📅 Nuevo día - estadísticas reseteadas")
 
 
-def can_trade(current_balance):
-    reset_daily_stats()
-    # COMENTADO TEMPORALMENTE PARA RECOPILAR DATOS
-    # if daily_stats['losses'] >= MAX_DAILY_LOSSES:
-    #     return False, f'🚫 Límite de pérdidas alcanzado ({MAX_DAILY_LOSSES})'
-    # if daily_stats['trades'] >= MAX_DAILY_TRADES:
-    #     return False, f'🚫 Límite de operaciones diarias alcanzado ({MAX_DAILY_TRADES})'
-
-    # Calcular monto con mínimo de $1
-    max_amount = current_balance * RISK_PER_TRADE
-    amount = max(max_amount, 1.0)  # Mínimo $1 siempre
-
-    # Verificar si hay suficiente balance
-    if current_balance < 1.0:
-        return False, f'🚫 Balance insuficiente (${current_balance:.2f} < $1.00)'
-
-    return True, amount
+# can_trade function removed - now using RiskManager.can_trade()
 
 
 def update_streak(win: bool):
@@ -353,16 +344,23 @@ async def fetch_data_optimized(api, pair, interval, lookback=LOOKBACK):
 # ---------------------------
 # Generar señal (core) con Semaphore
 # ---------------------------
-async def generate_signal(api, pair, tf, shadow_trader=None):
+async def generate_signal(api, pair, tf, bot_state, shadow_trader=None):
+    """
+    Generate trading signal with clear 3-step flow:
+    1. Compute all possible signals (indicators + patterns)
+    2. Score and rank all candidates
+    3. Select best signal if above threshold
+    
+    Returns:
+        dict with signal details or None if no valid signal
+    """
     interval = TIMEFRAMES[tf]
     df = await fetch_data_optimized(api, pair, interval)
 
     if df.empty or len(df) < MA_LONG:
         return None
 
-    # -----------------------------------------------------------
-    # 👻 SHADOW TRADING (Forward Testing)
-    # -----------------------------------------------------------
+    # Shadow trading (forward testing)
     if shadow_trader:
         try:
             shadow_trader.process_candle(df, pair, tf)
@@ -372,152 +370,147 @@ async def generate_signal(api, pair, tf, shadow_trader=None):
     df = compute_indicators(df, interval)
     last = df.iloc[-1]
 
-
-
-    # prioridad 1: señal por indicadores (sin exigir HTF)
-    indicator_signal = None
-    indicator_score = 0
-    detected_pattern = None
-    detectors = [detectar_doble_techo, detectar_compresion, detectar_flag, detectar_triangulo, detectar_ruptura_canal, detectar_divergencia_rsi]
-    if last.get('EMA_conf', 0) == 0 or last.get('TF', 0) == 0 or is_sideways(df):
-        indicator_signal = None
-    else:
+    # ============================================================
+    # STEP 1: Compute ALL possible signals
+    # ============================================================
+    candidates = []
+    
+    # 1A. Indicator-based signal
+    if not (last.get('EMA_conf', 0) == 0 or last.get('TF', 0) == 0 or is_sideways(df)):
         if last['EMA_conf'] > 0:
-            indicator_signal = 'BUY'
+            direction = Direction.BUY
         elif last['EMA_conf'] < 0:
-            indicator_signal = 'SELL'
+            direction = Direction.SELL
         else:
-            indicator_signal = None
-
-        if indicator_signal:
-            indicator_score = score_signal(last, signal_direction=indicator_signal)
-            if indicator_score < MIN_SCORE_BASE:
-                indicator_signal = None
-        else:
-            indicator_score = 0
-
-    # si no señal por indicadores -> buscar patrones
-    if not indicator_signal:
-        for det in detectors:
-            pattern_name, direction, pscore = det(df)
-
-            if direction is None:
+            direction = None
+        
+        if direction:
+            score = score_signal(last, signal_direction=str(direction))
+            candidates.append({
+                'source': SignalSource.INDICATOR,
+                'direction': direction,
+                'score': score,
+                'pattern': None,
+                'data': last
+            })
+    
+    # 1B. Pattern-based signals
+    detectors = [
+        (detectar_doble_techo, PatternType.DOUBLE_TOP),
+        (detectar_compresion, PatternType.COMPRESSION),
+        (detectar_flag, PatternType.FLAG),
+        (detectar_triangulo, PatternType.TRIANGLE),
+        (detectar_ruptura_canal, PatternType.CHANNEL_BREAKOUT),
+        (detectar_divergencia_rsi, PatternType.RSI_DIVERGENCE)
+    ]
+    
+    for detector_func, pattern_type in detectors:
+        pattern_name, direction_str, pscore = detector_func(df)
+        
+        if direction_str is None:
+            continue
+        
+        # Convert string direction to enum
+        direction = Direction.BUY if direction_str == 'BUY' else Direction.SELL
+        
+        # RSI validation (skip for channel breakout)
+        if USE_RSI and pattern_type != PatternType.CHANNEL_BREAKOUT:
+            rsi_val = validar_rsi(df)
+            if rsi_val and rsi_val != direction_str:
+                log(f"⏸️ Patrón {pattern_type} rechazado por RSI conflictivo: {pair} {tf}", "debug")
                 continue
-
-            # Validación RSI (Skip para ruptura_canal que suele darse en extremos)
-            if USE_RSI and pattern_name != "ruptura_canal":
-                rsi_val = validar_rsi(df)
-                if rsi_val and rsi_val != direction:
-                    log(f"⏸️ Patrón {pattern_name} rechazado por RSI conflictivo: {pair} {tf}", "debug")
-                    continue
-
-
-
-                # confirmación de breakout (usa dirección, no pattern_name)
-            ok, reason = confirm_breakout(df, direction=direction)
-            if not ok:
-                log(f"⏸️ Patrón {pattern_name} rechazado - breakout no confirmado: {pair} {tf}", "debug")
-                continue
-
-                # ✔ señal válida por patrón
-                # si todo ok retornar señal de patrón
-            return {
-                'pair': pair,
-                'tf': tf,
-                'signal': direction,
-                'timestamp': last.name,
-                'duration': TIMEFRAMES[tf],
-                'score': int(pscore),
-                'pattern': pattern_name,
-                'price': float(last['Close']),
-                'ema': float(last.get('EMA_long', np.nan))
-            }
+        
+        # Breakout confirmation
+        ok, reason = confirm_breakout(df, direction=direction_str)
+        if not ok:
+            log(f"⏸️ Patrón {pattern_type} rechazado - breakout no confirmado: {pair} {tf}", "debug")
+            continue
+        
+        candidates.append({
+            'source': SignalSource.PATTERN,
+            'direction': direction,
+            'score': int(pscore),
+            'pattern': pattern_type,
+            'data': last
+        })
+    
+    # ============================================================
+    # STEP 2: Score and rank all candidates
+    # ============================================================
+    if not candidates:
         return None
-
-    for det in detectors:
-        pname, direction, _ = det(df)
-        if direction is not None and direction == indicator_signal:
-            detected_pattern = pname
-            break
-
-    # si hay señal por indicadores -> validar si es débil y aplicar reglas adaptativas
-    # adaptar el mínimo de score según winrate reciente (control adaptativo)
-    current_wr = rolling_winrate()
+    
+    # Calculate adaptive minimum score based on winrate
     min_score = MIN_SCORE_BASE
-    # ================================
-    # WINRATE ADAPTATIVO (corregido)
-    # ================================
-
-    # → NUEVA CONDICIÓN: solo aplicar score adaptativo si hay 10 operaciones mínimas
-    if current_wr is not None and len(trade_history) >= 10:
+    
+    # Get trade history from bot_state
+    trade_history = await bot_state.get_trade_history()
+    
+    if len(trade_history) >= 10:
+        # Calculate rolling winrate (last 20 trades)
+        recent_trades = trade_history[-20:]
+        wins = sum(1 for t in recent_trades if t['win'])
+        current_wr = wins / len(recent_trades)
+        
         if current_wr < TARGET_WINRATE:
             deficit = TARGET_WINRATE - current_wr
             inc = int(np.ceil(deficit * 10)) * ADAPTIVE_SCORE_INCREMENT
             min_score = min(MIN_SCORE_MAX, MIN_SCORE_BASE + inc)
-        else:
-            # → NO aplicamos adaptativo si no hay historial suficiente
-            min_score = MIN_SCORE_BASE
-
-        print(f"🔧 Winrate reciente: {current_wr} (trades: {len(trade_history)}) → min_score = {min_score}")
-
-    if indicator_score < min_score:
-        log(f"⏸️ Señal descartada por score insuficiente ({indicator_score} < {min_score}): {pair} {tf}", "debug")
+        
+        log(f"🔧 Winrate reciente: {current_wr:.2f} (trades: {len(recent_trades)}) → min_score = {min_score}", "debug")
+    
+    # Filter by minimum score
+    valid_candidates = [c for c in candidates if c['score'] >= min_score]
+    
+    if not valid_candidates:
+        log(f"⏸️ Todas las señales descartadas por score insuficiente (min={min_score}): {pair} {tf}", "debug")
         return None
-
-    # exigir confirmación HTF
-    # if not htf_confirms(df, indicator_signal):
-        # log(f"⏸️ Señal descartada: HTF no confirma {pair} {tf} -> {indicator_signal}", "debug")
-        # return None
-
-    # validar débil: patrones + rsi
-    if not validacion_senal_debil(indicator_signal, df, indicator_score, min_score=min_score):
-        log(f"⏸️ Señal descartada por validación débil: {pair} {tf}", "debug")
+    
+    # Sort by score (highest first)
+    valid_candidates.sort(key=lambda x: x['score'], reverse=True)
+    
+    # ============================================================
+    # STEP 3: Select best signal and validate
+    # ============================================================
+    best = valid_candidates[0]
+    direction_str = str(best['direction'])
+    
+    # Additional validation for weak signals
+    if not validacion_senal_debil(direction_str, df, best['score'], min_score=min_score):
+        log(f"⏸️ Mejor señal descartada por validación débil: {pair} {tf}", "debug")
         return None
-
-    # Construir descripción detallada de indicadores
+    
+    # Build signal dict
     indicators_used = []
     if last.get('EMA_conf', 0) != 0:
         indicators_used.append(f"EMA_conf={last['EMA_conf']}")
     if last.get('TF', 0) != 0:
         indicators_used.append(f"TF={last['TF']}")
-    if USE_RSI and 'RSI' in df.columns and not pd.isna(last.get('RSI', np.nan)):
+    if 'RSI' in last:
         indicators_used.append(f"RSI={last['RSI']:.1f}")
-    if last.get('triangle', 0) == 1:
-        indicators_used.append("Triangle=Active")
-    if last.get('Reversal', 0) == 1:
-        indicators_used.append("Reversal=Detected")
-    if last.get('NearResistance', False):
-        indicators_used.append("NearResistance=Yes")
-
-    indicators_str = " | ".join(indicators_used) if indicators_used else "Base Indicators"
-
+    if 'MACD' in last:
+        indicators_used.append(f"MACD={last['MACD']:.4f}")
+    
     return {
         'pair': pair,
         'tf': tf,
-        'signal': indicator_signal,
+        'signal': direction_str,
         'timestamp': last.name,
         'duration': TIMEFRAMES[tf],
-        'score': int(indicator_score),
-        'pattern': None,
-        'pattern_detailed': indicators_str,
+        'score': best['score'],
+        'pattern': str(best['pattern']) if best['pattern'] else None,
+        'source': str(best['source']),
         'price': float(last['Close']),
         'ema': float(last.get('EMA_long', np.nan)),
-        'breakdown': {
-            'EMA_conf': int(last.get('EMA_conf', 0)),
-            'TF': int(last.get('TF', 0)),
-            'RSI': float(last.get('RSI', 0)) if not pd.isna(last.get('RSI', np.nan)) else None,
-            'triangle': int(last.get('triangle', 0)),
-            'reversal': int(last.get('Reversal', 0)),
-            'near_resistance': bool(last.get('NearResistance', False))
-        }
+        'indicators': ', '.join(indicators_used) if indicators_used else 'N/A'
     }
     
 
 # Wrapper con semaphore para limitar concurrencia
-async def generate_signal_with_semaphore(semaphore, api, pair, tf, shadow_trader=None):
+async def generate_signal_with_semaphore(semaphore, api, pair, tf, bot_state, shadow_trader=None):
     async with semaphore:
         try:
-            return await generate_signal(api, pair, tf, shadow_trader)
+            return await generate_signal(api, pair, tf, bot_state, shadow_trader)
         except Exception as e:
             log(f"⚠️ Exception en generate_signal_with_semaphore {pair} {tf}: {e}", "warning")
             return None
@@ -645,7 +638,26 @@ async def run_bot(ssid, telegram_token, telegram_chat_id, logger_callback=None, 
     log("=" * 70 + "\n")
 
     cycle = 0
-    stats = {'wins': 0, 'losses': 0, 'total': 0}
+    
+    # Initialize thread-safe state management
+    bot_state = BotState()
+    
+    # MODO TESTING: Límites muy altos para recopilar datos
+    # TODO: Restaurar límites estrictos para producción
+    risk_manager = RiskManager(
+        max_daily_losses=999,      # Prácticamente sin límite para testing
+        max_daily_trades=999,      # Prácticamente sin límite para testing
+        risk_per_trade=RISK_PER_TRADE,
+        max_drawdown=0.95,         # 95% drawdown (muy alto, solo para testing)
+        streak_limit=999           # Sin límite de racha para testing
+    )
+    print("⚠️ MODO TESTING: Límites de riesgo desactivados para entrenamiento")
+    print("   ⚠️ NO usar en cuenta REAL sin restaurar límites estrictos")
+
+    
+    # Set initial balance for drawdown tracking
+    if balance is not None:
+        await bot_state.set_initial_balance(balance)
 
     # Inicializar Shadow Trader (Forward Testing)
     shadow_trader = ShadowTrader()
@@ -679,13 +691,16 @@ async def run_bot(ssid, telegram_token, telegram_chat_id, logger_callback=None, 
                 log(f"⚠️ Error obteniendo balance: {e}", "warning")
                 current_balance = 0.0
 
-            # verificar si podemos tradear (usar balance actual)
-            can, amount = can_trade(current_balance or 0)
+            # Verificar si podemos tradear usando RiskManager
+            can, result = await risk_manager.can_trade(current_balance or 0, bot_state)
             if not can:
-                log(f"🚫 No puedo tradear: {amount}")
-                tg_send(f"{amount} — pausa hasta nuevo día")
+                log(f"🚫 No puedo tradear: {result}")
+                tg_send(f"{result} — pausa hasta nuevo día")
                 await asyncio.sleep(COOLDOWN_SECONDS)
                 continue
+            
+            # result contiene el amount si can=True
+            amount = float(result.replace("$", ""))
 
             # Mostrar stats del cache cada 10 ciclos
             if cycle % 10 == 0:
@@ -702,7 +717,7 @@ async def run_bot(ssid, telegram_token, telegram_chat_id, logger_callback=None, 
                 if stop_event and stop_event.is_set(): break
                 
                 tasks = [
-                    generate_signal_with_semaphore(semaphore, api, pair, tf, shadow_trader)
+                    generate_signal_with_semaphore(semaphore, api, pair, tf, bot_state, shadow_trader)
                     for pair in PAIRS
                 ]
                 log(f"🔍 Analizando {len(PAIRS)} pares en TF {tf} (max {MAX_CONCURRENT_REQUESTS} simultáneos)...")
@@ -974,19 +989,42 @@ async def run_bot(ssid, telegram_token, telegram_chat_id, logger_callback=None, 
 
 if __name__ == "__main__":
     try:
-        # Configuración para despliegue (prioridad variables de entorno)
+        # Configuración para despliegue (SOLO variables de entorno)
         ssid = os.environ.get("POCKETOPTION_SSID")
         token = os.environ.get("TELEGRAM_TOKEN")
         chat_id = os.environ.get("TELEGRAM_CHAT_ID")
 
-        # Fallback para ejecución local si no hay variables de entorno
+        # Validar credenciales obligatorias
         if not ssid:
-            print("⚠️ No se detectaron variables de entorno, solicitando input manual...")
-            ssid = input("Introduce tu SSID de PocketOption: ").strip()
-        if not token:
-            token = input("Introduce TELEGRAM_TOKEN (o deja vacío): ").strip() or None
-        if not chat_id and token:
-            chat_id = input("Introduce TELEGRAM_CHAT_ID (numérico): ").strip() or None
+            print("❌ ERROR: Variable de entorno POCKETOPTION_SSID no configurada")
+            print("   Configura tus credenciales en variables de entorno:")
+            print("   export POCKETOPTION_SSID='tu_ssid'")
+            print("   export TELEGRAM_TOKEN='tu_token'")
+            print("   export TELEGRAM_CHAT_ID='tu_chat_id'")
+            sys.exit(1)
+        
+        # Validar Telegram (opcional pero recomendado)
+        if token and not chat_id:
+            print("⚠️ WARNING: TELEGRAM_TOKEN configurado pero falta TELEGRAM_CHAT_ID")
+            print("   Las notificaciones de Telegram no funcionarán")
+        
+        # Test rápido de Telegram si está configurado
+        if token and chat_id:
+            try:
+                test_response = requests.post(
+                    f"https://api.telegram.org/bot{token}/sendMessage",
+                    json={"chat_id": chat_id, "text": "🤖 Bot iniciando..."},
+                    timeout=5
+                )
+                if test_response.status_code != 200:
+                    print(f"⚠️ WARNING: Telegram test falló (código {test_response.status_code})")
+                    print("   Verifica TELEGRAM_TOKEN y TELEGRAM_CHAT_ID")
+            except Exception as e:
+                print(f"⚠️ WARNING: No se pudo conectar a Telegram: {e}")
+        
+        # Debug: mostrar SSID (primeros/últimos caracteres por seguridad)
+        print(f"\n🔍 DEBUG: SSID length={len(ssid)}, first 5 chars='{ssid[:5]}', last 5 chars='{ssid[-5:]}'")
+        print(f"🔍 DEBUG: SSID repr={repr(ssid)}")
 
         asyncio.run(run_bot(ssid, token, chat_id))
     except KeyboardInterrupt:

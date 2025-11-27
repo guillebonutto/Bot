@@ -6,3 +6,4 @@ joblib
 lightgbm
 maturin
 patool
+python-dotenv
