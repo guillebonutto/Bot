@@ -960,7 +960,21 @@ async def run_bot(ssid, telegram_token, telegram_chat_id, logger_callback=None, 
 
 if __name__ == "__main__":
     try:
-        asyncio.run(main())
+        # Configuración para despliegue (prioridad variables de entorno)
+        ssid = os.environ.get("POCKETOPTION_SSID")
+        token = os.environ.get("TELEGRAM_TOKEN")
+        chat_id = os.environ.get("TELEGRAM_CHAT_ID")
+
+        # Fallback para ejecución local si no hay variables de entorno
+        if not ssid:
+            print("⚠️ No se detectaron variables de entorno, solicitando input manual...")
+            ssid = input("Introduce tu SSID de PocketOption: ").strip()
+        if not token:
+            token = input("Introduce TELEGRAM_TOKEN (o deja vacío): ").strip() or None
+        if not chat_id and token:
+            chat_id = input("Introduce TELEGRAM_CHAT_ID (numérico): ").strip() or None
+
+        asyncio.run(run_bot(ssid, token, chat_id))
     except KeyboardInterrupt:
         log("\n\n👋 Bot detenido por el usuario", "info")
         tg_send("🛑 Bot detenido manualmente")
