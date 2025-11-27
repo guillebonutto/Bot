@@ -563,6 +563,18 @@ async def start_health_server():
     except Exception as e:
         log(f"⚠️ No se pudo iniciar health check server: {e}", "warning")
 
+async def keep_alive():
+    """Tarea en segundo plano para evitar que el contenedor se duerma (Self-Ping)"""
+    port = int(os.environ.get("PORT", 8080))
+    url = f"http://127.0.0.1:{port}"
+    while True:
+        await asyncio.sleep(300) # Cada 5 minutos
+        try:
+            requests.get(url, timeout=5)
+            # No logueamos nada para no ensuciar, o solo debug
+        except Exception:
+            pass
+
 # ---------------------------
 # MAIN
 # ---------------------------
@@ -593,6 +605,8 @@ async def run_bot(ssid, telegram_token, telegram_chat_id, logger_callback=None, 
 
     # Iniciar servidor de health check en segundo plano
     asyncio.create_task(start_health_server())
+    # Iniciar self-ping para evitar dormir
+    asyncio.create_task(keep_alive())
 
     api = PocketOptionAsync(ssid=ssid)
 
