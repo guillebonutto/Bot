@@ -36,5 +36,8 @@ RUN pip install *.whl
 # Copy app code
 COPY . .
 
+# Expose port for health checks
+EXPOSE 8080
+
 # Run bot
 CMD ["python", "main.py"]

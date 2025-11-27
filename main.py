@@ -533,6 +533,37 @@ def is_news_event():
 
 
 # ---------------------------
+# HEALTH CHECK SERVER (For Cloud Deployment)
+# ---------------------------
+async def health_check_handler(reader, writer):
+    try:
+        await reader.read(100) # Read request (ignore content)
+        response = (
+            "HTTP/1.1 200 OK\r\n"
+            "Content-Type: text/plain\r\n"
+            "Content-Length: 2\r\n"
+            "\r\n"
+            "OK"
+        )
+        writer.write(response.encode())
+        await writer.drain()
+    except Exception:
+        pass
+    finally:
+        writer.close()
+
+async def start_health_server():
+    port = int(os.environ.get("PORT", 8080))
+    try:
+        server = await asyncio.start_server(health_check_handler, '0.0.0.0', port)
+        log(f"🏥 Health check server listening on port {port}", "info")
+        # Run server in background
+        async with server:
+            await server.serve_forever()
+    except Exception as e:
+        log(f"⚠️ No se pudo iniciar health check server: {e}", "warning")
+
+# ---------------------------
 # MAIN
 # ---------------------------
 async def run_bot(ssid, telegram_token, telegram_chat_id, logger_callback=None, stop_event=None):
@@ -559,6 +590,9 @@ async def run_bot(ssid, telegram_token, telegram_chat_id, logger_callback=None, 
 
     TELEGRAM_TOKEN = telegram_token
     TELEGRAM_CHAT_ID = telegram_chat_id
+
+    # Iniciar servidor de health check en segundo plano
+    asyncio.create_task(start_health_server())
 
     api = PocketOptionAsync(ssid=ssid)
 
