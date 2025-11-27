@@ -80,6 +80,31 @@ def detectar_divergencia_macd(df, lookback=20):
 
     return None, None, 0
 
+def detectar_divergencia_rsi(df, lookback=20):
+    """
+    Detect RSI divergence between price and RSI.
+    Returns (pattern_name, direction, score) or (None, None, 0).
+    """
+    if len(df) < lookback + 5 or 'RSI' not in df.columns:
+        return None, None, 0
+    closes = df['Close'][-lookback:]
+    rsi = df['RSI'][-lookback:]
+    half = lookback // 2
+    # Bullish divergence: lower low in price, higher low in RSI
+    price_min1 = closes.iloc[:half].idxmin()
+    price_min2 = closes.iloc[half:].idxmin()
+    rsi_min1 = rsi.loc[price_min1]
+    rsi_min2 = rsi.loc[price_min2]
+    if closes.loc[price_min2] < closes.loc[price_min1] and rsi_min2 > rsi_min1:
+        return "divergencia_rsi", "BUY", 4
+    # Bearish divergence: higher high in price, lower high in RSI
+    price_max1 = closes.iloc[:half].idxmax()
+    price_max2 = closes.iloc[half:].idxmax()
+    rsi_max1 = rsi.loc[price_max1]
+    rsi_max2 = rsi.loc[price_max2]
+    if closes.loc[price_max2] > closes.loc[price_max1] and rsi_max2 < rsi_max1:
+        return "divergencia_rsi", "SELL", 4
+    return None, None, 0
 
 def detect_reversal_candle(r):
     body = abs(r['Close'] - r['Open'])
@@ -112,22 +137,72 @@ def near_resistance(c, r, tol=0.0010):
 
 
 # Detección de patrones simplificados — devuelven (signal, score)
-def detectar_doble_techo(df):
-    closes = df["Close"]
-    if len(closes) < 20:
+def detectar_doble_techo(df, window_size=30):
+    """
+    Detecta patrón Doble Techo (Double Top) de forma dinámica.
+    Requiere:
+    1. Dos picos (Highs) similares en altura.
+    2. Separación mínima entre picos.
+    3. Ruptura del 'neckline' (mínimo entre los picos).
+    """
+    if len(df) < window_size:
         return None, None, 0
 
-    window = closes[-20:]
-
-    # Buscar dos techos locales reales
-    peak1 = window.iloc[5]
-    peak2 = window.iloc[14]
-
-    if abs(peak1 - peak2) <= peak1 * 0.0015:  # 0.15% de similitud
-        # Confirmación de ruptura
-        if window.iloc[-1] < window.mean():
-            return "doble_techo", "SELL", 4
-
+    # Usar ventana reciente
+    window = df.iloc[-window_size:].copy()
+    highs = window['High'].values
+    lows = window['Low'].values
+    closes = window['Close'].values
+    
+    # Encontrar picos locales (maximos)
+    # Un pico es mayor que sus 2 vecinos a izquierda y derecha
+    peaks = []
+    for i in range(2, len(highs) - 2):
+        if highs[i] > highs[i-1] and highs[i] > highs[i-2] and \
+           highs[i] > highs[i+1] and highs[i] > highs[i+2]:
+            peaks.append((i, highs[i]))
+            
+    if len(peaks) < 2:
+        return None, None, 0
+        
+    # Buscar los dos últimos picos significativos
+    # Deben estar separados por al menos 3 velas
+    last_peak = peaks[-1]
+    second_last_peak = None
+    
+    for p in reversed(peaks[:-1]):
+        if last_peak[0] - p[0] >= 4: # Mínima separación
+            second_last_peak = p
+            break
+            
+    if not second_last_peak:
+        return None, None, 0
+        
+    peak1_idx, peak1_val = second_last_peak
+    peak2_idx, peak2_val = last_peak
+    
+    # Verificar similitud de altura (ej. 0.1%)
+    if abs(peak1_val - peak2_val) > (peak1_val * 0.0015):
+        return None, None, 0
+        
+    # Encontrar el Neckline (mínimo más bajo entre los dos picos)
+    # Indices relativos a la ventana
+    neckline_idx = np.argmin(lows[peak1_idx:peak2_idx]) + peak1_idx
+    neckline_val = lows[neckline_idx]
+    
+    # CONFIRMACIÓN: El precio actual debe haber roto el neckline hacia abajo
+    current_close = closes[-1]
+    
+    # Verificar que estamos rompiendo AHORA (o muy recientemente)
+    # y que el precio está por debajo del neckline
+    if current_close < neckline_val:
+        # Calcular proyección (altura del patrón)
+        pattern_height = ((peak1_val + peak2_val) / 2) - neckline_val
+        target = neckline_val - pattern_height
+        
+        # Score alto si la ruptura es clara
+        return "doble_techo", "SELL", 5
+        
     return None, None, 0
 
 
@@ -191,18 +266,30 @@ def detectar_triangulo(df, window=20):
     return None, None, 0
 
 
-def detectar_ruptura_canal(df, window=20, tol=0.0015):
-    if len(df) < window:
+def detectar_ruptura_canal(df, window=20, tol=0.0005):
+    """
+    Detecta ruptura de un canal de Donchian (máximo/mínimo de N periodos previos).
+    """
+    if len(df) < window + 1:
         return None, None, 0
 
-    high = df['High'][-window:].max()
-    low = df['Low'][-window:].min()
-    c = df['Close'].iloc[-1]
+    # Usar ventana PREVIA (excluyendo la vela actual) para definir el canal
+    # Esto asegura que estamos rompiendo un nivel establecido
+    prev_window = df.iloc[-(window + 1):-1]
+    
+    resistance = prev_window['High'].max()
+    support = prev_window['Low'].min()
+    
+    current_close = df['Close'].iloc[-1]
+    
+    # Ruptura alcista: Cierre actual > Resistencia previa
+    if current_close > resistance:
+        # Opcional: Verificar que no sea una mecha loca (cierre cerca del high)
+        return "ruptura_canal", "BUY", 4  # Score más alto por ser ruptura confirmada
 
-    if abs(c - high) <= high * tol:
-        return "ruptura_canal", "BUY", 3
-    if abs(c - low) <= low * tol:
-        return "ruptura_canal", "SELL", 3
+    # Ruptura bajista: Cierre actual < Soporte previo
+    if current_close < support:
+        return "ruptura_canal", "SELL", 4
 
     return None, None, 0
 

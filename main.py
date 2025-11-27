@@ -11,7 +11,29 @@ import pandas as pd
 import numpy as np
 
 # Import async wrapper de la librería que usás
-from BinaryOptionsToolsV2.pocketoption import PocketOptionAsync
+import sys
+try:
+    from BinaryOptionsToolsV2.pocketoption import PocketOptionAsync
+    # Intentar importar error si existe, sino definirlo localmente
+    try:
+        from BinaryOptionsToolsV2.pocketoption import PocketOptionError
+    except ImportError:
+        class PocketOptionError(Exception):
+            pass
+except ImportError as e:
+    # Check for version mismatch
+    if sys.version_info[:2] != (3, 11):
+        print(f"⚠️ WARNING: BinaryOptionsToolsV2 import failed.")
+        print(f"   Current Python: {sys.version.split()[0]}")
+        print(f"   The library likely requires Python 3.11.")
+        print(f"   Try running with: .\\venv\\Scripts\\python.exe main.py")
+    
+    print(f"⚠️ Import Error Details: {e}")
+    
+    from mock_pocketoption import PocketOptionAsync
+    class PocketOptionError(Exception):
+        pass
+    print("⚠️ Running in SIMULATION MODE (Mock API) due to missing library.")
 
 # Import trade logger
 from trade_logger import trade_logger
@@ -41,6 +63,7 @@ from strategy import (
     is_sideways,
     detect_support,
     detect_resistance,
+    detectar_divergencia_rsi,
     get_signal_indicators
 )
 from shadow_trader import ShadowTrader
@@ -259,6 +282,7 @@ async def fetch_data_optimized(api, pair, interval, lookback=LOOKBACK):
             # Timeout más largo: 30s, 45s, 60s
             timeout_duration = 30 + (attempt * 15)
 
+            # Usar wait_for para timeout real
             raw = await asyncio.wait_for(
                 api.get_candles(pair, interval, offset),
                 timeout=timeout_duration
@@ -282,7 +306,7 @@ async def fetch_data_optimized(api, pair, interval, lookback=LOOKBACK):
                     return pd.DataFrame()
 
             df = df.dropna(subset=['timestamp', 'open', 'close'])
-            df = df[(df['open'] != 0) & (df['close'] != 0)]
+            # df = df[(df['open'] != 0) & (df['close'] != 0)] # Optional: filter zero prices
 
             if len(df) < 5:
                 log(f"⚠️ Pocas velas válidas para {pair} {interval}s ({len(df)})", "warning")
@@ -299,20 +323,22 @@ async def fetch_data_optimized(api, pair, interval, lookback=LOOKBACK):
 
             # Guardar en caché
             smart_cache.set(cache_key, df2)
-            log(f"✅ Descargado {pair} {interval}s ({len(df2)} velas)", "debug")
+            # log(f"✅ Descargado {pair} {interval}s ({len(df2)} velas)", "debug")
 
-            # Delay corto tras descarga exitosa para no saturar
-            await asyncio.sleep(0.5)
             return df2
 
         except asyncio.TimeoutError:
+            wait_time = 5 * (attempt + 1)
             if attempt < 2:
-                wait_time = 3 * (2 ** attempt)
                 log(f"⏱️ Timeout {attempt + 1}/3 para {pair} {interval}s, esperando {wait_time}s...", "warning")
                 await asyncio.sleep(wait_time)
             else:
                 log(f"❌ Timeout definitivo para {pair} {interval}s después de 3 intentos", "error")
                 return pd.DataFrame()
+        except PocketOptionError as e:
+            # Error específico de activo inactivo
+            log(f"⚠️ Activo {pair} inactivo o no disponible: {e}", "warning")
+            return pd.DataFrame()
         except Exception as e:
             log(f"❌ Error descargando {pair} {interval}s: {e}", "error")
             if attempt < 2:
@@ -321,6 +347,7 @@ async def fetch_data_optimized(api, pair, interval, lookback=LOOKBACK):
                 return pd.DataFrame()
 
     return pd.DataFrame()
+
 
 
 # ---------------------------
@@ -351,7 +378,7 @@ async def generate_signal(api, pair, tf, shadow_trader=None):
     indicator_signal = None
     indicator_score = 0
     detected_pattern = None
-    detectors = [detectar_doble_techo, detectar_compresion, detectar_flag, detectar_triangulo, detectar_ruptura_canal]
+    detectors = [detectar_doble_techo, detectar_compresion, detectar_flag, detectar_triangulo, detectar_ruptura_canal, detectar_divergencia_rsi]
     if last.get('EMA_conf', 0) == 0 or last.get('TF', 0) == 0 or is_sideways(df):
         indicator_signal = None
     else:
