@@ -268,7 +268,12 @@ class Trainer:
                 'verbosity': -1,
                 'num_leaves': 31,
                 'learning_rate': 0.05,
-                'feature_fraction': 0.9
+                'feature_fraction': 0.8,
+                'bagging_fraction': 0.8,
+                'bagging_freq': 5,
+                'lambda_l1': 0.1,  # L1 regularization
+                'lambda_l2': 0.1,  # L2 regularization
+                'min_child_samples': 20
             }
             model = lgb.train(params, train_data, num_boost_round=200)
 

@@ -3,22 +3,6 @@
 ## 📦 Archivos del Sistema
 
 ### 🔧 Código (Python)
-
-| Archivo | Líneas | Descripción |
-|---------|--------|-------------|
-| **trade_logger.py** | 157 | Módulo principal - Guarda trades en CSV |
-| **analyze_trades.py** | 347 | Herramienta de análisis y reportes |
-| **trades_dashboard.py** | 196 | Dashboard en tiempo real para terminal |
-| **demo_trades.py** | 134 | Script para crear trades de demostración |
-
-### 📖 Documentación
-
-| Archivo | Secciones | Audiencia | Tiempo |
-|---------|-----------|-----------|--------|
-| **TRADES_QUICK_START.md** | 12 | Todos | 5 min |
-| **TRADES_LOGGING_README.md** | 10 | Técnicos | 20 min |
-| **API_REFERENCE.md** | 12 | Programadores | 30 min |
-| **TRADES_SYSTEM_SUMMARY.md** | 14 | Gestores | 15 min |
 | **TRADES_PRACTICAL_GUIDE.md** | 14 | Operadores | 20 min |
 
 ### 📝 Modificaciones

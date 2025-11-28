@@ -87,16 +87,21 @@ TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
 # Logging
-logging.basicConfig(
-    filename="bot.log",
-    level=logging.DEBUG,
-    format="%(asctime)s [%(levelname)s] %(message)s"
+# Logging
+from logger_config import setup_logger
+
+# Setup logger
+logger = setup_logger(
+    name="trading_bot",
+    log_file="bot.log",
+    level=logging.INFO
 )
 
-
 def log(msg, level="info"):
-    getattr(logging, level)(msg)
-    print(msg)
+    """Log message with specified level."""
+    log_func = getattr(logger, level.lower(), logger.info)
+    log_func(msg)
+    # print(msg) # Removed print, handled by logger console handler
 
 
 def tg_send(msg: str):
@@ -651,6 +656,10 @@ async def run_bot(ssid, telegram_token, telegram_chat_id, logger_callback=None, 
     shadow_trader = ShadowTrader()
     print("👻 Shadow Trader activado: Probando estrategias en paralelo...")
 
+    # Variables para backoff
+    current_sleep = 5
+    error_sleep = 5
+
     while True:
         if stop_event and stop_event.is_set():
             log("🛑 Deteniendo bot por solicitud del usuario...")
@@ -960,12 +969,29 @@ async def run_bot(ssid, telegram_token, telegram_chat_id, logger_callback=None, 
                 except Exception as e:
                     log(f"⚠️ Error sincronizando ML: {e}", "warning")
 
-            await asyncio.sleep(5)
+            # 🔄 ADAPTIVE SLEEP (Exponential Backoff for idle time)
+            if not all_signals:
+                # No signals found, increase sleep time
+                current_sleep = min(current_sleep * 1.5, 30)
+                if current_sleep > 10:
+                    log(f"💤 Sin señales, durmiendo {current_sleep:.1f}s...", "debug")
+            else:
+                # Activity detected, reset sleep
+                current_sleep = 5
+            
+            await asyncio.sleep(current_sleep)
 
         except Exception as e:
             log(f"⚠️ Error en loop principal: {e}", "error")
             tg_send(f"⚠️ Error en loop: {str(e)[:120]}")
-            await asyncio.sleep(30)
+            
+            # 🔄 ERROR BACKOFF
+            error_sleep = min(error_sleep * 2, 300)  # Max 5 min
+            log(f"🛑 Pausa por error: {error_sleep}s", "warning")
+            await asyncio.sleep(error_sleep)
+        else:
+            # Reset error backoff on successful iteration
+            error_sleep = 5
     
     # Restaurar log original
     log = original_log
