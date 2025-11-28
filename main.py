@@ -74,60 +74,17 @@ from shadow_trader import ShadowTrader
 from bot_state import BotState
 from risk_manager import RiskManager
 from signal_types import Direction, SignalSource, PatternType
+from config_loader import load_config
 
 # ---------------------------
-# CONFIG (ajustalo a tu gusto)
+# CONFIG
 # ---------------------------
-PAIRS = [
-    'EURUSD_otc', 'GBPUSD_otc', 'USDJPY_otc', 'AUDUSD_otc', 'USDCAD_otc',
-    'AUDCAD_otc', 'USDMXN_otc', 'USDCOP_otc', 'USDARS_otc', "#INTC_otc"
-]
-
-TIMEFRAMES = {"M5": 300, "M10": 600, "M15": 900, "M30": 1800}
-
-SELECTED_TFS = list(TIMEFRAMES.keys())
-LOOKBACK = 50
-MA_SHORT = 20
-MA_LONG = 50
-HTF_MULT = 2
-
-RSI_PERIOD = 7  # rápido y estable
-
-MACD_FAST = 8
-MACD_SLOW = 21
-MACD_SIGNAL = 5
-
-USE_RSI = True
-USE_REVERSAL_CANDLES = True
-USE_RESISTANCE = True
-USE_SUPPORT = True
-RSI_PERIOD = 14
-RSI_OVERSOLD = 30
-RSI_OVERBOUGHT = 70
-
-# RISK management
-MAX_DAILY_LOSSES = 3
-MAX_DAILY_TRADES = 10
-RISK_PER_TRADE = 0.02  # 2% del balance
-STREAK_LIMIT = 2  # cooling-off tras N pérdidas seguidas
-COOLDOWN_SECONDS = 900  # 15 minutos
-MAX_CONCURRENT_REQUESTS = 2  # Límite de requests simultáneos (reducido para evitar timeouts)
+# La configuración se carga desde config.yaml
+# Ver config_loader.py y run_bot()
 
 # TELEGRAM (mejor setear como variables de entorno)
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
-
-# --- Nuevas configs para MODO PRO ---
-TARGET_WINRATE = 0.55              # objetivo mínimo de winrate reciente (55%)
-ROLLING_WINDOW_TRADES = 20         # para calcular winrate reciente
-MIN_SCORE_BASE = 4                 # score mínimo base para operar
-ADAPTIVE_SCORE_INCREMENT = 1       # cuánto subir el score mínimo si winrate cae
-MIN_SCORE_MAX = 7                  # tope al que puede subir el min score
-BREAKOUT_TOL = 0.0015              # tolerancia para confirmar breakout (ajustable)
-BREAKOUT_LOOKBACK = 20             # lookback para definir niveles de resistencia/soporte
-BREAKOUT_STRICT = False      # si True exige la condición estricta; False usa criterio más flexible
-BREAKOUT_USE_ATR = True      # si True permite confirmar breakout usando ATR
-DEBUG_BREAKOUT = True        # imprime info cuando un breakout se rechaza (ponelo False en prod)
 
 # Logging
 logging.basicConfig(
@@ -255,7 +212,7 @@ def rolling_winrate(n=None):
 # ---------------------------
 # Fetch de velas OPTIMIZADO con caché
 # ---------------------------
-async def fetch_data_optimized(api, pair, interval, lookback=LOOKBACK):
+async def fetch_data_optimized(api, pair, interval, lookback=50):
     """
     Fetch con cache inteligente y retry automático
     """
@@ -344,7 +301,7 @@ async def fetch_data_optimized(api, pair, interval, lookback=LOOKBACK):
 # ---------------------------
 # Generar señal (core) con Semaphore
 # ---------------------------
-async def generate_signal(api, pair, tf, bot_state, shadow_trader=None):
+async def generate_signal(api, pair, tf, bot_state, config, shadow_trader=None):
     """
     Generate trading signal with clear 3-step flow:
     1. Compute all possible signals (indicators + patterns)
@@ -354,10 +311,21 @@ async def generate_signal(api, pair, tf, bot_state, shadow_trader=None):
     Returns:
         dict with signal details or None if no valid signal
     """
-    interval = TIMEFRAMES[tf]
-    df = await fetch_data_optimized(api, pair, interval)
+    # Extract config
+    timeframes = config['trading']['timeframes']
+    ma_long = config['trading']['ma_long']
+    use_rsi = config['indicators']['use_rsi']
+    target_winrate = 0.55 # Default if not in config, or add to config
+    # TODO: Add these to config.yaml if not present
+    min_score_base = 4
+    min_score_max = 7
+    adaptive_inc = 1
+    
+    lookback = config['trading']['lookback']
+    interval = timeframes[tf]
+    df = await fetch_data_optimized(api, pair, interval, lookback)
 
-    if df.empty or len(df) < MA_LONG:
+    if df.empty or len(df) < ma_long:
         return None
 
     # Shadow trading (forward testing)
@@ -367,7 +335,17 @@ async def generate_signal(api, pair, tf, bot_state, shadow_trader=None):
         except Exception as e:
             log(f"Error en Shadow Trader: {e}", "error")
 
-    df = compute_indicators(df, interval)
+    # Pass config settings to compute_indicators
+    df = compute_indicators(
+        df, interval,
+        rsi_period=config['indicators']['rsi_period'],
+        macd_fast=config['indicators']['macd_fast'],
+        macd_slow=config['indicators']['macd_slow'],
+        macd_signal=config['indicators']['macd_signal'],
+        ma_long=ma_long,
+        ma_short=config['trading']['ma_short'],
+        htf_mult=config['trading']['htf_mult']
+    )
     last = df.iloc[-1]
 
     # ============================================================
@@ -414,7 +392,7 @@ async def generate_signal(api, pair, tf, bot_state, shadow_trader=None):
         direction = Direction.BUY if direction_str == 'BUY' else Direction.SELL
         
         # RSI validation (skip for channel breakout)
-        if USE_RSI and pattern_type != PatternType.CHANNEL_BREAKOUT:
+        if use_rsi and pattern_type != PatternType.CHANNEL_BREAKOUT:
             rsi_val = validar_rsi(df)
             if rsi_val and rsi_val != direction_str:
                 log(f"⏸️ Patrón {pattern_type} rechazado por RSI conflictivo: {pair} {tf}", "debug")
@@ -441,7 +419,7 @@ async def generate_signal(api, pair, tf, bot_state, shadow_trader=None):
         return None
     
     # Calculate adaptive minimum score based on winrate
-    min_score = MIN_SCORE_BASE
+    min_score = min_score_base
     
     # Get trade history from bot_state
     trade_history = await bot_state.get_trade_history()
@@ -452,10 +430,10 @@ async def generate_signal(api, pair, tf, bot_state, shadow_trader=None):
         wins = sum(1 for t in recent_trades if t['win'])
         current_wr = wins / len(recent_trades)
         
-        if current_wr < TARGET_WINRATE:
-            deficit = TARGET_WINRATE - current_wr
-            inc = int(np.ceil(deficit * 10)) * ADAPTIVE_SCORE_INCREMENT
-            min_score = min(MIN_SCORE_MAX, MIN_SCORE_BASE + inc)
+        if current_wr < target_winrate:
+            deficit = target_winrate - current_wr
+            inc = int(np.ceil(deficit * 10)) * adaptive_inc
+            min_score = min(min_score_max, min_score_base + inc)
         
         log(f"🔧 Winrate reciente: {current_wr:.2f} (trades: {len(recent_trades)}) → min_score = {min_score}", "debug")
     
@@ -496,7 +474,7 @@ async def generate_signal(api, pair, tf, bot_state, shadow_trader=None):
         'tf': tf,
         'signal': direction_str,
         'timestamp': last.name,
-        'duration': TIMEFRAMES[tf],
+        'duration': timeframes[tf],
         'score': best['score'],
         'pattern': str(best['pattern']) if best['pattern'] else None,
         'source': str(best['source']),
@@ -507,10 +485,10 @@ async def generate_signal(api, pair, tf, bot_state, shadow_trader=None):
     
 
 # Wrapper con semaphore para limitar concurrencia
-async def generate_signal_with_semaphore(semaphore, api, pair, tf, bot_state, shadow_trader=None):
+async def generate_signal_with_semaphore(semaphore, api, pair, tf, bot_state, config, shadow_trader=None):
     async with semaphore:
         try:
-            return await generate_signal(api, pair, tf, bot_state, shadow_trader)
+            return await generate_signal(api, pair, tf, bot_state, config, shadow_trader)
         except Exception as e:
             log(f"⚠️ Exception en generate_signal_with_semaphore {pair} {tf}: {e}", "warning")
             return None
@@ -602,6 +580,18 @@ async def run_bot(ssid, telegram_token, telegram_chat_id, logger_callback=None, 
     asyncio.create_task(keep_alive())
 
     api = PocketOptionAsync(ssid=ssid)
+    
+    # Load configuration
+    try:
+        config = load_config()
+        pairs = config['trading']['pairs']
+        selected_tfs = config['trading']['selected_timeframes']
+        risk_config = config['risk']
+        system_config = config['system']
+    except Exception as e:
+        log(f"❌ Error cargando configuración: {e}", "error")
+        tg_send(f"❌ Error fatal: Configuración inválida ({e})")
+        return
 
     # intentar obtener balance / cuenta con retry
     balance = None
@@ -631,10 +621,10 @@ async def run_bot(ssid, telegram_token, telegram_chat_id, logger_callback=None, 
                 log(f"❌ Error verificando cuenta tras 3 intentos: {e}", "error")
                 tg_send("🤖 Bot iniciado (error obteniendo datos de cuenta)")
 
-    log(f"\n📊 Pares: {len(PAIRS)} | Timeframes: {', '.join(SELECTED_TFS)}")
-    log(f"💰 Risk por operación: {RISK_PER_TRADE * 100}%")
-    log(f"🛡️ Max pérdidas diarias: {MAX_DAILY_LOSSES}")
-    log(f"🚦 Max requests simultáneos: {MAX_CONCURRENT_REQUESTS}")
+    log(f"\n📊 Pares: {len(pairs)} | Timeframes: {', '.join(selected_tfs)}")
+    log(f"💰 Risk por operación: {risk_config['risk_per_trade'] * 100}%")
+    log(f"🛡️ Max pérdidas diarias: {risk_config['max_daily_losses']}")
+    log(f"🚦 Max requests simultáneos: {system_config['max_concurrent_requests']}")
     log("=" * 70 + "\n")
 
     cycle = 0
@@ -642,18 +632,15 @@ async def run_bot(ssid, telegram_token, telegram_chat_id, logger_callback=None, 
     # Initialize thread-safe state management
     bot_state = BotState()
     
-    # MODO TESTING: Límites muy altos para recopilar datos
-    # TODO: Restaurar límites estrictos para producción
+    # Initialize RiskManager from config
     risk_manager = RiskManager(
-        max_daily_losses=999,      # Prácticamente sin límite para testing
-        max_daily_trades=999,      # Prácticamente sin límite para testing
-        risk_per_trade=RISK_PER_TRADE,
-        max_drawdown=0.95,         # 95% drawdown (muy alto, solo para testing)
-        streak_limit=999           # Sin límite de racha para testing
+        max_daily_losses=risk_config['max_daily_losses'],
+        max_daily_trades=risk_config['max_daily_trades'],
+        risk_per_trade=risk_config['risk_per_trade'],
+        max_drawdown=risk_config['max_drawdown'],
+        streak_limit=risk_config['streak_limit'],
+        max_risk_per_trade=risk_config.get('max_risk_per_trade', 0.05)
     )
-    print("⚠️ MODO TESTING: Límites de riesgo desactivados para entrenamiento")
-    print("   ⚠️ NO usar en cuenta REAL sin restaurar límites estrictos")
-
     
     # Set initial balance for drawdown tracking
     if balance is not None:
@@ -672,7 +659,7 @@ async def run_bot(ssid, telegram_token, telegram_chat_id, logger_callback=None, 
             if is_news_event():
                 log("⚠️ Evento de noticias activo — pausa 15 min")
                 tg_send("⚠️ Noticias importantes — pausa temporal.")
-                await asyncio.sleep(COOLDOWN_SECONDS)
+                await asyncio.sleep(risk_config['cooldown_seconds'])
                 continue
 
             cycle += 1
@@ -696,31 +683,25 @@ async def run_bot(ssid, telegram_token, telegram_chat_id, logger_callback=None, 
             if not can:
                 log(f"🚫 No puedo tradear: {result}")
                 tg_send(f"{result} — pausa hasta nuevo día")
-                await asyncio.sleep(COOLDOWN_SECONDS)
+                await asyncio.sleep(risk_config['cooldown_seconds'])
                 continue
             
-            # result contiene el amount si can=True
+            # result contiene el amount como string "$10.50", convertir a float
             amount = float(result.replace("$", ""))
 
-            # Mostrar stats del cache cada 10 ciclos
-            if cycle % 10 == 0:
-                cache_stats = smart_cache.stats()
-                log(f"📊 {cache_stats}")
-                smart_cache.clear_expired()  # Limpiar cache viejo
-
             # Analizar en paralelo con límite de concurrencia MUY BAJO
-            semaphore = asyncio.Semaphore(MAX_CONCURRENT_REQUESTS)
+            semaphore = asyncio.Semaphore(system_config['max_concurrent_requests'])
 
             # Agrupar por timeframe para mejor caché
             all_signals = []
-            for tf in SELECTED_TFS:
+            for tf in selected_tfs:
                 if stop_event and stop_event.is_set(): break
                 
                 tasks = [
-                    generate_signal_with_semaphore(semaphore, api, pair, tf, bot_state, shadow_trader)
-                    for pair in PAIRS
+                    generate_signal_with_semaphore(semaphore, api, pair, tf, bot_state, config, shadow_trader)
+                    for pair in pairs
                 ]
-                log(f"🔍 Analizando {len(PAIRS)} pares en TF {tf} (max {MAX_CONCURRENT_REQUESTS} simultáneos)...")
+                log(f"🔍 Analizando {len(pairs)} pares en TF {tf} (max {system_config['max_concurrent_requests']} simultáneos)...")
                 tf_results = await asyncio.gather(*tasks, return_exceptions=True)
                 all_signals.extend(tf_results)
 
@@ -891,8 +872,7 @@ async def run_bot(ssid, telegram_token, telegram_chat_id, logger_callback=None, 
                 # verificar resultado
                 try:
                     win_result = await asyncio.wait_for(api.check_win(trade_id), timeout=20)
-                    stats['total'] += 1
-
+                    
                     log(f"[DEBUG] Resultado crudo: {win_result}")
 
                     # Detectar si ganó basándose en diferentes formatos de respuesta
@@ -929,22 +909,25 @@ async def run_bot(ssid, telegram_token, telegram_chat_id, logger_callback=None, 
                         profit_loss=profit_loss if win else None
                     )
 
-                    # Registrar en trade_history (MODO PRO)
-                    trade_history.append({'win': bool(win), 'timestamp': datetime.now(timezone.utc)})
-                    if len(trade_history) > max(ROLLING_WINDOW_TRADES * 3, 200):
-                        trade_history[:] = trade_history[-ROLLING_WINDOW_TRADES*3:]
+                    # Registrar en BotState
+                    await bot_state.update_stats(win)
+                    await bot_state.increment_daily_trades()
+                    if not win:
+                        await bot_state.increment_daily_losses()
+                    await bot_state.update_streak(win)
+                    await bot_state.add_trade(win=bool(win), timestamp=datetime.now(timezone.utc))
 
                     if win:
-                        stats['wins'] += 1
                         icon, text = "✅", "GANADA"
                         profit_msg = f" (+${profit:.2f})" if profit > 0 else ""
                     else:
-                        stats['losses'] += 1
                         icon, text = "❌", "PERDIDA"
-                        daily_stats['losses'] += 1
                         profit_msg = f" (-${amount:.2f})"
 
-                    daily_stats['trades'] += 1
+                    # Obtener stats actualizados
+                    stats = await bot_state.get_stats()
+                    daily_stats = await bot_state.get_daily_stats()
+                    
                     wr = stats['wins'] / stats['total'] * 100 if stats['total'] > 0 else 0.0
                     result_msg = (
                         f"{icon} {text}{profit_msg}\n"

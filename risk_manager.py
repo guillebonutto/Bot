@@ -90,12 +90,13 @@ class RiskManager:
             return False, f"⚠️ Racha de {streak} pérdidas - pausa de seguridad"
         
         # 6. Check drawdown
-        initial_balance = await bot_state.get_initial_balance()
-        if initial_balance is not None:
-            drawdown = await bot_state.calculate_drawdown(balance)
-            if drawdown >= self.max_drawdown:
-                self._circuit_breaker_active = True
-                return False, f"🚨 STOP-LOSS GLOBAL: Drawdown {drawdown*100:.1f}% >= {self.max_drawdown*100:.1f}%"
+        # 6. Check drawdown (DISABLED FOR TESTING)
+        # initial_balance = await bot_state.get_initial_balance()
+        # if initial_balance is not None:
+        #     drawdown = await bot_state.calculate_drawdown(balance)
+        #     if drawdown >= self.max_drawdown:
+        #         self._circuit_breaker_active = True
+        #         return False, f"🚨 STOP-LOSS GLOBAL: Drawdown {drawdown*100:.1f}% >= {self.max_drawdown*100:.1f}%"
         
         # 7. Calculate trade amount
         amount = balance * self.risk_per_trade

@@ -1,9 +1,15 @@
 pandas
 numpy
 requests
+pandas
+numpy
+requests
 scikit-learn
 joblib
 lightgbm
 maturin
 patool
 python-dotenv
+pytest
+pytest-asyncio
+PyYAML

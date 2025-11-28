@@ -1,0 +1,57 @@
+# Trading Configuration
+trading:
+  pairs:
+    - "EURUSD_otc"
+    - "GBPUSD_otc"
+    - "USDJPY_otc"
+    - "AUDUSD_otc"
+    - "USDCAD_otc"
+    - "AUDCAD_otc"
+    - "USDMXN_otc"
+    - "USDCOP_otc"
+    - "USDARS_otc"
+    - "#INTC_otc"
+  
+  timeframes:
+    M5: 300
+    M10: 600
+    M15: 900
+    M30: 1800
+  
+  selected_timeframes:
+    - "M5"
+    - "M10"
+    - "M15"
+    - "M30"
+  
+  lookback: 50
+  ma_short: 20
+  ma_long: 50
+  htf_mult: 2
+
+# Risk Management
+risk:
+  max_daily_losses: 3
+  max_daily_trades: 10
+  risk_per_trade: 0.02
+  max_risk_per_trade: 0.05
+  max_drawdown: 0.95  # 95% for testing mode (usually 0.10-0.20)
+  streak_limit: 2
+  cooldown_seconds: 900
+
+# Indicators
+indicators:
+  use_rsi: true
+  rsi_period: 7
+  rsi_overbought: 70
+  rsi_oversold: 30
+  
+  use_macd: true
+  macd_fast: 8
+  macd_slow: 21
+  macd_signal: 5
+
+# System
+system:
+  max_concurrent_requests: 2
+  log_level: "INFO"

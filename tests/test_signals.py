@@ -40,18 +40,50 @@ def create_mock_df(trend='flat', length=100):
 async def test_generate_signal_insufficient_data():
     api = AsyncMock()
     bot_state = BotState()
+    config = {
+        'trading': {
+            'timeframes': {'M5': 300},
+            'ma_long': 50,
+            'ma_short': 20,
+            'htf_mult': 2,
+            'lookback': 50
+        },
+        'indicators': {
+            'use_rsi': True,
+            'rsi_period': 14,
+            'macd_fast': 12,
+            'macd_slow': 26,
+            'macd_signal': 9
+        }
+    }
     
     # Mock empty data
     with unittest.mock.patch('main.fetch_data_optimized', new_callable=AsyncMock) as mock_fetch:
         mock_fetch.return_value = pd.DataFrame()
         
-        signal = await generate_signal(api, 'EURUSD', 'M5', bot_state)
+        signal = await generate_signal(api, 'EURUSD', 'M5', bot_state, config)
         assert signal is None
 
 @pytest.mark.asyncio
 async def test_generate_signal_uptrend():
     api = AsyncMock()
     bot_state = BotState()
+    config = {
+        'trading': {
+            'timeframes': {'M5': 300},
+            'ma_long': 50,
+            'ma_short': 20,
+            'htf_mult': 2,
+            'lookback': 50
+        },
+        'indicators': {
+            'use_rsi': True,
+            'rsi_period': 14,
+            'macd_fast': 12,
+            'macd_slow': 26,
+            'macd_signal': 9
+        }
+    }
     
     # Mock uptrend data
     df = create_mock_df(trend='up')
@@ -71,7 +103,7 @@ async def test_generate_signal_uptrend():
             
             # Mock score_signal to return high score
             with unittest.mock.patch('main.score_signal', return_value=80):
-                signal = await generate_signal(api, 'EURUSD', 'M5', bot_state)
+                signal = await generate_signal(api, 'EURUSD', 'M5', bot_state, config)
                 
                 assert signal is not None
                 assert signal['signal'] == 'BUY'

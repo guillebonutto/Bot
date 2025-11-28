@@ -1,0 +1,2 @@
+timestamp,trade_id,pair,timeframe,decision,signal_score,pattern_detected,price,ema,rsi,ema_conf,tf_signal,atr,triangle_active,reversal_candle,near_support,near_resistance,support_level,resistance_level,htf_signal,result,profit_loss,expiry_time,notes
+2025-11-28 00:04:59,13db8844-3b20-46d3-a3b2-f8a6582bcbde,USDJPY_otc,M5,SELL,4,ruptura_canal,154.983,155.08850196360862,,0,0,0,0,0,False,False,,,0,PENDING,,300,
