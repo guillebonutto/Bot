@@ -235,7 +235,7 @@ class Trainer:
             return None, None
 
         # Simple preprocessing: numeric columns only
-        X = df_train.drop(columns=['label', 'timestamp', 'pair', 'decision'], errors='ignore')
+        X = df_train.drop(columns=['label', 'timestamp', 'pair', 'decision', 'trade_id', 'timeframe'], errors='ignore')
         # Convert booleans to ints
         for c in X.select_dtypes(include=['bool']).columns:
             X[c] = X[c].astype(int)

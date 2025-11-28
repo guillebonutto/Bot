@@ -16,7 +16,8 @@ class RiskManager:
         risk_per_trade: float = 0.02,
         max_drawdown: float = 0.10,
         streak_limit: int = 2,
-        max_risk_per_trade: float = 0.05
+        max_risk_per_trade: float = 0.05,
+        demo_mode: bool = True
     ):
         """
         Initialize risk manager with strict limits.
@@ -28,7 +29,15 @@ class RiskManager:
             max_drawdown: Maximum drawdown before circuit breaker (0.05-0.20)
             streak_limit: Pause after N consecutive losses
             max_risk_per_trade: Absolute maximum risk per trade
+            demo_mode: If True, risk checks log warnings but don't block trades
         """
+        # CRITICAL SAFETY CHECK
+        if not demo_mode and max_drawdown > 0.20:
+            raise RuntimeError(
+                f"🚨 FATAL: max_drawdown={max_drawdown*100:.0f}% is SUICIDAL for real trading. "
+                f"Maximum allowed in real mode is 20%. Set demo_mode=True for testing or reduce max_drawdown."
+            )
+        
         # Validate parameters
         if not 0.01 <= risk_per_trade <= 0.05:
             raise ValueError(f"risk_per_trade must be between 0.01 and 0.05, got {risk_per_trade}")
@@ -39,6 +48,7 @@ class RiskManager:
         if max_daily_losses < 1:
             raise ValueError(f"max_daily_losses must be >= 1, got {max_daily_losses}")
         
+        self.demo_mode = demo_mode
         self.max_daily_losses = max_daily_losses
         self.max_daily_trades = max_daily_trades
         self.risk_per_trade = risk_per_trade
@@ -49,6 +59,14 @@ class RiskManager:
         self._circuit_breaker_active = False
         self._consecutive_errors = 0
         self._max_consecutive_errors = 5
+        
+        # Log critical warning if demo_mode is enabled
+        if self.demo_mode:
+            print("=" * 80)
+            print("⚠️  DEMO MODE ENABLED - RISK CHECKS WILL BE BYPASSED")
+            print("⚠️  THIS IS FOR DATA COLLECTION ONLY")
+            print("⚠️  NEVER USE demo_mode=True IN REAL TRADING")
+            print("=" * 80)
     
     async def can_trade(
         self,
@@ -75,28 +93,46 @@ class RiskManager:
         if balance < 1.0:
             return False, f"💰 Balance insuficiente: ${balance:.2f} < $1.00"
         
+        ###########################################################################
+        #                    ¡¡ ADVERTENCIA NUCLEAR !!
+        # Si estás en cuenta real y esta sección está comentada o ignorada,
+        # vas a perder todo tu dinero en menos de 48 horas.
+        # Responsable: quien haya tocado este archivo sin leer esto.
+        ###########################################################################
+        
         # 3. Check daily loss limit
         daily_stats = await bot_state.get_daily_stats()
-        if daily_stats['losses'] >= self.max_daily_losses:
-            return False, f"🛑 Límite de pérdidas diarias alcanzado ({self.max_daily_losses})"
-        
+        if not self.demo_mode:
+            if daily_stats['losses'] >= self.max_daily_losses:
+                return False, f"🛑 Límite de pérdidas diarias alcanzado ({self.max_daily_losses})"
+        elif daily_stats['losses'] >= self.max_daily_losses:
+            print("⚠️ [DEMO MODE] Límite de pérdidas diarias ignorado para farming")
+
         # 4. Check daily trade limit
-        if daily_stats['trades'] >= self.max_daily_trades:
-            return False, f"📊 Límite de trades diarios alcanzado ({self.max_daily_trades})"
-        
+        if not self.demo_mode:
+            if daily_stats['trades'] >= self.max_daily_trades:
+                return False, f"📊 Límite de trades diarios alcanzado ({self.max_daily_trades})"
+        elif daily_stats['trades'] >= self.max_daily_trades:
+            print("⚠️ [DEMO MODE] Límite de trades diarios ignorado para farming")
+
         # 5. Check losing streak
         streak = await bot_state.get_streak_losses()
-        if streak >= self.streak_limit:
-            return False, f"⚠️ Racha de {streak} pérdidas - pausa de seguridad"
-        
+        if not self.demo_mode:
+            if streak >= self.streak_limit:
+                return False, f"⚠️ Racha de {streak} pérdidas - pausa de seguridad"
+        elif streak >= self.streak_limit:
+            print(f"⚠️ [DEMO MODE] Racha de {streak} pérdidas ignorada para farming")
+
         # 6. Check drawdown
-        # 6. Check drawdown (DISABLED FOR TESTING)
-        # initial_balance = await bot_state.get_initial_balance()
-        # if initial_balance is not None:
-        #     drawdown = await bot_state.calculate_drawdown(balance)
-        #     if drawdown >= self.max_drawdown:
-        #         self._circuit_breaker_active = True
-        #         return False, f"🚨 STOP-LOSS GLOBAL: Drawdown {drawdown*100:.1f}% >= {self.max_drawdown*100:.1f}%"
+        initial_balance = await bot_state.get_initial_balance()
+        if initial_balance is not None:
+            drawdown = await bot_state.calculate_drawdown(balance)
+            if not self.demo_mode:
+                if drawdown >= self.max_drawdown:
+                    self._circuit_breaker_active = True
+                    return False, f"🚨 STOP-LOSS GLOBAL: Drawdown {drawdown*100:.1f}% >= {self.max_drawdown*100:.1f}%"
+            elif drawdown >= self.max_drawdown:
+                print(f"⚠️ [DEMO MODE] Drawdown {drawdown*100:.1f}% ignorado para farming (CRITICAL IN REAL)")
         
         # 7. Calculate trade amount
         amount = balance * self.risk_per_trade

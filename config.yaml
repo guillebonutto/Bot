@@ -29,13 +29,19 @@ trading:
   ma_long: 50
   htf_mult: 2
 
+# System Configuration
+system:
+  demo_mode: true  # CRITICAL: Set to false ONLY for real trading
+  max_concurrent_requests: 2
+  log_level: "INFO"
+
 # Risk Management
 risk:
   max_daily_losses: 3
   max_daily_trades: 10
   risk_per_trade: 0.02
   max_risk_per_trade: 0.05
-  max_drawdown: 0.95  # 95% for testing mode (usually 0.10-0.20)
+  max_drawdown: 0.10  # 10% max drawdown (SAFE DEFAULT)
   streak_limit: 2
   cooldown_seconds: 900
 

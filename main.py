@@ -639,7 +639,8 @@ async def run_bot(ssid, telegram_token, telegram_chat_id, logger_callback=None, 
         risk_per_trade=risk_config['risk_per_trade'],
         max_drawdown=risk_config['max_drawdown'],
         streak_limit=risk_config['streak_limit'],
-        max_risk_per_trade=risk_config.get('max_risk_per_trade', 0.05)
+        max_risk_per_trade=risk_config.get('max_risk_per_trade', 0.05),
+        demo_mode=system_config.get('demo_mode', True)
     )
     
     # Set initial balance for drawdown tracking
