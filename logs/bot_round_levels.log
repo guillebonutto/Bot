@@ -165,3 +165,12 @@
 2025-11-28 23:16:59 [INFO    ] bot_round_levels - [round_levels] ======================================================================
 2025-11-28 23:16:59 [WARNING ] bot_round_levels - [round_levels] ⚠️ Balance check failed (-1.0), retrying (1/3)...
 2025-11-28 23:17:01 [INFO    ] bot_round_levels - [round_levels] ✅ Account: DEMO - Balance: $16.51
+2025-11-29 13:35:50 [INFO    ] bot_round_levels - [round_levels] 📚 API Library: BinaryOptionsToolsV2.pocketoption.asyncronous
+2025-11-29 13:35:50 [INFO    ] bot_round_levels - [round_levels] 🤖 ROUND_LEVELS Bot initialized
+2025-11-29 13:35:50 [INFO    ] bot_round_levels - [round_levels] 📊 Timeframes: ['M5']
+2025-11-29 13:35:50 [INFO    ] bot_round_levels - [round_levels] 💰 ML Threshold: 0.65
+2025-11-29 13:35:50 [INFO    ] bot_round_levels - [round_levels] ======================================================================
+2025-11-29 13:35:50 [INFO    ] bot_round_levels - [round_levels] 🚀 ROUND_LEVELS BOT STARTING
+2025-11-29 13:35:50 [INFO    ] bot_round_levels - [round_levels] ======================================================================
+2025-11-29 13:35:50 [WARNING ] bot_round_levels - [round_levels] ⚠️ Balance check failed (-1.0), retrying (1/3)...
+2025-11-29 13:35:52 [INFO    ] bot_round_levels - [round_levels] ✅ Account: DEMO - Balance: $16.51

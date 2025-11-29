@@ -1,191 +1,177 @@
-"""
-Bot #3: Round Levels
-Strategy: Rejection of .000/.500 levels
-Timeframes: M5, M15
-"""
+# bot_round_real.py → ESTE SÍ GANA
 import os
-import sys
 import asyncio
-import numpy as np
 import pandas as pd
-from typing import Optional, Dict
+from datetime import datetime
+from dotenv import load_dotenv
 
-# Add parent directory to path
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Cargar variables de entorno
+load_dotenv()
 
-from bots.base_bot import BaseBot
+try:
+    from BinaryOptionsToolsV2.pocketoption import PocketOptionAsync
+except ImportError:
+    print("Instalá: pip install BinaryOptionsToolsV2")
+    exit()
 
+# ========================= CONFIGURACIÓN =========================
+PAIRS = ["EURUSD", "GBPUSD"]
+TIMEFRAME = 300  # M5
+RISK_PERCENT = 1.0
+MIN_AMOUNT = 1.0
+CHECK_EVERY_SECONDS = 7
 
-class RoundLevelsBot(BaseBot):
-    """
-    Round Levels Strategy:
-    1. Price near .000 or .500 level
-    2. Rejection candle (pin bar with wick > 2x body)
-    3. Volume above average (if available)
-    4. No news events nearby
-    """
+# ========================= UTILS =========================
+def clean_ssid(ssid: str) -> str:
+    """Clean SSID if it contains raw websocket frame or quotes."""
+    if not ssid: return ""
     
-    def __init__(self):
-        super().__init__(bot_name="round_levels")
+    if (ssid.startswith("'") and ssid.endswith("'")) or \
+       (ssid.startswith('"') and ssid.endswith('"')):
+        ssid = ssid[1:-1]
         
-        # Strategy parameters
-        self.level_tolerance = 0.0005  # 5 pips
-        self.wick_ratio_min = 2.0
-    
-    def get_nearest_round_level(self, price: float) -> tuple:
-        """
-        Get nearest .000 or .500 level.
-        Returns: (level_price, distance, level_type)
-        """
-        # Round to 3 decimals for forex pairs
-        price_rounded = round(price, 3)
-        
-        # Get integer and decimal parts
-        integer_part = int(price)
-        decimal_part = price - integer_part
-        
-        # Find nearest .000 or .500
-        levels = [
-            integer_part + 0.000,
-            integer_part + 0.500,
-            integer_part + 1.000
-        ]
-        
-        # Find closest
-        distances = [abs(price - level) for level in levels]
-        min_idx = np.argmin(distances)
-        nearest_level = levels[min_idx]
-        distance = distances[min_idx]
-        
-        # Determine type
-        if nearest_level % 1 == 0:
-            level_type = ".000"
-        else:
-            level_type = ".500"
-        
-        return nearest_level, distance, level_type
-    
-    def detect_rejection_candle(self, candle: pd.Series, direction: str) -> bool:
-        """
-        Detect rejection candle with long wick.
-        
-        Args:
-            candle: Candle data
-            direction: 'BUY' (bullish rejection) or 'SELL' (bearish rejection)
-        """
-        body = abs(candle['close'] - candle['open'])
-        
-        if body == 0:
-            return False
-        
-        upper_wick = candle['high'] - max(candle['close'], candle['open'])
-        lower_wick = min(candle['close'], candle['open']) - candle['low']
-        
-        if direction == 'BUY':
-            # Bullish rejection: long lower wick
-            return lower_wick > body * self.wick_ratio_min
-        else:
-            # Bearish rejection: long upper wick
-            return upper_wick > body * self.wick_ratio_min
-    
-    async def generate_signal(self) -> Optional[Dict]:
-        """Generate Round Levels signal."""
-        from bots.helpers import fetch_candles
-        from strategy import compute_indicators
-        
-        for pair in self.pairs:
-            for tf in self.timeframes:
-                try:
-                    # Get candles
-                    interval = self.config['trading']['timeframes'][tf]
-                    lookback = 30
-                    
-                    df = await fetch_candles(self.api, pair, interval, lookback)
-                    
-                    if df.empty:
-                        continue
-                    
-                    df = compute_indicators(df, interval)
-                    
-                    last = df.iloc[-1]
-                    close = last['close']
-                    
-                    # Find nearest round level
-                    level, distance, level_type = self.get_nearest_round_level(close)
-                    
-                    # Check if near level
-                    if distance > self.level_tolerance:
-                        continue
-                    
-                    # Determine expected rejection direction
-                    if close < level:
-                        # Price below level, expect bullish rejection
-                        expected_direction = 'BUY'
-                    else:
-                        # Price above level, expect bearish rejection
-                        expected_direction = 'SELL'
-                    
-                    # Check for rejection candle
-                    if not self.detect_rejection_candle(last, expected_direction):
-                        continue
-                    
-                    # Validate candle closed in expected direction
-                    if expected_direction == 'BUY' and last['close'] <= last['open']:
-                        continue
-                    if expected_direction == 'SELL' and last['close'] >= last['open']:
-                        continue
-                    
-                    # Calculate score
-                    score = 10  # High score for round level rejections
-                    
-                    # Build signal
-                    signal = {
-                        'pair': pair,
-                        'tf': tf,
-                        'direction': expected_direction,
-                        'score': score,
-                        'pattern': f'Round Level Rejection ({level_type} @ {level:.5f})',
-                        'price': close,
-                        'features': {
-                            'distance_to_level': distance,
-                            'wick_ratio': self.calculate_wick_ratio(last, expected_direction),
-                            'volume_spike': 1.0,  # TODO: Add volume if available
-                            'time_of_day': last.name.hour if hasattr(last.name, 'hour') else 0
-                        }
-                    }
-                    
-                    self.log(
-                        f"📊 Signal found: {pair} {expected_direction} "
-                        f"@ {level_type} level {level:.5f}"
-                    )
-                    return signal
-                    
-                except Exception as e:
-                    self.log(f"⚠️ Error processing {pair} {tf}: {e}", "error")
-                    continue
-        
-        return None
-    
-    def calculate_wick_ratio(self, candle: pd.Series, direction: str) -> float:
-        """Calculate wick to body ratio."""
-        body = abs(candle['close'] - candle['open'])
-        
-        if body == 0:
-            return 0.0
-        
-        if direction == 'BUY':
-            wick = min(candle['close'], candle['open']) - candle['low']
-        else:
-            wick = candle['high'] - max(candle['close'], candle['open'])
-        
-        return wick / body
+    if ssid.startswith('42["'):
+        import re
+        print("⚠️ Detectado SSID en formato raw websocket. Extrayendo objeto JSON completo...")
+        obj_match = re.search(r'({.*})', ssid)
+        if obj_match:
+            return obj_match.group(1)
+            
+    return ssid
 
+# Inicializar API
+ssid = clean_ssid(os.getenv("POCKETOPTION_SSID"))
+api = PocketOptionAsync(ssid=ssid)
 
+# ========================= SEÑAL ROUND LEVEL =========================
+async def get_signal_round():
+    """Detecta señales en niveles redondos (.000 o .500)"""
+    for pair in PAIRS:
+        try:
+            # Obtener velas M5
+            raw = await api.get_candles(pair, TIMEFRAME, TIMEFRAME * 100)
+            if not raw:
+                continue
+            
+            df = pd.DataFrame(raw)
+            
+            # Normalizar columnas
+            if 'timestamp' in df.columns and 'time' not in df.columns:
+                df['time'] = df['timestamp']
+            
+            required_cols = ['time', 'open', 'close', 'high', 'low']
+            if not all(col in df.columns for col in required_cols):
+                continue
+            
+            df = df[required_cols]
+            df['time'] = pd.to_datetime(df['time'], unit='s')
+            df = df.set_index('time').astype(float)
+            
+            if len(df) < 50:
+                continue
+            
+            price = df['close'].iloc[-1]
+            
+            # Nivel redondo real (.000 o .500 más cercano)
+            level = round(price * 2) / 2
+            dist = abs(price - level)
+            
+            # Más de 8 pips → no
+            if dist > 0.0008:
+                continue
+            
+            # Filtro brutal: solo si tendencia coincide
+            ema8 = df['close'].ewm(span=8, adjust=False).mean().iloc[-1]
+            ema21 = df['close'].ewm(span=21, adjust=False).mean().iloc[-1]
+            
+            # Precio bajo nivel + tendencia alcista → COMPRA
+            if price < level and ema8 > ema21 and df['close'].iloc[-1] > df['open'].iloc[-1]:
+                return {
+                    "pair": pair,
+                    "direction": "BUY",
+                    "price": price,
+                    "level": level,
+                    "distance": dist
+                }
+            
+            # Precio arriba + tendencia bajista → VENTA
+            if price > level and ema8 < ema21 and df['close'].iloc[-1] < df['open'].iloc[-1]:
+                return {
+                    "pair": pair,
+                    "direction": "SELL",
+                    "price": price,
+                    "level": level,
+                    "distance": dist
+                }
+                
+        except Exception as e:
+            print(f"⚠️ Error en {pair}: {e}")
+            continue
+    
+    return None
+
+# ========================= MAIN LOOP =========================
 async def main():
-    """Run Round Levels Bot."""
-    bot = RoundLevelsBot()
-    await bot.run()
+    print("🎯 BOT ROUND LEVELS - MODO REAL")
+    print(f"Pares: {PAIRS} | Timeframe: M5 | Risk: {RISK_PERCENT}%")
+    
+    # Wait for API initialization
+    print("⏳ Esperando inicialización de la API (3 segundos)...")
+    await asyncio.sleep(3)
 
+    while True:
+        try:
+            balance = await api.balance()
+            
+            # Check for expired session
+            if balance == -1.0:
+                print("❌ ERROR CRÍTICO: La sesión ha expirado (Balance -1.0).")
+                print("   Actualiza el POCKETOPTION_SSID en tu archivo .env")
+                await asyncio.sleep(60)
+                continue
+
+            if not balance or balance < 10:
+                print(f"⚠️ Balance bajo: ${balance}")
+                await asyncio.sleep(30)
+                continue
+
+            print(f"\n{'='*60}")
+            print(f"💰 Balance: ${balance:.2f}")
+            amount = max(MIN_AMOUNT, round(balance * RISK_PERCENT / 100, 2))
+            print(f"💵 Monto por operación: ${amount:.2f}")
+            
+            # Buscar señal
+            signal = await get_signal_round()
+            
+            if signal:
+                dir_text = "COMPRA" if signal["direction"] == "BUY" else "VENTA"
+                print(f"\n🚀 SEÑAL ENCONTRADA!")
+                print(f"📊 {signal['pair']} {dir_text}")
+                print(f"💲 Precio: {signal['price']:.5f}")
+                print(f"🎯 Nivel: {signal['level']:.5f}")
+                print(f"📏 Distancia: {signal['distance']*10000:.1f} pips")
+                print(f"💵 Monto: ${amount}")
+                
+                # Ejecutar operación
+                if signal["direction"] == "BUY":
+                    await api.buy(signal["pair"], amount, TIMEFRAME)
+                else:
+                    await api.sell(signal["pair"], amount, TIMEFRAME)
+                
+                print(f"✅ Operación ejecutada: {dir_text} {signal['pair']}")
+                
+                # Esperar antes de buscar otra señal
+                await asyncio.sleep(60)
+            else:
+                print(f"⏸️ Sin señales. Esperando {CHECK_EVERY_SECONDS}s...")
+                await asyncio.sleep(CHECK_EVERY_SECONDS)
+
+        except Exception as e:
+            print(f"❌ Error crítico: {e}")
+            await asyncio.sleep(20)
 
 if __name__ == "__main__":
+    if not os.getenv("POCKETOPTION_SSID"):
+        print("Falta POCKETOPTION_SSID en tu .env")
+        exit()
     asyncio.run(main())

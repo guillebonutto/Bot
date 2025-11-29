@@ -139,8 +139,19 @@ async def main():
                             print("❌ Sin datos")
                             continue
 
-                        df = pd.DataFrame(raw)[['time','open','close','high','low']]
-                        df.columns = ['time','open','close','high','low']
+                        df = pd.DataFrame(raw)
+                        
+                        # Normalizar nombres de columnas (la API puede devolver 'time' o 'timestamp')
+                        if 'timestamp' in df.columns and 'time' not in df.columns:
+                            df['time'] = df['timestamp']
+                        
+                        # Verificar que tengamos las columnas necesarias
+                        required_cols = ['time', 'open', 'close', 'high', 'low']
+                        if not all(col in df.columns for col in required_cols):
+                            print(f"❌ Columnas: {df.columns.tolist()}")
+                            continue
+                        
+                        df = df[required_cols]
                         df['time'] = pd.to_datetime(df['time'], unit='s')
                         df = df.set_index('time').astype(float)
 
