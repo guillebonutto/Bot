@@ -15,7 +15,7 @@ except ImportError:
     exit()
 
 # ========================= CONFIGURACIÓN =========================
-PAIRS = ["EURUSD", "GBPUSD"]
+PAIRS = ['EURUSD_otc', 'GBPUSD_otc', 'AUDUSD_otc', 'USDCAD_otc', 'AUDCAD_otc', 'USDMXN_otc', 'USDCOP_otc']
 TIMEFRAME = 300  # M5
 RISK_PERCENT = 1.0
 MIN_AMOUNT = 1.0
