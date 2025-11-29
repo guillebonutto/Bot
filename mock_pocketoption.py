@@ -66,6 +66,10 @@ class PocketOptionAsync:
         """Simulate a buy order."""
         await asyncio.sleep(0.5)
         trade_id = str(uuid.uuid4())[:8]
+        
+        # Deduct balance immediately
+        self._balance -= amount
+        
         self.active_trades[trade_id] = {
             "asset": asset,
             "amount": amount,
@@ -80,6 +84,10 @@ class PocketOptionAsync:
         """Simulate a sell order."""
         await asyncio.sleep(0.5)
         trade_id = str(uuid.uuid4())[:8]
+        
+        # Deduct balance immediately
+        self._balance -= amount
+        
         self.active_trades[trade_id] = {
             "asset": asset,
             "amount": amount,
@@ -103,11 +111,13 @@ class PocketOptionAsync:
         is_win = random.choice([True, False])
         
         if is_win:
-            profit = amount * 0.92  # 92% payout
-            self._balance += profit
+            # Payout: amount + profit (92%)
+            payout = amount * 1.92
+            profit = amount * 0.92
+            self._balance += payout
             return {"result": "win", "profit": profit, "win": profit}
         else:
-            self._balance -= amount
+            # Balance already deducted
             return {"result": "loss", "profit": 0, "win": 0}
 
     async def close(self):
