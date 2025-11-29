@@ -182,3 +182,27 @@ class RiskManager:
                 'streak_limit': self.streak_limit
             }
         }
+    
+    def calculate_position_size(self, balance: float) -> float:
+        """
+        Calculate position size based on balance and risk per trade.
+        
+        Args:
+            balance: Current account balance
+            
+        Returns:
+            Position size in dollars
+        """
+        # Calculate base position size
+        position_size = balance * self.risk_per_trade
+        
+        # Apply maximum risk limit
+        max_position = balance * self.max_risk_per_trade
+        position_size = min(position_size, max_position)
+        
+        # Minimum position size
+        min_position = 1.0
+        position_size = max(position_size, min_position)
+        
+        # Round to 2 decimals
+        return round(position_size, 2)

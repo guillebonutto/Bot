@@ -17,6 +17,7 @@ trading:
     M10: 600
     M15: 900
     M30: 1800
+    H1: 3600
   
   selected_timeframes:
     - "M5"

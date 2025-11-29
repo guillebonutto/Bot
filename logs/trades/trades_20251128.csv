@@ -26,3 +26,7 @@ timestamp,trade_id,pair,timeframe,decision,signal_score,pattern_detected,price,e
 2025-11-28 06:29:54,b635c46e-81bc-45a7-bd5b-330298fbb7e4,USDCAD_otc,M5,SELL,5,doble_techo,1.39937,1.4004470386591223,,0,0,0,0,0,False,False,,,0,LOSS,,300,
 2025-11-28 07:21:32,eaaf6e99-6254-4527-b661-c39fa0fd1e57,USDJPY_otc,M5,SELL,5,doble_techo,155.596,155.71561604797648,,0,0,0,0,0,False,False,,,0,LOSS,,300,
 2025-11-28 08:16:47,714a0d4c-cf9c-4cb3-ae33-3386e56ec189,EURUSD_otc,M5,SELL,5,doble_techo,1.16641,1.1686751171944498,,0,0,0,0,0,False,False,,,0,LOSS,,300,
+2025-11-28 22:33:45,8efa1242-9661-42d3-9cfd-4df6634acaed,EURUSD_otc,M30,SELL,9,Doble Techo Confirmado,1.1654,1.1658777442086206,,0,0,0,0,0,False,False,,,0,LOSS,,1800,
+2025-11-28 23:04:57,e6101066-6542-48f6-9eaf-15c04331f6fe,USDMXN_otc,M15,SELL,9,Doble Techo Confirmado,19.9029,19.946092989110408,,0,0,0,0,0,False,False,,,0,LOSS,,900,
+2025-11-28 23:21:22,cff7f339-1294-45ff-a416-57c0df24efa8,EURUSD_otc,M30,SELL,9,Doble Techo Confirmado,1.16478,1.165852284310823,,0,0,0,0,0,False,False,,,0,WIN,0.0,1800,
+2025-11-28 23:53:09,f4504a2f-11dd-4a46-9081-f3bc7ee87f80,EURUSD_otc,M30,SELL,9,Doble Techo Confirmado,1.16265,1.1659661841001878,,0,0,0,0,0,False,False,,,0,PENDING,,1800,
