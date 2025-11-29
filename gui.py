@@ -6,8 +6,8 @@ import asyncio
 import sys
 import os
 
-# Importar lógica del bot
-import main
+# Importar ambos bots
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'bots'))
 
 # Configuración de colores (Tema Dark/Demon)
 COLOR_BG = "#1a0b0b"       # Fondo oscuro rojizo
@@ -60,7 +60,7 @@ class TradingBotGUI:
         btn_frame = tk.Frame(main_frame, bg=COLOR_BG)
         btn_frame.pack(pady=20)
 
-        self.start_btn = tk.Button(btn_frame, text="🔥 INICIAR BOT 🔥", font=("Arial", 14, "bold"),
+        self.start_btn = tk.Button(btn_frame, text="🔥 INICIAR BOTS 🔥", font=("Arial", 14, "bold"),
                                    bg=COLOR_BTN_BG, fg=COLOR_BTN_FG, activebackground="#ff0000",
                                    command=self.start_bot, width=20)
         self.start_btn.pack(side="left", padx=10)
@@ -135,9 +135,11 @@ class TradingBotGUI:
         self.start_btn.config(state="disabled", bg="#333333")
         self.stop_btn.config(state="normal", bg="#ff0000")
         self.log_message("🔥 INICIANDO SISTEMA...")
+        self.log_message("🤖 Bot EMA Pullback: Activado")
+        self.log_message("🎯 Bot Round Levels: Activado")
 
         # Run in thread
-        self.bot_thread = threading.Thread(target=self.run_async_bot, args=(ssid, token, chat_id))
+        self.bot_thread = threading.Thread(target=self.run_async_bots, args=(ssid,))
         self.bot_thread.daemon = True
         self.bot_thread.start()
 
@@ -149,23 +151,44 @@ class TradingBotGUI:
             self.start_btn.config(state="normal", bg=COLOR_BTN_BG)
             self.stop_btn.config(state="disabled", bg="#333333")
 
-    def run_async_bot(self, ssid, token, chat_id):
+    def run_async_bots(self, ssid):
+        """Ejecuta ambos bots en paralelo"""
         try:
-            # Ejecutar el loop de asyncio
-            asyncio.run(main.run_bot(
-                ssid=ssid,
-                telegram_token=token,
-                telegram_chat_id=chat_id,
-                logger_callback=self.safe_log,
-                stop_event=self.stop_event
-            ))
+            # Guardar SSID en variable de entorno para que los bots lo usen
+            os.environ["POCKETOPTION_SSID"] = ssid
+            
+            # Ejecutar el loop de asyncio con ambos bots
+            asyncio.run(self.run_both_bots())
         except Exception as e:
-            self.safe_log(f"❌ ERROR FATAL EN BOT: {e}")
+            self.safe_log(f"❌ ERROR FATAL EN BOTS: {e}")
         finally:
-            self.safe_log("ℹ️ Bot detenido.")
+            self.safe_log("ℹ️ Bots detenidos.")
             # Reset UI safely
             self.root.after(0, lambda: self.start_btn.config(state="normal", bg=COLOR_BTN_BG))
             self.root.after(0, lambda: self.stop_btn.config(state="disabled", bg="#333333"))
+
+    async def run_both_bots(self):
+        """Ejecuta ambos bots simultáneamente"""
+        # Importar las funciones main de cada bot
+        from bots.bot_ema_pullback import main as ema_main
+        from bots.bot_round_levels import main as round_main
+        
+        # Crear tareas para ambos bots
+        task1 = asyncio.create_task(self.run_bot_with_logging(ema_main(), "EMA"))
+        task2 = asyncio.create_task(self.run_bot_with_logging(round_main(), "ROUND"))
+        
+        # Esperar a que ambos terminen (o hasta que se detenga)
+        await asyncio.gather(task1, task2, return_exceptions=True)
+
+    async def run_bot_with_logging(self, bot_coro, bot_name):
+        """Wrapper para agregar logging específico por bot"""
+        try:
+            self.safe_log(f"[{bot_name}] Iniciado")
+            await bot_coro
+        except Exception as e:
+            self.safe_log(f"[{bot_name}] Error: {e}")
+        finally:
+            self.safe_log(f"[{bot_name}] Detenido")
 
     def safe_log(self, msg):
         # Thread-safe logging update

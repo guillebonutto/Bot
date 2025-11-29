@@ -450,12 +450,12 @@ async def generate_signal(api, pair, tf, bot_state, config, shadow_trader=None):
         return {
             'pair': pair,
             'tf': tf,
-            'signal': str(best['direction']),
+            'signal': str(best_signal['direction']),
             'timestamp': last.name,
             'duration': timeframes[tf],
-            'score': best['score'],
-            'pattern': str(best['pattern']) if best['pattern'] else None,
-            'source': str(best['source']),
+            'score': best_signal['score'],
+            'pattern': str(best_signal['pattern']) if best_signal['pattern'] else None,
+            'source': str(best_signal['source']),
             'price': float(last['close']),
             'ema': float(last.get('ema_long', np.nan)),
             'indicators': ', '.join(indicators_used) if indicators_used else 'N/A'
