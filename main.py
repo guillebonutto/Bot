@@ -726,27 +726,58 @@ async def run_bot(ssid, telegram_token, telegram_chat_id, logger_callback=None, 
                     
                     # Execute
                     try:
-                        # log(f"⚡ Ejecutando trade en {signal['pair']}...", "info")
-                        # result = await api.open_trade(...) 
-                        # Mock execution for now
-                        log(f"✅ Trade simulado exitoso: {signal['pair']} ${amount}", "info")
+                        log(f"⚡ Ejecutando trade en {signal['pair']}...", "info")
                         
-                        # Record trade
-                        await bot_state.add_trade({
-                            'pair': signal['pair'],
-                            'amount': amount,
-                            'result': 'WIN', # Mock result
-                            'timestamp': datetime.now(timezone.utc)
-                        })
+                        # Determine direction and execute
+                        trade_id = None
+                        trade_info = None
                         
-                        # Send Telegram
-                        tg_send(
-                            f"🚀 SEÑAL EJECUTADA\n"
-                            f"Pair: {signal['pair']}\n"
-                            f"Dir: {signal['signal']}\n"
-                            f"Score: {signal['score']}\n"
-                            f"Pattern: {signal['pattern']}"
-                        )
+                        if signal['signal'] == 'BUY' or signal['signal'] == str(Direction.BUY):
+                             trade_id, trade_info = await api.buy(signal['pair'], amount, signal['duration'])
+                        else:
+                             trade_id, trade_info = await api.sell(signal['pair'], amount, signal['duration'])
+                        
+                        if trade_id:
+                            log(f"✅ Trade enviado exitoso: {signal['pair']} ${amount} (ID: {trade_id})", "info")
+                            
+                            # Update balance locally immediately (mock or real)
+                            # For mock, we know it deducts immediately. For real API, it might take a moment.
+                            # We can force a balance refresh or manually deduct for display.
+                            if balance is not None:
+                                balance -= amount
+                                log(f"💰 Balance actualizado (estimado): ${balance:.2f}", "info")
+                            
+                            # Record trade
+                            await bot_state.add_trade({
+                                'pair': signal['pair'],
+                                'amount': amount,
+                                'result': 'PENDING', # Will be updated later if we tracked it
+                                'trade_id': trade_id,
+                                'timestamp': datetime.now(timezone.utc)
+                            })
+                            
+                            # Send Telegram
+                            tg_send(
+                                f"🚀 SEÑAL EJECUTADA\n"
+                                f"Pair: {signal['pair']}\n"
+                                f"Dir: {signal['signal']}\n"
+                                f"Score: {signal['score']}\n"
+                                f"Amount: ${amount}\n"
+                                f"Pattern: {signal['pattern']}"
+                            )
+                            
+                            # Launch background task to check win result (Mock only for now)
+                            if hasattr(api, 'check_win'):
+                                async def check_result_later(tid, duration):
+                                    await asyncio.sleep(duration)
+                                    res = await api.check_win(tid)
+                                    log(f"🏁 Resultado Trade {tid}: {res}", "info")
+                                    # Balance update should happen in next cycle or we can fetch it
+                                    
+                                asyncio.create_task(check_result_later(trade_id, signal['duration']))
+
+                        else:
+                             log(f"❌ Error: No se recibió ID de trade", "error")
                         
                     except Exception as e:
                         log(f"❌ Error ejecutando trade: {e}", "error")
