@@ -15,6 +15,11 @@ except ImportError:
     print("Instalá: pip install BinaryOptionsToolsV2")
     exit()
 
+# Importar formateador de Telegram
+import sys
+sys.path.insert(0, os.path.dirname(__file__))
+from telegram_formatter import telegram, send_trade_signal, send_trade_result
+
 # ========================= CONFIGURACIÓN =========================
 PAIRS = ['EURUSD_otc', 'GBPUSD_otc', 'AUDUSD_otc', 'USDCAD_otc', 'AUDCAD_otc', 'USDMXN_otc', 'USDCOP_otc']
 TIMEFRAMES = {"M1": 60, "M5": 300}
@@ -23,23 +28,14 @@ MIN_AMOUNT = 1.0
 CHECK_EVERY_SECONDS = 7
 COOLDOWN_SECONDS = 60
 
-# Telegram
+# Telegram (legacy - ahora usa telegram_formatter.py)
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
 def send_telegram(msg: str):
-    """Enviar mensaje por Telegram"""
-    if not TELEGRAM_TOKEN or not TELEGRAM_CHAT_ID:
-        return
-    try:
-        import requests
-        requests.post(
-            f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
-            json={"chat_id": TELEGRAM_CHAT_ID, "text": msg},
-            timeout=10
-        )
-    except Exception as e:
-        print(f"⚠️ Error Telegram: {e}")
+    """Enviar mensaje por Telegram (compatibilidad)"""
+    # Ahora solo usa el formateador
+    pass
 
 # ========================= UTILS =========================
 def clean_ssid(ssid: str) -> str:
@@ -188,14 +184,13 @@ async def main():
                             else:
                                 await api.sell(pair, amount, duration)
                             
-                            # Telegram: Operación ejecutada
-                            send_telegram(
-                                f"🚀 SEÑAL EJECUTADA\n"
-                                f"Par: {pair}\n"
-                                f"Dirección: {dir_text}\n"
-                                f"TF: {name}\n"
-                                f"Monto: ${amount}\n"
-                                f"Balance: ${balance:.2f}{prob_text}"
+                            # Telegram: Operación ejecutada (con formato bonito)
+                            send_trade_signal(
+                                pair=pair,
+                                direction=signal["direction"],
+                                price=signal.get('price', 0),
+                                timeframe=name,
+                                confidence=signal.get('prob', None)
                             )
                             
                             recent_trades[pair] = current_time
@@ -208,20 +203,22 @@ async def main():
                                 if balance_after > balance_before:
                                     profit = balance_after - balance_before
                                     print(f"✅ GANÓ: +${profit:.2f}")
-                                    send_telegram(
-                                        f"✅ GANÓ!\n"
-                                        f"Par: {pair}\n"
-                                        f"Ganancia: +${profit:.2f}\n"
-                                        f"Balance: ${balance_after:.2f}"
+                                    send_trade_result(
+                                        pair=pair,
+                                        direction=signal["direction"],
+                                        amount=amount,
+                                        result="WIN",
+                                        profit_loss=profit
                                     )
                                 else:
                                     loss = balance_before - balance_after
                                     print(f"❌ PERDIÓ: -${loss:.2f}")
-                                    send_telegram(
-                                        f"❌ PERDIÓ\n"
-                                        f"Par: {pair}\n"
-                                        f"Pérdida: -${loss:.2f}\n"
-                                        f"Balance: ${balance_after:.2f}"
+                                    send_trade_result(
+                                        pair=pair,
+                                        direction=signal["direction"],
+                                        amount=amount,
+                                        result="LOSS",
+                                        profit_loss=-loss
                                     )
                             except Exception as e:
                                 print(f"⚠️ No se pudo verificar resultado: {e}")

@@ -1,0 +1,143 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+TELEGRAM_MEJORA_RESUMEN.txt
+Resumen de la mejora de mensajes de Telegram
+"""
+
+RESUMEN = """
+=====================================================================
+              MEJORA DE MENSAJES DE TELEGRAM - RESUMEN
+=====================================================================
+
+ARCHIVO NUEVO CREADO:
+═════════════════════
+✅ telegram_formatter.py
+   - Módulo completo para formatear mensajes
+   - Clase TelegramFormatter con 8+ métodos
+   - Emojis de países automáticos
+   - HTML formatting (negrita, itálica, código)
+   - Timestamps automáticos
+
+ARCHIVOS ACTUALIZADOS:
+════════════════════════
+✅ bot_ema_pullback.py
+   - Ahora usa telegram_formatter.py
+   - Mensajes bonitos para señales
+   - Mensajes bonitos para resultados
+
+✅ main.py
+   - Import de telegram_formatter
+
+
+TIPOS DE MENSAJES DISPONIBLES:
+════════════════════════════════
+
+1. SEÑAL DE TRADING
+   - Par con emoji de país
+   - Dirección (BUY/SELL)
+   - Precio y timeframe
+   - Confianza (opcional)
+
+2. RESULTADO WIN
+   - Operación finalizada con ✅
+   - Monto y ganancia en verde
+
+3. RESULTADO LOSS
+   - Operación finalizada con ❌
+   - Monto y pérdida en rojo
+
+4. SESIÓN INICIADA
+   - Nombre del bot
+   - Hora de inicio
+
+5. ESTADÍSTICAS DIARIAS
+   - Total de operaciones
+   - Ganancias/Pérdidas
+   - Tasa de ganancia
+   - Balance
+
+6. ERRORES
+   - Mensaje de error destacado
+
+7. ALERTA DE BALANCE BAJO
+   - Balance actual vs umbral
+
+8. ESTADO DEL SISTEMA
+   - Pares monitoreados
+   - Bots activos
+   - Balance total
+
+
+CÓMO USAR:
+══════════
+
+from telegram_formatter import send_trade_signal, send_trade_result
+
+# Enviar señal
+send_trade_signal("EURUSD_otc", "BUY", 1.0950, "M5", 85.5)
+
+# Enviar resultado
+send_trade_result("EURUSD_otc", "BUY", 10.0, "WIN", 5.50)
+
+
+CONFIGURACIÓN:
+════════════════
+
+En .env:
+TELEGRAM_TOKEN=tu_token_aqui
+TELEGRAM_CHAT_ID=tu_chat_id_aqui
+
+
+OBTENER TOKEN:
+════════════════
+
+1. Ve a https://t.me/BotFather
+2. Escribe: /newbot
+3. Sigue instrucciones
+4. Copia el token
+
+
+OBTENER CHAT ID:
+══════════════════
+
+1. Inicia tu bot en Telegram
+2. Envía un mensaje
+3. Ve a: https://api.telegram.org/bot<TOKEN>/getUpdates
+4. Reemplaza <TOKEN> con tu token
+5. Busca "chat": {"id": 123456789}
+6. Ese número es tu CHAT_ID
+
+
+VER EJEMPLOS:
+══════════════
+
+python test_telegram_formatter.py
+
+
+CARACTERÍSTICAS:
+═════════════════
+
+✓ Emojis automáticos para cada país
+✓ Colores HTML (negrita, itálica)
+✓ Timestamps automáticos
+✓ Fácil de personalizar
+✓ Compatible con todos los clientes Telegram
+✓ Sin errores si no está configurado
+
+
+PRÓXIMOS PASOS:
+════════════════
+
+1. Obtén tu TELEGRAM_TOKEN y TELEGRAM_CHAT_ID
+2. Configura en .env
+3. Ejecuta: python test_telegram_formatter.py (para ver ejemplos)
+4. Ejecuta: python gui.py
+5. Inicia bots y recibe mensajes bonitos en Telegram!
+
+
+¡TODO HECHO! Los bots ahora enviarán mensajes más bonitos a Telegram.
+"""
+
+if __name__ == "__main__":
+    print(RESUMEN)

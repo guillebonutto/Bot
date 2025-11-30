@@ -2,6 +2,10 @@
 import os, asyncio, pandas as pd, time, requests
 from datetime import datetime
 from dotenv import load_dotenv
+from trade_logger import trade_logger
+from shadow_trades_logger import shadow_trades_logger
+from telegram_formatter import telegram, send_trade_signal, send_trade_result
+
 load_dotenv()
 
 try:
@@ -14,17 +18,15 @@ except Exception as e:
 PAIRS = ["EURUSD_otc", "GBPUSD_otc", "USDJPY_otc", "AUDUSD_otc"]
 api = PocketOptionAsync(ssid=os.getenv("POCKETOPTION_SSID"))
 
-# ========== TELEGRAM OPCIONAL ==========
+# ========== TELEGRAM OPCIONAL (ahora con formato bonito) ==========
 def tg(msg):
-    token = os.getenv("TELEGRAM_TOKEN")
-    chat = os.getenv("TELEGRAM_CHAT_ID")
-    if token and chat:
-        try: requests.post(f"https://api.telegram.org/bot{token}/sendMessage", json={"chat_id":chat, "text":msg}, timeout=5)
-        except: pass
+    """Función legacy - usa telegram_formatter.py ahora"""
+    # Los mensajes ahora se envían con telegram_formatter
+    pass
 
 # ========== SEÑALES ==========
 def get_signal(df):
-    if len(df) < 60: return None
+    if len(df) < 60: return None, None, None
     df = df.copy()
     df['e8']  = df['close'].ewm(span=8,  adjust=False).mean()
     df['e21'] = df['close'].ewm(span=21, adjust=False).mean()
@@ -36,20 +38,20 @@ def get_signal(df):
     
     # EMA 8/21/55
     if e8 > e21 > e55 and p <= e8 and c > e8:
-        return "BUY", "EMA"
+        return "BUY", "EMA", {"e8": e8, "e21": e21, "e55": e55, "price": c}
     if e8 < e21 < e55 and p >= e8 and c < e8:
-        return "SELL", "EMA"
+        return "SELL", "EMA", {"e8": e8, "e21": e21, "e55": e55, "price": c}
     
     # ROUND LEVELS (solo si no hubo EMA)
     price = c
     level = round(price * 2) / 2
     if abs(price - level) <= 0.0008:  # 8 pips máximo
         if price < level and e8 > e21 and c > df['open'].iloc[-1]:
-            return "BUY", "ROUND"
+            return "BUY", "ROUND", {"e8": e8, "e21": e21, "e55": e55, "price": c, "level": level}
         if price > level and e8 < e21 and c < df['open'].iloc[-1]:
-            return "SELL", "ROUND"
+            return "SELL", "ROUND", {"e8": e8, "e21": e21, "e55": e55, "price": c, "level": level}
     
-    return None, None
+    return None, None, None
 
 # ========== MAIN ==========
 async def main():
@@ -89,17 +91,63 @@ async def main():
                 df['time'] = pd.to_datetime(df['time'], unit='s')
                 df = df.set_index('time').astype(float)
 
-                direction, source = get_signal(df)
+                direction, source, metrics = get_signal(df)
                 if direction and not traded:
                     traded = True
                     txt = f"{datetime.now().strftime('%H:%M:%S')} → {pair} {direction} ${amount} [{source}]"
                     print(txt)
                     tg(txt)
 
-                    if direction == "BUY":
-                        await api.buy(pair, amount, 300)
-                    else:
-                        await api.sell(pair, amount, 300)
+                    trade_id = None
+                    try:
+                        if direction == "BUY":
+                            # api.buy returns (trade_id, trade_details) or just trade_id depending on implementation
+                            # Based on inspection, it returns (trade_id, trade)
+                            result = await api.buy(pair, amount, 300)
+                        else:
+                            result = await api.sell(pair, amount, 300)
+                        
+                        # Handle result tuple
+                        if isinstance(result, tuple):
+                            trade_id = result[0]
+                        else:
+                            trade_id = result
+
+                        # LOGGING
+                        if trade_id:
+                            trade_data = {
+                                'timestamp': datetime.now(),
+                                'trade_id': trade_id,
+                                'pair': pair,
+                                'tf': 'M5',
+                                'timeframe': 'M5',
+                                'decision': direction,
+                                'signal': direction,
+                                'pattern_detected': source,
+                                'pattern': source,
+                                'price': metrics.get('price', 0),
+                                'ema': metrics.get('e8', 0),
+                                'rsi': metrics.get('rsi', 0),
+                                'ema_conf': metrics.get('ema_conf', 0),
+                                'tf_signal': metrics.get('tf_signal', 0),
+                                'atr': metrics.get('atr', 0),
+                                'triangle_active': metrics.get('triangle_active', 0),
+                                'reversal_candle': metrics.get('reversal_candle', 0),
+                                'near_support': metrics.get('near_support', 0),
+                                'near_resistance': metrics.get('near_resistance', 0),
+                                'htf_signal': metrics.get('htf_signal', 0),
+                                'notes': f"e21={metrics.get('e21',0):.5f}, e55={metrics.get('e55',0):.5f}",
+                                'expiry_time': 300,
+                                'result': 'PENDING'
+                            }
+                            # Registrar en ambos loggers
+                            trade_logger.log_trade(trade_data)
+                            shadow_trades_logger.log_trade(trade_data)
+                            print(f"   └── Guardado en CSV: ID {trade_id}")
+                            print(f"   └── Guardado en shadow_trades.csv: {trade_id}")
+
+                    except Exception as e:
+                        print(f"Error ejecutando orden: {e}")
                     
                     cooldown[pair] = now
                     await asyncio.sleep(65)
