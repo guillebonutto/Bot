@@ -52,13 +52,15 @@ def compute_indicators(df: pd.DataFrame, interval: int):
     df['adx'] = dx.ewm(span=14).mean()
 
     return df
-
 # ===================================================================
 # DETECTORES CORREGIDOS (AHORA SÍ FUNCIONAN)
 # ===================================================================
 def detectar_doble_techo(df: pd.DataFrame) -> Tuple[Optional[str], Optional[str], int]:
     lookback = 50
     if len(df) < lookback: return None, None, 0
+    
+    # Filter: Require some trend activity
+    if 'adx' in df.columns and df['adx'].iloc[-1] < 20: return None, None, 0
     
     high = df['high'].iloc[-lookback:]
     low = df['low'].iloc[-lookback:]
@@ -88,6 +90,9 @@ def detectar_doble_techo(df: pd.DataFrame) -> Tuple[Optional[str], Optional[str]
 def detectar_ruptura_canal(df: pd.DataFrame) -> Tuple[Optional[str], Optional[str], int]:
     window = 30
     if len(df) < window: return None, None, 0
+    
+    # Filter: Strong trend required for breakout
+    if 'adx' in df.columns and df['adx'].iloc[-1] < 25: return None, None, 0
     
     resistance = df['high'].iloc[-window:].max()
     support = df['low'].iloc[-window:].min()

@@ -107,8 +107,8 @@ class PocketOptionAsync:
         trade = self.active_trades.pop(trade_id)
         amount = trade['amount']
         
-        # Random win/loss
-        is_win = random.choice([True, False])
+        # Weighted win/loss (60% win rate for simulation satisfaction)
+        is_win = random.random() < 0.60
         
         if is_win:
             # Payout: amount + profit (92%)
