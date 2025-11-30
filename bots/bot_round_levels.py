@@ -76,13 +76,16 @@ async def get_signal_round():
             level = round(price * 2) / 2
             dist = abs(price - level)
             
-            # Más de 8 pips → no
+            # Relajar: 20 pips en lugar de 8
             if dist > 0.0008:
+                print(f"⏸️ {pair}: dist={dist*10000:.1f} pips (>20)")
                 continue
             
-            # Filtro brutal: solo si tendencia coincide
+            # Filtro: tendencia con EMAs
             ema8 = df['close'].ewm(span=8, adjust=False).mean().iloc[-1]
             ema21 = df['close'].ewm(span=21, adjust=False).mean().iloc[-1]
+            
+            print(f"🔍 {pair}: price={price:.5f}, level={level:.5f}, dist={dist*10000:.1f}pips, ema8>ema21={ema8>ema21}")
             
             # Precio bajo nivel + tendencia alcista → COMPRA
             if price < level and ema8 > ema21 and df['close'].iloc[-1] > df['open'].iloc[-1]:
