@@ -19,6 +19,12 @@ except ImportError:
 import sys
 sys.path.insert(0, os.path.dirname(__file__))
 from telegram_formatter import telegram, send_trade_signal, send_trade_result
+from telegram_listener import TelegramListener
+
+# Importar trade logger
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from trade_logger import trade_logger
 
 # ========================= CONFIGURACIÓN =========================
 PAIRS = ['EURUSD_otc', 'GBPUSD_otc', 'AUDUSD_otc', 'USDCAD_otc', 'AUDCAD_otc', 'USDMXN_otc', 'USDCOP_otc']
@@ -54,15 +60,29 @@ def clean_ssid(ssid: str) -> str:
 ssid = clean_ssid(os.getenv("POCKETOPTION_SSID"))
 api = PocketOptionAsync(ssid=ssid)
 
+# ========================= ML MODEL WITH HOT-RELOAD =========================
+# Inicializar variables globales primero
+ml_manager = None
+model = None
+
 try:
-    import joblib
-    model = joblib.load("ml_model.pkl")
-    ML_ACTIVE = True
-    ML_THRESHOLD = 0.62
-    print("Modelo ML cargado")
-except:
-    ML_ACTIVE = False
-    print("Sin modelo ML")
+    from ml_model_manager import ml_manager as _ml_manager
+    ml_manager = _ml_manager
+    ML_ACTIVE = ml_manager.is_active()
+    ML_THRESHOLD = 0.60  # Optimizado basado en análisis
+    print(f"✅ Modelo ML con hot-reload (threshold: {ML_THRESHOLD:.0%})")
+except ImportError:
+    # Fallback si ml_model_manager no está disponible
+    try:
+        import joblib
+        model = joblib.load("ml_model.pkl")
+        ML_ACTIVE = True
+        ML_THRESHOLD = 0.60
+        print(f"⚠️ Modelo ML sin hot-reload (threshold: {ML_THRESHOLD:.0%})")
+    except Exception as e:
+        ML_ACTIVE = False
+        ML_THRESHOLD = 0.60
+        print(f"❌ Sin modelo ML: {e}")
 
 # ========================= INDICADORES =========================
 def add_emas(df: pd.DataFrame) -> pd.DataFrame:
@@ -89,10 +109,26 @@ def get_signal(df: pd.DataFrame, pair: str, duration: int):
             except ValueError:
                 pair_idx = 0
             features = [[c, e8, e21, e55, duration/60, pair_idx]]
-            prob = model.predict_proba(features)[0][1]
+            # Usar ml_manager si está disponible (thread-safe)
+            if ml_manager is not None:
+                prob_result = ml_manager.predict_proba(features)
+                if prob_result is None:
+                    return None
+                prob = prob_result[0][1]
+            elif model is not None:
+                prob = model.predict_proba(features)[0][1]
+            else:
+                prob = 1.0  # Sin modelo, aceptar señal
+            
             if prob < ML_THRESHOLD:
                 return None
-        return {"direction": "BUY", "prob": prob}
+        return {
+            "direction": "BUY", 
+            "prob": prob,
+            "price": c,
+            "ema8": e8,
+            "ema21": e21
+        }
 
     if e8 < e21 < e55 and p >= e8 and c < e8:
         prob = 1.0
@@ -102,20 +138,49 @@ def get_signal(df: pd.DataFrame, pair: str, duration: int):
             except ValueError:
                 pair_idx = 0
             features = [[c, e8, e21, e55, duration/60, pair_idx]]
-            prob = model.predict_proba(features)[0][0]
+            # Usar ml_manager si está disponible (thread-safe)
+            if ml_manager is not None:
+                prob_result = ml_manager.predict_proba(features)
+                if prob_result is None:
+                    return None
+                prob = prob_result[0][0]
+            elif model is not None:
+                prob = model.predict_proba(features)[0][0]
+            else:
+                prob = 1.0  # Sin modelo, aceptar señal
+            
             if prob < ML_THRESHOLD:
                 return None
-        return {"direction": "SELL", "prob": prob}
+        return {
+            "direction": "SELL", 
+            "prob": prob,
+            "price": c,
+            "ema8": e8,
+            "ema21": e21
+        }
 
     return None
 
+# Variable global para compartir balance con el listener
+last_known_balance = 0.0
+
 # ========================= MAIN LOOP =========================
 async def main():
+    global last_known_balance
     print("BOT EMA PULLBACK INICIADO")
     print(f"Pares: {len(PAIRS)} | Risk: {RISK_PERCENT}% | Cooldown: {COOLDOWN_SECONDS}s")
     
     await asyncio.sleep(3)
     recent_trades = {}
+
+    # ========================= TELEGRAM LISTENER =========================
+    # Iniciar listener para comandos /balance y /info
+    def get_current_balance():
+        return last_known_balance
+    
+    telegram_listener = TelegramListener(TELEGRAM_TOKEN, get_current_balance)
+    telegram_listener.start()
+    print("✅ Telegram Listener iniciado")
 
     while True:
         try:
@@ -133,6 +198,8 @@ async def main():
 
             print(f"\n{'='*60}")
             print(f"💰 Balance: ${balance:.2f}")
+            last_known_balance = balance
+            
             amount = max(MIN_AMOUNT, round(balance * RISK_PERCENT / 100, 2))
             print(f"💵 Monto: ${amount:.2f}")
             traded = False
@@ -179,6 +246,25 @@ async def main():
                             # Guardar balance antes
                             balance_before = balance
 
+                            # Generar trade_id y loguear operación
+                            import uuid
+                            trade_id = str(uuid.uuid4())[:8]
+                            trade_logger.log_trade({
+                                "timestamp": datetime.now(),
+                                "trade_id": trade_id,
+                                "pair": pair,
+                                "timeframe": name,
+                                "decision": signal["direction"],
+                                "signal_score": signal.get("prob", 1.0),
+                                "pattern_detected": "EMA Pullback",
+                                "price": signal["price"],
+                                "ema": signal["ema8"],
+                                "ema_conf": 1 if signal["ema8"] > signal["ema21"] else -1,
+                                "expiry_time": duration,
+                                "result": "PENDING",
+                                "notes": f"ML_prob={signal.get('prob', 1.0):.2%}"
+                            })
+
                             if signal["direction"] == "BUY":
                                 await api.buy(pair, amount, duration)
                             else:
@@ -196,13 +282,13 @@ async def main():
                             recent_trades[pair] = current_time
                             print(f"⏳ Esperando {duration}s...")
                             await asyncio.sleep(duration + 5)
-                            
                             # Verificar resultado
                             try:
                                 balance_after = await api.balance()
                                 if balance_after > balance_before:
                                     profit = balance_after - balance_before
                                     print(f"✅ GANÓ: +${profit:.2f}")
+                                    trade_logger.update_trade_result(trade_id, "WIN", profit)
                                     send_trade_result(
                                         pair=pair,
                                         direction=signal["direction"],
@@ -213,6 +299,7 @@ async def main():
                                 else:
                                     loss = balance_before - balance_after
                                     print(f"❌ PERDIÓ: -${loss:.2f}")
+                                    trade_logger.update_trade_result(trade_id, "LOSS", -loss)
                                     send_trade_result(
                                         pair=pair,
                                         direction=signal["direction"],

@@ -57,7 +57,7 @@ class TelegramFormatter:
 <b>Precio:</b> 💲 {price:.5f}"""
         
         if confidence:
-            message += f"\n<b>Confianza:</b> 📊 {confidence:.1f}%"
+            message += f"\n<b>Confianza:</b> 📊 {confidence*100:.1f}%"
         
         message += f"\n\n<i>⏰ {datetime.now().strftime('%H:%M:%S')}</i>"
         
