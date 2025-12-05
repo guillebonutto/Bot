@@ -169,11 +169,27 @@ class TelegramListener:
             if not all_files:
                 return stats
             
-            df = pd.concat((pd.read_csv(f) for f in all_files), ignore_index=True)
+            dfs = []
+            for f in all_files:
+                try:
+                    df_temp = pd.read_csv(f)
+                    if not df_temp.empty and not df_temp.isna().all().all():
+                        dfs.append(df_temp)
+                except Exception:
+                    continue
+            
+            if not dfs:
+                return stats
+                
+            df = pd.concat(dfs, ignore_index=True)
             df['timestamp'] = pd.to_datetime(df['timestamp'])
             
             # Filtrar completados
             completed = df[df['result'].isin(['WIN', 'LOSS'])]
+            
+            # Filtrar trades de DEMO
+            if 'trade_id' in completed.columns:
+                completed = completed[~completed['trade_id'].astype(str).str.startswith('DEMO')]
             
             if len(completed) > 0:
                 stats['start_date'] = completed['timestamp'].min().strftime('%d/%m/%Y')
@@ -206,7 +222,19 @@ class TelegramListener:
             if not all_files:
                 return None
             
-            df = pd.concat((pd.read_csv(f) for f in all_files), ignore_index=True)
+            dfs = []
+            for f in all_files:
+                try:
+                    df_temp = pd.read_csv(f)
+                    if not df_temp.empty and not df_temp.isna().all().all():
+                        dfs.append(df_temp)
+                except Exception:
+                    continue
+            
+            if not dfs:
+                return None
+                
+            df = pd.concat(dfs, ignore_index=True)
             df['timestamp'] = pd.to_datetime(df['timestamp'])
             df = df.sort_values('timestamp')
             
@@ -215,6 +243,11 @@ class TelegramListener:
                 return None
             
             df = df[df['result'].isin(['WIN', 'LOSS'])].copy()
+            
+            # Filtrar trades de DEMO
+            if 'trade_id' in df.columns:
+                df = df[~df['trade_id'].astype(str).str.startswith('DEMO')]
+            
             if len(df) == 0:
                 return None
             
