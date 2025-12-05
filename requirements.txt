@@ -1,9 +1,6 @@
 pandas
 numpy
 requests
-pandas
-numpy
-requests
 scikit-learn
 joblib
 lightgbm
@@ -14,3 +11,5 @@ pytest
 pytest-asyncio
 PyYAML
 Pillow
+matplotlib
+seaborn

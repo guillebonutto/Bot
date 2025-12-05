@@ -94,21 +94,41 @@ async def main():
                 dir_text = "COMPRA" if signal["direction"] == "BUY" else "VENTA"
                 print(f"\n{signal['pair']} {dir_text} | Nivel: {signal['level']:.5f} | {signal['dist']*10000:.1f} pips")
                 
+                trade_id = str(uuid.uuid4())[:8]
                 trade_logger.log_trade({
                     "timestamp": datetime.now(),
-                    "trade_id": str(uuid.uuid4())[:8],
+                    "trade_id": trade_id,
                     "pair": signal["pair"],
                     "decision": signal["direction"],
                     "pattern_detected": f"Round Level {signal['level']:.5f}",
                     "result": "PENDING"
                 })
                 
+                # Guardar balance antes
+                balance_before = balance
+
                 if signal["direction"] == "BUY":
                     await api.buy(signal["pair"], amount, TIMEFRAME)
                 else:
                     await api.sell(signal["pair"], amount, TIMEFRAME)
                     
-                await asyncio.sleep(70)
+                print(f"⏳ Esperando {TIMEFRAME}s para resultado...")
+                await asyncio.sleep(TIMEFRAME + 5)
+
+                # Verificar resultado
+                try:
+                    balance_after = await api.balance()
+                    if balance_after > balance_before:
+                        profit = balance_after - balance_before
+                        print(f"✅ GANÓ: +${profit:.2f}")
+                        trade_logger.update_trade_result(trade_id, "WIN", profit)
+                    else:
+                        loss = balance_before - balance_after
+                        print(f"❌ PERDIÓ: -${loss:.2f}")
+                        trade_logger.update_trade_result(trade_id, "LOSS", -loss)
+                except Exception as e:
+                    print(f"⚠️ No se pudo verificar resultado: {e}")
+
             else:
                 await asyncio.sleep(7)
                 

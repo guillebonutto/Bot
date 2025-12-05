@@ -5,6 +5,9 @@ import threading
 import asyncio
 import sys
 import os
+import subprocess
+import matplotlib
+import seaborn
 
 # Importar ambos bots
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'bots'))
@@ -137,6 +140,7 @@ class TradingBotGUI:
         self.log_message("🔥 INICIANDO SISTEMA...")
         self.log_message("🤖 Bot EMA Pullback: Activado")
         self.log_message("🎯 Bot Round Levels: Activado")
+        self.log_message(f"🐍 Python: {sys.executable}")
 
         # Run in thread
         self.bot_thread = threading.Thread(target=self.run_async_bots, args=(ssid,))
