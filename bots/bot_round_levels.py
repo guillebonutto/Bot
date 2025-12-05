@@ -21,48 +21,96 @@ RISK_PERCENT = 1.0
 MIN_AMOUNT = 1.0
 COOLDOWN_SECONDS = 70  # cooldown por par
 
+def normalize_df(df):
+    if df.empty:
+        return df
+        
+    # Mapeo de nombres posibles a los que necesitamos
+    col_map = {
+        'timestamp': 'time',
+        't': 'time',
+        'time': 'time',
+        'o': 'open',
+        'open': 'open',
+        'c': 'close',
+        'close': 'close',
+        'h': 'high',
+        'high': 'high',
+        'l': 'low',
+        'low': 'low'
+    }
+    
+    # Renombrar columnas si existen
+    df = df.rename(columns=col_map)
+    
+    # Asegurarnos de tener las columnas mínimas
+    required = ['time', 'open', 'close']
+    missing = [col for col in required if col not in df.columns]
+    if missing:
+        print(f"Columnas faltantes: {missing}")
+        return pd.DataFrame()
+        
+    df = df[required].copy()
+    df['time'] = pd.to_datetime(df['time'], unit='s', errors='coerce')
+    df = df.dropna(subset=['time'])
+    df = df.set_index('time')
+    df = df.astype(float)
+    return df
+
 # Inicializar API
+print("🔐 Buscando SSID en variables de entorno...")
 ssid = os.getenv("POCKETOPTION_SSID")
 if not ssid:
-    exit("Falta POCKETOPTION_SSID")
-api = PocketOptionAsync(ssid=ssid)
+    print("⚠️ POCKETOPTION_SSID no encontrado en variables de entorno")
+    ssid = input("🔐 Introduce tu SSID de PocketOption: ").strip()
+    if not ssid:
+        exit("SSID requerido")
+
+print(f"✓ SSID obtenido, inicializando API...")
+try:
+    api = PocketOptionAsync(ssid=ssid)
+    print("✓ API inicializada correctamente")
+except Exception as e:
+    print(f"❌ Error inicializando API: {e}")
+    exit(f"Error: {e}")
 
 # Cooldown por par
 last_trade_time = {}
 
 async def get_signal_round():
-    global last_trade_time
     now = datetime.now()
     
     for pair in PAIRS:
-        # Cooldown por par
-        if pair in last_trade_time:
-            if now - last_trade_time[pair] < timedelta(seconds=COOLDOWN_SECONDS):
-                continue
-        
+        if pair in last_trade_time and now - last_trade_time[pair] < timedelta(seconds=70):
+            continue
+            
         try:
-            raw = await api.get_candles(pair, TIMEFRAME, TIMEFRAME * 100)
-            if not raw or len(raw) < 50: 
+            raw = await api.get_candles(pair, 300, 300*100)
+            if not raw or len(raw) < 50:
                 continue
                 
             df = pd.DataFrame(raw)
-            if 'timestamp' in df.columns and 'time' not in df.columns:
-                df['time'] = df['timestamp']
-            df = df[['time', 'open', 'close']].copy()
-            df['time'] = pd.to_datetime(df['time'], unit='s')
-            df = df.set_index('time').astype(float)
-            
+            df = normalize_df(df)  # ← ESTA ES LA CLAVE
+            if df.empty or len(df) < 50:
+                continue
+                
             price = df['close'].iloc[-1]
+            open_p = df['open'].iloc[-1]
             level = round(price * 2) / 2
             dist = abs(price - level)
             
-            if dist > 0.0008:  # 8 pips máximo
+            if dist > 0.0018:  # 18 pips máximo
                 continue
                 
             ema8 = df['close'].ewm(span=8, adjust=False).mean().iloc[-1]
             ema21 = df['close'].ewm(span=21, adjust=False).mean().iloc[-1]
-            open_p = df['open'].iloc[-1]
             
+            # Filtro de vela fuerte
+            body = abs(price - open_p)
+            avg_body = df['close'].diff().abs().rolling(10).mean().iloc[-1]
+            if body < avg_body * 0.8:
+                continue
+                
             if price < level and ema8 > ema21 and price > open_p:
                 last_trade_time[pair] = now
                 return {"pair": pair, "direction": "BUY", "level": level, "dist": dist}
@@ -77,11 +125,15 @@ async def get_signal_round():
 
 async def main():
     print("BOT ROUND LEVELS GANADOR → SOLO EURUSD_otc y GBPUSD_otc")
+    print("✓ Iniciando bucle principal en 5 segundos...")
     await asyncio.sleep(5)
+    print("✓ Bucle principal iniciado")
     
     while True:
         try:
+            print("🔄 Obteniendo balance...")
             balance = await api.balance()
+            print(f"✓ Balance: ${balance:.2f}")
             if balance in [None, -1.0]:
                 print("Sesión expirada → actualizá SSID")
                 await asyncio.sleep(60)
@@ -89,7 +141,9 @@ async def main():
                 
             amount = max(MIN_AMOUNT, round(balance * RISK_PERCENT / 100, 2))
             
+            print("🔎 Buscando señal...")
             signal = await get_signal_round()
+            print(f"  → Resultado: {'Señal encontrada' if signal else 'Sin señal'}")
             if signal:
                 dir_text = "COMPRA" if signal["direction"] == "BUY" else "VENTA"
                 print(f"\n{signal['pair']} {dir_text} | Nivel: {signal['level']:.5f} | {signal['dist']*10000:.1f} pips")

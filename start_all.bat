@@ -2,15 +2,26 @@
 REM Start all bots in parallel using venv Python
 
 echo Starting all trading bots with venv...
+echo.
 
-REM Start each bot in new window using venv Python
-start "EMA Pullback Bot" python bots/bot_ema_pullback.py
-echo EMA Pullback Bot started
+REM Activate venv and start bots in separate windows
+REM Start EMA Pullback Bot
+if exist "bots\bot_ema_pullback.py" (
+    start "EMA Pullback Bot" cmd /k python -m bots.bot_ema_pullback
+    echo ✓ EMA Pullback Bot iniciado
+) else (
+    echo ✗ Error: bots\bot_ema_pullback.py no encontrado
+)
 
-start "Round Levels Bot" python bots/bot_round_levels.py
-echo Round Levels Bot started
+REM Start Round Levels Bot
+if exist "bots\bot_round_levels.py" (
+    start "Round Levels Bot" cmd /k python -m bots.bot_round_levels
+    echo ✓ Round Levels Bot iniciado
+) else (
+    echo ✗ Error: bots\bot_round_levels.py no encontrado
+)
 
 echo.
-echo All bots running in separate windows.
-echo Close each window to stop the respective bot.
+echo Todos los bots estan corriendo en ventanas separadas.
+echo Cierra cada ventana para detener el bot.
 pause
