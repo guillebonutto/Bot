@@ -1,0 +1,29 @@
+timestamp,trade_id,pair,timeframe,decision,signal_score,pattern_detected,price,ema,rsi,ema_conf,tf_signal,atr,triangle_active,reversal_candle,near_support,near_resistance,support_level,resistance_level,htf_signal,result,profit_loss,expiry_time,notes
+2025-11-22 00:14:00,fd76a155,GBPUSD_otc,M5,SELL,4,EMA Pullback,1.27436,1.27739,,-1,,,,,,,,,,LOSS,-1.0,300,Importado de Telegram
+2025-11-22 01:04:00,dfa0884f,USDMXN_otc,M30,BUY,5,EMA Pullback,19.0937,18.91764,,1,,,,,,,,,,LOSS,-1.0,1800,Importado de Telegram
+2025-11-22 01:51:00,99fa4b20,USDARS_otc,M10,BUY,5,EMA Pullback,1183.85,1179.26325,,1,,,,,,,,,,WIN,0.92,600,Importado de Telegram
+2025-11-22 02:02:00,76488de0,USDCAD_otc,M5,BUY,4,EMA Pullback,1.42331,1.4192,,1,,,,,,,,,,WIN,0.84,300,Importado de Telegram
+2025-11-22 02:07:00,9846843c,USDCAD_otc,M5,BUY,5,EMA Pullback,1.4235,1.41922,,1,,,,,,,,,,LOSS,-1.0,300,Importado de Telegram
+2025-11-22 02:13:00,a9dde786,USDCAD_otc,M5,BUY,5,EMA Pullback,1.42358,1.41931,,1,,,,,,,,,,LOSS,-1.0,300,Importado de Telegram
+2025-11-22 02:34:00,76edb183,USDCAD_otc,M5,BUY,5,EMA Pullback,1.42396,1.42029,,1,,,,,,,,,,WIN,0.75,300,Importado de Telegram
+2025-11-22 02:40:00,223d62ca,USDJPY_otc,M5,SELL,5,EMA Pullback,156.203,156.3881,,-1,,,,,,,,,,WIN,0.55,300,Importado de Telegram
+2025-11-22 02:45:00,a52ba919,USDCAD_otc,M10,BUY,5,EMA Pullback,1.4241,1.41811,,1,,,,,,,,,,LOSS,-1.0,600,Importado de Telegram
+2025-11-22 13:05:00,e8cdc563,AUDCAD_otc,M5,SELL,4,EMA Pullback,0.82163,0.82921,,-1,,,,,,,,,,WIN,0.9,300,Importado de Telegram
+2025-11-22 13:15:00,abbcb04b,AUDCAD_otc,M10,SELL,4,EMA Pullback,0.82181,0.83255,,-1,,,,,,,,,,LOSS,-1.0,600,Importado de Telegram
+2025-11-22 13:48:00,0fd8b708,USDJPY_otc,M5,BUY,4,EMA Pullback,157.317,156.90887,,1,,,,,,,,,,WIN,0.92,300,Importado de Telegram
+2025-11-22 13:54:00,82c652d3,AUDUSD_otc,M5,SELL,4,EMA Pullback,0.66179,0.66607,,-1,,,,,,,,,,WIN,0.92,300,Importado de Telegram
+2025-11-22 13:59:00,c63122f0,AUDUSD_otc,M5,SELL,4,EMA Pullback,0.66202,0.66587,,-1,,,,,,,,,,WIN,0.92,300,Importado de Telegram
+2025-11-22 14:05:00,90d18b85,AUDCAD_otc,M10,SELL,4,EMA Pullback,0.82455,0.83123,,-1,,,,,,,,,,LOSS,-1.0,600,Importado de Telegram
+2025-11-22 14:21:00,5e399737,AUDUSD_otc,M5,SELL,4,EMA Pullback,0.65963,0.66474,,-1,,,,,,,,,,LOSS,-1.0,300,Importado de Telegram
+2025-11-22 14:42:00,9151af24,AUDCAD_otc,M5,SELL,4,EMA Pullback,0.81497,0.82444,,-1,,,,,,,,,,LOSS,-1.0,300,Importado de Telegram
+2025-11-22 16:20:00,1b4da994,GBPUSD_otc,M15,BUY,4,EMA Pullback,1.2827,1.27488,,1,,,,,,,,,,LOSS,-1.0,900,Importado de Telegram
+2025-11-22 18:29:00,fd504563,USDCAD_otc,M10,SELL,4,doble_techo,1.41449,1.41808,,-1,,,,,,,,,,LOSS,-1.0,600,Importado de Telegram
+2025-11-22 19:16:00,a7d7a0d1,AUDUSD_otc,M5,BUY,4,ruptura_canal,0.66269,0.65974,,1,,,,,,,,,,LOSS,-1.0,300,Importado de Telegram
+2025-11-22 19:32:00,0b71f801,AUDUSD_otc,M5,BUY,4,EMA Pullback,0.66406,0.66014,,1,,,,,,,,,,WIN,0.82,300,Importado de Telegram
+2025-11-22 20:41:00,7579ec71,GBPUSD_otc,M30,BUY,5,ruptura_canal,1.28839,1.27966,,1,,,,,,,,,,LOSS,-1.0,1800,Importado de Telegram
+2025-11-22 21:35:00,8fb3fc9b,USDJPY_otc,M5,BUY,4,EMA Pullback,157.947,157.72957,,1,,,,,,,,,,WIN,0.52,300,Importado de Telegram
+2025-11-22 22:07:00,6b80a5e2,USDARS_otc,M5,SELL,4,Indicadores (EMA+TF+Confirmación),1166.46,1174.18983,,-1,,,,,,,,,,WIN,0.53,300,Importado de Telegram
+2025-11-22 22:13:00,b3f528c9,EURUSD_otc,M5,SELL,5,Indicadores (EMA+TF+Confirmación),1.1439,1.14598,,-1,,,,,,,,,,WIN,0.92,300,Importado de Telegram
+2025-11-22 22:18:00,2d7d921c,USDARS_otc,M5,SELL,4,Indicadores (EMA+TF+Confirmación),1166.07,1173.48096,,-1,,,,,,,,,,WIN,0.62,300,Importado de Telegram
+2025-11-22 22:27:00,50ab9eec,USDARS_otc,M5,SELL,5,Indicadores (EMA+TF+Confirmación),1166.18,1173.13894,,-1,,,,,,,,,,LOSS,-1.0,300,Importado de Telegram
+2025-11-22 22:39:00,ab6314b6,AUDUSD_otc,M10,BUY,4,EMA Pullback,0.66579,0.66247,,1,,,,,,,,,,LOSS,-1.0,600,Importado de Telegram

@@ -1,0 +1,176 @@
+2025-11-28 22:20:35 [INFO    ] bot_round_levels - [round_levels] 🤖 ROUND_LEVELS Bot initialized
+2025-11-28 22:20:35 [INFO    ] bot_round_levels - [round_levels] 📊 Timeframes: ['M5']
+2025-11-28 22:20:35 [INFO    ] bot_round_levels - [round_levels] 💰 ML Threshold: 0.65
+2025-11-28 22:20:35 [INFO    ] bot_round_levels - [round_levels] ======================================================================
+2025-11-28 22:20:35 [INFO    ] bot_round_levels - [round_levels] 🚀 ROUND_LEVELS BOT STARTING
+2025-11-28 22:20:35 [INFO    ] bot_round_levels - [round_levels] ======================================================================
+2025-11-28 22:20:35 [INFO    ] bot_round_levels - [round_levels] ✅ Account: DEMO - Balance: $-1.00
+2025-11-28 22:20:37 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing EURUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:20:37 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing GBPUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:20:37 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDJPY_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:20:37 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing AUDUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:20:37 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDCAD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:20:37 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing AUDCAD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:20:37 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDMXN_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:20:37 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDCOP_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:20:37 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDARS_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:20:37 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing #INTC_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:21:07 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing EURUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:21:07 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing GBPUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:21:07 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDJPY_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:21:07 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing AUDUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:21:07 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDCAD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:21:07 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing AUDCAD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:21:07 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDMXN_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:21:07 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDCOP_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:21:07 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDARS_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:21:07 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing #INTC_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:21:37 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing EURUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:21:37 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing GBPUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:21:37 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDJPY_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:21:37 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing AUDUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:21:37 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDCAD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:21:37 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing AUDCAD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:21:37 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDMXN_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:21:37 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDCOP_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:21:37 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDARS_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:21:37 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing #INTC_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:22:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing EURUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:22:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing GBPUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:22:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDJPY_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:22:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing AUDUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:22:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDCAD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:22:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing AUDCAD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:22:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDMXN_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:22:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDCOP_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:22:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDARS_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:22:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing #INTC_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:22:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing EURUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:22:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing GBPUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:22:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDJPY_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:22:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing AUDUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:22:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDCAD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:22:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing AUDCAD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:22:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDMXN_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:22:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDCOP_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:22:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDARS_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:22:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing #INTC_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:23:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing EURUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:23:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing GBPUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:23:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDJPY_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:23:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing AUDUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:23:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDCAD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:23:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing AUDCAD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:23:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDMXN_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:23:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDCOP_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:23:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDARS_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:23:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing #INTC_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:23:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing EURUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:23:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing GBPUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:23:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDJPY_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:23:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing AUDUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:23:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDCAD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:23:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing AUDCAD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:23:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDMXN_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:23:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDCOP_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:23:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDARS_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:23:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing #INTC_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:24:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing EURUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:24:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing GBPUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:24:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDJPY_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:24:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing AUDUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:24:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDCAD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:24:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing AUDCAD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:24:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDMXN_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:24:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDCOP_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:24:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDARS_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:24:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing #INTC_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:24:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing EURUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:24:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing GBPUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:24:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDJPY_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:24:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing AUDUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:24:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDCAD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:24:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing AUDCAD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:24:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDMXN_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:24:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDCOP_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:24:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDARS_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:24:38 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing #INTC_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:25:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing EURUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:25:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing GBPUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:25:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDJPY_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:25:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing AUDUSD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:25:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDCAD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:25:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing AUDCAD_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:25:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDMXN_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:25:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDCOP_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:25:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing USDARS_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:25:08 [ERROR   ] bot_round_levels - [round_levels] ⚠️ Error processing #INTC_otc M5: cannot import name 'detectar_flag' from 'strategy' (C:\Users\Guille\Downloads\PocketOptions\strategy.py)
+2025-11-28 22:25:35 [INFO    ] bot_round_levels - [round_levels] 🤖 ROUND_LEVELS Bot initialized
+2025-11-28 22:25:35 [INFO    ] bot_round_levels - [round_levels] 📊 Timeframes: ['M5']
+2025-11-28 22:25:35 [INFO    ] bot_round_levels - [round_levels] 💰 ML Threshold: 0.65
+2025-11-28 22:25:35 [INFO    ] bot_round_levels - [round_levels] ======================================================================
+2025-11-28 22:25:35 [INFO    ] bot_round_levels - [round_levels] 🚀 ROUND_LEVELS BOT STARTING
+2025-11-28 22:25:35 [INFO    ] bot_round_levels - [round_levels] ======================================================================
+2025-11-28 22:25:35 [INFO    ] bot_round_levels - [round_levels] ✅ Account: DEMO - Balance: $-1.00
+2025-11-28 22:49:06 [WARNING ] bot_round_levels - [round_levels] ⚠️ SSID looks like a websocket frame. Attempting to clean...
+2025-11-28 22:49:07 [INFO    ] bot_round_levels - [round_levels] 📚 API Library: BinaryOptionsToolsV2.pocketoption.asyncronous
+2025-11-28 22:49:07 [INFO    ] bot_round_levels - [round_levels] 🤖 ROUND_LEVELS Bot initialized
+2025-11-28 22:49:07 [INFO    ] bot_round_levels - [round_levels] 📊 Timeframes: ['M5']
+2025-11-28 22:49:07 [INFO    ] bot_round_levels - [round_levels] 💰 ML Threshold: 0.65
+2025-11-28 22:49:07 [INFO    ] bot_round_levels - [round_levels] ======================================================================
+2025-11-28 22:49:07 [INFO    ] bot_round_levels - [round_levels] 🚀 ROUND_LEVELS BOT STARTING
+2025-11-28 22:49:07 [INFO    ] bot_round_levels - [round_levels] ======================================================================
+2025-11-28 22:49:07 [WARNING ] bot_round_levels - [round_levels] ⚠️ Connection failed (Balance -1). Switching to SIMULATION MODE.
+2025-11-28 22:49:07 [INFO    ] bot_round_levels - [round_levels] ✅ Switched to Mock API
+2025-11-28 22:49:07 [INFO    ] bot_round_levels - [round_levels] ✅ Account: DEMO - Balance: $1000.00
+2025-11-28 22:52:49 [WARNING ] bot_round_levels - [round_levels] ⚠️ SSID looks like a websocket frame. Cleaning...
+2025-11-28 22:52:49 [INFO    ] bot_round_levels - [round_levels] 🧹 Extracted SSID: smpnr...bnb75
+2025-11-28 22:52:58 [WARNING ] bot_round_levels - [round_levels] ⚠️ SSID looks like a websocket frame. Cleaning...
+2025-11-28 22:52:58 [INFO    ] bot_round_levels - [round_levels] 🧹 Extracted SSID: smpnr...bnb75
+2025-11-28 22:53:08 [WARNING ] bot_round_levels - [round_levels] ⚠️ SSID looks like a websocket frame. Cleaning...
+2025-11-28 22:53:08 [INFO    ] bot_round_levels - [round_levels] 🧹 Extracted SSID: smpnr...bnb75
+2025-11-28 23:04:45 [INFO    ] bot_round_levels - [round_levels] 📚 API Library: BinaryOptionsToolsV2.pocketoption.asyncronous
+2025-11-28 23:04:45 [INFO    ] bot_round_levels - [round_levels] 🤖 ROUND_LEVELS Bot initialized
+2025-11-28 23:04:45 [INFO    ] bot_round_levels - [round_levels] 📊 Timeframes: ['M5']
+2025-11-28 23:04:45 [INFO    ] bot_round_levels - [round_levels] 💰 ML Threshold: 0.65
+2025-11-28 23:04:45 [INFO    ] bot_round_levels - [round_levels] ======================================================================
+2025-11-28 23:04:45 [INFO    ] bot_round_levels - [round_levels] 🚀 ROUND_LEVELS BOT STARTING
+2025-11-28 23:04:45 [INFO    ] bot_round_levels - [round_levels] ======================================================================
+2025-11-28 23:04:46 [WARNING ] bot_round_levels - [round_levels] ⚠️ Balance check failed (-1.0), retrying (1/3)...
+2025-11-28 23:04:48 [INFO    ] bot_round_levels - [round_levels] ✅ Account: DEMO - Balance: $16.51
+2025-11-28 23:07:30 [INFO    ] bot_round_levels - [round_levels] 📚 API Library: BinaryOptionsToolsV2.pocketoption.asyncronous
+2025-11-28 23:07:30 [INFO    ] bot_round_levels - [round_levels] 🤖 ROUND_LEVELS Bot initialized
+2025-11-28 23:07:30 [INFO    ] bot_round_levels - [round_levels] 📊 Timeframes: ['M5']
+2025-11-28 23:07:30 [INFO    ] bot_round_levels - [round_levels] 💰 ML Threshold: 0.65
+2025-11-28 23:07:30 [INFO    ] bot_round_levels - [round_levels] ======================================================================
+2025-11-28 23:07:30 [INFO    ] bot_round_levels - [round_levels] 🚀 ROUND_LEVELS BOT STARTING
+2025-11-28 23:07:30 [INFO    ] bot_round_levels - [round_levels] ======================================================================
+2025-11-28 23:07:30 [WARNING ] bot_round_levels - [round_levels] ⚠️ Balance check failed (-1.0), retrying (1/3)...
+2025-11-28 23:07:32 [INFO    ] bot_round_levels - [round_levels] ✅ Account: DEMO - Balance: $16.51
+2025-11-28 23:14:25 [INFO    ] bot_round_levels - [round_levels] 📚 API Library: BinaryOptionsToolsV2.pocketoption.asyncronous
+2025-11-28 23:14:25 [INFO    ] bot_round_levels - [round_levels] 🤖 ROUND_LEVELS Bot initialized
+2025-11-28 23:14:25 [INFO    ] bot_round_levels - [round_levels] 📊 Timeframes: ['M5']
+2025-11-28 23:14:25 [INFO    ] bot_round_levels - [round_levels] 💰 ML Threshold: 0.65
+2025-11-28 23:14:25 [INFO    ] bot_round_levels - [round_levels] ======================================================================
+2025-11-28 23:14:25 [INFO    ] bot_round_levels - [round_levels] 🚀 ROUND_LEVELS BOT STARTING
+2025-11-28 23:14:25 [INFO    ] bot_round_levels - [round_levels] ======================================================================
+2025-11-28 23:14:25 [WARNING ] bot_round_levels - [round_levels] ⚠️ Balance check failed (-1.0), retrying (1/3)...
+2025-11-28 23:14:27 [INFO    ] bot_round_levels - [round_levels] ✅ Account: DEMO - Balance: $16.51
+2025-11-28 23:16:59 [INFO    ] bot_round_levels - [round_levels] 📚 API Library: BinaryOptionsToolsV2.pocketoption.asyncronous
+2025-11-28 23:16:59 [INFO    ] bot_round_levels - [round_levels] 🤖 ROUND_LEVELS Bot initialized
+2025-11-28 23:16:59 [INFO    ] bot_round_levels - [round_levels] 📊 Timeframes: ['M5']
+2025-11-28 23:16:59 [INFO    ] bot_round_levels - [round_levels] 💰 ML Threshold: 0.65
+2025-11-28 23:16:59 [INFO    ] bot_round_levels - [round_levels] ======================================================================
+2025-11-28 23:16:59 [INFO    ] bot_round_levels - [round_levels] 🚀 ROUND_LEVELS BOT STARTING
+2025-11-28 23:16:59 [INFO    ] bot_round_levels - [round_levels] ======================================================================
+2025-11-28 23:16:59 [WARNING ] bot_round_levels - [round_levels] ⚠️ Balance check failed (-1.0), retrying (1/3)...
+2025-11-28 23:17:01 [INFO    ] bot_round_levels - [round_levels] ✅ Account: DEMO - Balance: $16.51
+2025-11-29 13:35:50 [INFO    ] bot_round_levels - [round_levels] 📚 API Library: BinaryOptionsToolsV2.pocketoption.asyncronous
+2025-11-29 13:35:50 [INFO    ] bot_round_levels - [round_levels] 🤖 ROUND_LEVELS Bot initialized
+2025-11-29 13:35:50 [INFO    ] bot_round_levels - [round_levels] 📊 Timeframes: ['M5']
+2025-11-29 13:35:50 [INFO    ] bot_round_levels - [round_levels] 💰 ML Threshold: 0.65
+2025-11-29 13:35:50 [INFO    ] bot_round_levels - [round_levels] ======================================================================
+2025-11-29 13:35:50 [INFO    ] bot_round_levels - [round_levels] 🚀 ROUND_LEVELS BOT STARTING
+2025-11-29 13:35:50 [INFO    ] bot_round_levels - [round_levels] ======================================================================
+2025-11-29 13:35:50 [WARNING ] bot_round_levels - [round_levels] ⚠️ Balance check failed (-1.0), retrying (1/3)...
+2025-11-29 13:35:52 [INFO    ] bot_round_levels - [round_levels] ✅ Account: DEMO - Balance: $16.51

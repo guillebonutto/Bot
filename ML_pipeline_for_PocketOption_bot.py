@@ -139,8 +139,12 @@ class ModelWrapper:
                         self.meta = json.load(f)
                 print(f"[ML] Modelo cargado: {self.model_path}")
             except Exception as e:
-                print(f"[ML] Error cargando modelo: {e}")
+                print(f"[ML] Error cargando modelo: {e}. Eliminando archivo corrupto para reiniciar.")
                 self.model = None
+                try:
+                    os.remove(self.model_path)
+                except OSError:
+                    pass
         else:
             print("[ML] No hay modelo entrenado todavía.")
 
@@ -231,7 +235,7 @@ class Trainer:
             return None, None
 
         # Simple preprocessing: numeric columns only
-        X = df_train.drop(columns=['label', 'timestamp', 'pair', 'decision'], errors='ignore')
+        X = df_train.drop(columns=['label', 'timestamp', 'pair', 'decision', 'trade_id', 'timeframe'], errors='ignore')
         # Convert booleans to ints
         for c in X.select_dtypes(include=['bool']).columns:
             X[c] = X[c].astype(int)
@@ -264,7 +268,12 @@ class Trainer:
                 'verbosity': -1,
                 'num_leaves': 31,
                 'learning_rate': 0.05,
-                'feature_fraction': 0.9
+                'feature_fraction': 0.8,
+                'bagging_fraction': 0.8,
+                'bagging_freq': 5,
+                'lambda_l1': 0.1,  # L1 regularization
+                'lambda_l2': 0.1,  # L2 regularization
+                'min_child_samples': 20
             }
             model = lgb.train(params, train_data, num_boost_round=200)
 

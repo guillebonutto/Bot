@@ -1,0 +1,2433 @@
+Professional Bot Trading, [21/11/2025 12:16]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDMXN_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 18.98410
+📊 EMA: 19.03103
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [21/11/2025 12:21]
+✅ GANADA (+$0.83)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   1W / 1L (50.0%)
+📅 Stats Hoy:
+   2 operaciones
+   1 pérdidas
+
+Professional Bot Trading, [21/11/2025 12:22]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M5
+Dirección: BUY
+Score: 4
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.66824
+📊 EMA: 0.66608
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [21/11/2025 12:27]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   2W / 1L (66.7%)
+📅 Stats Hoy:
+   3 operaciones
+   1 pérdidas
+
+Professional Bot Trading, [21/11/2025 12:27]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDCAD_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.85179
+📊 EMA: 0.86216
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [21/11/2025 12:32]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   2W / 2L (50.0%)
+📅 Stats Hoy:
+   4 operaciones
+   2 pérdidas
+
+Professional Bot Trading, [21/11/2025 12:34]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDCAD_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.85166
+📊 EMA: 0.86172
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [21/11/2025 12:39]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   3W / 2L (60.0%)
+📅 Stats Hoy:
+   5 operaciones
+   2 pérdidas
+
+Professional Bot Trading, [21/11/2025 12:39]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDCAD_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.85126
+📊 EMA: 0.86123
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [21/11/2025 12:44]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   3W / 3L (50.0%)
+📅 Stats Hoy:
+   6 operaciones
+   3 pérdidas
+
+Professional Bot Trading, [21/11/2025 14:28]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDCAD_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.40834
+📊 EMA: 1.41179
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [21/11/2025 14:33]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   0W / 1L (0.0%)
+📅 Stats Hoy:
+   1 operaciones
+   1 pérdidas
+
+Professional Bot Trading, [21/11/2025 14:34]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDCAD_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.40827
+📊 EMA: 1.41168
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [21/11/2025 14:40]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   0W / 2L (0.0%)
+📅 Stats Hoy:
+   2 operaciones
+   2 pérdidas
+
+Professional Bot Trading, [21/11/2025 14:55]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDCOP_otc
+TF: M5
+Dirección: BUY
+Score: 5
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 3782.51000
+📊 EMA: 3768.81339
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [21/11/2025 15:00]
+✅ GANADA (+$0.39)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   1W / 2L (33.3%)
+📅 Stats Hoy:
+   3 operaciones
+   2 pérdidas
+
+Professional Bot Trading, [21/11/2025 15:01]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDCAD_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.40769
+📊 EMA: 1.41087
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [21/11/2025 15:06]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   1W / 3L (25.0%)
+📅 Stats Hoy:
+   4 operaciones
+   3 pérdidas
+
+Professional Bot Trading, [21/11/2025 21:07]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDCOP_otc
+TF: M10
+Dirección: BUY
+Score: 5
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 3818.67000
+📊 EMA: 3798.41042
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [21/11/2025 21:17]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   1W / 4L (20.0%)
+📅 Stats Hoy:
+   1 operaciones
+   1 pérdidas
+
+Professional Bot Trading, [21/11/2025 21:33]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDMXN_otc
+TF: M10
+Dirección: BUY
+Score: 5
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 18.98240
+📊 EMA: 18.87932
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [21/11/2025 21:43]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   1W / 5L (16.7%)
+📅 Stats Hoy:
+   2 operaciones
+   2 pérdidas
+
+Professional Bot Trading, [21/11/2025 22:16]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDMXN_otc
+TF: M5
+Dirección: BUY
+Score: 5
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 19.11120
+📊 EMA: 18.93274
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [21/11/2025 22:21]
+✅ GANADA (+$0.50)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   1W / 0L (100.0%)
+📅 Stats Hoy:
+   1 operaciones
+   0 pérdidas
+
+Professional Bot Trading, [21/11/2025 22:22]
+📌 SEÑAL DETECTADA
+==============================
+Par: EURUSD_otc
+TF: M15
+Dirección: BUY
+Score: 5
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.14963
+📊 EMA: 1.14546
+⏱️ Duración: 15min
+💵 Monto: $1.00
+
+Professional Bot Trading, [21/11/2025 22:37]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   2W / 0L (100.0%)
+📅 Stats Hoy:
+   2 operaciones
+   0 pérdidas
+
+Professional Bot Trading, [21/11/2025 22:40]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDARS_otc
+TF: M10
+Dirección: BUY
+Score: 5
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 1182.32000
+📊 EMA: 1177.25214
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [21/11/2025 22:50]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   3W / 0L (100.0%)
+📅 Stats Hoy:
+   3 operaciones
+   0 pérdidas
+
+Professional Bot Trading, [21/11/2025 22:51]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDCAD_otc
+TF: M15
+Dirección: BUY
+Score: 5
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.41782
+📊 EMA: 1.41361
+⏱️ Duración: 15min
+💵 Monto: $1.00
+
+Professional Bot Trading, [21/11/2025 23:06]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   3W / 1L (75.0%)
+📅 Stats Hoy:
+   4 operaciones
+   1 pérdidas
+
+Professional Bot Trading, [22/11/2025 00:14]
+📌 SEÑAL DETECTADA
+==============================
+Par: GBPUSD_otc
+TF: M5
+Dirección: SELL
+Score: 4
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.27436
+📊 EMA: 1.27739
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 00:19]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   0W / 1L (0.0%)
+📅 Stats Hoy:
+   1 operaciones
+   1 pérdidas
+
+Professional Bot Trading, [22/11/2025 01:04]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDMXN_otc
+TF: M30
+Dirección: BUY
+Score: 5
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 19.09370
+📊 EMA: 18.91764
+⏱️ Duración: 30min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 01:35]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   0W / 1L (0.0%)
+📅 Stats Hoy:
+   1 operaciones
+   1 pérdidas
+
+Professional Bot Trading, [22/11/2025 01:51]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDARS_otc
+TF: M10
+Dirección: BUY
+Score: 5
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 1183.85000
+📊 EMA: 1179.26325
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 02:01]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   1W / 0L (100.0%)
+📅 Stats Hoy:
+   1 operaciones
+   0 pérdidas
+
+Professional Bot Trading, [22/11/2025 02:02]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDCAD_otc
+TF: M5
+Dirección: BUY
+Score: 4
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.42331
+📊 EMA: 1.41920
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 02:07]
+✅ GANADA (+$0.84)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   2W / 0L (100.0%)
+📅 Stats Hoy:
+   2 operaciones
+   0 pérdidas
+
+Professional Bot Trading, [22/11/2025 02:07]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDCAD_otc
+TF: M5
+Dirección: BUY
+Score: 5
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.42350
+📊 EMA: 1.41922
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 02:13]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   2W / 1L (66.7%)
+📅 Stats Hoy:
+   3 operaciones
+   1 pérdidas
+
+Professional Bot Trading, [22/11/2025 02:13]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDCAD_otc
+TF: M5
+Dirección: BUY
+Score: 5
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.42358
+📊 EMA: 1.41931
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 02:18]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   2W / 2L (50.0%)
+📅 Stats Hoy:
+   4 operaciones
+   2 pérdidas
+
+Professional Bot Trading, [22/11/2025 02:34]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDCAD_otc
+TF: M5
+Dirección: BUY
+Score: 5
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.42396
+📊 EMA: 1.42029
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 02:39]
+✅ GANADA (+$0.75)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   3W / 2L (60.0%)
+📅 Stats Hoy:
+   5 operaciones
+   2 pérdidas
+
+Professional Bot Trading, [22/11/2025 02:40]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDJPY_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 156.20300
+📊 EMA: 156.38810
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 02:45]
+✅ GANADA (+$0.55)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   4W / 2L (66.7%)
+📅 Stats Hoy:
+   6 operaciones
+   2 pérdidas
+
+Professional Bot Trading, [22/11/2025 02:45]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDCAD_otc
+TF: M10
+Dirección: BUY
+Score: 5
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.42410
+📊 EMA: 1.41811
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 02:55]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   4W / 3L (57.1%)
+📅 Stats Hoy:
+   7 operaciones
+   3 pérdidas
+
+Professional Bot Trading, [22/11/2025 13:05]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDCAD_otc
+TF: M5
+Dirección: SELL
+Score: 4
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.82163
+📊 EMA: 0.82921
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 13:10]
+✅ GANADA (+$0.90)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   1W / 0L (100.0%)
+📅 Stats Hoy:
+   1 operaciones
+   0 pérdidas
+
+Professional Bot Trading, [22/11/2025 13:15]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDCAD_otc
+TF: M10
+Dirección: SELL
+Score: 4
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.82181
+📊 EMA: 0.83255
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 13:25]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   1W / 1L (50.0%)
+📅 Stats Hoy:
+   2 operaciones
+   1 pérdidas
+
+Professional Bot Trading, [22/11/2025 13:48]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDJPY_otc
+TF: M5
+Dirección: BUY
+Score: 4
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 157.31700
+📊 EMA: 156.90887
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 13:54]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   1W / 0L (100.0%)
+📅 Stats Hoy:
+   1 operaciones
+   0 pérdidas
+
+Professional Bot Trading, [22/11/2025 13:54]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M5
+Dirección: SELL
+Score: 4
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.66179
+📊 EMA: 0.66607
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 13:59]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   2W / 0L (100.0%)
+📅 Stats Hoy:
+   2 operaciones
+   0 pérdidas
+
+Professional Bot Trading, [22/11/2025 13:59]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M5
+Dirección: SELL
+Score: 4
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.66202
+📊 EMA: 0.66587
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 14:05]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   3W / 0L (100.0%)
+📅 Stats Hoy:
+   3 operaciones
+   0 pérdidas
+
+Professional Bot Trading, [22/11/2025 14:05]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDCAD_otc
+TF: M10
+Dirección: SELL
+Score: 4
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.82455
+📊 EMA: 0.83123
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 14:15]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   3W / 1L (75.0%)
+📅 Stats Hoy:
+   4 operaciones
+   1 pérdidas
+
+Professional Bot Trading, [22/11/2025 14:21]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M5
+Dirección: SELL
+Score: 4
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.65963
+📊 EMA: 0.66474
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 14:26]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   3W / 2L (60.0%)
+📅 Stats Hoy:
+   5 operaciones
+   2 pérdidas
+
+Professional Bot Trading, [22/11/2025 14:42]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDCAD_otc
+TF: M5
+Dirección: SELL
+Score: 4
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.81497
+📊 EMA: 0.82444
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 14:47]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   3W / 3L (50.0%)
+📅 Stats Hoy:
+   6 operaciones
+   3 pérdidas
+
+Professional Bot Trading, [22/11/2025 16:20]
+📌 SEÑAL DETECTADA
+==============================
+Par: GBPUSD_otc
+TF: M15
+Dirección: BUY
+Score: 4
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.28270
+📊 EMA: 1.27488
+⏱️ Duración: 15min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 16:35]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   0W / 1L (0.0%)
+📅 Stats Hoy:
+   1 operaciones
+   1 pérdidas
+
+Professional Bot Trading, [22/11/2025 18:29]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDCAD_otc
+TF: M10
+Dirección: SELL
+Score: 4
+Patrón: doble_techo
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.41449
+📊 EMA: 1.41808
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 18:39]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   0W / 1L (0.0%)
+📅 Stats Hoy:
+   1 operaciones
+   1 pérdidas
+
+Professional Bot Trading, [22/11/2025 19:16]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M5
+Dirección: BUY
+Score: 4
+Patrón: ruptura_canal
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.66269
+📊 EMA: 0.65974
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 19:21]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   0W / 1L (0.0%)
+📅 Stats Hoy:
+   1 operaciones
+   1 pérdidas
+
+Professional Bot Trading, [22/11/2025 19:32]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M5
+Dirección: BUY
+Score: 4
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.66406
+📊 EMA: 0.66014
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 19:37]
+✅ GANADA (+$0.82)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   1W / 0L (100.0%)
+📅 Stats Hoy:
+   1 operaciones
+   0 pérdidas
+
+Professional Bot Trading, [22/11/2025 19:37]
+📌 SEÑAL DETECTADA
+==============================
+Par: GBPUSD_otc
+TF: M30
+Dirección: BUY
+Score: 4
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.28664
+📊 EMA: 1.27867
+⏱️ Duración: 30min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 19:39]
+📌 SEÑAL DETECTADA
+==============================
+Par: GBPUSD_otc
+TF: M30
+Dirección: BUY
+Score: 4
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.28664
+📊 EMA: 1.27867
+⏱️ Duración: 30min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 20:41]
+📌 SEÑAL DETECTADA
+==============================
+Par: GBPUSD_otc
+TF: M30
+Dirección: BUY
+Score: 5
+Patrón: ruptura_canal
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.28839
+📊 EMA: 1.27966
+⏱️ Duración: 30min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 21:11]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   0W / 1L (0.0%)
+📅 Stats Hoy:
+   1 operaciones
+   1 pérdidas
+
+Professional Bot Trading, [22/11/2025 21:35]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDJPY_otc
+TF: M5
+Dirección: BUY
+Score: 4
+Patrón: None
+━━━━━━━━━━━━━━━━
+💰 Precio: 157.94700
+📊 EMA: 157.72957
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 21:40]
+✅ GANADA (+$0.52)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   1W / 0L (100.0%)
+📅 Stats Hoy:
+   1 operaciones
+   0 pérdidas
+
+Professional Bot Trading, [22/11/2025 22:07]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDARS_otc
+TF: M5
+Dirección: SELL
+Score: 4
+Patrón: Indicadores (EMA+TF+Confirmación)
+━━━━━━━━━━━━━━━━
+💰 Precio: 1166.46000
+📊 EMA: 1174.18983
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 22:12]
+✅ GANADA (+$0.53)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   1W / 0L (100.0%)
+📅 Stats Hoy:
+   1 operaciones
+   0 pérdidas
+
+Professional Bot Trading, [22/11/2025 22:13]
+📌 SEÑAL DETECTADA
+==============================
+Par: EURUSD_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón: Indicadores (EMA+TF+Confirmación)
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.14390
+📊 EMA: 1.14598
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 22:18]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   2W / 0L (100.0%)
+📅 Stats Hoy:
+   2 operaciones
+   0 pérdidas
+
+Professional Bot Trading, [22/11/2025 22:18]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDARS_otc
+TF: M5
+Dirección: SELL
+Score: 4
+Patrón: Indicadores (EMA+TF+Confirmación)
+━━━━━━━━━━━━━━━━
+💰 Precio: 1166.07000
+📊 EMA: 1173.48096
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 22:23]
+✅ GANADA (+$0.62)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   3W / 0L (100.0%)
+📅 Stats Hoy:
+   3 operaciones
+   0 pérdidas
+
+Professional Bot Trading, [22/11/2025 22:27]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDARS_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón: Indicadores (EMA+TF+Confirmación)
+━━━━━━━━━━━━━━━━
+💰 Precio: 1166.18000
+📊 EMA: 1173.13894
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 22:32]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   3W / 1L (75.0%)
+📅 Stats Hoy:
+   4 operaciones
+   1 pérdidas
+
+Professional Bot Trading, [22/11/2025 22:33]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M5
+Dirección: BUY
+Score: 4
+Patrón: Indicadores (EMA+TF+Confirmación)
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.66621
+📊 EMA: 0.66363
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 22:39]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M10
+Dirección: BUY
+Score: 4
+Patrón/Indicadores: EMA_conf=1 | TF=1 | RSI=61.3 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.66579
+📊 EMA: 0.66247
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [22/11/2025 22:49]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   0W / 1L (0.0%)
+📅 Stats Hoy:
+   1 operaciones
+   1 pérdidas
+
+Professional Bot Trading, [23/11/2025 01:39]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDJPY_otc
+TF: M10
+Dirección: BUY
+Score: 4
+Patrón/Indicadores: EMA_conf=1 | TF=1 | RSI=93.6 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 158.70100
+📊 EMA: 157.95875
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 01:49]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   0W / 1L (0.0%)
+📅 Stats Hoy:
+   1 operaciones
+   1 pérdidas
+
+Professional Bot Trading, [23/11/2025 03:01]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDCAD_otc
+TF: M5
+Dirección: BUY
+Score: 4
+Patrón/Indicadores: EMA_conf=1 | TF=1 | RSI=69.3 | Reversal=Detected | NearResistance=Yes
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.41977
+📊 EMA: 1.41632
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 03:06]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   0W / 1L (0.0%)
+📅 Stats Hoy:
+   1 operaciones
+   1 pérdidas
+
+Professional Bot Trading, [23/11/2025 03:14]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDARS_otc
+TF: M30
+Dirección: SELL
+Score: 4
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=26.9 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 1165.83000
+📊 EMA: 1175.90382
+⏱️ Duración: 30min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 03:44]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   1W / 0L (100.0%)
+📅 Stats Hoy:
+   1 operaciones
+   0 pérdidas
+
+Professional Bot Trading, [23/11/2025 03:45]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDJPY_otc
+TF: M5
+Dirección: BUY
+Score: 4
+Patrón/Indicadores: EMA_conf=1 | TF=1 | RSI=96.9 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 159.34100
+📊 EMA: 158.68341
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 03:50]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   1W / 1L (50.0%)
+📅 Stats Hoy:
+   2 operaciones
+   1 pérdidas
+
+Professional Bot Trading, [23/11/2025 03:50]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDJPY_otc
+TF: M5
+Dirección: BUY
+Score: 4
+Patrón/Indicadores: EMA_conf=1 | TF=1 | RSI=82.9 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 159.22500
+📊 EMA: 158.73837
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 03:55]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   1W / 2L (33.3%)
+📅 Stats Hoy:
+   3 operaciones
+   2 pérdidas
+
+Professional Bot Trading, [23/11/2025 04:00]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDJPY_otc
+TF: M15
+Dirección: BUY
+Score: 4
+Patrón/Indicadores: EMA_conf=1 | TF=1 | RSI=88.0 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 159.37900
+📊 EMA: 158.20331
+⏱️ Duración: 15min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 04:15]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   1W / 3L (25.0%)
+📅 Stats Hoy:
+   4 operaciones
+   3 pérdidas
+
+Professional Bot Trading, [23/11/2025 04:15]
+📌 SEÑAL DETECTADA
+==============================
+Par: EURUSD_otc
+TF: M5
+Dirección: SELL
+Score: 4
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=34.3 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.14159
+📊 EMA: 1.14398
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 04:20]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   1W / 4L (20.0%)
+📅 Stats Hoy:
+   5 operaciones
+   4 pérdidas
+
+Professional Bot Trading, [23/11/2025 04:21]
+📌 SEÑAL DETECTADA
+==============================
+Par: EURUSD_otc
+TF: M5
+Dirección: SELL
+Score: 4
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=34.4 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.14177
+📊 EMA: 1.14397
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 04:26]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   2W / 4L (33.3%)
+📅 Stats Hoy:
+   6 operaciones
+   4 pérdidas
+
+Professional Bot Trading, [23/11/2025 04:26]
+📌 SEÑAL DETECTADA
+==============================
+Par: EURUSD_otc
+TF: M5
+Dirección: SELL
+Score: 4
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=23.8
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.14099
+📊 EMA: 1.14389
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 04:31]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   3W / 4L (42.9%)
+📅 Stats Hoy:
+   7 operaciones
+   4 pérdidas
+
+Professional Bot Trading, [23/11/2025 04:32]
+📌 SEÑAL DETECTADA
+==============================
+Par: EURUSD_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=25.6 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.14122
+📊 EMA: 1.14376
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 04:37]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   4W / 4L (50.0%)
+📅 Stats Hoy:
+   8 operaciones
+   4 pérdidas
+
+Professional Bot Trading, [23/11/2025 04:38]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDCAD_otc
+TF: M10
+Dirección: SELL
+Score: 4
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=29.4
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.79187
+📊 EMA: 0.80465
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 04:48]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   5W / 4L (55.6%)
+📅 Stats Hoy:
+   9 operaciones
+   4 pérdidas
+
+Professional Bot Trading, [23/11/2025 04:48]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDCAD_otc
+TF: M10
+Dirección: SELL
+Score: 4
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=29.4 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.79104
+📊 EMA: 0.80398
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 04:59]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   6W / 4L (60.0%)
+📅 Stats Hoy:
+   10 operaciones
+   4 pérdidas
+
+Professional Bot Trading, [23/11/2025 04:59]
+📌 SEÑAL DETECTADA
+==============================
+Par: GBPUSD_otc
+TF: M10
+Dirección: SELL
+Score: 5
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=28.2 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.27214
+📊 EMA: 1.28098
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 05:09]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   6W / 5L (54.5%)
+📅 Stats Hoy:
+   11 operaciones
+   5 pérdidas
+
+Professional Bot Trading, [23/11/2025 05:10]
+📌 SEÑAL DETECTADA
+==============================
+Par: GBPUSD_otc
+TF: M10
+Dirección: SELL
+Score: 5
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=28.8 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.27187
+📊 EMA: 1.28085
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 05:20]
+✅ GANADA (+$0.62)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   7W / 5L (58.3%)
+📅 Stats Hoy:
+   12 operaciones
+   5 pérdidas
+
+Professional Bot Trading, [23/11/2025 05:20]
+📌 SEÑAL DETECTADA
+==============================
+Par: GBPUSD_otc
+TF: M5
+Dirección: SELL
+Score: 4
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=13.2 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.27124
+📊 EMA: 1.27709
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 05:25]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   7W / 6L (53.8%)
+📅 Stats Hoy:
+   13 operaciones
+   6 pérdidas
+
+Professional Bot Trading, [23/11/2025 05:47]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDCAD_otc
+TF: M5
+Dirección: BUY
+Score: 5
+Patrón/Indicadores: EMA_conf=1 | TF=1 | RSI=70.4 | Reversal=Detected | NearResistance=Yes
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.42114
+📊 EMA: 1.41905
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 05:53]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   7W / 7L (50.0%)
+📅 Stats Hoy:
+   14 operaciones
+   7 pérdidas
+
+Professional Bot Trading, [23/11/2025 06:12]
+📌 SEÑAL DETECTADA
+==============================
+Par: GBPUSD_otc
+TF: M15
+Dirección: SELL
+Score: 5
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=27.5 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.27062
+📊 EMA: 1.28044
+⏱️ Duración: 15min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 06:27]
+✅ GANADA (+$0.69)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   8W / 7L (53.3%)
+📅 Stats Hoy:
+   15 operaciones
+   7 pérdidas
+
+Professional Bot Trading, [23/11/2025 06:28]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDCAD_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=22.7 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.77763
+📊 EMA: 0.79113
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 06:33]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   9W / 7L (56.2%)
+📅 Stats Hoy:
+   16 operaciones
+   7 pérdidas
+
+Professional Bot Trading, [23/11/2025 06:34]
+📌 SEÑAL DETECTADA
+==============================
+Par: #INTC_otc
+TF: M5
+Dirección: SELL
+Score: 4
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=23.1 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 32.90700
+📊 EMA: 33.17788
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 06:39]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   10W / 7L (58.8%)
+📅 Stats Hoy:
+   17 operaciones
+   7 pérdidas
+
+Professional Bot Trading, [23/11/2025 06:40]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDMXN_otc
+TF: M5
+Dirección: BUY
+Score: 4
+Patrón/Indicadores: EMA_conf=1 | TF=1 | RSI=80.9 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 18.76600
+📊 EMA: 18.61994
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 06:45]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   10W / 8L (55.6%)
+📅 Stats Hoy:
+   18 operaciones
+   8 pérdidas
+
+Professional Bot Trading, [23/11/2025 06:45]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M5
+Dirección: SELL
+Score: 4
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=13.6
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.66076
+📊 EMA: 0.66441
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 06:50]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   11W / 8L (57.9%)
+📅 Stats Hoy:
+   19 operaciones
+   8 pérdidas
+
+Professional Bot Trading, [23/11/2025 06:51]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M5
+Dirección: SELL
+Score: 4
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=15.2
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.66036
+📊 EMA: 0.66419
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 06:56]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   11W / 9L (55.0%)
+📅 Stats Hoy:
+   20 operaciones
+   9 pérdidas
+
+Professional Bot Trading, [23/11/2025 06:56]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M5
+Dirección: SELL
+Score: 4
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=11.7
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.66000
+📊 EMA: 0.66411
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 07:01]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   12W / 9L (57.1%)
+📅 Stats Hoy:
+   21 operaciones
+   9 pérdidas
+
+Professional Bot Trading, [23/11/2025 07:02]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=13.7 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.66011
+📊 EMA: 0.66399
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 07:07]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   13W / 9L (59.1%)
+📅 Stats Hoy:
+   22 operaciones
+   9 pérdidas
+
+Professional Bot Trading, [23/11/2025 07:07]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=16.6 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.66015
+📊 EMA: 0.66387
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 07:12]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   13W / 10L (56.5%)
+📅 Stats Hoy:
+   23 operaciones
+   10 pérdidas
+
+Professional Bot Trading, [23/11/2025 07:13]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=17.0 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.66003
+📊 EMA: 0.66378
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 07:18]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   13W / 11L (54.2%)
+📅 Stats Hoy:
+   24 operaciones
+   11 pérdidas
+
+Professional Bot Trading, [23/11/2025 07:18]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=19.3 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.66009
+📊 EMA: 0.66363
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 07:23]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   14W / 11L (56.0%)
+📅 Stats Hoy:
+   25 operaciones
+   11 pérdidas
+
+Professional Bot Trading, [23/11/2025 07:24]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M10
+Dirección: SELL
+Score: 5
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=24.6 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.65997
+📊 EMA: 0.66379
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 07:34]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   14W / 12L (53.8%)
+📅 Stats Hoy:
+   26 operaciones
+   12 pérdidas
+
+Professional Bot Trading, [23/11/2025 07:45]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=26.3 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.65960
+📊 EMA: 0.66247
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 07:50]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   15W / 12L (55.6%)
+📅 Stats Hoy:
+   27 operaciones
+   12 pérdidas
+
+Professional Bot Trading, [23/11/2025 07:50]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M10
+Dirección: SELL
+Score: 5
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=20.5 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.65960
+📊 EMA: 0.66340
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 08:01]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   15W / 13L (53.6%)
+📅 Stats Hoy:
+   28 operaciones
+   13 pérdidas
+
+Professional Bot Trading, [23/11/2025 08:07]
+📌 SEÑAL DETECTADA
+==============================
+Par: EURUSD_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=16.8 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.13998
+📊 EMA: 1.14282
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 08:12]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   16W / 13L (55.2%)
+📅 Stats Hoy:
+   29 operaciones
+   13 pérdidas
+
+Professional Bot Trading, [23/11/2025 08:12]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDCAD_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=19.7 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.77197
+📊 EMA: 0.78344
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 08:18]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   17W / 13L (56.7%)
+📅 Stats Hoy:
+   30 operaciones
+   13 pérdidas
+
+Professional Bot Trading, [23/11/2025 08:18]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M10
+Dirección: SELL
+Score: 5
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=15.5 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.65960
+📊 EMA: 0.66290
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 08:28]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   17W / 14L (54.8%)
+📅 Stats Hoy:
+   31 operaciones
+   14 pérdidas
+
+Professional Bot Trading, [23/11/2025 08:29]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M10
+Dirección: SELL
+Score: 5
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=18.4 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.65967
+📊 EMA: 0.66277
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 08:39]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   17W / 15L (53.1%)
+📅 Stats Hoy:
+   32 operaciones
+   15 pérdidas
+
+Professional Bot Trading, [23/11/2025 08:40]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M10
+Dirección: SELL
+Score: 5
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=25.9 | Reversal=Detected | NearResistance=Yes
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.65997
+📊 EMA: 0.66276
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 08:50]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   17W / 16L (51.5%)
+📅 Stats Hoy:
+   33 operaciones
+   16 pérdidas
+
+Professional Bot Trading, [23/11/2025 08:50]
+📌 SEÑAL DETECTADA
+==============================
+Par: EURUSD_otc
+TF: M10
+Dirección: SELL
+Score: 5
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=20.4 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.13887
+📊 EMA: 1.14307
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 09:00]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   17W / 17L (50.0%)
+📅 Stats Hoy:
+   34 operaciones
+   17 pérdidas
+
+Professional Bot Trading, [23/11/2025 09:33]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M10
+Dirección: SELL
+Score: 5
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=29.2 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.65650
+📊 EMA: 0.66142
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 09:43]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   17W / 18L (48.6%)
+📅 Stats Hoy:
+   35 operaciones
+   18 pérdidas
+
+Professional Bot Trading, [23/11/2025 09:43]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M15
+Dirección: SELL
+Score: 5
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=13.9 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.65686
+📊 EMA: 0.66226
+⏱️ Duración: 15min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 09:59]
+✅ GANADA (+$0.89)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   18W / 18L (50.0%)
+📅 Stats Hoy:
+   36 operaciones
+   18 pérdidas
+
+Professional Bot Trading, [23/11/2025 11:24]
+📌 SEÑAL DETECTADA
+==============================
+Par: GBPUSD_otc
+TF: M5
+Dirección: BUY
+Score: 5
+Patrón/Indicadores: EMA_conf=1 | TF=1 | RSI=79.0 | Reversal=Detected | NearResistance=Yes
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.27524
+📊 EMA: 1.27393
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 11:29]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   18W / 19L (48.6%)
+📅 Stats Hoy:
+   37 operaciones
+   19 pérdidas
+
+Professional Bot Trading, [23/11/2025 12:13]
+📌 SEÑAL DETECTADA
+==============================
+Par: AUDUSD_otc
+TF: M10
+Dirección: BUY
+Score: 5
+Patrón/Indicadores: EMA_conf=1 | TF=1 | RSI=78.4 | Reversal=Detected | NearResistance=Yes
+━━━━━━━━━━━━━━━━
+💰 Precio: 0.66522
+📊 EMA: 0.66240
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 12:23]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   18W / 20L (47.4%)
+📅 Stats Hoy:
+   38 operaciones
+   20 pérdidas
+
+Professional Bot Trading, [23/11/2025 13:09]
+📌 SEÑAL DETECTADA
+==============================
+Par: EURUSD_otc
+TF: M5
+Dirección: BUY
+Score: 5
+Patrón/Indicadores: EMA_conf=1 | TF=1 | RSI=72.9 | Reversal=Detected | NearResistance=Yes
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.14491
+📊 EMA: 1.14243
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 13:14]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   19W / 20L (48.7%)
+📅 Stats Hoy:
+   39 operaciones
+   20 pérdidas
+
+Professional Bot Trading, [23/11/2025 13:28]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDCAD_otc
+TF: M10
+Dirección: BUY
+Score: 5
+Patrón/Indicadores: EMA_conf=1 | TF=1 | RSI=81.9 | Reversal=Detected | NearResistance=Yes
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.41858
+📊 EMA: 1.41724
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 13:38]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   19W / 21L (47.5%)
+📅 Stats Hoy:
+   40 operaciones
+   21 pérdidas
+
+Professional Bot Trading, [23/11/2025 17:11]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDCAD_otc
+TF: M5
+Dirección: SELL
+Score: 4
+Patrón/Indicadores: EMA_conf=-1 | TF=1 | RSI=75.6 | Reversal=Detected | NearResistance=Yes
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.41199
+📊 EMA: 1.41332
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 17:16]
+✅ GANADA (+$0.45)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   1W / 0L (100.0%)
+📅 Stats Hoy:
+   1 operaciones
+   0 pérdidas
+
+Professional Bot Trading, [23/11/2025 17:16]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDMXN_otc
+TF: M5
+Dirección: BUY
+Score: 4
+Patrón/Indicadores: EMA_conf=1 | TF=1 | RSI=88.4 | NearResistance=Yes
+━━━━━━━━━━━━━━━━
+💰 Precio: 19.14630
+📊 EMA: 18.98974
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 17:22]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   2W / 0L (100.0%)
+📅 Stats Hoy:
+   2 operaciones
+   0 pérdidas
+
+Professional Bot Trading, [23/11/2025 17:22]
+📌 SEÑAL DETECTADA
+==============================
+Par: EURUSD_otc
+TF: M5
+Dirección: BUY
+Score: 4
+Patrón/Indicadores: EMA_conf=1 | TF=1 | RSI=60.6 | Reversal=Detected | NearResistance=Yes
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.14653
+📊 EMA: 1.14549
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 17:28]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   2W / 1L (66.7%)
+📅 Stats Hoy:
+   3 operaciones
+   1 pérdidas
+
+Professional Bot Trading, [23/11/2025 17:28]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDCAD_otc
+TF: M15
+Dirección: SELL
+Score: 4
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=21.7 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.41129
+📊 EMA: 1.41539
+⏱️ Duración: 15min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 17:43]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   2W / 2L (50.0%)
+📅 Stats Hoy:
+   4 operaciones
+   2 pérdidas
+
+Professional Bot Trading, [23/11/2025 17:49]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDARS_otc
+TF: M5
+Dirección: SELL
+Score: 4
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=25.7 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 1165.38000
+📊 EMA: 1166.70176
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 17:54]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   2W / 3L (40.0%)
+📅 Stats Hoy:
+   5 operaciones
+   3 pérdidas
+
+Professional Bot Trading, [23/11/2025 18:01]
+📌 SEÑAL DETECTADA
+==============================
+Par: GBPUSD_otc
+TF: M15
+Dirección: BUY
+Score: 4
+Patrón/Indicadores: EMA_conf=1 | TF=1 | RSI=60.9 | Reversal=Detected | NearResistance=Yes
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.28305
+📊 EMA: 1.27676
+⏱️ Duración: 15min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 18:16]
+✅ GANADA (+$0.86)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   3W / 3L (50.0%)
+📅 Stats Hoy:
+   6 operaciones
+   3 pérdidas
+
+Professional Bot Trading, [23/11/2025 18:17]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDJPY_otc
+TF: M5
+Dirección: SELL
+Score: 4
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=29.0 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 158.97200
+📊 EMA: 159.25005
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 18:22]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   3W / 4L (42.9%)
+📅 Stats Hoy:
+   7 operaciones
+   4 pérdidas
+
+Professional Bot Trading, [23/11/2025 18:22]
+📌 SEÑAL DETECTADA
+==============================
+Par: GBPUSD_otc
+TF: M5
+Dirección: BUY
+Score: 4
+Patrón/Indicadores: EMA_conf=1 | TF=1 | RSI=72.4 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.28252
+📊 EMA: 1.27987
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 18:28]
+✅ GANADA (+$0.56)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   4W / 4L (50.0%)
+📅 Stats Hoy:
+   8 operaciones
+   4 pérdidas
+
+Professional Bot Trading, [23/11/2025 18:30]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDCAD_otc
+TF: M10
+Dirección: SELL
+Score: 4
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=27.1
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.40667
+📊 EMA: 1.41297
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 18:40]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   4W / 5L (44.4%)
+📅 Stats Hoy:
+   9 operaciones
+   5 pérdidas
+
+Professional Bot Trading, [23/11/2025 18:40]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDCAD_otc
+TF: M5
+Dirección: SELL
+Score: 5
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=20.8 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.40669
+📊 EMA: 1.41069
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 18:45]
+✅ GANADA (+$0.77)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   5W / 5L (50.0%)
+📅 Stats Hoy:
+   10 operaciones
+   5 pérdidas
+
+Professional Bot Trading, [23/11/2025 18:47]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDCAD_otc
+TF: M10
+Dirección: SELL
+Score: 5
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=27.4 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.40670
+📊 EMA: 1.41262
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 18:57]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   5W / 6L (45.5%)
+📅 Stats Hoy:
+   11 operaciones
+   6 pérdidas
+
+Professional Bot Trading, [23/11/2025 19:57]
+📌 SEÑAL DETECTADA
+==============================
+Par: EURUSD_otc
+TF: M5
+Dirección: BUY
+Score: 4
+Patrón/Indicadores: EMA_conf=1 | TF=1 | RSI=71.1 | NearResistance=Yes
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.14875
+📊 EMA: 1.14629
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 20:02]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   1W / 0L (100.0%)
+📅 Stats Hoy:
+   1 operaciones
+   0 pérdidas
+
+Professional Bot Trading, [23/11/2025 20:04]
+📌 SEÑAL DETECTADA
+==============================
+Par: EURUSD_otc
+TF: M5
+Dirección: BUY
+Score: 4
+Patrón/Indicadores: EMA_conf=1 | TF=1 | RSI=62.2 | Reversal=Detected | NearResistance=Yes
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.14862
+📊 EMA: 1.14657
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 20:09]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   2W / 0L (100.0%)
+📅 Stats Hoy:
+   2 operaciones
+   0 pérdidas
+
+Professional Bot Trading, [23/11/2025 20:10]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDCOP_otc
+TF: M5
+Dirección: SELL
+Score: 4
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=20.0 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 3771.52000
+📊 EMA: 3791.05877
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 20:15]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   2W / 1L (66.7%)
+📅 Stats Hoy:
+   3 operaciones
+   1 pérdidas
+
+Professional Bot Trading, [23/11/2025 20:15]
+📌 SEÑAL DETECTADA
+==============================
+Par: USDCOP_otc
+TF: M5
+Dirección: SELL
+Score: 4
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=16.2 | Reversal=Detected
+━━━━━━━━━━━━━━━━
+💰 Precio: 3767.78000
+📊 EMA: 3789.46379
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 20:20]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   2W / 2L (50.0%)
+📅 Stats Hoy:
+   4 operaciones
+   2 pérdidas
+
+Professional Bot Trading, [23/11/2025 20:21]
+📌 SEÑAL DETECTADA
+==============================
+Par: EURUSD_otc
+TF: M10
+Dirección: BUY
+Score: 5
+Patrón/Indicadores: EMA_conf=1 | TF=1 | RSI=72.5 | Reversal=Detected | NearResistance=Yes
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.14817
+📊 EMA: 1.14591
+⏱️ Duración: 10min
+💵 Monto: $1.00
+
+Professional Bot Trading, [23/11/2025 20:31]
+✅ GANADA (+$0.92)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   3W / 2L (60.0%)
+📅 Stats Hoy:
+   5 operaciones
+   2 pérdidas
+
+Professional Bot Trading, [24/11/2025 22:03]
+📌 SEÑAL DETECTADA
+==============================
+Par: EURUSD_otc
+TF: M5
+Dirección: SELL
+Score: 4
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=25.9
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.14372
+📊 EMA: 1.14932
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [24/11/2025 22:08]
+✅ GANADA
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   1W / 0L (100.0%)
+📅 Stats Hoy:
+   1 operaciones
+   0 pérdidas
+
+Professional Bot Trading, [24/11/2025 22:09]
+📌 SEÑAL DETECTADA
+==============================
+Par: EURUSD_otc
+TF: M5
+Dirección: SELL
+Score: 4
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=28.8
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.14435
+📊 EMA: 1.14923
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [24/11/2025 22:14]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   1W / 1L (50.0%)
+📅 Stats Hoy:
+   2 operaciones
+   1 pérdidas
+
+Professional Bot Trading, [24/11/2025 22:24]
+📌 SEÑAL DETECTADA
+==============================
+Par: EURUSD_otc
+TF: M5
+Dirección: SELL
+Score: 4
+Patrón/Indicadores: EMA_conf=-1 | TF=-1 | RSI=29.7
+━━━━━━━━━━━━━━━━
+💰 Precio: 1.14405
+📊 EMA: 1.14876
+⏱️ Duración: 5min
+💵 Monto: $1.00
+
+Professional Bot Trading, [24/11/2025 22:29]
+❌ PERDIDA (-$1.00)
+━━━━━━━━━━━━━━━━
+📊 Stats Totales:
+   0W / 1L (0.0%)
+📅 Stats Hoy:
+   1 operaciones
+   1 pérdidas

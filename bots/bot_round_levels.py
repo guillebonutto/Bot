@@ -21,22 +21,8 @@ RISK_PERCENT = 1.0
 MIN_AMOUNT = 1.0
 COOLDOWN_SECONDS = 70  # cooldown por par
 
-# ========================= UTILS =========================
-def clean_ssid(ssid: str) -> str:
-    if not ssid: return ""
-    if (ssid.startswith("'") and ssid.endswith("'")) or \
-       (ssid.startswith('"') and ssid.endswith('"')):
-        ssid = ssid[1:-1]
-    if ssid.startswith('42["'):
-        import re
-        print("⚠️ Detectado SSID en formato raw websocket. Extrayendo objeto JSON completo...")
-        obj_match = re.search(r'({.*})', ssid)
-        if obj_match:
-            return obj_match.group(1)
-    return ssid
-
 # Inicializar API
-ssid = clean_ssid(os.getenv("POCKETOPTION_SSID"))
+ssid = os.getenv("POCKETOPTION_SSID")
 if not ssid:
     exit("Falta POCKETOPTION_SSID")
 api = PocketOptionAsync(ssid=ssid)

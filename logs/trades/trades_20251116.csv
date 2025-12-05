@@ -1,0 +1,6 @@
+timestamp,trade_id,pair,timeframe,decision,signal_score,pattern_detected,price,ema,rsi,ema_conf,tf_signal,atr,triangle_active,reversal_candle,near_support,near_resistance,support_level,resistance_level,htf_signal,result,profit_loss,expiry_time,notes
+2025-11-16 19:44:38,9471505e,EUR/USD OTC,S60,BUY,,Importado de Excel,1.12654,,,1,,,,,,,,,,WIN,0.92,3600,Importado de cuenta_real.xlsx
+2025-11-16 19:46:29,627aa4f0,EUR/USD OTC,S60,BUY,,Importado de Excel,1.12657,,,1,,,,,,,,,,WIN,0.92,3600,Importado de cuenta_real.xlsx
+2025-11-16 23:36:46,89c41cce,EUR/USD OTC,S300,SELL,,Importado de Excel,1.12532,,,-1,,,,,,,,,,WIN,0.92,18000,Importado de cuenta_real.xlsx
+2025-11-16 23:42:09,b4f31089,AUD/USD OTC,S600,SELL,,Importado de Excel,0.65225,,,-1,,,,,,,,,,LOSS,-1.0,36000,Importado de cuenta_real.xlsx
+2025-11-16 23:52:34,b76708f0,AUD/USD OTC,S600,SELL,,Importado de Excel,0.65271,,,-1,,,,,,,,,,WIN,0.92,36000,Importado de cuenta_real.xlsx

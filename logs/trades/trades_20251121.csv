@@ -1,0 +1,27 @@
+timestamp,trade_id,pair,timeframe,decision,signal_score,pattern_detected,price,ema,rsi,ema_conf,tf_signal,atr,triangle_active,reversal_candle,near_support,near_resistance,support_level,resistance_level,htf_signal,result,profit_loss,expiry_time,notes
+2025-11-21 12:16:00,9b19f33a,USDMXN_otc,M5,SELL,5,EMA Pullback,18.9841,19.03103,,-1,,,,,,,,,,WIN,0.83,300,Importado de Telegram
+2025-11-21 12:22:00,e9b7620b,AUDUSD_otc,M5,BUY,4,EMA Pullback,0.66824,0.66608,,1,,,,,,,,,,WIN,0.92,300,Importado de Telegram
+2025-11-21 12:27:00,9c98acff,AUDCAD_otc,M5,SELL,5,EMA Pullback,0.85179,0.86216,,-1,,,,,,,,,,LOSS,-1.0,300,Importado de Telegram
+2025-11-21 12:34:00,f468a966,AUDCAD_otc,M5,SELL,5,EMA Pullback,0.85166,0.86172,,-1,,,,,,,,,,WIN,0.92,300,Importado de Telegram
+2025-11-21 12:39:00,ae89078c,AUDCAD_otc,M5,SELL,5,EMA Pullback,0.85126,0.86123,,-1,,,,,,,,,,LOSS,-1.0,300,Importado de Telegram
+2025-11-21 14:28:00,cfdb42b9,USDCAD_otc,M5,SELL,5,EMA Pullback,1.40834,1.41179,,-1,,,,,,,,,,LOSS,-1.0,300,Importado de Telegram
+2025-11-21 14:34:00,46320765,USDCAD_otc,M5,SELL,5,EMA Pullback,1.40827,1.41168,,-1,,,,,,,,,,LOSS,-1.0,300,Importado de Telegram
+2025-11-21 14:55:00,dba1bcf9,USDCOP_otc,M5,BUY,5,EMA Pullback,3782.51,3768.81339,,1,,,,,,,,,,WIN,0.39,300,Importado de Telegram
+2025-11-21 15:01:00,bbf5c798,USDCAD_otc,M5,SELL,5,EMA Pullback,1.40769,1.41087,,-1,,,,,,,,,,LOSS,-1.0,300,Importado de Telegram
+2025-11-21 21:07:00,ebdd21b6,USDCOP_otc,M10,BUY,5,EMA Pullback,3818.67,3798.41042,,1,,,,,,,,,,LOSS,-1.0,600,Importado de Telegram
+2025-11-21 21:33:00,31dcceff,USDMXN_otc,M10,BUY,5,EMA Pullback,18.9824,18.87932,,1,,,,,,,,,,LOSS,-1.0,600,Importado de Telegram
+2025-11-21 22:16:00,a352886a,USDMXN_otc,M5,BUY,5,EMA Pullback,19.1112,18.93274,,1,,,,,,,,,,WIN,0.5,300,Importado de Telegram
+2025-11-21 22:22:00,e0ee6aec,EURUSD_otc,M15,BUY,5,EMA Pullback,1.14963,1.14546,,1,,,,,,,,,,WIN,0.92,900,Importado de Telegram
+2025-11-21 22:40:00,ae6275af,USDARS_otc,M10,BUY,5,EMA Pullback,1182.32,1177.25214,,1,,,,,,,,,,WIN,0.92,600,Importado de Telegram
+2025-11-21 22:51:00,fa27c5db,USDCAD_otc,M15,BUY,5,EMA Pullback,1.41782,1.41361,,1,,,,,,,,,,LOSS,-1.0,900,Importado de Telegram
+2025-11-21 00:01:26,b0f89d18,USD/CAD OTC,S600,BUY,,Importado de Excel,1.40844,,,1,,,,,,,,,,WIN,0.92,36000,Importado de cuenta_real.xlsx
+2025-11-21 00:12:01,630519d3,AUD/CAD OTC,S300,BUY,,Importado de Excel,0.87934,,,1,,,,,,,,,,LOSS,-1.0,18000,Importado de cuenta_real.xlsx
+2025-11-21 00:17:18,141c7deb,USD/CAD OTC,S600,BUY,,Importado de Excel,1.40762,,,1,,,,,,,,,,WIN,0.92,36000,Importado de cuenta_real.xlsx
+2025-11-21 00:20:13,2e7b3379,USD/CAD OTC,S600,BUY,,Importado de Excel,1.40755,,,1,,,,,,,,,,WIN,0.92,36000,Importado de cuenta_real.xlsx
+2025-11-21 00:30:44,b2fa5236,USD/JPY OTC,S1800,BUY,,Importado de Excel,158.411,,,1,,,,,,,,,,LOSS,-1.0,108000,Importado de cuenta_real.xlsx
+2025-11-21 01:01:23,0d31415f,EUR/USD OTC,S300,SELL,,Importado de Excel,1.15108,,,-1,,,,,,,,,,WIN,0.92,18000,Importado de cuenta_real.xlsx
+2025-11-21 01:06:50,84022a61,EUR/USD OTC,S300,SELL,,Importado de Excel,1.15025,,,-1,,,,,,,,,,LOSS,-1.0,18000,Importado de cuenta_real.xlsx
+2025-11-21 01:12:21,35d358f2,EUR/USD OTC,S300,SELL,,Importado de Excel,1.15024,,,-1,,,,,,,,,,WIN,0.9,18000,Importado de cuenta_real.xlsx
+2025-11-21 01:17:52,0b4a40fe,EUR/USD OTC,S300,SELL,,Importado de Excel,1.14995,,,-1,,,,,,,,,,LOSS,-1.0,18000,Importado de cuenta_real.xlsx
+2025-11-21 12:11:00,5ba3ac89,USD/MXN OTC,S300,SELL,,Importado de Excel,nan,,,-1,,,,,,,,,,LOSS,-1.0,18000,Importado de cuenta_real.xlsx
+2025-11-21 12:00:00,fec21735,AUD/USD OTC,S300,BUY,,Importado de Excel,nan,,,1,,,,,,,,,,WIN,0.92,18000,Importado de cuenta_real.xlsx

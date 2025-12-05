@@ -6,18 +6,8 @@ import asyncio
 import sys
 import os
 import subprocess
-
-# Auto-install dependencies if missing
-try:
-    import matplotlib
-    import seaborn
-except ImportError:
-    print("⚠️ Installing missing dependencies (matplotlib, seaborn)...")
-    try:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "matplotlib", "seaborn"])
-        print("✅ Dependencies installed.")
-    except Exception as e:
-        print(f"❌ Failed to install dependencies: {e}")
+import matplotlib
+import seaborn
 
 # Importar ambos bots
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'bots'))

@@ -1,0 +1,4 @@
+timestamp,trade_id,pair,timeframe,decision,signal_score,pattern_detected,price,ema,rsi,ema_conf,tf_signal,atr,triangle_active,reversal_candle,near_support,near_resistance,support_level,resistance_level,htf_signal,result,profit_loss,expiry_time,notes
+2025-11-24 22:03:00,3b87f511,EURUSD_otc,M5,SELL,4,EMA Pullback,1.14372,1.14932,,-1,,,,,,,,,,PENDING,0,300,Importado de Telegram
+2025-11-24 22:09:00,2d8a9fcb,EURUSD_otc,M5,SELL,4,EMA Pullback,1.14435,1.14923,,-1,,,,,,,,,,LOSS,-1.0,300,Importado de Telegram
+2025-11-24 22:24:00,6db03437,EURUSD_otc,M5,SELL,4,EMA Pullback,1.14405,1.14876,,-1,,,,,,,,,,LOSS,-1.0,300,Importado de Telegram

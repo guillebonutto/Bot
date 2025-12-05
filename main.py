@@ -1,1151 +1,165 @@
-import os
-import time
-import asyncio
-import requests
-import logging
-from datetime import datetime, timezone, timedelta
-from functools import lru_cache
-from collections import defaultdict
-
-import pandas as pd
-import numpy as np
-
-# Import async wrapper de la librería que usás
-from BinaryOptionsToolsV2.pocketoption import PocketOptionAsync
-
-# Import trade logger
+# bot_universal_FUNCIONA_YA.py
+import os, asyncio, pandas as pd, time, requests
+from datetime import datetime
+from dotenv import load_dotenv
 from trade_logger import trade_logger
+from shadow_trades_logger import shadow_trades_logger
+from telegram_formatter import telegram, send_trade_signal, send_trade_result
 
-# Import ML-Trades integration
+load_dotenv()
+
 try:
-    from ml_trades_integration import ml_trades, predict_success
-    ML_AVAILABLE = True
-except ImportError:
-    ML_AVAILABLE = False
-    print("⚠️ ml_trades_integration no disponible (opcional)")
-
-# ---------------------------
-# CONFIG (ajustalo a tu gusto)
-# ---------------------------
-PAIRS = [
-    'EURUSD_otc', 'GBPUSD_otc', 'USDJPY_otc', 'AUDUSD_otc', 'USDCAD_otc',
-    'AUDCAD_otc', 'USDMXN_otc', 'USDCOP_otc', 'USDARS_otc', "#INTC_otc"
-]
-
-TIMEFRAMES = {"M5": 300, "M10": 600, "M15": 900, "M30": 1800}
-
-SELECTED_TFS = list(TIMEFRAMES.keys())
-LOOKBACK = 50
-MA_SHORT = 20
-MA_LONG = 50
-HTF_MULT = 2
-
-USE_RSI = True
-USE_REVERSAL_CANDLES = True
-USE_RESISTANCE = True
-USE_SUPPORT = True
-RSI_PERIOD = 14
-RSI_OVERSOLD = 30
-RSI_OVERBOUGHT = 70
-
-# RISK management
-MAX_DAILY_LOSSES = 3
-MAX_DAILY_TRADES = 10
-RISK_PER_TRADE = 0.02  # 2% del balance
-STREAK_LIMIT = 2  # cooling-off tras N pérdidas seguidas
-COOLDOWN_SECONDS = 900  # 15 minutos
-MAX_CONCURRENT_REQUESTS = 2  # Límite de requests simultáneos (reducido para evitar timeouts)
-
-# TELEGRAM (mejor setear como variables de entorno)
-TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
-TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
-
-# --- Nuevas configs para MODO PRO ---
-TARGET_WINRATE = 0.55              # objetivo mínimo de winrate reciente (55%)
-ROLLING_WINDOW_TRADES = 20         # para calcular winrate reciente
-MIN_SCORE_BASE = 4                 # score mínimo base para operar
-ADAPTIVE_SCORE_INCREMENT = 1       # cuánto subir el score mínimo si winrate cae
-MIN_SCORE_MAX = 7                  # tope al que puede subir el min score
-BREAKOUT_TOL = 0.0005              # tolerancia para confirmar breakout (ajustable)
-BREAKOUT_LOOKBACK = 20             # lookback para definir niveles de resistencia/soporte
-
-# Logging
-logging.basicConfig(
-    filename="bot.log",
-    level=logging.DEBUG,
-    format="%(asctime)s [%(levelname)s] %(message)s"
-)
-
-
-def log(msg, level="info"):
-    getattr(logging, level)(msg)
-    print(msg)
-
-
-def tg_send(msg: str):
-    token = TELEGRAM_TOKEN
-    chat = TELEGRAM_CHAT_ID
-    if not token or not chat:
-        log(f"[Telegram not configured] {msg}")
-        return
-    try:
-        requests.post(
-            f"https://api.telegram.org/bot{token}/sendMessage",
-            json={"chat_id": chat, "text": msg},
-            timeout=10
-        )
-    except Exception as e:
-        log(f"[Telegram] Error enviando msg: {e}", "error")
-
-
-# ---------------------------
-# SMART CACHE SYSTEM
-# ---------------------------
-class SmartCache:
-    def __init__(self):
-        self.cache = {}
-        self.timestamps = {}
-        self.hit_count = defaultdict(int)
-        self.miss_count = defaultdict(int)
-
-    def get(self, key, ttl):
-        """Obtener del cache si es válido"""
-        now = time.time()
-        if key in self.timestamps:
-            age = now - self.timestamps[key]
-            if age < ttl:
-                self.hit_count[key] += 1
-                # devolver copia para evitar modificaciones externas
-                return self.cache[key].copy(), age
-        self.miss_count[key] += 1
-        return None, 0
-
-    def set(self, key, value):
-        """Guardar en cache"""
-        self.cache[key] = value
-        self.timestamps[key] = time.time()
-
-    def clear_expired(self, max_age=3600):
-        """Limpiar entradas antiguas (1 hora por defecto)"""
-        now = time.time()
-        expired = [k for k, t in self.timestamps.items() if now - t > max_age]
-        for k in expired:
-            del self.cache[k]
-            del self.timestamps[k]
-
-    def stats(self):
-        """Estadísticas de uso"""
-        total_hits = sum(self.hit_count.values())
-        total_misses = sum(self.miss_count.values())
-        total = total_hits + total_misses
-        if total == 0:
-            return "Cache: sin uso"
-        hit_rate = (total_hits / total) * 100
-        return f"Cache: {hit_rate:.1f}% hit rate ({total_hits}/{total} requests)"
-
-
-# Instancia global
-smart_cache = SmartCache()
-
-# ---------------------------
-# Estado de riesgo y stats
-# ---------------------------
-daily_stats = {'losses': 0, 'trades': 0, 'date': datetime.now(timezone.utc).date()}
-streak_losses = 0
-
-# historial de trades para calcular winrate rolling (MODO PRO)
-trade_history = []  # lista de dicts: {'win': True/False, 'timestamp': datetime}
-
-
-def reset_daily_stats():
-    today = datetime.now(timezone.utc).date()
-    if daily_stats['date'] != today:
-        daily_stats['losses'] = 0
-        daily_stats['trades'] = 0
-        daily_stats['date'] = today
-        log("📅 Nuevo día - estadísticas reseteadas")
-
-
-def can_trade(current_balance):
-    reset_daily_stats()
-    # COMENTADO TEMPORALMENTE PARA RECOPILAR DATOS
-    # if daily_stats['losses'] >= MAX_DAILY_LOSSES:
-    #     return False, f'🚫 Límite de pérdidas alcanzado ({MAX_DAILY_LOSSES})'
-    # if daily_stats['trades'] >= MAX_DAILY_TRADES:
-    #     return False, f'🚫 Límite de operaciones diarias alcanzado ({MAX_DAILY_TRADES})'
-
-    # Calcular monto con mínimo de $1
-    max_amount = current_balance * RISK_PER_TRADE
-    amount = max(max_amount, 1.0)  # Mínimo $1 siempre
-
-    # Verificar si hay suficiente balance
-    if current_balance < 1.0:
-        return False, f'🚫 Balance insuficiente (${current_balance:.2f} < $1.00)'
-
-    return True, amount
-
-
-def update_streak(win: bool):
-    global streak_losses
-    if not win:
-        streak_losses += 1
-    else:
-        streak_losses = 0
-    return streak_losses
-
-
-def rolling_winrate(n=None):
-    if daily_stats['trades'] == 0:
-        return None
-    wins = daily_stats['trades'] - daily_stats['losses']
-    return wins / daily_stats['trades']
-
-
-# ---------------------------
-# Indicadores y patrones
-# ---------------------------
-def compute_rsi(df, period=RSI_PERIOD):
-    delta = df['Close'].diff()
-    gain = delta.where(delta > 0, 0).rolling(period).mean()
-    loss = (-delta.where(delta < 0, 0)).rolling(period).mean()
-    rs = gain / loss.replace(0, np.nan)
-    return 100 - (100 / (1 + rs))
-
-
-def detect_reversal_candle(r):
-    body = abs(r['Close'] - r['Open'])
-    if body == 0:
-        return 0
-    upper = r['High'] - max(r['Close'], r['Open'])
-    lower = min(r['Close'], r['Open']) - r['Low']
-    return int(upper > body * 1.5 or lower > body * 1.5)
-
-
-def detect_resistance(df):
-    return df['High'].rolling(10, min_periods=1).max().iloc[-1]
-
-def detect_support(df):
-    return df['Low'].rolling(10, min_periods=1).min().iloc[-1]
-
-def near_support(c, s, tol=0.0010):
-    return abs(c - s) <= tol
-
-def near_resistance(c, r, tol=0.0010):
-    return abs(c - r) <= tol
-
-
-# Detección de patrones simplificados — devuelven (signal, score)
-def detectar_doble_techo(df):
-    closes = df["Close"]
-    if len(closes) < 10:
-        return None, None, 0
-    window = closes[-10:]
-    high1 = window.iloc[0]
-    high2 = window.iloc[-3]
-    if abs(high1 - high2) <= high1 * 0.001:  # 0.1% parecido
-        # criterio de ruptura: cierre bajo media ventana
-        if window.iloc[-1] < window.mean():
-            return "doble_techo" ,"SELL", 3
-    return None, None, 0
-
-
-def detectar_compresion(df):
-    highs = df['High'][-10:]
-    lows = df['Low'][-10:]
-    if len(highs) < 10:
-        return None, None, 0
-    if highs.iloc[-1] < highs.iloc[0] and lows.iloc[-1] > lows.iloc[0]:
-        if df['Close'].iloc[-1] > highs.mean():
-            return "compresion", "BUY", 3
-        if df['Close'].iloc[-1] < lows.mean():
-            return "compresion", "SELL", 3
-    return None, None, 0
-
-
-def detectar_flag(df):
-    if len(df) < 12:
-        return None, None, 0
-    impuls = abs(df["Close"].iloc[-10] - df["Close"].iloc[-5]) > 3 * df["Close"].diff().abs().mean()
-    if not impuls:
-        return None, None, 0
-    cond_retroceso = df['High'][-5:].max() - df['High'].iloc[-10] < df['High'].diff().abs().mean() * 2
-    if cond_retroceso:
-        if df['Close'].iloc[-1] > df['High'][-5:].max():
-            return "flag", "BUY", 3
-        if df['Close'].iloc[-1] < df['Low'][-5:].min():
-            return "flag", "SELL", 3
-    return None, None, 0
-
-
-def detectar_triangulo(df, window=20):
-    if len(df) < window:
-        return None, None, 0
-    highs = df['High'][-window:]
-    lows = df['Low'][-window:]
-    max_high = highs.max()
-    min_low = lows.min()
-    high_slope = (highs.iloc[-1] - highs.iloc[0]) / window
-    low_slope = (lows.iloc[-1] - lows.iloc[0]) / window
-    if abs(high_slope) < 1e-12 and low_slope > 0:
-        if df['Close'].iloc[-1] > max_high:
-            return "triangulo", "BUY", 3
-    if abs(low_slope) < 1e-12 and high_slope < 0:
-        if df['Close'].iloc[-1] < min_low:
-            return "triangulo", "SELL", 3
-    if high_slope < 0 and low_slope > 0:
-        # posible breakout si está muy cerca de la resistencia
-        if abs(df['Close'].iloc[-1] - max_high) < (max_high - min_low) * 0.1:
-            return "triangulo", "BREAKOUT", 2
-    return None, None, 0
-
-
-def detectar_ruptura_canal(df, window=20, tol=0.0003):
-    if len(df) < window:
-        return None, None, 0
-    canal_alto = df['High'][-window:].max()
-    canal_bajo = df['Low'][-window:].min()
-    c = df['Close'].iloc[-1]
-    if abs(c - canal_alto) < (canal_alto * tol):
-        return "ruptura_canal", "BUY", 2
-    if abs(c - canal_bajo) < (canal_bajo * tol):
-        return "ruptura_canal", "SELL", 2
-    return None, None, 0
-
-
-def validar_rsi(df, th_low=RSI_OVERSOLD, th_high=RSI_OVERBOUGHT):
-    if 'RSI' not in df.columns or df['RSI'].isna().all():
-        return None
-    last_rsi = df['RSI'].iloc[-1]
-    if last_rsi < th_low:
-        return "BUY"
-    if last_rsi > th_high:
-        return "SELL"
-    return None
-
-
-def validacion_senal_debil(signal_dir, df, score, min_score=4):
-    # Si el score está en el umbral, pedir confirmación por patrón y rsi
-    if score >= min_score:
-        return True
-
-    detectors = [detectar_doble_techo, detectar_compresion, detectar_flag,
-                detectar_triangulo, detectar_ruptura_canal]
-
-        # Buscar un patrón que coincida en dirección
-    for det in detectors:
-        pname, pdir, pscore = det(df)
-        if pdir == signal_dir:
-            # Validar RSI coincidente
-            rsi_val = validar_rsi(df)
-            if rsi_val == signal_dir:
-                return True
-    return False
-
-
-# ---------------------------
-# Fetch de velas OPTIMIZADO con caché
-# ---------------------------
-async def fetch_data_optimized(api, pair, interval, lookback=LOOKBACK):
-    """
-    Fetch con cache inteligente y retry automático
-    """
-    cache_key = f"{pair}_{interval}_{lookback}"
-
-    # Intentar caché primero
-    cached_df, age = smart_cache.get(cache_key, ttl=interval)
-    if cached_df is not None:
-        return cached_df
-
-    # Cache miss → descargar con retry y delays más largos
-    for attempt in range(3):
-        try:
-            offset = interval * lookback
-            # Timeout más largo: 30s, 45s, 60s
-            timeout_duration = 30 + (attempt * 15)
-
-            raw = await asyncio.wait_for(
-                api.get_candles(pair, interval, offset),
-                timeout=timeout_duration
-            )
-
-            if not raw or not isinstance(raw, list):
-                if attempt < 2:
-                    # Backoff más largo: 3s, 6s
-                    await asyncio.sleep(3 * (2 ** attempt))
-                    continue
-                log(f"⚠️ Respuesta vacía para {pair} {interval}s tras {attempt + 1} intentos", "warning")
-                return pd.DataFrame()
-
-            # Procesar datos
-            df = pd.DataFrame(raw)
-            if 'timestamp' not in df.columns:
-                if 'time' in df.columns:
-                    df['timestamp'] = df['time']
-                else:
-                    log(f"⚠️ Sin timestamp en {pair} {interval}s", "warning")
-                    return pd.DataFrame()
-
-            df = df.dropna(subset=['timestamp', 'open', 'close'])
-            df = df[(df['open'] != 0) & (df['close'] != 0)]
-
-            if len(df) < 5:
-                log(f"⚠️ Pocas velas válidas para {pair} {interval}s ({len(df)})", "warning")
-                return pd.DataFrame()
-
-            df2 = pd.DataFrame({
-                'Timestamp': pd.to_datetime(df['timestamp'], unit='s', utc=True),
-                'Open': pd.to_numeric(df['open']),
-                'Close': pd.to_numeric(df['close']),
-                'High': pd.to_numeric(df['high']),
-                'Low': pd.to_numeric(df['low'])
-            })
-            df2 = df2.sort_values('Timestamp').set_index('Timestamp')
-
-            # Guardar en caché
-            smart_cache.set(cache_key, df2)
-            log(f"✅ Descargado {pair} {interval}s ({len(df2)} velas)", "debug")
-
-            # Delay corto tras descarga exitosa para no saturar
-            await asyncio.sleep(0.5)
-            return df2
-
-        except asyncio.TimeoutError:
-            if attempt < 2:
-                wait_time = 3 * (2 ** attempt)
-                log(f"⏱️ Timeout {attempt + 1}/3 para {pair} {interval}s, esperando {wait_time}s...", "warning")
-                await asyncio.sleep(wait_time)
-            else:
-                log(f"❌ Timeout definitivo para {pair} {interval}s después de 3 intentos", "error")
-                return pd.DataFrame()
-        except Exception as e:
-            log(f"❌ Error descargando {pair} {interval}s: {e}", "error")
-            if attempt < 2:
-                await asyncio.sleep(2)
-            else:
-                return pd.DataFrame()
-
-    return pd.DataFrame()
-
-
-# ---------------------------
-# Calculo de indicadores
-# ---------------------------
-def compute_indicators(df, interval):
-    # Nota: df debe tener len >= MA_LONG
-    df['MA_long'] = df['Close'].ewm(span=MA_LONG, adjust=False).mean()
-    df['above'] = df['Close'] > df['MA_long']
-    df['below'] = df['Close'] < df['MA_long']
-    df['no_touch_above'] = df['above'].rolling(10, min_periods=10).sum() == 10
-    df['no_touch_below'] = df['below'].rolling(10, min_periods=10).sum() == 10
-    df['EMA_conf'] = np.where(df['no_touch_above'], 1, np.where(df['no_touch_below'], -1, 0))
-
-    tr1 = df['High'] - df['Low']
-    tr2 = (df['High'] - df['Close'].shift()).abs()
-    tr3 = (df['Low'] - df['Close'].shift()).abs()
-    df['ATR'] = pd.concat([tr1, tr2, tr3], axis=1).max(axis=1).rolling(14, min_periods=14).mean()
-
-    df['trend'] = (df['Close'] - df['Close'].shift(14)) / df['ATR'].replace(0, np.nan)
-    df['TF'] = np.where(df['trend'] > 1, 1, np.where(df['trend'] < -1, -1, 0))
-
-    rng = df['High'].rolling(10, min_periods=10).max() - df['Low'].rolling(10, min_periods=10).min()
-    df['triangle'] = (rng < df['ATR'] * 0.5).astype(int)
-
-    try:
-        df_htf = df['Close'].resample(f"{interval * HTF_MULT}s").last().ffill()
-        ema_fast = df_htf.rolling(MA_SHORT * HTF_MULT, min_periods=MA_SHORT * HTF_MULT).mean()
-        ema_slow = df_htf.ewm(span=MA_LONG * HTF_MULT, adjust=False).mean()
-        htf_sig = np.where(ema_fast > ema_slow, 1, np.where(ema_fast < ema_slow, -1, 0))
-        df['HTF'] = pd.Series(htf_sig, index=df_htf.index).reindex(df.index, method='ffill').fillna(0).astype(int)
-    except Exception:
-        df['HTF'] = 0
-
-    if USE_RSI:
-        df['RSI'] = compute_rsi(df)
-    if USE_REVERSAL_CANDLES:
-        df['Reversal'] = df.apply(detect_reversal_candle, axis=1)
-    if USE_SUPPORT:
-        s = detect_support(df)
-        df['NearSupport'] = df['Close'].apply(lambda c: near_support(c, s))
-    if USE_RESISTANCE:
-        r = detect_resistance(df)
-        df['NearResistance'] = df['Close'].apply(lambda c: near_resistance(c, r))
-
-
-def is_sideways(df, window=20, atr_mult=1.0):
-    if len(df) < window:
-        return False
-    recent = df.iloc[-window:]
-    pr = recent['High'].max() - recent['Low'].min()
-    atr_avg = recent['ATR'].mean()
-    if pd.isna(atr_avg) or atr_avg == 0:
-        return True
-    return pr < (atr_avg * atr_mult)
-
-
-def score_signal(row):
-    score = 0
-    score += int(row.get('EMA_conf', 0) != 0)
-    score += int(row.get('TF', 0) == row.get('EMA_conf', 0))
-    score += int(row.get('triangle', 0) == 1)
-    if USE_RSI and not pd.isna(row.get('RSI', np.nan)):
-        if row['RSI'] < RSI_OVERSOLD or row['RSI'] > RSI_OVERBOUGHT:
-            score += 1
-    if USE_REVERSAL_CANDLES:
-        if row.get('Reversal', 0) == 1:
-            score += 1
-    if USE_SUPPORT and row.get('NearSupport', False):
-        score += 1
-
-    if USE_RESISTANCE and row.get('NearResistance', False):
-        score += 1
-    return int(score)
-
-
-def get_signal_indicators(df, last_row):
-    """Extraer todos los indicadores de una vela para logging."""
-    indicators = {
-        'price': float(last_row['Close']) if not pd.isna(last_row.get('Close')) else 0,
-        'ema': float(last_row.get('MA_long', 0)) if not pd.isna(last_row.get('MA_long')) else 0,
-        'rsi': float(last_row.get('RSI', 0)) if not pd.isna(last_row.get('RSI')) else None,
-        'ema_conf': int(last_row.get('EMA_conf', 0)),
-        'tf_signal': int(last_row.get('TF', 0)),
-        'atr': float(last_row.get('ATR', 0)) if not pd.isna(last_row.get('ATR')) else 0,
-        'triangle_active': int(last_row.get('triangle', 0)),
-        'reversal_candle': int(last_row.get('Reversal', 0)),
-        'near_support': bool(last_row.get('NearSupport', False)),
-        'near_resistance': bool(last_row.get('NearResistance', False)),
-        'htf_signal': int(last_row.get('HTF', 0)) if 'HTF' in last_row.index else 0,
-    }
+    from BinaryOptionsToolsV2.pocketoption import PocketOptionAsync
+except Exception as e:
+    print("ERROR:", e)
+    exit()
+
+# ========== FORZAMOS PARES OTC (porque es lo que tenés ahora) ==========
+PAIRS = ["EURUSD_otc", "GBPUSD_otc", "USDJPY_otc", "AUDUSD_otc"]
+api = PocketOptionAsync(ssid=os.getenv("POCKETOPTION_SSID"))
+
+# ========== TELEGRAM OPCIONAL (ahora con formato bonito) ==========
+def tg(msg):
+    """Función legacy - usa telegram_formatter.py ahora"""
+    # Los mensajes ahora se envían con telegram_formatter
+    pass
+
+# ========== SEÑALES ==========
+def get_signal(df):
+    if len(df) < 60: return None, None, None
+    df = df.copy()
+    df['e8']  = df['close'].ewm(span=8,  adjust=False).mean()
+    df['e21'] = df['close'].ewm(span=21, adjust=False).mean()
+    df['e55'] = df['close'].ewm(span=55, adjust=False).mean()
     
-    # Obtener niveles de soporte/resistencia si existen
-    if 'NearSupport' in df.columns:
-        support = detect_support(df)
-        resistance = detect_resistance(df)
-        indicators['support_level'] = float(support) if not pd.isna(support) else None
-        indicators['resistance_level'] = float(resistance) if not pd.isna(resistance) else None
-    else:
-        indicators['support_level'] = None
-        indicators['resistance_level'] = None
+    c = df['close'].iloc[-1]
+    p = df['close'].iloc[-2]
+    e8, e21, e55 = df['e8'].iloc[-1], df['e21'].iloc[-1], df['e55'].iloc[-1]
     
-    return indicators
+    # EMA 8/21/55
+    if e8 > e21 > e55 and p <= e8 and c > e8:
+        return "BUY", "EMA", {"e8": e8, "e21": e21, "e55": e55, "price": c}
+    if e8 < e21 < e55 and p >= e8 and c < e8:
+        return "SELL", "EMA", {"e8": e8, "e21": e21, "e55": e55, "price": c}
+    
+    # ROUND LEVELS (solo si no hubo EMA)
+    price = c
+    level = round(price * 2) / 2
+    if abs(price - level) <= 0.0008:  # 8 pips máximo
+        if price < level and e8 > e21 and c > df['open'].iloc[-1]:
+            return "BUY", "ROUND", {"e8": e8, "e21": e21, "e55": e55, "price": c, "level": level}
+        if price > level and e8 < e21 and c < df['open'].iloc[-1]:
+            return "SELL", "ROUND", {"e8": e8, "e21": e21, "e55": e55, "price": c, "level": level}
+    
+    return None, None, None
 
-
-
-# ---------------------------
-# Confirmaciones específicas MODO PRO
-# ---------------------------
-
-def confirm_breakout(df, direction, lookback=BREAKOUT_LOOKBACK, breakout_tol=BREAKOUT_TOL):
-    """
-    Confirma que el precio cerró fuera de la resistencia/soporte de lookback y
-    que lo hizo con margen breakout_tol (ej: 0.0005).
-    """
-    if len(df) < lookback + 1:
-        return False
-    window = df[-lookback:]
-    high = window['High'].max()
-    low = window['Low'].min()
-    last_close = df['Close'].iloc[-1]
-
-    if direction == "BUY":
-        return last_close > high * (1 + breakout_tol)
-
-    if direction == "SELL":
-        return last_close < low * (1 - breakout_tol)
-
-    return False
-
-
-def htf_confirms(df, direction):
-    if 'HTF' not in df.columns:
-        return False
-    last_htf = df['HTF'].iloc[-1]
-    return (direction == "BUY" and last_htf == 1) or (direction == "SELL" and last_htf == -1)
-
-
-# ---------------------------
-# Generar señal (core) con Semaphore
-# ---------------------------
-async def generate_signal(api, pair, tf):
-    global p
-    interval = TIMEFRAMES[tf]
-    df = await fetch_data_optimized(api, pair, interval)
-
-    if df.empty or len(df) < MA_LONG:
-        return None
-
-    compute_indicators(df, interval)
-    last = df.iloc[-1]
-
-
-
-    # prioridad 1: señal por indicadores (sin exigir HTF)
-    indicator_signal = None
-    indicator_score = 0
-    detected_pattern = None
-    detectors = [detectar_doble_techo, detectar_compresion, detectar_flag, detectar_triangulo, detectar_ruptura_canal]
-    if last.get('EMA_conf', 0) == 0 or last.get('TF', 0) == 0 or is_sideways(df):
-        indicator_signal = None
-    else:
-        indicator_score = score_signal(last)
-        if last['EMA_conf'] > 0 and indicator_score >= MIN_SCORE_BASE:
-            indicator_signal = 'BUY'
-        elif last['EMA_conf'] < 0 and indicator_score >= MIN_SCORE_BASE:
-            indicator_signal = 'SELL'
-        else:
-            indicator_signal = None
-
-    # si no señal por indicadores -> buscar patrones
-    if not indicator_signal:
-        for det in detectors:
-            pattern_name, direction, pscore = det(df)
-
-            if direction is None:
-                continue
-
-            # Validación RSI
-            if USE_RSI:
-                rsi_val = validar_rsi(df)
-                if rsi_val and rsi_val != direction:
-                    log(f"⏸️ Patrón {pattern_name} rechazado por RSI conflictivo: {pair} {tf}", "debug")
-                    continue
-
-            # confirmación de breakout (usa dirección, no pattern_name)
-            if not confirm_breakout(df, direction=direction):
-                log(f"⏸️ Patrón {pattern_name} rechazado - breakout no confirmado: {pair} {tf}", "debug")
-                continue
-
-                # ✔ señal válida por patrón
-                # si todo ok retornar señal de patrón
-            return {
-                'pair': pair,
-                'tf': tf,
-                'signal': direction,
-                'timestamp': last.name,
-                'duration': TIMEFRAMES[tf],
-                'score': int(pscore),
-                'pattern': pattern_name,
-                'price': float(last['Close']),
-                'ema': float(last.get('MA_long', np.nan))
-            }
-        return None
-
-    for det in detectors:
-        pname, direction, _ = det(df)
-        if direction is not None and direction == indicator_signal:
-            detected_pattern = pname
-            break
-
-    # si hay señal por indicadores -> validar si es débil y aplicar reglas adaptativas
-    # adaptar el mínimo de score según winrate reciente (control adaptativo)
-    current_wr = rolling_winrate()
-    min_score = MIN_SCORE_BASE
-    # ================================
-    # WINRATE ADAPTATIVO (corregido)
-    # ================================
-
-    # → NUEVA CONDICIÓN: solo aplicar score adaptativo si hay 10 operaciones mínimas
-    if current_wr is not None and len(trade_history) >= 10:
-        if current_wr < TARGET_WINRATE:
-            deficit = TARGET_WINRATE - current_wr
-            inc = int(np.ceil(deficit * 10)) * ADAPTIVE_SCORE_INCREMENT
-            min_score = min(MIN_SCORE_MAX, MIN_SCORE_BASE + inc)
-        else:
-            # → NO aplicamos adaptativo si no hay historial suficiente
-            min_score = MIN_SCORE_BASE
-
-        print(f"🔧 Winrate reciente: {current_wr} (trades: {len(trade_history)}) → min_score = {min_score}")
-
-    if indicator_score < min_score:
-        log(f"⏸️ Señal descartada por score insuficiente ({indicator_score} < {min_score}): {pair} {tf}", "debug")
-        return None
-
-    # exigir confirmación HTF
-    # if not htf_confirms(df, indicator_signal):
-        # log(f"⏸️ Señal descartada: HTF no confirma {pair} {tf} -> {indicator_signal}", "debug")
-        # return None
-
-    # validar débil: patrones + rsi
-    if not validacion_senal_debil(indicator_signal, df, indicator_score, min_score=min_score):
-        log(f"⏸️ Señal descartada por validación débil: {pair} {tf}", "debug")
-        return None
-
-    # Construir descripción detallada de indicadores
-    indicators_used = []
-    if last.get('EMA_conf', 0) != 0:
-        indicators_used.append(f"EMA_conf={last['EMA_conf']}")
-    if last.get('TF', 0) != 0:
-        indicators_used.append(f"TF={last['TF']}")
-    if USE_RSI and 'RSI' in df.columns and not pd.isna(last.get('RSI', np.nan)):
-        indicators_used.append(f"RSI={last['RSI']:.1f}")
-    if last.get('triangle', 0) == 1:
-        indicators_used.append("Triangle=Active")
-    if last.get('Reversal', 0) == 1:
-        indicators_used.append("Reversal=Detected")
-    if last.get('NearResistance', False):
-        indicators_used.append("NearResistance=Yes")
-
-    indicators_str = " | ".join(indicators_used) if indicators_used else "Base Indicators"
-
-    return {
-        'pair': pair,
-        'tf': tf,
-        'signal': indicator_signal,
-        'timestamp': last.name,
-        'duration': TIMEFRAMES[tf],
-        'score': int(indicator_score),
-        'pattern': None,
-        'pattern_detailed': indicators_str,
-        'price': float(last['Close']),
-        'ema': float(last.get('MA_long', np.nan)),
-        'breakdown': {
-            'EMA_conf': int(last.get('EMA_conf', 0)),
-            'TF': int(last.get('TF', 0)),
-            'RSI': float(last.get('RSI', 0)) if not pd.isna(last.get('RSI', np.nan)) else None,
-            'triangle': int(last.get('triangle', 0)),
-            'reversal': int(last.get('Reversal', 0)),
-            'near_resistance': bool(last.get('NearResistance', False))
-        }
-    }
-
-
-# Wrapper con semaphore para limitar concurrencia
-async def generate_signal_with_semaphore(semaphore, api, pair, tf):
-    async with semaphore:
-        try:
-            return await generate_signal(api, pair, tf)
-        except Exception as e:
-            log(f"⚠️ Exception en generate_signal_with_semaphore {pair} {tf}: {e}", "warning")
-            return None
-
-
-# ---------------------------
-# Noticias (dummy) / TODO: integrar API real
-# ---------------------------
-def is_news_event():
-    # TODO: reemplazar por API de calendario económico (econ-calendar) o newsapi
-    now = datetime.now(timezone.utc)
-    # ejemplo simple: no operar los viernes entre 13:00 y 14:00 UTC (dummy)
-    if now.weekday() == 4 and 13 <= now.hour <= 14:
-        return True
-    return False
-
-
-# ---------------------------
-# MAIN
-# ---------------------------
+# ========== MAIN ==========
 async def main():
-    log("=" * 70)
-    log("🤖 BOT MULTI-TF MODO PRO - ARRANQUE")
-    log("=" * 70)
+    print("BOT UNIVERSAL 2025 → CORRIENDO EN MODO BESTIA")
+    tg("Bot universal iniciado")
+    await asyncio.sleep(5)  # dar tiempo a la API
 
-    # pedir tokens si no están seteados
-    global TELEGRAM_TOKEN, TELEGRAM_CHAT_ID
-    if not TELEGRAM_TOKEN:
-        TELEGRAM_TOKEN = input("Introduce TELEGRAM_TOKEN (o deja vacío): ").strip() or None
-    if TELEGRAM_TOKEN and not TELEGRAM_CHAT_ID:
-        TELEGRAM_CHAT_ID = input("Introduce TELEGRAM_CHAT_ID (numérico): ").strip() or None
-
-    ssid = input("Introduce tu SSID de PocketOption: ").strip()
-    api = PocketOptionAsync(ssid=ssid)
-
-    # intentar obtener balance / cuenta con retry
-    balance = None
-    for attempt in range(3):
-        try:
-            is_demo = api.is_demo()
-            balance = await api.balance()
-
-            if balance and balance > 0:
-                log(f"✅ Cuenta: {'DEMO' if is_demo else 'REAL'} - Balance: ${balance:.2f}")
-                tg_send(f"🤖 Bot iniciado\n{'DEMO' if is_demo else 'REAL'}\n💰 Balance: ${balance:.2f}")
-                break
-            else:
-                if attempt < 2:
-                    log(f"⚠️ Balance inválido ({balance}), reintentando... ({attempt + 1}/3)", "warning")
-                    await asyncio.sleep(2)
-                else:
-                    log(f"⚠️ No se pudo obtener balance válido tras 3 intentos", "warning")
-                    tg_send(f"🤖 Bot iniciado - Cuenta {'DEMO' if is_demo else 'REAL'}\n⚠️ Balance no disponible")
-        except Exception as e:
-            if attempt < 2:
-                log(f"⚠️ Error obteniendo balance ({attempt + 1}/3): {e}", "warning")
-                await asyncio.sleep(2)
-            else:
-                log(f"❌ Error verificando cuenta tras 3 intentos: {e}", "error")
-                tg_send("🤖 Bot iniciado (error obteniendo datos de cuenta)")
-
-    log(f"\n📊 Pares: {len(PAIRS)} | Timeframes: {', '.join(SELECTED_TFS)}")
-    log(f"💰 Risk por operación: {RISK_PER_TRADE * 100}%")
-    log(f"🛡️ Max pérdidas diarias: {MAX_DAILY_LOSSES}")
-    log(f"🚦 Max requests simultáneos: {MAX_CONCURRENT_REQUESTS}")
-    log("=" * 70 + "\n")
-
-    cycle = 0
-    stats = {'wins': 0, 'losses': 0, 'total': 0}
-
+    cooldown = {}
     while True:
         try:
-            if is_news_event():
-                log("⚠️ Evento de noticias activo — pausa 15 min")
-                tg_send("⚠️ Noticias importantes — pausa temporal.")
-                await asyncio.sleep(COOLDOWN_SECONDS)
+            balance = await api.balance()
+            if balance in [None, -1.0]:
+                print("Sesión muerta o balance -1 → reiniciá el SSID")
+                await asyncio.sleep(60)
                 continue
+                
+            amount = max(1.0, round(balance * 0.01, 2))
+            now = time.time()
+            traded = False
 
-            cycle += 1
-            log(f"\n{'=' * 70}")
-            log(f"CICLO #{cycle} - {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')}")
+            # limpiar cooldowns viejos
+            cooldown = {k: v for k, v in cooldown.items() if now - v < 65}
 
-            current_balance = None
-            try:
-                current_balance = await api.balance()
-                if current_balance and current_balance > 0:
-                    log(f"💰 Balance actual: ${current_balance:.2f}")
-                else:
-                    log(f"⚠️ Balance inválido: {current_balance}", "warning")
-                    current_balance = 0.0
-            except Exception as e:
-                log(f"⚠️ Error obteniendo balance: {e}", "warning")
-                current_balance = 0.0
-
-            # verificar si podemos tradear (usar balance actual)
-            can, amount = can_trade(current_balance or 0)
-            if not can:
-                log(f"🚫 No puedo tradear: {amount}")
-                tg_send(f"{amount} — pausa hasta nuevo día")
-                await asyncio.sleep(COOLDOWN_SECONDS)
-                continue
-
-            # Mostrar stats del cache cada 10 ciclos
-            if cycle % 10 == 0:
-                cache_stats = smart_cache.stats()
-                log(f"📊 {cache_stats}")
-                smart_cache.clear_expired()  # Limpiar cache viejo
-
-            # Analizar en paralelo con límite de concurrencia MUY BAJO
-            semaphore = asyncio.Semaphore(MAX_CONCURRENT_REQUESTS)
-
-            # Agrupar por timeframe para mejor caché
-            all_signals = []
-            for tf in SELECTED_TFS:
-                tasks = [
-                    generate_signal_with_semaphore(semaphore, api, pair, tf)
-                    for pair in PAIRS
-                ]
-                log(f"🔍 Analizando {len(PAIRS)} pares en TF {tf} (max {MAX_CONCURRENT_REQUESTS} simultáneos)...")
-                tf_results = await asyncio.gather(*tasks, return_exceptions=True)
-                all_signals.extend(tf_results)
-
-                # Pequeño delay entre timeframes para no saturar
-                await asyncio.sleep(1)
-
-            start_time = time.time()
-            elapsed = time.time() - start_time
-            log(f"⏱️ Análisis completado en {elapsed:.1f}s")
-
-            # recoger mejores señales válidas
-            best_signal = None
-            best_score = -1
-            valid_signals = 0
-
-            for res in all_signals:
-                if isinstance(res, Exception):
-                    log(f"⚠️ Exception en generate_signal: {res}", "warning")
-                    continue
-                if not res:
+            for pair in PAIRS:
+                if pair in cooldown:
                     continue
 
-                valid_signals += 1
-                sc = res.get('score', 0)
-                if sc > best_score:
-                    best_score = sc
-                    best_signal = res
-
-            log(f"✅ Señales válidas encontradas: {valid_signals}/{len(all_signals)}")
-
-            if not best_signal:
-                log("⏸️ Sin señales válidas en este ciclo. Esperando 30s...")
-                await asyncio.sleep(30)
-                continue
-
-            sig = best_signal
-
-            # Enriquecer info de breakdown si existe
-            if 'breakdown' in sig and sig['breakdown']:
-                breakdown_str = (
-                    f"\n  └─ EMA_conf: {sig['breakdown'].get('EMA_conf', 0)} | "
-                    f"TF: {sig['breakdown'].get('TF', 0)} | "
-                    f"RSI: {sig['breakdown'].get('RSI', 'N/A')} | "
-                    f"Triangle: {sig['breakdown'].get('triangle', 0)}"
-                )
-                log(f"   Desglose: {breakdown_str}", "debug")
-
-            # Antes de ejecutar, verificar winrate reciente para no operar en mala racha grave
-            # =====================================================
-            # 🅱️ MODO MODERADO
-            # - Si WinRate es malo → NO bloquear completamente
-            # - Permitir operar si:
-            #     ✔ Score ≥ 5
-            #     ✔ Y existe un patrón chartista
-            # =====================================================
-
-            # COMENTADO TEMPORALMENTE PARA RECOPILAR DATOS
-            # current_wr = rolling_winrate()
-            # if current_wr is not None and current_wr < (TARGET_WINRATE - 0.1):
-
-                # Obtener score y patrón de la mejor señal detectada
-                # sc = best_signal.get("score", 0)
-                # pattern = best_signal.get("pattern", None)
-
-                # Condición para permitir operar aun con WR malo
-                # if sc >= 5 and pattern not in (None, "None"):
-                #    log(
-                #        f"⚠️ Winrate bajo ({current_wr:.2f}) PERO señal fuerte "
-                #        f"(score {sc}) + patrón '{pattern}' → operación PERMITIDA (Modo Moderado)"
-                #    )
-                # else:
-                #    warn_msg = (
-                #        f"⚠️ Winrate reciente {current_wr:.2f} por debajo del umbral crítico "
-                #        f"y señal débil (score {sc}, patrón {pattern}) → operación BLOQUEADA."
-                #    )
-                #    log(warn_msg, "warning")
-                #    tg_send(warn_msg)
-                #    await asyncio.sleep(30)
-                #    continue
-
-            # can, amount = can_trade(current_balance or 0)
-            # if not can:
-            #    log(f"🚫 No puedo tradear justo antes de ejecutar: {amount}")
-            #    tg_send(f"{amount} — pausa hasta nuevo día")
-            #    await asyncio.sleep(COOLDOWN_SECONDS)
-            #    continue
-
-            pattern_info = sig.get('pattern', None)
-            if not pattern_info:
-                # Usar la descripción detallada si existe
-                pattern_info = sig.get('pattern_detailed', "Indicadores (EMA+TF+Confirmación)")
-
-            # ✨ PREDICCIÓN ML (OPCIONAL)
-            ml_prediction = None
-            ml_prob = None
-            if ML_AVAILABLE:
-                try:
-                    # Preparar features para ML
-                    ml_features = {
-                        'rsi': sig.get('breakdown', {}).get('RSI', None),
-                        'ema_conf': sig.get('breakdown', {}).get('EMA_conf', 0),
-                        'tf_signal': sig.get('breakdown', {}).get('TF', 0),
-                        'atr': sig.get('breakdown', {}).get('atr', 0),
-                        'triangle_active': sig.get('breakdown', {}).get('triangle', 0),
-                        'reversal_candle': sig.get('breakdown', {}).get('reversal', 0),
-                        'near_support': sig.get('breakdown', {}).get('near_support', False),
-                        'near_resistance': sig.get('breakdown', {}).get('near_resistance', False),
-                        'signal_score': sig.get('score', 0),
-                        'decision': sig['signal'],
-                        'pair': sig['pair'],
-                        'price': sig.get('price', 0),
-                    }
+                # pedir velas M5
+                raw = await api.get_candles(pair, 300, 30000)
+                if not raw or len(raw) < 50:
+                    continue
                     
-                    ml_prediction, ml_prob = predict_success(ml_features)
+                df = pd.DataFrame(raw)
+                if 'time' not in df.columns:
+                    df['time'] = df.get('timestamp', df.index)
+                df = df[['time', 'open', 'close']].copy()
+                df['time'] = pd.to_datetime(df['time'], unit='s')
+                df = df.set_index('time').astype(float)
+
+                direction, source, metrics = get_signal(df)
+                if direction and not traded:
+                    traded = True
+                    txt = f"{datetime.now().strftime('%H:%M:%S')} → {pair} {direction} ${amount} [{source}]"
+                    print(txt)
+                    tg(txt)
+
+                    trade_id = None
+                    try:
+                        if direction == "BUY":
+                            # api.buy returns (trade_id, trade_details) or just trade_id depending on implementation
+                            # Based on inspection, it returns (trade_id, trade)
+                            result = await api.buy(pair, amount, 300)
+                        else:
+                            result = await api.sell(pair, amount, 300)
+                        
+                        # Handle result tuple
+                        if isinstance(result, tuple):
+                            trade_id = result[0]
+                        else:
+                            trade_id = result
+
+                        # LOGGING
+                        if trade_id:
+                            trade_data = {
+                                'timestamp': datetime.now(),
+                                'trade_id': trade_id,
+                                'pair': pair,
+                                'tf': 'M5',
+                                'timeframe': 'M5',
+                                'decision': direction,
+                                'signal': direction,
+                                'pattern_detected': source,
+                                'pattern': source,
+                                'price': metrics.get('price', 0),
+                                'ema': metrics.get('e8', 0),
+                                'rsi': metrics.get('rsi', 0),
+                                'ema_conf': metrics.get('ema_conf', 0),
+                                'tf_signal': metrics.get('tf_signal', 0),
+                                'atr': metrics.get('atr', 0),
+                                'triangle_active': metrics.get('triangle_active', 0),
+                                'reversal_candle': metrics.get('reversal_candle', 0),
+                                'near_support': metrics.get('near_support', 0),
+                                'near_resistance': metrics.get('near_resistance', 0),
+                                'htf_signal': metrics.get('htf_signal', 0),
+                                'notes': f"e21={metrics.get('e21',0):.5f}, e55={metrics.get('e55',0):.5f}",
+                                'expiry_time': 300,
+                                'result': 'PENDING'
+                            }
+                            # Registrar en ambos loggers
+                            trade_logger.log_trade(trade_data)
+                            shadow_trades_logger.log_trade(trade_data)
+                            print(f"   └── Guardado en CSV: ID {trade_id}")
+                            print(f"   └── Guardado en shadow_trades.csv: {trade_id}")
+
+                    except Exception as e:
+                        print(f"Error ejecutando orden: {e}")
                     
-                    if ml_prob is not None:
-                        log(f"🤖 ML Predicción: {ml_prob:.1%} de probabilidad de ganancia", "debug")
-                except Exception as e:
-                    log(f"⚠️ Error en predicción ML: {e}", "warning")
+                    cooldown[pair] = now
+                    await asyncio.sleep(65)
+                    break
 
-            msg = (
-                f"📌 SEÑAL DETECTADA\n"
-                f"{'=' * 30}\n"
-                f"Par: {sig['pair']}\n"
-                f"TF: {sig['tf']}\n"
-                f"Dirección: {sig['signal']}\n"
-                f"Score: {sig['score']}\n"
-                f"Patrón/Indicadores: {pattern_info}\n"
-                f"━━━━━━━━━━━━━━━━\n"
-                f"💰 Precio: {sig['price']:.5f}\n"
-                f"📊 EMA: {sig['ema']:.5f}\n"
-                f"⏱️ Duración: {sig['duration'] // 60}min\n"
-                f"💵 Monto: ${amount:.2f}"
-            )
-            
-            if ml_prob is not None:
-                msg += f"\n🤖 ML: {ml_prob:.1%}"
-            
-            log(msg)
-            tg_send(msg)
-
-            # Ejecutar operación
-            try:
-                if sig['signal'] == 'BUY':
-                    trade_id, result = await asyncio.wait_for(
-                        api.buy(asset=sig['pair'], amount=round(amount, 2), time=sig['duration'], check_win=False),
-                        timeout=20
-                    )
-                else:
-                    trade_id, result = await asyncio.wait_for(
-                        api.sell(asset=sig['pair'], amount=round(amount, 2), time=sig['duration'], check_win=False),
-                        timeout=20
-                    )
-                log(f"✅ Operación ejecutada ID: {trade_id}")
-                tg_send(f"✅ Operación ejecutada\nID: {trade_id}")
-                
-                # Extraer indicadores detallados para logging
-                indicators = sig.get('breakdown', {})
-                if not indicators:
-                    # Si no está en breakdown, construir desde la señal
-                    indicators = {
-                        'rsi': sig.get('rsi', None),
-                        'ema_conf': sig.get('ema_conf', 0),
-                        'tf_signal': sig.get('tf_score', 0),
-                        'atr': sig.get('atr', 0),
-                        'triangle': sig.get('triangle', 0),
-                        'reversal': sig.get('reversal', 0),
-                    }
-                
-                # Registrar operación ANTES del resultado
-                trade_logger.log_trade({
-                    'timestamp': datetime.now(timezone.utc),
-                    'trade_id': str(trade_id),
-                    'pair': sig['pair'],
-                    'timeframe': sig['tf'],
-                    'decision': sig['signal'],
-                    'signal_score': sig.get('score', 0),
-                    'pattern_detected': sig.get('pattern', sig.get('pattern_detailed', 'Indicadores')),
-                    'price': sig.get('price', 0),
-                    'ema': sig.get('ema', 0),
-                    'rsi': indicators.get('RSI', indicators.get('rsi', None)),
-                    'ema_conf': indicators.get('EMA_conf', indicators.get('ema_conf', 0)),
-                    'tf_signal': indicators.get('TF', indicators.get('tf_signal', 0)),
-                    'atr': indicators.get('atr', 0),
-                    'triangle_active': indicators.get('triangle', indicators.get('triangle_active', 0)),
-                    'reversal_candle': indicators.get('reversal', indicators.get('reversal_candle', 0)),
-                    'near_support': indicators.get('near_support', False),
-                    'near_resistance': indicators.get('near_resistance', False),
-                    'support_level': indicators.get('support_level', None),
-                    'resistance_level': indicators.get('resistance_level', None),
-                    'htf_signal': indicators.get('htf_signal', 0),
-                    'result': 'PENDING',
-                    'expiry_time': sig['duration'],
-                })
-
-                # esperar expiración + margen
-                log(f"⏳ Esperando resultado ({sig['duration'] // 60}min)...")
-                await asyncio.sleep(sig['duration'] + 10)
-
-                # verificar resultado
-                try:
-                    win_result = await asyncio.wait_for(api.check_win(trade_id), timeout=20)
-                    stats['total'] += 1
-
-                    log(f"[DEBUG] Resultado crudo: {win_result}")
-
-                    # Detectar si ganó basándose en diferentes formatos de respuesta
-                    win = False
-                    profit = 0
-
-                    if isinstance(win_result, dict):
-                        # Formato 1: {'result': 'win'} o {'result': 'loss'}
-                        if 'result' in win_result:
-                            win = (win_result['result'] == 'win')
-                        # Formato 2: {'win': 1.85} (profit) o {'win': 0}
-                        elif 'win' in win_result:
-                            win = (win_result['win'] > 0)
-                            profit = float(win_result.get('win', 0))
-                        # Formato 3: {'profit': 0.92} o {'profit': 0}
-                        elif 'profit' in win_result:
-                            win = (win_result['profit'] > 0)
-                            profit = float(win_result.get('profit', 0))
-                    elif isinstance(win_result, (int, float)):
-                        win = (win_result > 0)
-                        profit = float(win_result)
-                    elif isinstance(win_result, bool):
-                        win = win_result
-
-                    log(f"[DEBUG] Interpretado como: {'GANADA' if win else 'PERDIDA'}")
-                    
-                    # Actualizar resultado en el logger
-                    result_text = 'WIN' if win else 'LOSS'
-                    profit_loss = profit if win else -amount
-                    
-                    trade_logger.update_trade_result(
-                        trade_id,
-                        result=result_text,
-                        profit_loss=profit_loss if win else None
-                    )
-
-                    # Registrar en trade_history (MODO PRO)
-                    trade_history.append({'win': bool(win), 'timestamp': datetime.now(timezone.utc)})
-                    if len(trade_history) > max(ROLLING_WINDOW_TRADES * 3, 200):
-                        trade_history[:] = trade_history[-ROLLING_WINDOW_TRADES*3:]
-
-                    if win:
-                        stats['wins'] += 1
-                        icon, text = "✅", "GANADA"
-                        profit_msg = f" (+${profit:.2f})" if profit > 0 else ""
-                    else:
-                        stats['losses'] += 1
-                        icon, text = "❌", "PERDIDA"
-                        daily_stats['losses'] += 1
-                        profit_msg = f" (-${amount:.2f})"
-
-                    daily_stats['trades'] += 1
-                    wr = stats['wins'] / stats['total'] * 100 if stats['total'] > 0 else 0.0
-                    result_msg = (
-                        f"{icon} {text}{profit_msg}\n"
-                        f"━━━━━━━━━━━━━━━━\n"
-                        f"📊 Stats Totales:\n"
-                        f"   {stats['wins']}W / {stats['losses']}L ({wr:.1f}%)\n"
-                        f"📅 Stats Hoy:\n"
-                        f"   {daily_stats['trades']} operaciones\n"
-                        f"   {daily_stats['losses']} pérdidas"
-                    )
-                    log(result_msg)
-                    tg_send(result_msg)
-
-                    # COMENTADO TEMPORALMENTE PARA RECOPILAR DATOS
-                    # actualizar racha y aplicar cooling-off si hace falta
-                    # streak = update_streak(win)
-                    # if streak >= STREAK_LIMIT:
-                    #     cool_msg = f"⚠️ Racha de {streak} pérdidas. Cooling-off {COOLDOWN_SECONDS // 60}min."
-                    #     log(cool_msg)
-                    #     tg_send(cool_msg)
-                    #     await asyncio.sleep(COOLDOWN_SECONDS)
-
-                except Exception as e:
-                    log(f"⚠️ Error verificando resultado: {e}", "warning")
-                    tg_send(f"⚠️ No se pudo verificar resultado de {trade_id}")
-
-            except Exception as e:
-                log(f"❌ Error ejecutando operación: {e}", "error")
-                tg_send(f"❌ Error ejecutando operación: {str(e)[:120]}")
-
-            # 🤖 SINCRONIZAR CON ML (opcional)
-            if ML_AVAILABLE:
-                try:
-                    log("🔄 Sincronizando trades con ML...", "debug")
-                    synced = ml_trades.sync_trades_to_ml(auto_train=False)
-                    if synced > 0:
-                        log(f"✅ {synced} trades sincronizados con ML", "debug")
-                except Exception as e:
-                    log(f"⚠️ Error sincronizando ML: {e}", "warning")
-
-            await asyncio.sleep(5)
+            if not traded:
+                print(f"{datetime.now().strftime('%H:%M:%S')} → analizando 4 pares... (sin señal)")
+                await asyncio.sleep(7)
 
         except Exception as e:
-            log(f"⚠️ Error en loop principal: {e}", "error")
-            tg_send(f"⚠️ Error en loop: {str(e)[:120]}")
-            await asyncio.sleep(30)
-
+            print("ERROR:", e)
+            await asyncio.sleep(15)
 
 if __name__ == "__main__":
-    try:
-        asyncio.run(main())
-    except KeyboardInterrupt:
-        log("\n\n👋 Bot detenido por el usuario", "info")
-        tg_send("🛑 Bot detenido manualmente")
-        # Mostrar estadísticas finales del cache
-        final_stats = smart_cache.stats()
-        log(f"📊 Estadísticas finales: {final_stats}")
-    except Exception as e:
-        log(f"\n❌ Error fatal: {e}", "error")
-        tg_send(f"❌ Error fatal: {str(e)[:120]}")
+    asyncio.run(main())
