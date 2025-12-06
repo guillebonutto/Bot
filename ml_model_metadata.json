@@ -1,9 +1,9 @@
 {
-  "training_date": "2025-12-02T02:57:31.713785",
-  "trades_used": 427,
-  "train_samples": 341,
-  "validation_samples": 86,
-  "validation_winrate": 63.95348837209303,
-  "previous_winrate": 58.139534883720934,
-  "improvement": 5.813953488372093
+  "training_date": "2025-12-06T13:51:52.191722",
+  "trades_used": 1000,
+  "train_samples": 800,
+  "validation_samples": 200,
+  "validation_winrate": 59.5,
+  "previous_winrate": 54.50000000000001,
+  "improvement": 4.999999999999993
 }

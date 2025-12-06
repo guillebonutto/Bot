@@ -62,7 +62,11 @@ class AutoTrainer:
         
         if not dfs:
             return None
-        
+            
+        dfs = [d for d in dfs if not d.empty and not d.isna().all().all()]
+        if not dfs:
+            return None
+
         all_trades = pd.concat(dfs, ignore_index=True)
         
         # Filter only completed trades (not PENDING)
@@ -239,7 +243,7 @@ class AutoTrainer:
             if new_wr > current_wr:
                 improvement = new_wr - current_wr
                 print(f"\n[OK] NEW MODEL IS BETTER (+{improvement:.1f}%)")
-                print("🔄 Updating model...")
+                print("[UPDATE] Updating model...")
                 
                 metadata = {
                     'training_date': datetime.now().isoformat(),
