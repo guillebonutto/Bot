@@ -37,3 +37,7 @@ timestamp,trades_used,current_model_wr,new_model_wr,updated,reason
 2025-12-06T15:43:39.683440,1000,71.5,59.0,False,New model worse by 12.5%
 2025-12-06T15:49:19.172052,1000,69.5,55.00000000000001,False,New model worse by 14.5%
 2025-12-06T15:53:55.376756,1000,69.5,53.5,False,New model worse by 16.0%
+2025-12-06T16:49:00.177528,1000,71.5,51.5,False,New model worse by 20.0%
+2025-12-06T16:52:29.436064,1000,71.0,51.0,False,New model worse by 20.0%
+2025-12-07T02:01:41.609292,1000,65.5,58.5,False,New model worse by 7.0%
+2025-12-07T02:02:49.676637,1000,65.5,59.0,False,New model worse by 6.5%

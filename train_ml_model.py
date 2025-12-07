@@ -15,7 +15,7 @@ from sklearn.metrics import classification_report, confusion_matrix
 import joblib
 
 print("=" * 60)
-print("🤖 ENTRENAMIENTO DE MODELO ML (6 FEATURES)")
+print("🤖 ENTRENAMIENTO DE MODELO ML (7 FEATURES + HORA)")
 print("=" * 60)
 
 # 1. Cargar todos los archivos de trades
@@ -47,15 +47,27 @@ if 'result' not in df_all.columns:
 df_all = df_all[df_all['result'].notna()]
 print(f"\n✅ Trades con resultado: {len(df_all)}")
 
+# 3. Procesar timestamp para extraer hora
+print(f"\n⏰ Procesando timestamp para extraer hora del día...")
+if 'timestamp' in df_all.columns:
+    df_all['timestamp'] = pd.to_datetime(df_all['timestamp'])
+    df_all['hour'] = df_all['timestamp'].dt.hour
+    df_all['hour_normalized'] = df_all['hour'] / 24  # Normalizar entre 0-1
+    print(f"   ✅ Hora extraída (rango: {df_all['hour'].min()}-{df_all['hour'].max()})")
+else:
+    print(f"   ⚠️ No hay columna 'timestamp', usando hora aleatoria")
+    df_all['hour'] = np.random.randint(0, 24, len(df_all))
+    df_all['hour_normalized'] = df_all['hour'] / 24
+
 # Calcular winrate
 wins = (df_all['result'] == 'WIN').sum()
 losses = (df_all['result'] == 'LOSS').sum()
 winrate = wins / (wins + losses) * 100 if (wins + losses) > 0 else 0
 print(f"\n📈 Winrate actual: {winrate:.1f}% ({wins} wins / {losses} losses)")
 
-# 3. Necesitamos calcular EMAs para cada trade
+# 4. Necesitamos calcular EMAs para cada trade
 # Esto requiere datos históricos de candles
-print(f"\n🔧 Calculando features con EMAs...")
+print(f"\n🔧 Calculando features con EMAs + HORA...")
 
 # Verificar si tenemos las columnas necesarias
 required_base_cols = ['price', 'pair', 'duration', 'result']
@@ -88,10 +100,13 @@ if not all(col in df_all.columns for col in required_base_cols):
     df_all['ema55'] = df_all['price'] * (1 + np.random.uniform(-0.003, 0.003, len(df_all)))
     
     feature_cols.extend(['ema8', 'ema21', 'ema55'])
+    
+    # Agregar hora del día
+    feature_cols.append('hour_normalized')
 
 else:
     # Tenemos las columnas necesarias
-    feature_cols = ['price', 'ema8', 'ema21', 'ema55', 'duration_minutes', 'pair_idx']
+    feature_cols = ['price', 'ema8', 'ema21', 'ema55', 'duration_minutes', 'pair_idx', 'hour_normalized']
     
     # Procesar duration
     if 'duration' in df_all.columns:
@@ -103,7 +118,7 @@ else:
         pair_map = {pair: idx for idx, pair in enumerate(pairs)}
         df_all['pair_idx'] = df_all['pair'].map(pair_map)
 
-print(f"  Features finales: {feature_cols}")
+print(f"  Features finales ({len(feature_cols)}): {feature_cols}")
 
 # 4. Preparar datos para entrenamiento
 X = df_all[feature_cols].fillna(0)
@@ -185,7 +200,10 @@ print(f"\n✅ Metadata guardada en: ml_model_metadata.json")
 print(f"\n{'='*60}")
 print(f"🎉 ENTRENAMIENTO COMPLETADO")
 print(f"{'='*60}")
-print(f"\n💡 El bot ahora usará estas 6 features:")
+print(f"\n💡 El bot ahora usará estas {len(feature_cols)} features:")
 print(f"   {feature_cols}")
 print(f"\n⚠️ IMPORTANTE: El bot debe pasar las features en este ORDEN:")
-print(f"   features = [[price, ema8, ema21, ema55, duration/60, pair_idx]]")
+print(f"   features = [[price, ema8, ema21, ema55, duration/60, pair_idx, hour_normalized]]")
+print(f"\n📍 LA HORA ahora es parte del entrenamiento:")
+print(f"   - El modelo aprenderá qué horas son mejores para cada par")
+print(f"   - Puede mejorar significativamente la probabilidad por horario")

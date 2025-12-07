@@ -108,15 +108,22 @@ def get_signal(df: pd.DataFrame, pair: str, duration: int):
                 pair_idx = PAIRS.index(pair)
             except ValueError:
                 pair_idx = 0
-            features = [[c, e8, e21, e55, duration/60, pair_idx]]
+            # Agregar hora del día normalizada (0-1)
+            hour = datetime.now().hour
+            hour_normalized = hour / 24
+            
+            # Features en el orden del entrenamiento: [price, duration_minutes, pair_idx, ema8, ema21, ema55, hour_normalized]
+            feature_names = ['price', 'duration_minutes', 'pair_idx', 'ema8', 'ema21', 'ema55', 'hour_normalized']
+            features_df = pd.DataFrame([[c, duration, pair_idx, e8, e21, e55, hour_normalized]], columns=feature_names)
+            
             # Usar ml_manager si está disponible (thread-safe)
             if ml_manager is not None:
-                prob_result = ml_manager.predict_proba(features)
+                prob_result = ml_manager.predict_proba(features_df)
                 if prob_result is None:
                     return None
                 prob = prob_result[0][1]
             elif model is not None:
-                prob = model.predict_proba(features)[0][1]
+                prob = model.predict_proba(features_df)[0][1]
             else:
                 prob = 1.0  # Sin modelo, aceptar señal
             
@@ -130,22 +137,28 @@ def get_signal(df: pd.DataFrame, pair: str, duration: int):
             "ema21": e21
         }
 
-    if e8 < e21 < e55 and p >= e8 and c < e8:
         prob = 1.0
         if ML_ACTIVE:
             try:
                 pair_idx = PAIRS.index(pair)
             except ValueError:
                 pair_idx = 0
-            features = [[c, e8, e21, e55, duration/60, pair_idx]]
+            # Agregar hora del día normalizada (0-1)
+            hour = datetime.now().hour
+            hour_normalized = hour / 24
+            
+            # Features en el orden del entrenamiento: [price, duration_minutes, pair_idx, ema8, ema21, ema55, hour_normalized]
+            feature_names = ['price', 'duration_minutes', 'pair_idx', 'ema8', 'ema21', 'ema55', 'hour_normalized']
+            features_df = pd.DataFrame([[c, duration, pair_idx, e8, e21, e55, hour_normalized]], columns=feature_names)
+            
             # Usar ml_manager si está disponible (thread-safe)
             if ml_manager is not None:
-                prob_result = ml_manager.predict_proba(features)
+                prob_result = ml_manager.predict_proba(features_df)
                 if prob_result is None:
                     return None
                 prob = prob_result[0][0]
             elif model is not None:
-                prob = model.predict_proba(features)[0][0]
+                prob = model.predict_proba(features_df)[0][0]
             else:
                 prob = 1.0  # Sin modelo, aceptar señal
             

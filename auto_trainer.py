@@ -87,7 +87,7 @@ class AutoTrainer:
         
         for _, row in df.iterrows():
             try:
-                # Features: price, duration_minutes, pair_idx, ema8, ema21, ema55
+                # Features: price, duration_minutes, pair_idx, ema8, ema21, ema55, hour_normalized
                 pair_idx = 0  # Default if pair not in list
                 
                 # Try to extract pair index (you may need to adjust this based on your data)
@@ -98,6 +98,15 @@ class AutoTrainer:
                 
                 duration_minutes = row.get('expiry_time', 300) / 60  # Convert to minutes
                 
+                # Extract hour from timestamp (0-23 normalized to 0-1)
+                hour_normalized = 0.5  # Default middle of day
+                if 'timestamp' in row:
+                    try:
+                        ts = pd.to_datetime(row['timestamp'])
+                        hour_normalized = ts.hour / 24
+                    except:
+                        pass
+                
                 feature_row = [
                     row.get('price', 0),
                     duration_minutes,
@@ -105,6 +114,7 @@ class AutoTrainer:
                     row.get('ema', 0),  # ema8
                     row.get('ema', 0),  # ema21 (if not available, use same as ema8)
                     row.get('ema', 0),  # ema55
+                    hour_normalized,  # 7th feature: hour of day
                 ]
                 
                 label = 1 if row['result'] == 'WIN' else 0

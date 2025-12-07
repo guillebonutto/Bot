@@ -586,24 +586,21 @@ Formato: YYYY-MM-DD HH:MM o DD/MM/YYYY HH:MM
                 self._send_message(chat_id, "❌ Formato de hora no válido. Usa HH:MM")
                 return
             
-            # Crear timestamps
-            dt_inicio = datetime.combine(fecha_inicio, hora_inicio)
-            dt_fin = datetime.combine(fecha_fin, hora_fin)
-            
             # Cargar y filtrar datos
-            stats = self._get_range_stats(dt_inicio, dt_fin)
+            stats = self._get_range_stats(fecha_inicio, fecha_fin, hora_inicio, hora_fin)
             
             if not stats or stats['total_trades'] == 0:
                 self._send_message(
                     chat_id, 
-                    f"❌ No hay datos en el rango {dt_inicio.strftime('%d/%m/%Y %H:%M')} - {dt_fin.strftime('%d/%m/%Y %H:%M')}"
+                    f"❌ No hay datos entre {fecha_inicio.strftime('%d/%m')} y {fecha_fin.strftime('%d/%m')} en el horario {hora_inicio.strftime('%H:%M')}-{hora_fin.strftime('%H:%M')}"
                 )
                 return
             
             # Formatear mensaje de resultados
             msg = f"""
-<b>📊 ESTADÍSTICAS DE RANGO</b>
-<i>{dt_inicio.strftime('%d/%m/%Y %H:%M')} → {dt_fin.strftime('%d/%m/%Y %H:%M')}</i>
+<b>📊 ESTADÍSTICAS POR SESIÓN</b>
+<i>Rango: {fecha_inicio.strftime('%d/%m')} al {fecha_fin.strftime('%d/%m')}</i>
+<i>Horario: {hora_inicio.strftime('%H:%M')} - {hora_fin.strftime('%H:%M')}</i>
 
 <b>📈 Resumen</b>
 • <b>Trades:</b> {stats['total_trades']}
@@ -626,8 +623,8 @@ Formato: YYYY-MM-DD HH:MM o DD/MM/YYYY HH:MM
             print(f"⚠️ Error en _handle_range_stats: {e}")
             self._send_message(chat_id, f"❌ Error procesando rango: {str(e)}")
 
-    def _get_range_stats(self, dt_inicio, dt_fin):
-        """Calcular estadísticas para un rango de fechas y horas."""
+    def _get_range_stats(self, fecha_inicio, fecha_fin, hora_inicio, hora_fin):
+        """Calcular estadísticas para un rango de fechas FILTRANDO por horario diario."""
         try:
             all_files = glob.glob(os.path.join(self.logs_dir, "trades_*.csv"))
             if not all_files:
@@ -648,11 +645,28 @@ Formato: YYYY-MM-DD HH:MM o DD/MM/YYYY HH:MM
             df = pd.concat(dfs, ignore_index=True)
             df['timestamp'] = pd.to_datetime(df['timestamp'])
             
-            # Filtrar por rango
-            df = df[(df['timestamp'] >= dt_inicio) & (df['timestamp'] <= dt_fin)].copy()
+            # 1. Filtrar por rango de FECHAS (del día X al día Y)
+            # Convertimos fechas a datetime para comparar con timestamp
+            dt_inicio_dia = datetime.combine(fecha_inicio, datetime.min.time())
+            dt_fin_dia = datetime.combine(fecha_fin, datetime.max.time())
+            
+            df = df[(df['timestamp'] >= dt_inicio_dia) & (df['timestamp'] <= dt_fin_dia)].copy()
+            
+            # 2. Filtrar por rango de HORAS (dentro de cada día)
+            if hora_inicio <= hora_fin:
+                # Caso normal (ej: 19:00 a 22:00)
+                df = df[(df['timestamp'].dt.time >= hora_inicio) & (df['timestamp'].dt.time <= hora_fin)]
+            else:
+                # Caso cruza medianoche (ej: 22:00 a 02:00)
+                # Selecciona trades >= 22:00 OR <= 02:00
+                df = df[(df['timestamp'].dt.time >= hora_inicio) | (df['timestamp'].dt.time <= hora_fin)]
             
             # Filtrar completados
             df = df[df['result'].isin(['WIN', 'LOSS'])]
+            
+             # Filtrar trades de DEMO
+            if 'trade_id' in df.columns:
+                df = df[~df['trade_id'].astype(str).str.startswith('DEMO')]
             
             if len(df) == 0:
                 return None
@@ -750,29 +764,25 @@ Formato: YYYY-MM-DD HH:MM o DD/MM/YYYY HH:MM
                 self._send_message(chat_id, "❌ Formato de hora no válido.")
                 return
             
-            # Crear timestamps
-            dt_inicio = datetime.combine(fecha_inicio, hora_inicio)
-            dt_fin = datetime.combine(fecha_fin, hora_fin)
-            
             # Cargar datos detallados
-            detailed_list = self._get_detailed_trades(dt_inicio, dt_fin)
+            detailed_list = self._get_detailed_trades(fecha_inicio, fecha_fin, hora_inicio, hora_fin)
             
             if not detailed_list or len(detailed_list) == 0:
                 self._send_message(
                     chat_id, 
-                    f"❌ No hay datos en el rango {dt_inicio.strftime('%d/%m/%Y %H:%M')} - {dt_fin.strftime('%d/%m/%Y %H:%M')}"
+                    f"❌ No hay datos entre {fecha_inicio.strftime('%d/%m')} y {fecha_fin.strftime('%d/%m')} en el horario {hora_inicio.strftime('%H:%M')}-{hora_fin.strftime('%H:%M')}"
                 )
                 return
             
             # Dividir en múltiples mensajes si es muy largo
-            self._send_detailed_report(chat_id, detailed_list, dt_inicio, dt_fin)
+            self._send_detailed_report(chat_id, detailed_list, fecha_inicio, fecha_fin, hora_inicio, hora_fin)
             
         except Exception as e:
             print(f"⚠️ Error en _handle_range_detailed: {e}")
             self._send_message(chat_id, f"❌ Error: {str(e)}")
 
-    def _get_detailed_trades(self, dt_inicio, dt_fin):
-        """Obtener lista detallada de trades en un rango."""
+    def _get_detailed_trades(self, fecha_inicio, fecha_fin, hora_inicio, hora_fin):
+        """Obtener lista detallada de trades FILTRANDO por horario diario."""
         try:
             all_files = glob.glob(os.path.join(self.logs_dir, "trades_*.csv"))
             if not all_files:
@@ -793,11 +803,25 @@ Formato: YYYY-MM-DD HH:MM o DD/MM/YYYY HH:MM
             df = pd.concat(dfs, ignore_index=True)
             df['timestamp'] = pd.to_datetime(df['timestamp'])
             
-            # Filtrar por rango
-            df = df[(df['timestamp'] >= dt_inicio) & (df['timestamp'] <= dt_fin)].copy()
+            # 1. Filtrar por rango de FECHAS
+            dt_inicio_dia = datetime.combine(fecha_inicio, datetime.min.time())
+            dt_fin_dia = datetime.combine(fecha_fin, datetime.max.time())
             
-            # Filtrar completados
-            df = df[df['result'].isin(['WIN', 'LOSS'])].copy()
+            df = df[(df['timestamp'] >= dt_inicio_dia) & (df['timestamp'] <= dt_fin_dia)].copy()
+            
+            # 2. Filtrar por rango de HORAS (dentro de cada día)
+            if hora_inicio <= hora_fin:
+                # Caso normal (ej: 19:00 a 22:00)
+                df = df[(df['timestamp'].dt.time >= hora_inicio) & (df['timestamp'].dt.time <= hora_fin)]
+            else:
+                # Caso cruza medianoche (ej: 22:00 a 02:00)
+                # Selecciona trades >= 22:00 OR <= 02:00
+                df = df[(df['timestamp'].dt.time >= hora_inicio) | (df['timestamp'].dt.time <= hora_fin)]
+            
+            # Filtrar completados y NO DEMO
+            df = df[df['result'].isin(['WIN', 'LOSS'])]
+            if 'trade_id' in df.columns:
+                df = df[~df['trade_id'].astype(str).str.startswith('DEMO')]
             
             if len(df) == 0:
                 return None
@@ -825,33 +849,58 @@ Formato: YYYY-MM-DD HH:MM o DD/MM/YYYY HH:MM
             print(f"⚠️ Error en _get_detailed_trades: {e}")
             return None
 
-    def _send_detailed_report(self, chat_id, trades_list, dt_inicio, dt_fin):
-        """Enviar informe detallado en el mínimo de mensajes posible."""
+    def _send_detailed_report(self, chat_id, trades_list, fecha_inicio, fecha_fin, hora_inicio, hora_fin):
+        """Enviar informe detallado agrupado por pares."""
         try:
+            from collections import defaultdict
+            
             # Encabezado
-            header = f"""<b>📋 INFORME DETALLADO DE OPERACIONES</b>
-<i>{dt_inicio.strftime('%d/%m/%Y %H:%M')} → {dt_fin.strftime('%d/%m/%Y %H:%M')}</i>
+            header = f"""<b>📋 INFORME DETALLADO POR PARES</b>
+<i>Rango: {fecha_inicio.strftime('%d/%m')} al {fecha_fin.strftime('%d/%m')}</i>
+<i>Horario: {hora_inicio.strftime('%H:%M')} - {hora_fin.strftime('%H:%M')}</i>
 
 <b>Total de trades: {len(trades_list)}</b>
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 """
             
-            # Construir el mensaje completo
+            # Agrupar por par
+            trades_by_pair = defaultdict(list)
+            for trade in trades_list:
+                trades_by_pair[trade['pair']].append(trade)
+            
+            # Construir mensaje agrupado por pares
             full_message = header
             
-            for trade in trades_list:
-                ts = trade['timestamp']
+            for pair in sorted(trades_by_pair.keys()):
+                pair_trades = trades_by_pair[pair]
                 
-                # Emoji según resultado
-                emoji = "✅" if trade['result'] == 'WIN' else "❌"
+                # Encabezado del par
+                pair_wins = len([t for t in pair_trades if t['result'] == 'WIN'])
+                pair_losses = len([t for t in pair_trades if t['result'] == 'LOSS'])
+                pair_winrate = (pair_wins / len(pair_trades) * 100) if len(pair_trades) > 0 else 0
+                pair_pnl = sum([t['profit_loss'] for t in pair_trades])
                 
-                # Información del trade
-                duration_str = f"{int(trade['duration'])}s" if trade['duration'] > 0 else "N/A"
-                pnl_str = f"{trade['profit_loss']:+.2f}"
+                pair_header = f"\n<b>{pair}</b> ({len(pair_trades)} ops | {pair_winrate:.1f}% WR | {pair_pnl:+.2f})\n"
                 
-                trade_line = f"{emoji} {ts.strftime('%d/%m %H:%M:%S')} | <b>{trade['pair']}</b> {trade['decision']} | {duration_str} | {pnl_str}\n"
+                # Agregar operaciones del par
+                pair_content = ""
+                for trade in pair_trades:
+                    ts = trade['timestamp']
+                    emoji = "✅" if trade['result'] == 'WIN' else "❌"
+                    duration_str = f"{int(trade['duration'])}s" if trade['duration'] > 0 else "N/A"
+                    pnl_str = f"{trade['profit_loss']:+.2f}"
+                    
+                    trade_line = f"{emoji} {ts.strftime('%H:%M:%S')} {trade['decision']} | {duration_str} | {pnl_str}\n"
+                    pair_content += trade_line
                 
-                full_message += trade_line
+                # Si agregar este par haría el mensaje muy largo, enviar lo actual
+                if len(full_message) + len(pair_header) + len(pair_content) > 3800 and len(full_message) > len(header):
+                    # Enviar mensaje actual
+                    self._send_message(chat_id, full_message)
+                    # Comenzar nuevo mensaje con este par
+                    full_message = header + pair_header + pair_content
+                else:
+                    full_message += pair_header + pair_content
             
             # Resumen final
             wins = len([t for t in trades_list if t['result'] == 'WIN'])
@@ -870,13 +919,8 @@ Formato: YYYY-MM-DD HH:MM o DD/MM/YYYY HH:MM
             
             full_message += footer
             
-            # Si el mensaje es mayor a 4096 caracteres (límite de Telegram), dividir
-            if len(full_message) > 4000:
-                # Enviar en chunks por par para mantener contexto
-                self._send_detailed_report_chunked(chat_id, trades_list, dt_inicio, dt_fin, header, footer)
-            else:
-                # Enviar todo junto
-                self._send_message(chat_id, full_message)
+            # Enviar mensaje final
+            self._send_message(chat_id, full_message)
             
         except Exception as e:
             print(f"⚠️ Error en _send_detailed_report: {e}")

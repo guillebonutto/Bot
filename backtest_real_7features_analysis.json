@@ -1,0 +1,12 @@
+{
+  "total_real_trades": 758,
+  "real_wins": 380,
+  "real_winrate": 50.131926121372025,
+  "ml_accepted_trades": 116,
+  "ml_accepted_wins": 65,
+  "ml_accepted_winrate": 56.03448275862068,
+  "ml_rejected_trades": 642,
+  "bad_trades_avoided": 327,
+  "winrate_improvement": 5.902556637248658,
+  "timestamp": "2025-12-07T05:32:57.393445"
+}
